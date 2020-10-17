@@ -6,9 +6,9 @@ import NavigationBar from "./components/layout/NavigationBar";
 export default function App() {
   return (
     <Fragment>
-      <NavigationBar />
-      <Container>
-        <Router>
+      <Router>
+        <NavigationBar />
+        <Container>
           <Switch>
             <Route path="/pets">
               <h2>pets</h2>
@@ -17,8 +17,8 @@ export default function App() {
               <h1>HOME</h1>
             </Route>
           </Switch>
-        </Router>
-      </Container>
+        </Container>
+      </Router>
     </Fragment>
   );
 }
