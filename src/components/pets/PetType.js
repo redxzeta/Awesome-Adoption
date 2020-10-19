@@ -83,7 +83,7 @@ export default function PetType({ token }) {
 
             return (
               <Col md={4} xs={12} key={pet.id} className="petList__column">
-                <Card style={{ width: "18rem" }}>
+                <Card style={{ width: "100%" }}>
                   <Card.Img variant="top" src={img} />
                   <Card.Body>
                     <Card.Title>{pet.name}</Card.Title>
