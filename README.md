@@ -1,3 +1,7 @@
+## Pet Finder Developer API Key
+
+Register for an api key here [PetFinder](https://www.petfinder.com/developers/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
