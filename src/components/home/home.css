@@ -18,7 +18,7 @@
     position: relative;
     animation-name: dogAnimate;
     animation-duration: 1s;
-    animation-iteration-count: 5;
+    animation-iteration-count: 3;
     margin-bottom: 60px;
 }
 
