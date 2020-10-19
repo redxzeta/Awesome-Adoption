@@ -1,28 +1,34 @@
-.pet__container{
-    text-align: center;
+.pet__container {
+	text-align: center;
 }
 
-.pet__container img{
-    width: 100%
-    ;margin-bottom: 20px;
-    margin-top: 20px;
+.pet__container img {
+	width: 100%;
+	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
-.petList__container{
-    text-align: center;
+.petList__container {
+	text-align: center;
 }
-.petList__column{
-    margin-bottom: 40px;
+.petList__column {
+	margin-bottom: 40px;
 }
 
-
-.pet__button{
-
-bottom: 0;
+.pet__button {
+	bottom: 0;
 }
 
 .petInfo img {
-    margin-left: auto; margin-right: auto; width: 69%;    display: block;
-    position: relative; 
-    margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 69%;
+	display: block;
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.card-img-top {
+	height: 300px;
+	width: 300px;
 }
