@@ -10,6 +10,8 @@
 
 .petList__container {
 	text-align: center;
+	display: grid;
+	place-items: center;
 }
 .petList__column {
 	margin-bottom: 40px;
