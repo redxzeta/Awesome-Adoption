@@ -19,7 +19,7 @@ export default function PetInfo({ token }) {
         console.log(error);
       });
   }, [id, token]);
-  console.log(pet);
+
   return (
     <div className="petInfo">
       <h1>{pet.name}</h1>

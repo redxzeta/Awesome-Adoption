@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from "./LoadingSpinner";
 import axios from "axios";
 import "./pets.css";
 import {
@@ -11,33 +11,14 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-const philly = 19019;
 
 export default function PetType({ token }) {
   const [petList, setpetList] = useState("");
+  const [code, setCode] = useState(19019);
   const [zipCode, setZipCode] = useState(19019);
-  const [loading, setLoading]= useState(true)
+  const [loading, setLoading] = useState(true);
   let { type } = useParams();
   useEffect(() => {
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    axios
-      .get(
-        `https://api.petfinder.com/v2/animals?type=${type}&location=${philly}&limit=10&page=1`,
-        config
-      )
-      .then((response) => {
-        setpetList(response.data);
-        setLoading(false)
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [token, type]);
-
-  const search = () => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
@@ -48,14 +29,18 @@ export default function PetType({ token }) {
       )
       .then((response) => {
         setpetList(response.data);
-        setLoading(false)
-        console.log(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
-  };
+  }, [token, type, zipCode]);
 
+  const search = () => {
+    setZipCode(code);
+    setLoading(true);
+  };
+  console.log(loading);
   return (
     <div className="petList__container">
       <h1>List Of {type} Buddies</h1>
@@ -71,14 +56,16 @@ export default function PetType({ token }) {
           aria-label="Small"
           type="number"
           aria-describedby="inputGroup-sizing-sm"
-          value={zipCode}
-          onChange={(e) => setZipCode(e.target.value)}
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
         />
         <Button onClick={search}>GO</Button>
       </InputGroup>
       <Row>
-
-      {loading ? <LoadingSpinner /> : petList && 
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          petList &&
           petList.animals.map((pet) => {
             const img =
               pet.photos === undefined || pet.photos.length === 0
@@ -104,8 +91,8 @@ export default function PetType({ token }) {
                 </Card>
               </Col>
             );
-          })}
-     
+          })
+        )}
 
         {}
       </Row>
