@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import LoadingSpinner from './LoadingSpinner';
 import axios from "axios";
 import "./pets.css";
 import {
@@ -15,6 +16,7 @@ const philly = 19019;
 export default function PetType({ token }) {
   const [petList, setpetList] = useState("");
   const [zipCode, setZipCode] = useState(19019);
+  const [loading, setLoading]= useState(true)
   let { type } = useParams();
   useEffect(() => {
     const config = {
@@ -27,6 +29,7 @@ export default function PetType({ token }) {
       )
       .then((response) => {
         setpetList(response.data);
+        setLoading(false)
         console.log(response.data);
       })
       .catch((error) => {
@@ -45,6 +48,7 @@ export default function PetType({ token }) {
       )
       .then((response) => {
         setpetList(response.data);
+        setLoading(false)
         console.log(response.data);
       })
       .catch((error) => {
@@ -73,7 +77,8 @@ export default function PetType({ token }) {
         <Button onClick={search}>GO</Button>
       </InputGroup>
       <Row>
-        {petList &&
+
+      {loading ? <LoadingSpinner /> : petList && 
           petList.animals.map((pet) => {
             const img =
               pet.photos === undefined || pet.photos.length === 0
@@ -100,6 +105,9 @@ export default function PetType({ token }) {
               </Col>
             );
           })}
+     
+
+        {}
       </Row>
     </div>
   );
