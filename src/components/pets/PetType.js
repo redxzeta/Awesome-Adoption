@@ -40,11 +40,10 @@ export default function PetType({ token }) {
     setZipCode(code);
     setLoading(true);
   };
-  console.log(loading);
   return (
     <div className="petList__container">
       <h1>List Of {type} Buddies</h1>
-      <h2>Area Code: {zipCode}</h2>
+      <h2>ZipCode: {zipCode}</h2>
 
       <InputGroup size="md" className="mb-3" style={{ width: "40%" }}>
         <InputGroup.Prepend>
@@ -54,7 +53,8 @@ export default function PetType({ token }) {
         </InputGroup.Prepend>
         <FormControl
           aria-label="Small"
-          type="number"
+          type="text"
+          pattern="[0-9]{5}"
           aria-describedby="inputGroup-sizing-sm"
           value={code}
           onChange={(e) => setCode(e.target.value)}
@@ -72,7 +72,6 @@ export default function PetType({ token }) {
                 ? "https://via.placeholder.com/300"
                 : pet.photos[0].medium;
             // array empty or does not exist
-
             return (
               <Col md={4} xs={12} key={pet.id} className="petList__column">
                 <Card style={{ width: "100%" }}>
