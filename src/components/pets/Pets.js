@@ -41,7 +41,7 @@ export default function Pets() {
 }
 
 const AnimalType = ({ type, img, link }) => (
-  <Col xs={12} md={6} className="pet__column">
+  <Col xs={12} md={6} className="pet__column d-flex flex-column align-items-center justify-content-end my-4">
     <Image src={img} alt={type} roundedCircle />
     <Button as={Link} to={link} className="pet__button" color="primary">
       Click Here
