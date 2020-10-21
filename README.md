@@ -11,6 +11,8 @@ In the `.env` file put
 Restart the app
 
 
+Join My [Discord](https://discord.gg/SXtcS65)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
