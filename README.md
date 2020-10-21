@@ -8,6 +8,9 @@ In the `.env` file put
 
 `REACT_APP_PETFINDER_KEY =PetFinderKeyHere`
 
+Restart the app
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
