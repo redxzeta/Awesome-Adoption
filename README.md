@@ -2,6 +2,12 @@
 
 Register for an api key here [PetFinder](https://www.petfinder.com/developers/)
 
+Create an `.env` file in root folder
+
+In the `.env` file put
+
+`REACT_APP_PETFINDER_KEY =PetFinderKeyHere`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
