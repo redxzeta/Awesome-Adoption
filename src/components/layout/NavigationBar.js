@@ -1,35 +1,40 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
-const PetTypes = ({types}) => {
-  const listedPets = ['Dog', 'Cat', 'Bird', 'Horse', 'Rabbit'];
-    return(
+const PetTypes = ({ types }) => {
+  const listedPets = ["Dog", "Cat", "Bird", "Horse", "Rabbit"];
+  return (
     <>
-    {
-      types.filter(type => listedPets.indexOf(type.name) !== -1).map( (type,i) => (
-        <NavDropdown.Item key={i} href={`pets/${type.name.toLowerCase()}`}>
-          {type.name}
-        </NavDropdown.Item>
-      ))
-    }
+      {types
+        .filter((type) => listedPets.indexOf(type.name) !== -1)
+        .map((type, i) => (
+          <NavDropdown.Item
+            key={i}
+            as={Link}
+            to={`pets/${type.name.toLowerCase()}`}
+          >
+            {type.name}
+          </NavDropdown.Item>
+        ))}
     </>
-  )
-}
+  );
+};
 
-export default function NavigationBar({token}) {
-  const [types,setTypes] = useState([])
+export default function NavigationBar({ token }) {
+  const [types, setTypes] = useState([]);
   useEffect(() => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
-    }; 
-    const getTypes = async ()=>{
-      axios.get("https://api.petfinder.com/v2/types",config)
-      .then( ({data}) =>  data && setTypes(data.types))
-    }
-    getTypes()
-  },[token])
+    };
+    const getTypes = async () => {
+      axios
+        .get("https://api.petfinder.com/v2/types", config)
+        .then(({ data }) => data && setTypes(data.types));
+    };
+    getTypes();
+  }, [token]);
 
   return (
     <Navbar bg="primary" expand="lg">
@@ -40,9 +45,11 @@ export default function NavigationBar({token}) {
           <Nav.Link as={Link} to="/">
             Home
           </Nav.Link>
-          <NavDropdown title="Pets" id="basic-nav-dropdown" >            
+          <NavDropdown title="Pets" id="basic-nav-dropdown">
             <PetTypes types={types} />
-            <NavDropdown.Item href="/pets">All Pets</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/pets">
+              All Pets
+            </NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
