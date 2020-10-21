@@ -9,12 +9,13 @@ import Pets from "./components/pets/Pets";
 import PetType from "./components/pets/PetType";
 import PetInfo from "./components/pets/PetInfo";
 export default function App() {
+  console.log(process.env.REACT_APP_PETFINDER_KEY);
   const [token, setToken] = useState("");
   useEffect(() => {
     axios
       .post(
         "https://api.petfinder.com/v2/oauth2/token",
-        "grant_type=client_credentials&client_id=vT6KSljwJN1gJfcVfWhaABRHQmRfAdXJ72lrxp7N6GMh9aE1jZ&client_secret=ZNW8RkCP7uMuoeZCTyLn9ixh0t4FfZyOxbLtnXKV"
+        `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`
       )
       .then((response) => {
         setToken(response.data.access_token);
