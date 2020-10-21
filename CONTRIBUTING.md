@@ -28,10 +28,10 @@ This issue is meant for potential bugs. Please provide the following information
 
 ### Pull requests
 
-Please document any public function and class. At least required:
+Brief walkthrough on what changes being done:
 
-- Function: Summary, Parameters, and Returns.
-- Class: Summary and Attributes
+- Issue or Feature being implemented
+- Short summary of what is being done
 
 ### Update your fork
 
@@ -48,11 +48,11 @@ After that your repository will have two remotes. You could update your remote (
 ```
 git fetch upstream
 git checkout <your feature branch>
-git rebase upstream/master
+git rebase upstream/main
 ..fix if needed and
 git push -f
 ```
 
-if `rebase` won't work well, use `git merge master` as alternative.
+if `rebase` won't work well, use `git merge main` as alternative.
 
 It's also possible to send a PR in the opposite direction, but that's not preferred as it will pollute the commit log.
