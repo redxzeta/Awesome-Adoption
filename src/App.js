@@ -26,7 +26,7 @@ export default function App() {
   return (
     <Fragment>
       <Router>
-        <NavigationBar />
+        <NavigationBar token={token} />
         <Container className="pawhub">
           <Switch>
             {" "}
