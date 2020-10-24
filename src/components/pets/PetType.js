@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import axios from "axios";
@@ -11,13 +11,16 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
+import { postcodeValidator } from 'postcode-validator';
 
 export default function PetType({ token }) {
+  const inputCode = useRef(null);
   const [petList, setpetList] = useState("");
   const [code, setCode] = useState(19019);
   const [zipCode, setZipCode] = useState(19019);
   const [loading, setLoading] = useState(true);
   let { type } = useParams();
+
   useEffect(() => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -37,8 +40,12 @@ export default function PetType({ token }) {
   }, [token, type, zipCode]);
 
   const search = () => {
-    setZipCode(code);
-    setLoading(true);
+    if( postcodeValidator(code, 'US')){
+      setZipCode(code) 
+      setLoading(true);
+    } else {
+        inputCode.current.value="Invalid ZipCode"      
+    }    
   };
   return (
     <div className="petList__container">
@@ -52,6 +59,7 @@ export default function PetType({ token }) {
           </InputGroup.Text>
         </InputGroup.Prepend>
         <FormControl
+          ref={inputCode}
           aria-label="Small"
           type="text"
           pattern="[0-9]{5}"
