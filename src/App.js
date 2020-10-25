@@ -9,7 +9,6 @@ import Pets from "./components/pets/Pets";
 import PetType from "./components/pets/PetType";
 import PetInfo from "./components/pets/PetInfo";
 export default function App() {
-  console.log(process.env.REACT_APP_PETFINDER_KEY);
   const [token, setToken] = useState("");
   useEffect(() => {
     axios
