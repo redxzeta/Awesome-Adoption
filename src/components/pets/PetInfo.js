@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Card, Image } from "react-bootstrap";
+import { Card, Image, Button } from "react-bootstrap";
 export default function PetInfo({ token }) {
   let { id } = useParams();
   const [pet, setPet] = useState("");
@@ -39,8 +39,10 @@ export default function PetInfo({ token }) {
     <div className="petInfo">
       <h1>{pet.name}</h1>
       {pet && <Image src={pet.photos[index].large} style={{}} />}
-      <button onClick={previousPhoto}>Previous Photo</button>
-      <button onClick={nextPhoto}>Next Photo</button>
+      <Button variant="primary" onClick={previousPhoto}>Previous Photo</Button>
+      &nbsp;&nbsp;
+      <Button variant="primary" onClick={nextPhoto}>Next</Button>
+
       <br />
       <br />
       {pet && (
