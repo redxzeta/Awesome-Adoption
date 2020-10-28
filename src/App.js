@@ -8,6 +8,8 @@ import "./App.css";
 import Pets from "./components/pets/Pets";
 import PetType from "./components/pets/PetType";
 import PetInfo from "./components/pets/PetInfo";
+import Footer from "./components/layout/Footer";
+
 export default function App() {
   const [token, setToken] = useState("");
   useEffect(() => {
@@ -42,6 +44,7 @@ export default function App() {
             </Route>
           </Switch>
         </Container>
+        <Footer />
       </Router>
     </Fragment>
   );
