@@ -21,6 +21,10 @@
 	bottom: 0;
 }
 
+.petInfo {
+	margin-bottom: 30px;
+}
+
 .petInfo img {
 	margin-left: auto;
 	margin-right: auto;
