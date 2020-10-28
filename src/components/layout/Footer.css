@@ -1,0 +1,9 @@
+.footer {
+  padding: 1rem;
+  border-top: solid 1px var(--primary);
+}
+
+.footer span {
+  flex: 1;
+  text-align: center;
+}
