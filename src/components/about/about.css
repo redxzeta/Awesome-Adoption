@@ -1,0 +1,23 @@
+.home__container{
+    text-align: center;
+}
+@keyframes dogAnimate {
+    0%   {  top:0px;}
+
+    50% {  top:50px;}
+    
+      100% {  top:0px;}
+  }
+
+.about__container img{
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    display: block;
+    position: relative;
+    animation-name: dogAnimate;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+    margin-bottom: 60px;
+}
