@@ -11,6 +11,7 @@ import PetInfo from "./components/pets/PetInfo";
 import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 
+
 export default function App() {
   const [token, setToken] = useState("");
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function App() {
         console.log(error);
       });
   }, []);
+  console.log('Access_token: ',token)
   return (
     <Fragment>
       <Router>
