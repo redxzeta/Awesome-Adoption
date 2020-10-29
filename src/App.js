@@ -11,21 +11,35 @@ import PetInfo from "./components/pets/PetInfo";
 import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 
+function fetchFunction(){
+  axios
+  .post(
+    "https://api.petfinder.com/v2/oauth2/token",
+    `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`
+  )
+  .then((response) => {
+    localStorage.setItem("token",response.data.access_token);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}
+
+if (!localStorage.getItem("token")) {
+  fetchFunction();
+}
+
 export default function App() {
   const [token, setToken] = useState("");
+
   useEffect(() => {
-    axios
-      .post(
-        "https://api.petfinder.com/v2/oauth2/token",
-        `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`
-      )
-      .then((response) => {
-        setToken(response.data.access_token);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if(!localStorage.getItem("token")){
+      fetchFunction();
+    }
+    setToken(localStorage.getItem("token"));
   }, []);
+  
+  console.log('Access_token: ', token)
   return (
     <Fragment>
       <Router>
