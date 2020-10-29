@@ -13,7 +13,7 @@ const PetTypes = ({ types }) => {
           <NavDropdown.Item
             key={i}
             as={Link}
-            to={`pets/${type.name.toLowerCase()}`}
+            to={`/pets/${type.name.toLowerCase()}`}
           >
             {type.name}
           </NavDropdown.Item>
