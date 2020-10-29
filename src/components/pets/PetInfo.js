@@ -22,7 +22,11 @@ export default function PetInfo({ token }) {
   return pet ? (
     <div className="petInfo">
       <h1>{pet.name}</h1>
-      <Gallery data={pet.photos.map((p) => ({ src: p.large, title: "" }))} />
+      {pet.photos === undefined || pet.photos.length === 0 ? (
+        <img src="https://via.placeholder.com/300" alt="placeholder" />
+      ) : (
+        <Gallery data={pet.photos.map((p) => ({ src: p.large, title: "" }))} />
+      )}
 
       <Card>
         <Card.Header as="h5">{pet.type}</Card.Header>
