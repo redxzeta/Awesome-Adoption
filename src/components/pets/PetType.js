@@ -10,6 +10,7 @@ import {
   FormControl,
   InputGroup,
   Row,
+  Pagination
 } from "react-bootstrap";
 import { postcodeValidator } from 'postcode-validator';
 
@@ -19,25 +20,32 @@ export default function PetType({ token }) {
   const [code, setCode] = useState(19019);
   const [zipCode, setZipCode] = useState(19019);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   let { type } = useParams();
 
   useEffect(() => {
+    findPets();
+  }, [token, type, zipCode]);
+
+  const findPets = (newPage) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
       .get(
-        `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=10&page=1`,
+        `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=10&page=${newPage || currentPage}`,
         config
       )
       .then((response) => {
+        setTotalPages((response.data && response.data.pagination) ? (response.data.pagination.total_pages || 1) : 1);
         setpetList(response.data);
         setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [token, type, zipCode]);
+  }
 
   const search = () => {
     if( postcodeValidator(code, 'US')){
@@ -67,6 +75,48 @@ export default function PetType({ token }) {
 
     if(pet && pet.photos && pet.photos.length > 1) {
       event.target.src = pet.photos[0].medium;
+    }
+  }
+
+  const renderPagination = () => {
+    let pageItems = [];
+    let minShownPage = 1;
+    let maxShownPage = 1;
+    if(totalPages - currentPage < 2) {
+      minShownPage = totalPages - 4;
+      maxShownPage = totalPages;
+    } else {
+      minShownPage = currentPage - 2;
+      maxShownPage = currentPage + 2;
+    }
+
+    if(currentPage - 1 < 2) {
+      minShownPage = 1;
+      maxShownPage = totalPages > 5 ? 5 : totalPages;
+    }
+
+    if(minShownPage < 1) minShownPage = 1;
+    if(currentPage > 1) pageItems.push(<Pagination.First onClick={() => changePage(1)} />);
+    if(currentPage > 1) pageItems.push(<Pagination.Prev  onClick={() => changePage(currentPage - 1)}/>);
+    
+    for (let i = minShownPage; i <= maxShownPage; i++) {
+      pageItems.push(
+        <Pagination.Item key={i} active={i === currentPage}  onClick={() => changePage(i)}>
+          {i}
+        </Pagination.Item>,
+      );
+    }
+    if(currentPage < totalPages) pageItems.push(<Pagination.Next  onClick={() => changePage(currentPage + 1)} />);
+    if(currentPage !== totalPages) pageItems.push(<Pagination.Last  onClick={() => changePage(totalPages)} />);
+
+    return pageItems;
+  }
+
+  const changePage = (newPage) => {
+    if(newPage !== currentPage) {
+      setLoading(true);
+      setCurrentPage(newPage);
+      findPets(newPage);
     }
   }
 
@@ -126,6 +176,17 @@ export default function PetType({ token }) {
 
         {}
       </Row>
+      {
+        !loading &&
+        <Row>
+          <Col md={12} xs={12}>
+            <Pagination>
+              {renderPagination()}
+            </Pagination>
+          </Col>
+        </Row>
+      }
+      <br />
     </div>
   );
 }
