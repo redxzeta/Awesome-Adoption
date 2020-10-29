@@ -20,6 +20,7 @@ export default function PetType({ token }) {
   const [zipCode, setZipCode] = useState(19019);
   const [loading, setLoading] = useState(true);
   let { type } = useParams();
+  console.log('loading: ',loading)
 
   useEffect(() => {
     const config = {
@@ -36,6 +37,7 @@ export default function PetType({ token }) {
         setLoading(false);
       })
       .catch((error) => {
+        setLoading(false);
         console.log(error);
       });
   }, [token, type, zipCode]);
