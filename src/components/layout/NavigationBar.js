@@ -13,7 +13,7 @@ const PetTypes = ({ types }) => {
           <NavDropdown.Item
             key={i}
             as={Link}
-            to={`pets/${type.name.toLowerCase()}`}
+            to={`/pets/${type.name.toLowerCase()}`}
           >
             {type.name}
           </NavDropdown.Item>
@@ -37,8 +37,8 @@ export default function NavigationBar({ token }) {
   }, [token]);
 
   return (
-    <Navbar bg="primary" expand="lg">
-      <Navbar.Brand href="#home">PawHub</Navbar.Brand>
+    <Navbar bg="primary" expand="lg" style={{ minHeight: "fit-content" }}>
+      <Navbar.Brand href="/">PawHub</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
