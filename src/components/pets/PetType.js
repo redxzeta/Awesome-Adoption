@@ -1,6 +1,6 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "../shared/Spinner";
 import axios from "axios";
 import "./pets.css";
 import {
@@ -11,7 +11,7 @@ import {
   InputGroup,
   Row,
 } from "react-bootstrap";
-import { postcodeValidator } from 'postcode-validator';
+import { postcodeValidator } from "postcode-validator";
 
 export default function PetType({ token }) {
   const inputCode = useRef(null);
@@ -25,6 +25,7 @@ export default function PetType({ token }) {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
+
     axios
       .get(
         `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=10&page=1`,
@@ -40,12 +41,12 @@ export default function PetType({ token }) {
   }, [token, type, zipCode]);
 
   const search = () => {
-    if( postcodeValidator(code, 'US')){
-      setZipCode(code) 
+    if (postcodeValidator(code, "US")) {
+      setZipCode(code);
       setLoading(true);
     } else {
-        inputCode.current.value="Invalid ZipCode"      
-    }    
+      inputCode.current.value = "Invalid ZipCode";
+    }
   };
   return (
     <div className="petList__container">
@@ -69,6 +70,7 @@ export default function PetType({ token }) {
         />
         <Button onClick={search}>GO</Button>
       </InputGroup>
+
       <Row>
         {loading ? (
           <LoadingSpinner />
