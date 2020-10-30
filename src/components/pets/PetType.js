@@ -12,7 +12,7 @@ import {
   Row,
 } from "react-bootstrap";
 import { postcodeValidator } from "postcode-validator";
-import Placeholder from "./placeholder.jpg"
+import Placeholder from "./placeholder.jpg";
 
 export default function PetType({ token }) {
   const inputCode = useRef(null);
@@ -21,7 +21,6 @@ export default function PetType({ token }) {
   const [zipCode, setZipCode] = useState(19019);
   const [loading, setLoading] = useState(true);
   let { type } = useParams();
-  console.log('loading: ',loading)
 
   useEffect(() => {
     const config = {
@@ -57,11 +56,13 @@ export default function PetType({ token }) {
     const pet = petList.animals.find((pet) => {
       return pet.id === petId;
     });
-    if(pet && pet.photos && pet.photos.length > 1) {
-      const randomPhotoIndex = Math.floor(Math.random() * (pet.photos.length - 1) + 1);
+    if (pet && pet.photos && pet.photos.length > 1) {
+      const randomPhotoIndex = Math.floor(
+        Math.random() * (pet.photos.length - 1) + 1
+      );
       event.target.src = pet.photos[randomPhotoIndex].medium;
     }
-  }
+  };
 
   const onBlurPhoto = (event) => {
     const petId = parseInt(event.target.id);
@@ -69,10 +70,10 @@ export default function PetType({ token }) {
       return pet.id === petId;
     });
 
-    if(pet && pet.photos && pet.photos.length > 1) {
+    if (pet && pet.photos && pet.photos.length > 1) {
       event.target.src = pet.photos[0].medium;
     }
-  }
+  };
 
   return (
     <div className="petList__container">
@@ -111,7 +112,23 @@ export default function PetType({ token }) {
             return (
               <Col md={4} xs={12} key={pet.id} className="petList__column">
                 <Card style={{ width: "100%" }}>
-                  { img === "placeholder" ? <Card.Img id={pet.id} variant="top" src={Placeholder} onMouseEnter={onHoverPhoto} onMouseLeave={onBlurPhoto} /> : <Card.Img id={pet.id} variant="top" src={img} onMouseEnter={onHoverPhoto} onMouseLeave={onBlurPhoto} /> }
+                  {img === "placeholder" ? (
+                    <Card.Img
+                      id={pet.id}
+                      variant="top"
+                      src={Placeholder}
+                      onMouseEnter={onHoverPhoto}
+                      onMouseLeave={onBlurPhoto}
+                    />
+                  ) : (
+                    <Card.Img
+                      id={pet.id}
+                      variant="top"
+                      src={img}
+                      onMouseEnter={onHoverPhoto}
+                      onMouseLeave={onBlurPhoto}
+                    />
+                  )}
                   <Card.Body>
                     <Card.Title>{pet.name}</Card.Title>
                     <Card.Text> Breed: {pet.breeds.primary}</Card.Text>
