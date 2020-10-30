@@ -20,6 +20,7 @@ function fetchFunction() {
     )
     .then((response) => {
       localStorage.setItem("token", response.data.access_token);
+
       atoken = response.data.access_token;
     })
     .catch((error) => {
@@ -34,16 +35,18 @@ if (!localStorage.getItem("token")) {
 
 export default function App() {
   const [token, setToken] = useState("");
-
+  const [Authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       const aToken = fetchFunction();
       setToken(aToken);
+      console.log("no token initated");
     } else {
       setToken(localStorage.getItem("token"));
     }
+    setAuthenticated(true);
   }, []);
-
+  console.log(token ? "true" : "false");
   return (
     <Fragment>
       <Router>
@@ -52,10 +55,10 @@ export default function App() {
           <Switch>
             {" "}
             <Route path="/animal/:id">
-              {token && <PetInfo token={token} />}
+              {Authenticated && <PetInfo token={token} />}
             </Route>
             <Route path="/pets/:type">
-              {token && <PetType token={token} />}
+              {Authenticated && <PetType token={token} />}
             </Route>
             <Route path="/pets">{token && <Pets token={token} />}</Route>
             <Route path="/about">
