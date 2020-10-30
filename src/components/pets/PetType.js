@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect,useRef, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import axios from "axios";
@@ -24,19 +24,13 @@ export default function PetType({ token }) {
   const [totalPages, setTotalPages] = useState(1);
   let { type } = useParams();
 
-  useEffect(() => {
-    setCurrentPage(1);
-    setLoading(true);
-    findPets(1);
-  }, [token, type, zipCode]);
-
-  const findPets = (newPage) => {
+  const findPets = useCallback((page) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     axios
       .get(
-        `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=10&page=${newPage || currentPage}`,
+        `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=10&page=${page || 1}`,
         config
       )
       .then((response) => {
@@ -47,7 +41,13 @@ export default function PetType({ token }) {
       .catch((error) => {
         console.log(error);
       });
-  }
+  }, [token, type, zipCode]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    setLoading(true);
+    findPets(1);
+  }, [token, type, zipCode, findPets]);
 
   const search = () => {
     if( postcodeValidator(code, 'US')){
@@ -98,8 +98,8 @@ export default function PetType({ token }) {
     }
 
     if(minShownPage < 1) minShownPage = 1;
-    if(currentPage > 1) pageItems.push(<Pagination.First onClick={() => changePage(1)} />);
-    if(currentPage > 1) pageItems.push(<Pagination.Prev  onClick={() => changePage(currentPage - 1)}/>);
+    if(currentPage > 1) pageItems.push(<Pagination.First key='firstPage' onClick={() => changePage(1)} />);
+    if(currentPage > 1) pageItems.push(<Pagination.Prev  key='prevPage' onClick={() => changePage(currentPage - 1)}/>);
     
     for (let i = minShownPage; i <= maxShownPage; i++) {
       pageItems.push(
@@ -108,8 +108,8 @@ export default function PetType({ token }) {
         </Pagination.Item>,
       );
     }
-    if(currentPage < totalPages) pageItems.push(<Pagination.Next  onClick={() => changePage(currentPage + 1)} />);
-    if(currentPage !== totalPages) pageItems.push(<Pagination.Last  onClick={() => changePage(totalPages)} />);
+    if(currentPage < totalPages) pageItems.push(<Pagination.Next key='nextPage' onClick={() => changePage(currentPage + 1)} />);
+    if(currentPage !== totalPages) pageItems.push(<Pagination.Last key='lastPage' onClick={() => changePage(totalPages)} />);
 
     return pageItems;
   }
