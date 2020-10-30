@@ -6,10 +6,13 @@ Create an `.env` file in root folder
 
 In the `.env` file put
 
-`REACT_APP_PETFINDER_KEY =PetFinderKeyHere`
+`REACT_APP_PETFINDER_KEY = APIKEYhere&client_secret=secretkeyhere`
 
 Restart the app
 
+Where the key is being used
+
+`grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`
 
 Join My [Discord](https://discord.gg/SXtcS65)
 
