@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 const PetTypes = ({ types }) => {
   const listedPets = ["Dog", "Cat", "Bird", "Horse", "Rabbit"];
@@ -21,17 +21,39 @@ const PetTypes = ({ types }) => {
     </>
   );
 };
-
+const petList = {
+  types: [
+    {
+      name: "Dog",
+    },
+    {
+      name: "Cat",
+    },
+    {
+      name: "Rabbit",
+    },
+    {
+      name: "Horse",
+    },
+    {
+      name: "Bird",
+    },
+  ],
+};
 export default function NavigationBar({ token }) {
   const [types, setTypes] = useState([]);
   useEffect(() => {
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    const getTypes = async () => {
-      axios
-        .get("https://api.petfinder.com/v2/types", config)
-        .then(({ data }) => data && setTypes(data.types));
+    // const config = {
+    //   headers: { Authorization: `Bearer ${token}` },
+    // };
+    const getTypes = () => {
+      // axios
+      //   .get("https://api.petfinder.com/v2/types", config)
+      //   .then(({ data }) => data && setTypes(data.types))
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+      setTypes(petList.types);
     };
     getTypes();
   }, [token]);
