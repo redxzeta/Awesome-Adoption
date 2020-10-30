@@ -12,6 +12,7 @@ import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 
 function fetchFunction() {
+  let atoken = "";
   axios
     .post(
       "https://api.petfinder.com/v2/oauth2/token",
@@ -19,10 +20,12 @@ function fetchFunction() {
     )
     .then((response) => {
       localStorage.setItem("token", response.data.access_token);
+      atoken = response.data.access_token;
     })
     .catch((error) => {
       console.log(error);
     });
+  return atoken;
 }
 
 if (!localStorage.getItem("token")) {
@@ -34,9 +37,10 @@ export default function App() {
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      fetchFunction();
+      setToken(fetchFunction());
+    } else {
+      setToken(localStorage.getItem("token"));
     }
-    setToken(localStorage.getItem("token"));
   }, []);
 
   return (
