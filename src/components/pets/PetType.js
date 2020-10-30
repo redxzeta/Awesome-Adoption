@@ -12,6 +12,7 @@ import {
   Row,
 } from "react-bootstrap";
 import { postcodeValidator } from "postcode-validator";
+import Placeholder from "./placeholder.jpg"
 
 export default function PetType({ token }) {
   const inputCode = useRef(null);
@@ -104,13 +105,13 @@ export default function PetType({ token }) {
           petList.animals.map((pet) => {
             const img =
               pet.photos === undefined || pet.photos.length === 0
-                ? "https://via.placeholder.com/300"
+                ? "placeholder"
                 : pet.photos[0].medium;
             // array empty or does not exist
             return (
               <Col md={4} xs={12} key={pet.id} className="petList__column">
                 <Card style={{ width: "100%" }}>
-                  <Card.Img id={pet.id} variant="top" src={img} onMouseEnter={onHoverPhoto} onMouseLeave={onBlurPhoto} />
+                  { img === "placeholder" ? <Card.Img id={pet.id} variant="top" src={Placeholder} onMouseEnter={onHoverPhoto} onMouseLeave={onBlurPhoto} /> : <Card.Img id={pet.id} variant="top" src={img} onMouseEnter={onHoverPhoto} onMouseLeave={onBlurPhoto} /> }
                   <Card.Body>
                     <Card.Title>{pet.name}</Card.Title>
                     <Card.Text> Breed: {pet.breeds.primary}</Card.Text>
