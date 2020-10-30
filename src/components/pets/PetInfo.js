@@ -5,6 +5,7 @@ import { Card } from "react-bootstrap";
 
 import Gallery from "../shared/Gallery";
 import Spinner from "../shared/Spinner";
+import Placeholder from "./placeholder.jpg"
 
 export default function PetInfo({ token }) {
   let { id } = useParams();
@@ -23,7 +24,7 @@ export default function PetInfo({ token }) {
     <div className="petInfo">
       <h1>{pet.name}</h1>
       {pet.photos === undefined || pet.photos.length === 0 ? (
-        <img src="https://via.placeholder.com/300" alt="placeholder" />
+        <img src={Placeholder} alt="placeholder" />
       ) : (
         <Gallery data={pet.photos.map((p) => ({ src: p.large, title: "" }))} />
       )}
