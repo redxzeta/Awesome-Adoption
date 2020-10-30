@@ -25,7 +25,9 @@ export default function PetType({ token }) {
   let { type } = useParams();
 
   useEffect(() => {
-    findPets();
+    setCurrentPage(1);
+    setLoading(true);
+    findPets(1);
   }, [token, type, zipCode]);
 
   const findPets = (newPage) => {
