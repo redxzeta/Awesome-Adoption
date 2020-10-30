@@ -37,7 +37,8 @@ export default function App() {
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      setToken(fetchFunction());
+      const aToken = fetchFunction();
+      setToken(aToken);
     } else {
       setToken(localStorage.getItem("token"));
     }
