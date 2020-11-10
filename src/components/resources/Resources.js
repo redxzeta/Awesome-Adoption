@@ -12,13 +12,13 @@ export default function Home() {
         <br/><b>This leaves 1.8 million pets that go untouched each year.</b><br/><br/>
         Adopting a pet is cheaper than buying a pet, and you also potentially save a life by doing so. Many shelter pets are already house-trained and are used to living with humans.<br/><br/>
         <b>More information about adopting pets can be found at the links below</b><br/>
-        <Button href="https://www.petfinder.com/pet-adoption-2/pet-adoption-information/" variant="primary">
+        <Button href="https://www.petfinder.com/pet-adoption-2/pet-adoption-information/" target="_blank" variant="primary">
             Pet Finder
         </Button>
-        <Button href="https://www.humanesociety.org/resources/top-reasons-adopt-pet" variant="primary">
+        <Button href="https://www.humanesociety.org/resources/top-reasons-adopt-pet" target="_blank" variant="primary">
             Humane Society
         </Button>
-        <Button href="https://www.petcarehospital.net/blog/adopting-instead-of-buying-a-pet" variant="primary">
+        <Button href="https://www.petcarehospital.net/blog/adopting-instead-of-buying-a-pet" target="_blank" variant="primary">
             Petcare Hospital
         </Button>
       </p>
@@ -32,10 +32,10 @@ export default function Home() {
         <br/><br/>
         <b>Pawternity Hub wants to help you stay safe and help you find a friend that can keep you company during the pandemic<br/> Check out the links below for more information about adoption during Covid-19</b>
         <br/>
-        <Button href="https://www.petfinder.com/helping-pets/covid-19-resources/how-to-adopt-a-pet-during-covid-19/" variant="primary">
+        <Button href="https://www.petfinder.com/helping-pets/covid-19-resources/how-to-adopt-a-pet-during-covid-19/" target="_blank" variant="primary">
             Pet Finder (Adopting during Covid-19)
         </Button>
-        <Button href="https://www.oie.int/scientific-expertise/specific-information-and-recommendations/questions-and-answers-on-2019novel-coronavirus/" variant="primary">
+        <Button href="https://www.oie.int/scientific-expertise/specific-information-and-recommendations/questions-and-answers-on-2019novel-coronavirus/" target="_blank" variant="primary">
             World Organization for Animal Health
         </Button>
       </p>
