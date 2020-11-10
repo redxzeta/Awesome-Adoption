@@ -10,6 +10,7 @@ import PetType from "./components/pets/PetType";
 import PetInfo from "./components/pets/PetInfo";
 import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
+import Resources from "./components/resources/Resources"
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -56,6 +57,9 @@ export default function App() {
             </Route>
             <Route path="/about">
               <About />
+            </Route>
+            <Route path="/resources">
+              <Resources />
             </Route>
             <Route path="/">
               <Home />
