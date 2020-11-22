@@ -14,7 +14,8 @@ export default function About() {
      "https://avatars2.githubusercontent.com/u/54453166?s=150&v=4",
      "https://avatars3.githubusercontent.com/u/13179054?s=150&v=4",
      "https://avatars3.githubusercontent.com/u/55332102?s=150&v=4",
-     "https://avatars2.githubusercontent.com/u/41325679?s=150&v=4"
+     "https://avatars2.githubusercontent.com/u/41325679?s=150&v=4",
+     "https://avatars1.githubusercontent.com/u/46096911?s=460&u=38b7654de9a335f3a2bc35275634cdb548994fbc&v=4"
     ];
 
   return (
@@ -34,7 +35,7 @@ export default function About() {
           })}
 
         </div>
-        <a href="https://github.com/redxzeta/Awesome-Adoption"><img src={GitHubLogo} alt="GitHub logo"></img><p>GitHub</p></a>
+        <a href="https://github.com/redxzeta/Awesome-Adoption" target="_blank"><img src={GitHubLogo} alt="GitHub logo"></img><p>GitHub</p></a>
       </div>
     </div>
   );
