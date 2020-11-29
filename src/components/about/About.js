@@ -6,21 +6,6 @@ import Dog from "./dog.jpg";
 import GitHubLogo from "./GitHub-Mark-Light-120px-plus.png";
 import "./about.css";
 export default function About() {
-  // const data = [];
-  // const contributorsAvatars = [];
-  // const contributorsIds = [];
-  // let i = 0;
-   
-  // axios.get('https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors').then(resp => {
-
-  //   // console.log(resp.data);
-  //   data.push(resp.data);
-  //   // console.log(contributorAvatars[0].length)
-  //   for (i=0; i < data[0].length; i++) {
-  //     contributorsAvatars.push(data[0][i]["avatar_url"])
-  //     contributorsIds.push(data[0][i]["id"])
-  //   }
-  // }).then(console.log(contributorsAvatars))
   const axios = require('axios');
   const [avatars, setAvatars] = useState((avatars) => {return null}); // by default there are no avatars
   const apiUrl = "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors";
