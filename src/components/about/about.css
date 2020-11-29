@@ -68,8 +68,10 @@
 .contributors {
   display: flex;
   flex-direction: row;
-  place-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   margin: 1rem 0;
+  color: red; /* debug */
 }
 .contributors img {
   max-width: 50px;
