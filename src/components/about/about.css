@@ -1,23 +1,91 @@
-.about__container{
-    text-align: center;
+.about__container {
+  text-align: center;
 }
 @keyframes dogAnimate {
-    0%   {  top:0px;}
-
-    50% {  top:50px;}
-    
-      100% {  top:0px;}
+  0% {
+    top: 0px;
   }
 
-.about__container img{
-    border: 2px solid black;
-    margin-left: auto;
-    margin-right: auto;
-    width:50%;
-    display: block;
-    position: relative;
-    animation-name: dogAnimate;
-    animation-duration: 1s;
-    animation-iteration-count: 3;
-    margin-bottom: 60px;
+  50% {
+    top: 50px;
+  }
+
+  100% {
+    top: 0px;
+  }
+}
+
+.about__container img {
+  border: 2px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  display: block;
+  position: relative;
+  animation-name: dogAnimate;
+  animation-duration: 1s;
+  animation-iteration-count: 3;
+  margin-bottom: 60px;
+}
+
+.contributors-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.social-button {
+  display: flex;
+  align-items: center;
+  background: var(--primary);
+  color: #fcfcfc;
+  width: fit-content;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  transition: background ease-in-out 0.15s;
+}
+
+.social-button img {
+  animation-name: none;
+  transition: none;
+  /* width: 120px !important; */
+  max-width: 1.8rem;
+  margin: 0.5rem;
+  padding: 0;
+  border: 0;
+}
+.social-button p {
+  margin: 0;
+  margin-right: 0.5rem;
+}
+.social-button:hover {
+  background: #e74742;
+}
+
+.social-button:hover p {
+  color: #fcfcfc;
+}
+.contributors {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+  color: red; /* debug */
+}
+.contributor-link {
+  background: none;
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+.contributor-avatar {
+  width: 100% !important;
+  animation-name: none !important;
+  max-width: 50px !important;
+  animation-name: none;
+  margin: 0 0.25rem !important;
+  padding: 0;
+  border: 0 !important;
+  border-radius: 100%;
 }
