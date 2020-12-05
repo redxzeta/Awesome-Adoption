@@ -31,13 +31,14 @@ export default function About() {
         around their area to adopt. The technology we used is React along with
         Bootstrap for the styling and using the PetFinder API to request
         information about the pets. It was tricky because some of the members
-        were brand new to React and had to show them the ropes.
+        were brand new to React and had to show them the ropes. It was quite the
+        learning experience for them and me too as I never really taught React
       </p>
       <p>
         Due to the harsh times we are in, I hope people would be able to find
         their own buddy that can help them. The goal is to make it easier for
         people to adopt pets and learn more information about the pets during
-        covid19
+        covid19 - redxzeta
       </p>
       <a target="blank" rel="noreferrer" href="https://youtu.be/vxAqS-GLna8">
         Youtube Link
