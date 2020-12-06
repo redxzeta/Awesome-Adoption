@@ -1,5 +1,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e4f299c9-c989-48e7-98c6-a9e259ddfb0f/deploy-status)](https://app.netlify.com/sites/hardcore-morse-df1d25/deploys)
 [![Build Status](https://travis-ci.org/redxzeta/Awesome-Adoption.svg?branch=main)](https://travis-ci.org/redxzeta/Awesome-Adoption)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Pet Finder Developer API Key
 
