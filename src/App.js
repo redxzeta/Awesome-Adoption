@@ -62,7 +62,7 @@ export default function App() {
               <Resources />
             </Route>
             <Route path="/">
-              <Home />
+              {Authenticated && <Home token={token}/>}
             </Route>
           </Switch>
         </Container>
