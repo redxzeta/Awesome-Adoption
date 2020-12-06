@@ -1,6 +1,4 @@
-.home__container{
-    text-align: center;
-}
+
 @keyframes dogAnimate {
     0%   {  top:0px;}
 
@@ -9,7 +7,15 @@
       100% {  top:0px;}
   }
 
-.home__container img{
+.home__container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.home__container #dog{
     border: 2px solid black;
     margin-left: auto;
     margin-right: auto;
@@ -21,4 +27,14 @@
     animation-iteration-count: 3;
     margin-bottom: 60px;
 }
+
+.featured__pets{
+    margin:40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 
