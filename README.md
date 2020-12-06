@@ -1,3 +1,6 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e4f299c9-c989-48e7-98c6-a9e259ddfb0f/deploy-status)](https://app.netlify.com/sites/hardcore-morse-df1d25/deploys)
+
+
 ## Pet Finder Developer API Key
 
 Register for an api key here [PetFinder](https://www.petfinder.com/developers/)
