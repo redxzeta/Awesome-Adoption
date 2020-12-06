@@ -1,5 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e4f299c9-c989-48e7-98c6-a9e259ddfb0f/deploy-status)](https://app.netlify.com/sites/hardcore-morse-df1d25/deploys)
-
+[![Build Status](https://travis-ci.org/redxzeta/Awesome-Adoption.svg?branch=main)](https://travis-ci.org/redxzeta/Awesome-Adoption)
 
 ## Pet Finder Developer API Key
 
