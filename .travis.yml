@@ -5,4 +5,4 @@ node_js:
 
 script:
   - yarn test
-  - yarn buld
+  - yarn build
