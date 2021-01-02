@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "../shared/Spinner";
 import axios from "axios";
@@ -10,7 +10,7 @@ import {
   FormControl,
   InputGroup,
   Row,
-  Pagination
+  Pagination,
 } from "react-bootstrap";
 import { postcodeValidator } from "postcode-validator";
 import Placeholder from "./placeholder.jpg";
@@ -25,24 +25,33 @@ export default function PetType({ token }) {
   const [totalPages, setTotalPages] = useState(1);
   let { type } = useParams();
 
-  const findPets = useCallback((page) => {
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    axios
-      .get(
-        `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=10&page=${page || 1}`,
-        config
-      )
-      .then((response) => {
-        setTotalPages((response.data && response.data.pagination) ? (response.data.pagination.total_pages || 1) : 1);
-        setpetList(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [token, type, zipCode]);
+  const findPets = useCallback(
+    (page) => {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      axios
+        .get(
+          `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=12&page=${
+            page || 1
+          }`,
+          config
+        )
+        .then((response) => {
+          setTotalPages(
+            response.data && response.data.pagination
+              ? response.data.pagination.total_pages || 1
+              : 1
+          );
+          setpetList(response.data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    [token, type, zipCode]
+  );
 
   useEffect(() => {
     setCurrentPage(1);
@@ -87,7 +96,7 @@ export default function PetType({ token }) {
     let pageItems = [];
     let minShownPage = 1;
     let maxShownPage = 1;
-    if(totalPages - currentPage < 2) {
+    if (totalPages - currentPage < 2) {
       minShownPage = totalPages - 4;
       maxShownPage = totalPages;
     } else {
@@ -95,35 +104,60 @@ export default function PetType({ token }) {
       maxShownPage = currentPage + 2;
     }
 
-    if(currentPage - 1 < 2) {
+    if (currentPage - 1 < 2) {
       minShownPage = 1;
       maxShownPage = totalPages > 5 ? 5 : totalPages;
     }
 
-    if(minShownPage < 1) minShownPage = 1;
-    if(currentPage > 1) pageItems.push(<Pagination.First key='firstPage' onClick={() => changePage(1)} />);
-    if(currentPage > 1) pageItems.push(<Pagination.Prev  key='prevPage' onClick={() => changePage(currentPage - 1)}/>);
-    
+    if (minShownPage < 1) minShownPage = 1;
+    if (currentPage > 1)
+      pageItems.push(
+        <Pagination.First key="firstPage" onClick={() => changePage(1)} />
+      );
+    if (currentPage > 1)
+      pageItems.push(
+        <Pagination.Prev
+          key="prevPage"
+          onClick={() => changePage(currentPage - 1)}
+        />
+      );
+
     for (let i = minShownPage; i <= maxShownPage; i++) {
       pageItems.push(
-        <Pagination.Item key={i} active={i === currentPage}  onClick={() => changePage(i)}>
+        <Pagination.Item
+          key={i}
+          active={i === currentPage}
+          onClick={() => changePage(i)}
+        >
           {i}
-        </Pagination.Item>,
+        </Pagination.Item>
       );
     }
-    if(currentPage < totalPages) pageItems.push(<Pagination.Next key='nextPage' onClick={() => changePage(currentPage + 1)} />);
-    if(currentPage !== totalPages) pageItems.push(<Pagination.Last key='lastPage' onClick={() => changePage(totalPages)} />);
+    if (currentPage < totalPages)
+      pageItems.push(
+        <Pagination.Next
+          key="nextPage"
+          onClick={() => changePage(currentPage + 1)}
+        />
+      );
+    if (currentPage !== totalPages)
+      pageItems.push(
+        <Pagination.Last
+          key="lastPage"
+          onClick={() => changePage(totalPages)}
+        />
+      );
 
     return pageItems;
-  }
+  };
 
   const changePage = (newPage) => {
-    if(newPage !== currentPage) {
+    if (newPage !== currentPage) {
       setLoading(true);
       setCurrentPage(newPage);
       findPets(newPage);
     }
-  }
+  };
 
   return (
     <div className="petList__container">
@@ -198,16 +232,13 @@ export default function PetType({ token }) {
 
         {}
       </Row>
-      {
-        !loading &&
+      {!loading && (
         <Row>
           <Col md={12} xs={12}>
-            <Pagination>
-              {renderPagination()}
-            </Pagination>
+            <Pagination>{renderPagination()}</Pagination>
           </Col>
         </Row>
-      }
+      )}
       <br />
     </div>
   );

@@ -5,7 +5,7 @@ import { Card } from "react-bootstrap";
 
 import Gallery from "../shared/Gallery";
 import Spinner from "../shared/Spinner";
-import Placeholder from "./placeholder.jpg"
+import Placeholder from "./placeholder.jpg";
 
 export default function PetInfo({ token }) {
   let { id } = useParams();
@@ -35,7 +35,9 @@ export default function PetInfo({ token }) {
           <Card.Title>Breeds</Card.Title>
           <Card.Text>{pet.breeds.primary}</Card.Text>
           <Card.Title>Colors</Card.Title>
-          <Card.Text>{pet.colors.primary}</Card.Text>
+          <Card.Text>
+            {pet.colors.primary ? pet.colors.primary : "N/A"}
+          </Card.Text>
           <Card.Title>Age</Card.Title>
           <Card.Text>{pet.age}</Card.Text>
           <Card.Title>Gender</Card.Title>
