@@ -21,7 +21,10 @@ export default function Home({ token }) {
             <Card.Img variant="top" src={link ? link.medium : placeholder} />
             <Card.Body>
               <Card.Title>{pet.name}</Card.Title>
-              <Card.Text>Breed:{pet.breeds.primary}</Card.Text>
+              <Card.Text>
+                <span style={{ fontWeight: 500 }}>Breed: </span>
+                {pet.breeds.primary}
+              </Card.Text>
               <Button as={Link} to={`/animal/${pet.id}`} variant="primary">
                 More Info
               </Button>
