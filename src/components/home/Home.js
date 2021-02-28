@@ -18,7 +18,7 @@ export default function Home({ token }) {
       return (
         <Col md={4} xs={12} key={pet.id}>
           <Card>
-            <Card.Img variant="top" src={link ? link.medium : placeholder} />
+            <Card.Img variant="top" alt={link ? pet.type : `${pet.type} placeholder`} src={link ? link.medium : placeholder} />
             <Card.Body>
               <Card.Title>{pet.name}</Card.Title>
               <Card.Text>
