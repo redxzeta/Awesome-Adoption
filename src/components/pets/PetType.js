@@ -32,8 +32,7 @@ export default function PetType({ token }) {
       };
       axios
         .get(
-          `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=12&page=${
-            page || 1
+          `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=12&page=${page || 1
           }`,
           config
         )
@@ -200,6 +199,7 @@ export default function PetType({ token }) {
                     <Card.Img
                       id={pet.id}
                       variant="top"
+                      alt={`${type} placeholder`}
                       src={Placeholder}
                       onMouseEnter={onHoverPhoto}
                       onMouseLeave={onBlurPhoto}
@@ -208,6 +208,7 @@ export default function PetType({ token }) {
                     <Card.Img
                       id={pet.id}
                       variant="top"
+                      alt={type}
                       src={img}
                       onMouseEnter={onHoverPhoto}
                       onMouseLeave={onBlurPhoto}
@@ -230,7 +231,7 @@ export default function PetType({ token }) {
           })
         )}
 
-        {}
+        { }
       </Row>
       {!loading && (
         <Row>
