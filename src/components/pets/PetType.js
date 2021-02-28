@@ -199,7 +199,7 @@ export default function PetType({ token }) {
                     <Card.Img
                       id={pet.id}
                       variant="top"
-                      alt={`default ${type}`}
+                      alt={`${type} placeholder`}
                       src={Placeholder}
                       onMouseEnter={onHoverPhoto}
                       onMouseLeave={onBlurPhoto}
