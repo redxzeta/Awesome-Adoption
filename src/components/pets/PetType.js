@@ -32,7 +32,8 @@ export default function PetType({ token }) {
       };
       axios
         .get(
-          `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=12&page=${page || 1
+          `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=12&page=${
+            page || 1
           }`,
           config
         )
@@ -163,24 +164,26 @@ export default function PetType({ token }) {
       <h1>List Of {type} Buddies</h1>
       <h2>ZipCode: {zipCode}</h2>
 
-      <InputGroup size="md" className="mb-3" style={{ width: "40%" }}>
-        <InputGroup.Prepend>
-          <InputGroup.Text id="inputGroup-sizing-sm">
-            Enter Zip Code
-          </InputGroup.Text>
-        </InputGroup.Prepend>
-        <FormControl
-          ref={inputCode}
-          aria-label="Small"
-          type="text"
-          pattern="[0-9]{5}"
-          aria-describedby="inputGroup-sizing-sm"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-        />
-        <Button onClick={search}>GO</Button>
-      </InputGroup>
-
+      <div className="inputContainer">
+        <InputGroup size="md" className="mb-3">
+          <InputGroup.Prepend>
+            <InputGroup.Text id="inputGroup-sizing-sm">
+              Enter Zip Code
+            </InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl
+            ref={inputCode}
+            aria-label="Small"
+            type="text"
+            pattern="[0-9]{5}"
+            aria-describedby="inputGroup-sizing-sm"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            style={{ width: 100 }}
+          />
+          <Button onClick={search}>GO</Button>
+        </InputGroup>
+      </div>
       <Row>
         {loading ? (
           <LoadingSpinner />
@@ -194,7 +197,7 @@ export default function PetType({ token }) {
             // array empty or does not exist
             return (
               <Col md={4} xs={12} key={pet.id} className="petList__column">
-                <Card style={{ width: "100%" }}>
+                <Card style={{ width: "100%", paddingTop: 10 }}>
                   {img === "placeholder" ? (
                     <Card.Img
                       id={pet.id}
@@ -203,6 +206,11 @@ export default function PetType({ token }) {
                       src={Placeholder}
                       onMouseEnter={onHoverPhoto}
                       onMouseLeave={onBlurPhoto}
+                      style={{
+                        width: 300,
+                        height: 200,
+                        alignSelf: "center",
+                      }}
                     />
                   ) : (
                     <Card.Img
@@ -212,6 +220,11 @@ export default function PetType({ token }) {
                       src={img}
                       onMouseEnter={onHoverPhoto}
                       onMouseLeave={onBlurPhoto}
+                      style={{
+                        width: 300,
+                        height: 200,
+                        alignSelf: "center",
+                      }}
                     />
                   )}
                   <Card.Body>
@@ -230,8 +243,6 @@ export default function PetType({ token }) {
             );
           })
         )}
-
-        { }
       </Row>
       {!loading && (
         <Row>
