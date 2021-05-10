@@ -17,8 +17,12 @@ export default function Home({ token }) {
       const link = pet.primary_photo_cropped;
       return (
         <Col md={4} xs={12} key={pet.id}>
-          <Card>
-            <Card.Img variant="top" alt={link ? pet.type : `${pet.type} placeholder`} src={link ? link.medium : placeholder} />
+          <Card style={{ margin: 10 }}>
+            <Card.Img
+              variant="top"
+              alt={link ? pet.type : `${pet.type} placeholder`}
+              src={link ? link.medium : placeholder}
+            />
             <Card.Body>
               <Card.Title>{pet.name}</Card.Title>
               <Card.Text>
