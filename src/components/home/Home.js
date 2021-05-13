@@ -17,21 +17,36 @@ export default function Home({ token }) {
       const link = pet.primary_photo_cropped;
       return (
         <Col md={4} xs={12} key={pet.id}>
-          <Card style={{ margin: 10 }}>
+          <Card style={{ margin: 10, paddingTop: 10, width: "100%" }}>
             <Card.Img
               variant="top"
               alt={link ? pet.type : `${pet.type} placeholder`}
               src={link ? link.medium : placeholder}
+              style={{
+                width: "90%",
+                height: 200,
+                alignSelf: "center",
+                borderRadius: 4,
+              }}
             />
-            <Card.Body>
-              <Card.Title>{pet.name}</Card.Title>
+            <Card.Body
+              style={{
+                flex: 1,
+                alignSelf: "center",
+              }}
+            >
+              <Card.Title style={{ textAlign: "center" }}>
+                {pet.name}
+              </Card.Title>
               <Card.Text>
                 <span style={{ fontWeight: 500 }}>Breed: </span>
                 {pet.breeds.primary}
               </Card.Text>
-              <Button as={Link} to={`/animal/${pet.id}`} variant="primary">
-                More Info
-              </Button>
+              <div className="button__style">
+                <Button as={Link} to={`/animal/${pet.id}`}>
+                  More Info
+                </Button>
+              </div>
             </Card.Body>
           </Card>
         </Col>
