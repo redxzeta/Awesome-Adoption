@@ -24,7 +24,6 @@ export default function PetType({ token }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   let { type } = useParams();
-
   const findPets = useCallback(
     (page) => {
       const config = {
@@ -207,9 +206,10 @@ export default function PetType({ token }) {
                       onMouseEnter={onHoverPhoto}
                       onMouseLeave={onBlurPhoto}
                       style={{
-                        width: 300,
+                        width: "90%",
                         height: 200,
                         alignSelf: "center",
+                        borderRadius: 4,
                       }}
                     />
                   ) : (
@@ -221,9 +221,10 @@ export default function PetType({ token }) {
                       onMouseEnter={onHoverPhoto}
                       onMouseLeave={onBlurPhoto}
                       style={{
-                        width: 300,
+                        width: "90%",
                         height: 200,
                         alignSelf: "center",
+                        borderRadius: 4,
                       }}
                     />
                   )}
