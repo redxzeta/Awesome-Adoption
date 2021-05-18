@@ -205,12 +205,6 @@ export default function PetType({ token }) {
                       src={Placeholder}
                       onMouseEnter={onHoverPhoto}
                       onMouseLeave={onBlurPhoto}
-                      style={{
-                        width: "90%",
-                        height: 200,
-                        alignSelf: "center",
-                        borderRadius: 4,
-                      }}
                     />
                   ) : (
                     <Card.Img
@@ -220,12 +214,6 @@ export default function PetType({ token }) {
                       src={img}
                       onMouseEnter={onHoverPhoto}
                       onMouseLeave={onBlurPhoto}
-                      style={{
-                        width: "90%",
-                        height: 200,
-                        alignSelf: "center",
-                        borderRadius: 4,
-                      }}
                     />
                   )}
                   <Card.Body>

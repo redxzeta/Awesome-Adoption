@@ -45,3 +45,10 @@
   align-items: center;
   justify-content: center;
 }
+
+.home__container .featured__pets .card-top-container {
+  width: 90%;
+  height: 200;
+  align-self: center;
+  border-radius: 4;
+}

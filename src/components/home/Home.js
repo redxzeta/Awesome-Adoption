@@ -22,12 +22,6 @@ export default function Home({ token }) {
               variant="top"
               alt={link ? pet.type : `${pet.type} placeholder`}
               src={link ? link.medium : placeholder}
-              style={{
-                width: "90%",
-                height: 200,
-                alignSelf: "center",
-                borderRadius: 4,
-              }}
             />
             <Card.Body
               style={{
