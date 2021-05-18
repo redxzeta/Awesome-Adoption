@@ -42,3 +42,10 @@
 .inputContainer {
   flex: 1;
 }
+
+.petList__container .card-img-top {
+  width: 90%;
+  height: 200;
+  align-self: center;
+  border-radius: 4;
+}
