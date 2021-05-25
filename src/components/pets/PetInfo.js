@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Card } from "react-bootstrap";
-
 import Gallery from "../shared/Gallery";
 import Spinner from "../shared/Spinner";
 import Placeholder from "./placeholder.jpg";
@@ -10,6 +9,10 @@ import Placeholder from "./placeholder.jpg";
 export default function PetInfo({ token }) {
   let { id } = useParams();
   const [pet, setPet] = useState();
+
+  
+
+  
 
   useEffect(() => {
     const config = { headers: { Authorization: `Bearer ${token}` } };
@@ -20,9 +23,23 @@ export default function PetInfo({ token }) {
       .catch((error) => console.log(error));
   }, [id, token]);
 
+
+  const nameCleaner = (str) => {
+    if (str !== undefined) {
+      return str.replace(/(^\w+:|^)\/\//, '')
+      .replaceAll('&#039;','\'')
+      .replaceAll('&#39;','\'')
+      .replaceAll('&quot;','"')
+      .replaceAll('&rsquo;','\'')
+      .replaceAll('&amp;','&')
+      .replaceAll('&ldquo;','"')
+      .replaceAll('&hellip;','...')
+  }
+  };  
+
   return pet ? (
     <div className="petInfo">
-      <h1>{pet.name}</h1>
+      <h1>{nameCleaner(pet.name)}</h1>
       {pet.photos === undefined || pet.photos.length === 0 ? (
         <img src={Placeholder} alt="placeholder" />
       ) : (

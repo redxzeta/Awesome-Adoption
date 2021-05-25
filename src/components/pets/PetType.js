@@ -158,6 +158,19 @@ export default function PetType({ token }) {
     }
   };
 
+  const nameCleaner = (str) => {
+    if (str !== undefined) {
+      return str.replace(/(^\w+:|^)\/\//, '')
+      .replaceAll('&#039;','\'')
+      .replaceAll('&#39;','\'')
+      .replaceAll('&quot;','"')
+      .replaceAll('&rsquo;','\'')
+      .replaceAll('&amp;','&')
+      .replaceAll('&ldquo;','"')
+      .replaceAll('&hellip;','...')
+  }
+  };
+
   return (
     <div className="petList__container">
       <h1>List Of {type} Buddies</h1>
@@ -217,7 +230,7 @@ export default function PetType({ token }) {
                     />
                   )}
                   <Card.Body>
-                    <Card.Title>{pet.name}</Card.Title>
+                    <Card.Title style={{whiteSpace: 'nowrap', overflow: "hidden", textOverflow: "ellipsis"}}>{nameCleaner(pet.name)}</Card.Title>
                     <Card.Text> Breed: {pet.breeds.primary}</Card.Text>
                     <Button
                       as={Link}
