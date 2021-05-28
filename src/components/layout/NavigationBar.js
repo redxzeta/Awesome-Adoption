@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./NavigationBar.css";
 // import axios from "axios";
 
 const PetTypes = ({ types }) => {
@@ -59,7 +60,7 @@ export default function NavigationBar({ token }) {
   }, [token]);
 
   return (
-    <Navbar bg="primary" expand="lg" style={{ minHeight: "fit-content" }}>
+    <Navbar className = "Nav_bar" bg="primary" expand="lg">
       <Navbar.Brand href="/">PawHub</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

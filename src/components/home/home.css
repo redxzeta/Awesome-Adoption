@@ -52,3 +52,16 @@
   align-self: center;
   border-radius: 4;
 }
+
+.card{
+  margin: 10;
+  padding-top: 10;
+  width: "100%" ;
+}
+.cardBody{
+    flex: 1;
+    align-self : "center";
+}
+.Breed{
+  font: weight 500; 
+}

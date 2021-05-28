@@ -209,7 +209,7 @@ export default function PetType({ token }) {
             // array empty or does not exist
             return (
               <Col md={4} xs={12} key={pet.id} className="petList__column">
-                <Card style={{ width: "100%", paddingTop: 10 }}>
+                <Card className = "card" >
                   {img === "placeholder" ? (
                     <Card.Img
                       id={pet.id}
@@ -230,7 +230,7 @@ export default function PetType({ token }) {
                     />
                   )}
                   <Card.Body>
-                    <Card.Title style={{whiteSpace: 'nowrap', overflow: "hidden", textOverflow: "ellipsis"}}>{nameCleaner(pet.name)}</Card.Title>
+                    <Card.Title className="cardTitle">{nameCleaner(pet.name)}</Card.Title>
                     <Card.Text> Breed: {pet.breeds.primary}</Card.Text>
                     <Button
                       as={Link}
