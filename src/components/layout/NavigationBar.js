@@ -61,6 +61,7 @@ export default function NavigationBar({ token }) {
 
   return (
     <Navbar className = "Nav_bar" bg="primary" expand="lg">
+      <Container>
       <Navbar.Brand href="/">PawHub</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -82,6 +83,7 @@ export default function NavigationBar({ token }) {
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 }
