@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown,Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 // import axios from "axios";
 
@@ -60,27 +60,21 @@ export default function NavigationBar({ token }) {
 
   return (
     <Navbar bg="primary" expand="lg" style={{ minHeight: "fit-content" }}>
-      <Navbar.Brand href="/">PawHub</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/">
-            Home
-          </Nav.Link>
-          <NavDropdown title="Pets" id="basic-nav-dropdown">
-            <PetTypes types={types} />
-            <NavDropdown.Item as={Link} to="/pets">
-              All Pets
-            </NavDropdown.Item>
-          </NavDropdown>
-          <Nav.Link as={Link} to="/about">
-            About
-          </Nav.Link>
-          <Nav.Link as={Link} to="/resources">
-            Resources
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
+      <Container>
+        <Navbar.Brand href="/">PawHub</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse className="justify-content-end">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <NavDropdown title="Pets" id="navbarScrollingDropdown">
+              <PetTypes types={types} />
+              <NavDropdown.Item as={Link} to="/pets">All Pets</NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link as={Link} to="/about">About</Nav.Link>
+            <Nav.Link as={Link} to="/resources">Resources</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 }
