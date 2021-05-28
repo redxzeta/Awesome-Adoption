@@ -9,22 +9,6 @@ import Horse from "./horse.jpg";
 import Rabbit from "./rabbit.jpg";
 import { Link, useRouteMatch } from "react-router-dom";
 export default function Pets() {
-  //   const [pets, setPets] = useState("");
-
-  //   useEffect(() => {
-  //     const config = {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     };
-  //     axios
-  //       .get("https://api.petfinder.com/v2/types", config)
-  //       .then((response) => {
-  //         setPets(response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }, [token]);
-
   let { url } = useRouteMatch();
   return (
     <div className="pet__container">
@@ -41,7 +25,11 @@ export default function Pets() {
 }
 
 const AnimalType = ({ type, img, link }) => (
-  <Col xs={12} md={6} className="pet__column d-flex flex-column align-items-center justify-content-end my-4">
+  <Col
+    xs={12}
+    md={6}
+    className="pet__column d-flex flex-column align-items-center justify-content-end my-4"
+  >
     <Image src={img} alt={type} roundedCircle />
     <Button as={Link} to={link} className="pet__button" color="primary">
       Click Here
