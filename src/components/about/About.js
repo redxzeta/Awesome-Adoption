@@ -55,24 +55,22 @@ export default function About() {
         <h1>Contributors</h1>
         <div className="contributors" id="contributors">
           {avatars &&
-            avatars.map((a) => {
-              return (
-                <a
-                  className="contributor-link"
+            avatars.map((a) => (
+              <a
+                className="contributor-link"
+                key={a.id}
+                href={a.html_url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className="contributor-avatar"
                   key={a.id}
-                  href={a.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    className="contributor-avatar"
-                    key={a.id}
-                    src={a.avatar_url}
-                    alt="Contributor Avatar"
-                  />
-                </a>
-              );
-            })}
+                  src={a.avatar_url}
+                  alt="Contributor Avatar"
+                />
+              </a>
+            ))}
         </div>
         <a
           className="social-button"
@@ -80,7 +78,7 @@ export default function About() {
           target="_blank"
           rel="noreferrer"
         >
-          <img src={GitHubLogo} alt="GitHub logo"></img>
+          <img src={GitHubLogo} alt="GitHub logo" />
           <p>GitHub</p>
         </a>
       </div>

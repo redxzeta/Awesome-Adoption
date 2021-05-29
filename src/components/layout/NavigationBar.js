@@ -1,6 +1,7 @@
 import React from "react";
 import { Nav, Navbar, NavDropdown, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 import "./NavigationBar.css";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
@@ -13,6 +14,7 @@ const PetTypes = () =>
 
 export default function NavigationBar() {
   return (
+
     <Navbar bg="primary" expand="lg" className = "Nav_bar">
       <Container>
         <Navbar.Brand href="/">PawHub</Navbar.Brand>
