@@ -75,7 +75,7 @@ export default function NavigationBar({ token }) {
               All Pets
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link as={Link} to="/about">
+          <Nav.Link as={Link} to="/about">-
             About
           </Nav.Link>
           <Nav.Link as={Link} to="/resources">
