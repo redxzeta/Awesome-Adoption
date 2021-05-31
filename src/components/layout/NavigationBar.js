@@ -15,9 +15,7 @@ const PetTypes = () =>
 
 export default function NavigationBar() {
   return (
-
     <Navbar bg="primary" expand="lg" className = "Nav_bar">
-
       <Container>
         <Navbar.Brand href="/">PawHub</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
