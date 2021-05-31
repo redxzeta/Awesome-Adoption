@@ -33,6 +33,9 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/resources">
               Resources
             </Nav.Link>
+            <Nav.Link as={Link} to="/donate">
+              Donate
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
