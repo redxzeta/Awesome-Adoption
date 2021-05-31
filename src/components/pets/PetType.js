@@ -209,7 +209,7 @@ export default function PetType({ token }) {
             // array empty or does not exist
             return (
               <Col md={4} xs={12} key={pet.id} className="petList__column">
-                <Card className = "card" >
+                <Card style={{ width: "100%", paddingTop: 10 }} >
                   {img === "placeholder" ? (
                     <Card.Img
                       id={pet.id}

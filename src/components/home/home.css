@@ -53,10 +53,10 @@
   border-radius: 4;
 }
 
-.card{
-  margin: 10;
-  padding-top: 10;
-  width: 100 ;
+.home__container .card{
+  margin: 10px;
+  padding-top: 10px;
+  width: 100% ;
 }
 .cardBody{
     flex: 1;
@@ -65,6 +65,6 @@
 .breed{
   font-weight: 500; 
 }
-.home__container.card-title{
+.home__container .card-title{
   text-align: center ;
 }
