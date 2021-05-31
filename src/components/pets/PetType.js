@@ -230,7 +230,7 @@ export default function PetType({ token }) {
                     />
                   )}
                   <Card.Body>
-                    <Card.Title className="cardTitle">{nameCleaner(pet.name)}</Card.Title>
+                    <Card.Title style={{whiteSpace: 'nowrap', overflow: "hidden", textOverflow: "ellipsis"}}>{nameCleaner(pet.name)}</Card.Title>
                     <Card.Text> Breed: {pet.breeds.primary}</Card.Text>
                     <Button
                       as={Link}

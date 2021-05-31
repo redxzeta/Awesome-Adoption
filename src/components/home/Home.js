@@ -24,11 +24,11 @@ export default function Home({ token }) {
               src={link ? link.medium : placeholder}
             />
             <Card.Body className="cardBody">
-              <Card.Title style={{ textAlign: "center" }}>
+              <Card.Title className="card-title">
                 {pet.name}
               </Card.Title>
               <Card.Text>
-                <span className="Breed">Breed: </span>
+                <span className="breed">Breed: </span>
                 {pet.breeds.primary}
               </Card.Text>
               <div className="button__style">

@@ -56,12 +56,15 @@
 .card{
   margin: 10;
   padding-top: 10;
-  width: "100%" ;
+  width: 100 ;
 }
 .cardBody{
     flex: 1;
-    align-self : "center";
+    align-self : center;
 }
-.Breed{
-  font: weight 500; 
+.breed{
+  font-weight: 500; 
+}
+.home__container.card-title{
+  text-align: center ;
 }
