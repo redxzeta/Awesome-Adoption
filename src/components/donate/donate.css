@@ -1,0 +1,25 @@
+.kofi__image {
+  border: 0px;
+  /* height: 36px; */
+  height: auto;
+  width: 200px;
+}
+
+.donate .card-img-top {
+  height: auto;
+}
+
+.kofi__section {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.charity__section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.donate .card {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

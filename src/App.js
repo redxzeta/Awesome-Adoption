@@ -12,6 +12,7 @@ import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 import Resources from "./components/resources/Resources";
 import jwt_decode from "jwt-decode";
+import Donate from "./components/donate/Donate";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -69,6 +70,9 @@ export default function App() {
             </Route>
             <Route path="/resources">
               <Resources />
+            </Route>
+            <Route path="/donate">
+              <Donate />
             </Route>
             <Route path="/">{Authenticated && <Home token={token} />}</Route>
           </Switch>

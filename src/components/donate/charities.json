@@ -1,0 +1,27 @@
+[{
+        "name": "American Society for the Prevention of Cruelty to Animals (ASPCA)",
+        "website": "https://www.aspca.org/",
+        "logo": "https://sep.yimg.com/ty/cdn/entirelypets/aspca-logo.png",
+        "location": "United States",
+        "founded": 1866,
+        "mission": "To provide effective means for the prevention of cruelty to animals throughout the United States. The American Society for the Prevention of Cruelty to Animals or ASPCA, founded in 1866, is one of the oldest pet charities in the Western hemisphere. They believe that animals are entitled to kind and respectful treatment from humans, and should be protected under the law. To this end they work nationally to rescue abused animals and advocate for the passing of humane laws."
+
+    },
+    {
+        "name": "Petsmart Charities",
+        "website": "https://www.petsmartcharities.org/",
+        "logo": "https://www.redlandsdailyfacts.com/wp-content/uploads/migration/2008/200809/NEWS_809309852_AR_0_0.jpg",
+        "location": "Phoenix, AZ",
+        "founded": 1994,
+        "mission": "To create a world in which every pet has a lifelong, loving home. PetSmart Charities® and PetSmart Charities® of Canada are nonprofit animal welfare organizations that save the lives of homeless pets. More than 500,000 dogs and cats find homes each year through our adoption programs in all PetSmart® stores and our sponsored adoption events. PetSmart Charities grants more money to directly help pets in need than any other animal welfare group in North America, with a focus on funding spay/neuter services that help communities solve the problem of pet overpopulation."
+    },
+    {
+        "name": "Best Friends Animal Society",
+        "website": "https://bestfriends.org/",
+        "logo": "https://sep.yimg.com/ty/cdn/yhst-172520439-2/charity-best-friend-logo.jpg",
+        "location": "United States",
+        "founded": 1984,
+        "mission": "To end shelter killing and Save Them All. The Best Friends Animal Society has the ambitious goal of ending shelter killing and finding home for all the abandoned animals in America. Every year over 4 million homeless pets are killed in American shelters, and Best Friends works to prevent this as much as possible by helping to make animal adoption easier and promoting spaying & neutering programs to reduce the number of animals entering the nation’s shelters."
+    }
+
+]

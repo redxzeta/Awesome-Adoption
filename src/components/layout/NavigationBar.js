@@ -1,6 +1,7 @@
 import React from "react";
 import { Nav, Navbar, NavDropdown, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 import "./NavigationBar.css";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
@@ -13,7 +14,10 @@ const PetTypes = () =>
 
 export default function NavigationBar() {
   return (
-    <Navbar bg="primary" expand="lg" className = "Nav_bar">
+
+   
+    <Navbar bg="primary" expand="lg" style={{ minHeight: "fit-content" }}>
+
       <Container>
         <Navbar.Brand href="/">PawHub</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -34,6 +38,11 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/resources">
               Resources
             </Nav.Link>
+
+            <Nav.Link as={Link} to="/donate">
+              Donate
+            </Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </Container>
