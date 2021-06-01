@@ -17,14 +17,14 @@ export default function Home({ token }) {
       const link = pet.primary_photo_cropped;
       return (
         <Col md={4} xs={12} key={pet.id}>
-          <Card className = "card">
+          <Card>
             <Card.Img
               variant="top"
               alt={link ? pet.type : `${pet.type} placeholder`}
               src={link ? link.medium : placeholder}
             />
             <Card.Body className="cardBody">
-              <Card.Title className="card-title">
+              <Card.Title>
                 {pet.name}
               </Card.Title>
               <Card.Text>
