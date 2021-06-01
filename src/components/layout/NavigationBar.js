@@ -2,6 +2,8 @@ import React from "react";
 import { Nav, Navbar, NavDropdown, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import "./NavigationBar.css";
+
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
 const PetTypes = () =>
   petList.map((type) => (
@@ -11,8 +13,8 @@ const PetTypes = () =>
   ));
 
 export default function NavigationBar() {
-  return (
-    <Navbar bg="primary" expand="lg" style={{ minHeight: "fit-content" }}>
+  return (  
+    <Navbar bg="primary" expand="lg" >
       <Container>
         <Navbar.Brand href="/">PawHub</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
