@@ -14,7 +14,7 @@ const PetTypes = () =>
 
 export default function NavigationBar() {
   return (  
-    <Navbar bg="primary" expand="lg" style={{ minHeight: "fit-content" }}>
+    <Navbar bg="primary" expand="lg" >
       <Container>
         <Navbar.Brand href="/">PawHub</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
