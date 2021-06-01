@@ -13,11 +13,8 @@ const PetTypes = () =>
   ));
 
 export default function NavigationBar() {
-  return (
-
-   
+  return (  
     <Navbar bg="primary" expand="lg" style={{ minHeight: "fit-content" }}>
-
       <Container>
         <Navbar.Brand href="/">PawHub</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -38,11 +35,9 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/resources">
               Resources
             </Nav.Link>
-
             <Nav.Link as={Link} to="/donate">
               Donate
             </Nav.Link>
-
           </Nav>
         </Navbar.Collapse>
       </Container>
