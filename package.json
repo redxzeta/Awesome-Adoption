@@ -9,9 +9,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.3",
     "bootswatch": "^4.5.2",
-    "husky": "^6.0.0",
     "jwt-decode": "^3.1.2",
-    "lint-staged": "^11.0.0",
     "postcode-validator": "^3.1.0",
     "prettier": "^2.3.0",
     "react": "^17.0.0",
@@ -20,23 +18,13 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "prettier --write"
-    ]
-  },
-
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "reformat": "./node_modules/.bin/prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
+    "reformat": "./node_modules/.bin/prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "pretty-quick": "^3.1.0"
   }
 }
