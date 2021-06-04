@@ -20,37 +20,39 @@ export default function About() {
 
   return (
     <div className="about__container">
-      <Image src={Dog} alt="doggo" roundedCircle />
-      <h1>About PawternityHub</h1>
-      <p>
-        It all started in a hackathon as my group brainstormed for ideas on what
-        we can do to help the community. Due to covid19, the hackathon, Owl
-        Hacks, was done remotely and seemed the perfect opportunity to meet and
-        collaborate with other developers. My group came up with the idea of
-        creating a Pet Adoption website where people could find local pets
-        around their area to adopt. The technology we used is React along with
-        Bootstrap for the styling and using the PetFinder API to request
-        information about the pets. It was tricky because some of the members
-        were brand new to React and had to show them the ropes. It was quite the
-        learning experience for them and me too as I never really taught React
-      </p>
-      <p>
-        Due to the harsh times we are in, I hope people would be able to find
-        their own buddy that can help them. The goal is to make it easier for
-        people to adopt pets and learn more information about the pets during
-        covid19 - redxzeta
-      </p>
-      <a target="blank" rel="noreferrer" href="https://youtu.be/vxAqS-GLna8">
-        Youtube Link
-      </a>
-      <br />
-      <a
-        target="blank"
-        rel="noreferrer"
-        href="https://devpost.com/software/pawternity-hub"
-      >
-        DevPost
-      </a>
+      <section className="paragraph--section">
+        <Image src={Dog} alt="doggo" roundedCircle />
+        <h1>About PawternityHub</h1>
+        <p>
+          It all started in a hackathon as my group brainstormed for ideas on
+          what we can do to help the community. Due to covid19, the hackathon,
+          Owl Hacks, was done remotely and seemed the perfect opportunity to
+          meet and collaborate with other developers. My group came up with the
+          idea of creating a Pet Adoption website where people could find local
+          pets around their area to adopt. The technology we used is React along
+          with Bootstrap for the styling and using the PetFinder API to request
+          information about the pets. It was tricky because some of the members
+          were brand new to React and had to show them the ropes. It was quite
+          the learning experience for them and me too as I never really taught
+          React
+        </p>
+        <p>
+          Due to the harsh times we are in, I hope people would be able to find
+          their own buddy that can help them. The goal is to make it easier for
+          people to adopt pets and learn more information about the pets during
+          covid19 - redxzeta
+        </p>
+        <a target="blank" rel="noreferrer" href="https://youtu.be/vxAqS-GLna8">
+          Youtube Link
+        </a>
+        <a
+          target="blank"
+          rel="noreferrer"
+          href="https://devpost.com/software/pawternity-hub"
+        >
+          DevPost
+        </a>
+      </section>
       <div className="contributors-section">
         <h1>Contributors</h1>
         <div className="contributors" id="contributors">
