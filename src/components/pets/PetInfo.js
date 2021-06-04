@@ -10,10 +10,6 @@ export default function PetInfo({ token }) {
   let { id } = useParams();
   const [pet, setPet] = useState();
 
-  
-
-  
-
   useEffect(() => {
     const config = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -23,19 +19,19 @@ export default function PetInfo({ token }) {
       .catch((error) => console.log(error));
   }, [id, token]);
 
-
   const nameCleaner = (str) => {
     if (str !== undefined) {
-      return str.replace(/(^\w+:|^)\/\//, '')
-      .replaceAll('&#039;','\'')
-      .replaceAll('&#39;','\'')
-      .replaceAll('&quot;','"')
-      .replaceAll('&rsquo;','\'')
-      .replaceAll('&amp;','&')
-      .replaceAll('&ldquo;','"')
-      .replaceAll('&hellip;','...')
-  }
-  };  
+      return str
+        .replace(/(^\w+:|^)\/\//, "")
+        .replaceAll("&#039;", "'")
+        .replaceAll("&#39;", "'")
+        .replaceAll("&quot;", '"')
+        .replaceAll("&rsquo;", "'")
+        .replaceAll("&amp;", "&")
+        .replaceAll("&ldquo;", '"')
+        .replaceAll("&hellip;", "...");
+    }
+  };
 
   return pet ? (
     <div className="petInfo">

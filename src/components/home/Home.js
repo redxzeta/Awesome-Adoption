@@ -24,9 +24,7 @@ export default function Home({ token }) {
               src={link ? link.medium : placeholder}
             />
             <Card.Body className="cardBody">
-              <Card.Title>
-                {pet.name}
-              </Card.Title>
+              <Card.Title>{pet.name}</Card.Title>
               <Card.Text>
                 <span className="breed">Breed: </span>
                 {pet.breeds.primary}
