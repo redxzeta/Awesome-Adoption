@@ -9,9 +9,9 @@ export default function Home() {
       <p>
         Adopting pets is a much more humane way to find your familys newest best
         friend. Every year around 6.5 million companion pets enter shelters in
-        just the USA, and thats only dogs and cats. Out of those{" "}
-        <b>6.5 million</b>, only <b>3.2 million</b> are adopted and{" "}
-        <b>1.5 million</b> are euthanized (Statistics provided by{" "}
+        just the USA, and thats only dogs and cats. Out of those
+        <b>6.5 million</b>, only <b>3.2 million</b> are adopted and
+        <b>1.5 million</b> are euthanized (Statistics provided by
         <a
           target="_blank"
           rel="noreferrer"
@@ -23,12 +23,12 @@ export default function Home() {
         <br />
         <b>This leaves 1.8 million pets that go untouched each year.</b>
         <br />
-        <br />
-        Adopting a pet is cheaper than buying a pet, and you also potentially
-        save a life by doing so. Many shelter pets are already house-trained and
-        are used to living with humans.
-        <br />
-        <br />
+        <p>
+          Adopting a pet is cheaper than buying a pet, and you also potentially
+          save a life by doing so. Many shelter pets are already house-trained
+          and are used to living with humans.   </p>     <br />
+   
+     
         <b>
           More information about adopting pets can be found at the links below
         </b>
