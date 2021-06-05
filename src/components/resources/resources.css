@@ -5,3 +5,6 @@
 .resources__container .btn {
   margin: 10px;
 }
+.resources__container p {
+  text-align: left;
+}
