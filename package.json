@@ -6,12 +6,11 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "bootswatch": "^4.5.2",
     "jwt-decode": "^3.1.2",
     "postcode-validator": "^3.1.0",
-    "prettier": "^2.3.0",
     "react": "^17.0.0",
     "react-bootstrap": "^1.6.0",
     "react-dom": "^17.0.0",
@@ -23,7 +22,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "reformat": "./node_modules/.bin/prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "lint": "eslint ./",
+    "lint-fix": "eslint ./ --fix",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -42,7 +43,26 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
     "husky": "^6.0.0",
-    "pretty-quick": "^3.1.0"
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0",
+    "pretty-quick": "^3.1.0",
+    "standard": "^16.0.3"
+  },
+  "lint-staged": {
+    "*.js": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && pretty-quick --staged"
+    }
   }
 }

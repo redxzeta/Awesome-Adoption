@@ -9,7 +9,7 @@ import Horse from "./horse.jpg";
 import Rabbit from "./rabbit.jpg";
 import { Link, useRouteMatch } from "react-router-dom";
 export default function Pets() {
-  let { url } = useRouteMatch();
+  const { url } = useRouteMatch();
   return (
     <div className="pet__container">
       <h1>Adopt Your Buddy</h1>

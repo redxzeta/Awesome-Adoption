@@ -1,12 +1,11 @@
-import React from "react";
-import { Button, Image } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Button, Image, Card, Row, Container, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Dog from "./dog.jpg";
 import "./home.css";
 import axios from "axios";
 import LoadingSpinner from "../shared/Spinner";
-import { useState, useEffect } from "react";
-import { Card, Row, Container, Col } from "react-bootstrap";
+
 import placeholder from "../pets/placeholder.jpg";
 
 export default function Home({ token }) {

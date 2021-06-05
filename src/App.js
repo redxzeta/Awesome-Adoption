@@ -11,7 +11,9 @@ import PetInfo from "./components/pets/PetInfo";
 import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 import Resources from "./components/resources/Resources";
+/*  eslint-disable */
 import jwt_decode from "jwt-decode";
+/*  eslint-enable */
 import Donate from "./components/donate/Donate";
 
 export default function App() {
@@ -52,33 +54,36 @@ export default function App() {
   return (
     <Fragment>
       <Router>
-        <NavigationBar token={token} />
+        <NavigationBar token={token} />{" "}
         <Container className="pawhub">
           <Switch>
             {" "}
             <Route path="/animal/:id">
-              {Authenticated && <PetInfo token={token} />}
-            </Route>
+              {" "}
+              {Authenticated && <PetInfo token={token} />}{" "}
+            </Route>{" "}
             <Route path="/pets/:type">
-              {Authenticated && <PetType token={token} />}
-            </Route>
+              {" "}
+              {Authenticated && <PetType token={token} />}{" "}
+            </Route>{" "}
             <Route path="/pets">
-              {Authenticated && <Pets token={token} />}
-            </Route>
+              {" "}
+              {Authenticated && <Pets token={token} />}{" "}
+            </Route>{" "}
             <Route path="/about">
               <About />
-            </Route>
+            </Route>{" "}
             <Route path="/resources">
               <Resources />
-            </Route>
+            </Route>{" "}
             <Route path="/donate">
               <Donate />
-            </Route>
-            <Route path="/">{Authenticated && <Home token={token} />}</Route>
-          </Switch>
-        </Container>
+            </Route>{" "}
+            <Route path="/"> {Authenticated && <Home token={token} />}</Route>
+          </Switch>{" "}
+        </Container>{" "}
         <Footer />
-      </Router>
+      </Router>{" "}
     </Fragment>
   );
 }

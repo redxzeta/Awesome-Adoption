@@ -7,7 +7,7 @@ import Spinner from "../shared/Spinner";
 import Placeholder from "./placeholder.jpg";
 
 export default function PetInfo({ token }) {
-  let { id } = useParams();
+  const { id } = useParams();
   const [pet, setPet] = useState();
 
   useEffect(() => {
@@ -19,6 +19,7 @@ export default function PetInfo({ token }) {
       .catch((error) => console.log(error));
   }, [id, token]);
 
+  /*  eslint-disable */
   const nameCleaner = (str) => {
     if (str !== undefined) {
       return str
@@ -32,7 +33,7 @@ export default function PetInfo({ token }) {
         .replaceAll("&hellip;", "...");
     }
   };
-
+  /*  eslint-enable */
   return pet ? (
     <div className="petInfo">
       <h1>{nameCleaner(pet.name)}</h1>
