@@ -23,7 +23,7 @@ export default function PetType({ token }) {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  let { type } = useParams();
+  const { type } = useParams();
   const findPets = useCallback(
     (page) => {
       const config = {
@@ -92,7 +92,7 @@ export default function PetType({ token }) {
   };
 
   const renderPagination = () => {
-    let pageItems = [];
+    const pageItems = [];
     let minShownPage = 1;
     let maxShownPage = 1;
     if (totalPages - currentPage < 2) {
@@ -157,7 +157,7 @@ export default function PetType({ token }) {
       findPets(newPage);
     }
   };
-
+  /*  eslint-disable */
   const nameCleaner = (str) => {
     if (str !== undefined) {
       return str
@@ -170,7 +170,7 @@ export default function PetType({ token }) {
         .replaceAll("&ldquo;", '"')
         .replaceAll("&hellip;", "...");
     }
-  };
+  }; /* eslint-enable */
 
   return (
     <div className="petList__container">

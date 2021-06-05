@@ -10,7 +10,7 @@ const Donate = () => {
         <p>
           Here are a list of places to donate to help pets and animals. Feel
           free to suggest any more charities. Could also message me if you
-          donated and I'll add to a list of donors
+          donated and I&apos;ll add to a list of donors
         </p>
         <p>If you wish to help donate the site here, you can click here</p>
         <a href={process.env.REACT_APP_KOFI} target="_blank" rel="noreferrer">

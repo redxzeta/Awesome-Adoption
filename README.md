@@ -2,7 +2,6 @@
 [![Build Status](https://travis-ci.org/redxzeta/Awesome-Adoption.svg?branch=main)](https://travis-ci.org/redxzeta/Awesome-Adoption)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-
 ## Pet Finder Developer API Key
 
 Register for an api key here [PetFinder](https://www.petfinder.com/developers/)
