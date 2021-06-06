@@ -3,6 +3,7 @@ import Donate from "../Donate";
 
 import renderer from "react-test-renderer";
 import DonateCard from "../DonateCard";
+import { BrowserRouter } from "react-router-dom";
 afterEach(() => {
   cleanup();
 });
@@ -24,6 +25,12 @@ test("matches donate card snapshot", () => {
     founded: 9000,
     mission: "Peace of Lorem",
   };
-  const tree = renderer.create(<DonateCard ch={sampleData} />).toJSON();
+  const tree = renderer
+    .create(
+      <BrowserRouter>
+        <DonateCard ch={sampleData} />
+      </BrowserRouter>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

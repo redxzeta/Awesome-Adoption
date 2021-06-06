@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches animal link snapshot 1`] = `
+<div
+  className="pet__column d-flex flex-column align-items-center justify-content-end my-4 col-md-6 col-12"
+>
+  <img
+    alt="playtpus"
+    className="rounded-circle"
+    src="https://via.placeholder.com/150"
+  />
+  <a
+    className="pet__button btn btn-primary"
+    color="primary"
+    disabled={false}
+    href="/pets/playtpus"
+    onClick={[Function]}
+  >
+    Click Here
+  </a>
+</div>
+`;

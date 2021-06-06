@@ -8,23 +8,49 @@ import Cat from "./cat.jpg";
 import Horse from "./horse.jpg";
 import Rabbit from "./rabbit.jpg";
 import { Link, useRouteMatch } from "react-router-dom";
+
+const linkData = [
+  {
+    img: Dog,
+    type: "dog",
+  },
+  {
+    img: Cat,
+    type: "cat",
+  },
+  {
+    img: Bird,
+    type: "bird",
+  },
+  {
+    img: Horse,
+    type: "horse",
+  },
+  {
+    img: Rabbit,
+    type: "rabbit",
+  },
+];
 export default function Pets() {
   const { url } = useRouteMatch();
   return (
     <div className="pet__container">
       <h1>Adopt Your Buddy</h1>
       <Row>
-        <AnimalType img={Dog} type="dog" link={`${url}/dog`} />
-        <AnimalType img={Cat} type="cat" link={`${url}/cat`} />
-        <AnimalType img={Bird} type="bird" link={`${url}/bird`} />
-        <AnimalType img={Horse} type="horse" link={`${url}/horse`} />
-        <AnimalType img={Rabbit} type="rabbit" link={`${url}/rabbit`} />
+        {linkData.map((pet) => (
+          <AnimalType
+            img={pet.img}
+            type={pet.type}
+            link={`${url}/${pet.type}`}
+            key={pet.type}
+          />
+        ))}
       </Row>
     </div>
   );
 }
 
-const AnimalType = ({ type, img, link }) => (
+export const AnimalType = ({ type, img, link }) => (
   <Col
     xs={12}
     md={6}
