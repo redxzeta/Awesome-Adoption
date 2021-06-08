@@ -54,36 +54,32 @@ export default function App() {
   return (
     <Fragment>
       <Router>
-        <NavigationBar token={token} />{" "}
+        <NavigationBar token={token} />
         <Container className="pawhub">
           <Switch>
-            {" "}
             <Route path="/animal/:id">
-              {" "}
-              {Authenticated && <PetInfo token={token} />}{" "}
-            </Route>{" "}
+              {Authenticated && <PetInfo token={token} />}
+            </Route>
             <Route path="/pets/:type">
-              {" "}
-              {Authenticated && <PetType token={token} />}{" "}
-            </Route>{" "}
+              {Authenticated && <PetType token={token} />}
+            </Route>
             <Route path="/pets">
-              {" "}
-              {Authenticated && <Pets token={token} />}{" "}
-            </Route>{" "}
+              {Authenticated && <Pets token={token} />}
+            </Route>
             <Route path="/about">
               <About />
-            </Route>{" "}
+            </Route>
             <Route path="/resources">
               <Resources />
-            </Route>{" "}
+            </Route>
             <Route path="/donate">
               <Donate />
-            </Route>{" "}
+            </Route>
             <Route path="/"> {Authenticated && <Home token={token} />}</Route>
-          </Switch>{" "}
-        </Container>{" "}
+          </Switch>
+        </Container>
         <Footer />
-      </Router>{" "}
+      </Router>
     </Fragment>
   );
 }
