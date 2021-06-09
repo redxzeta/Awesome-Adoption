@@ -10,18 +10,18 @@ export default function Home() {
         Adopting pets is a much more humane way to find your familys newest best
         friend. Every year around 6.5 million companion pets enter shelters in
         just the USA, and thats only dogs and cats. Out of those
-        <b>6.5 million</b>, only <b>3.2 million</b> are adopted and
-        <b>1.5 million</b> are euthanized (Statistics provided by
+        <span> 6.5 million</span>, only <span>3.2 million</span> are adopted and
+        <span> 1.5 million</span> are euthanized (Statistics provided by
         <a
           target="_blank"
           rel="noreferrer"
           href="https://www.aspca.org/animal-homelessness/shelter-intake-and-surrender/pet-statistics"
         >
-          ASPCA
+          {""} ASPCA
         </a>
         ).
         <br />
-        <b>This leaves 1.8 million pets that go untouched each year.</b>
+        <span>This leaves 1.8 million pets that go untouched each year.</span>
         <br />
         <p>
           Adopting a pet is cheaper than buying a pet, and you also potentially
@@ -29,9 +29,9 @@ export default function Home() {
           and are used to living with humans.{" "}
         </p>{" "}
         <br />
-        <b>
+        <span>
           More information about adopting pets can be found at the links below
-        </b>
+        </span>
         <br />
       </p>
       <Button
@@ -78,12 +78,12 @@ export default function Home() {
         .
         <br />
         <br />
-        <b>
+        <span>
           Pawternity Hub wants to help you stay safe and help you find a friend
           that can keep you company during the pandemic
           <br /> Check out the links below for more information about adoption
           during Covid-19
-        </b>
+        </span>
         <br />
       </p>{" "}
       <Button
