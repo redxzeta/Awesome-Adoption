@@ -20,19 +20,19 @@ export default function Home() {
           {""} ASPCA
         </a>
         ).
-        <br />
-        <span>This leaves 1.8 million pets that go untouched each year.</span>
-        <br />
+        <p>
+          <span>This leaves 1.8 million pets that go untouched each year.</span>
+        </p>
         <p>
           Adopting a pet is cheaper than buying a pet, and you also potentially
           save a life by doing so. Many shelter pets are already house-trained
           and are used to living with humans.{" "}
         </p>{" "}
-        <br />
-        <span>
-          More information about adopting pets can be found at the links below
-        </span>
-        <br />
+        <p>
+          <span>
+            More information about adopting pets can be found at the links below
+          </span>
+        </p>
       </p>
       <Button
         href="https://www.petfinder.com/pet-adoption-2/pet-adoption-information/"
@@ -55,7 +55,6 @@ export default function Home() {
       >
         Petcare Hospital
       </Button>
-      <br />
       <h1>Covid-19</h1>
       <p>
         Covid-19 is a newly found infectious disease that belongs to the
@@ -65,26 +64,28 @@ export default function Home() {
         annouced that Covid-19 is considered a pandemic. Many countries have
         issued stay at home orders or recommendations to quarantine and self
         isolate.
-        <br />
-        <br />
-        Because people find it hard to stay at home alone,{" "}
+      </p>
+      <p>
+        Because people find it hard to stay at home alone,
         <a
           target="_blank"
           rel="noreferrer"
           href="https://apnews.com/article/31e3e60e7ea6bc4566b0ee3998ab98a6"
         >
+          {" "}
           a lot of people decided to adopt a friend
         </a>
         .
-        <br />
-        <br />
+      </p>
+      <p>
         <span>
           Pawternity Hub wants to help you stay safe and help you find a friend
           that can keep you company during the pandemic
-          <br /> Check out the links below for more information about adoption
-          during Covid-19
+          <p>
+            Check out the links below for more information about adoption during
+            Covid-19
+          </p>
         </span>
-        <br />
       </p>{" "}
       <Button
         href="https://www.petfinder.com/helping-pets/covid-19-resources/how-to-adopt-a-pet-during-covid-19/"
@@ -100,7 +101,6 @@ export default function Home() {
       >
         World Organization for Animal Health
       </Button>
-      <br />
       <h2>Adopt a Buddy Today!</h2>
       <Button as={Link} to="/pets" variant="primary">
         Adopt
