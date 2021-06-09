@@ -9,6 +9,7 @@
 .resources__container p {
   text-align: left;
 }
-.resources__container span {
+.resources__container span,
+.resource__paragraph-bold {
   font-weight: bold;
 }
