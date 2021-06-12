@@ -15,6 +15,8 @@ import Resources from "./components/resources/Resources";
 import jwt_decode from "jwt-decode";
 /*  eslint-enable */
 import Donate from "./components/donate/Donate";
+import Login from "./components/auth/login";
+import Register from "./components/auth/register";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -74,6 +76,12 @@ export default function App() {
             </Route>
             <Route path="/donate">
               <Donate />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
             </Route>
             <Route path="/"> {Authenticated && <Home token={token} />}</Route>
           </Switch>

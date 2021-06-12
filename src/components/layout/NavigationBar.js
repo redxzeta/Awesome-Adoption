@@ -12,6 +12,14 @@ const PetTypes = () =>
     </NavDropdown.Item>
   ));
 
+const auth = ["Login", "Register"];
+const AuthTypes = () =>
+  auth.map((type) => (
+    <NavDropdown.Item key={type} as={Link} to={`/${type.toLowerCase()}`}>
+      {type}
+    </NavDropdown.Item>
+  ));
+
 export default function NavigationBar() {
   return (
     <Navbar bg="primary" expand="lg">
@@ -38,6 +46,10 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/donate">
               Donate
             </Nav.Link>
+            <NavDropdown title="Login/Register">
+              <AuthTypes />
+              <NavDropdown.Item as={Link} to="/pets"></NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
