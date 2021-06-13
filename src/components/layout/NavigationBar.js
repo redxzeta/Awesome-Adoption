@@ -46,7 +46,7 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/donate">
               Donate
             </Nav.Link>
-            <NavDropdown title="Login/Register">
+            <NavDropdown title="Account">
               <AuthTypes />
               <NavDropdown.Item as={Link} to="/pets"></NavDropdown.Item>
             </NavDropdown>

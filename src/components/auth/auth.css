@@ -1,7 +1,14 @@
 .form_container {
   width: 50%;
   margin: auto;
+  padding: 1%;
 }
 .heading {
   text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .form_container {
+    width: 100%;
+  }
 }

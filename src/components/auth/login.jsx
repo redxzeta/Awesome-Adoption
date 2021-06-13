@@ -4,12 +4,13 @@ import "./auth.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  function login() {}
+  function login(e) {
+    e.preventDefault();
+  }
   return (
-    <Form className="form_container">
+    <Form className="form_container" onSubmit={login}>
       <h1 className="heading">Login</h1>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
@@ -18,16 +19,6 @@ export default function Login() {
           placeholder="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </Form.Group>
-      <Form.Group controlId="formBasicUsername">
-        <Form.Label>Username</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
           required
         />
       </Form.Group>
@@ -41,7 +32,7 @@ export default function Login() {
           required
         />
       </Form.Group>
-      <Button variant="primary" type="submit" onClick={login}>
+      <Button variant="primary" type="submit" value="Submit">
         Login
       </Button>
     </Form>
