@@ -19,7 +19,7 @@ export default function NavigationBar() {
         <Navbar.Brand href="/">PawHub</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
-          <Nav className="me-auto">
+          <Nav className="mr-auto">
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
