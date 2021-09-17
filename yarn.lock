@@ -2928,15 +2928,15 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap@^4.5.3:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.0.tgz#97b9f29ac98f98dfa43bf7468262d84392552fd7"
-  integrity sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw==
+bootstrap@^5.1.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.1.1.tgz#9d6eed81e08feaccedf3adaca51fe4b73a2871df"
+  integrity sha512-/jUa4sSuDZWlDLQ1gwQQR8uoYSvLJzDd8m5o6bPKh3asLAMYVZKdRCjb1joUd5WXf0WwCNzd2EjwQQhupou0dA==
 
-bootswatch@^4.5.2:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/bootswatch/-/bootswatch-4.6.0.tgz#295237ed0e118decb3e3543f2ac14e9bb8ae48ea"
-  integrity sha512-Yr6YqFBC8jwTzoJoLViYlvO97IhPWGqZEm+6FXHfD/G6gbUok6sZkdXxdh4Zb6iCGEwr9p7zGCn38yKQD/bh2Q==
+bootswatch@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/bootswatch/-/bootswatch-5.1.1.tgz#3c9cd9dc418bffa5a5246d6c7a0b9af256b64dc7"
+  integrity sha512-RL27y1hKIi7y9N+4C1fqQb3po/s3QRMltuGYyX5GMT9RbpTJ6M0658uKOBIHUIigf2BxAlrwzkX0qMA+49bIHA==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -9479,10 +9479,10 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
-react-bootstrap@^1.6.0:
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-1.6.1.tgz#c5493c028ede885826b72eb31e66f6f0a52ab007"
-  integrity sha512-ojEPQ6OtyIMdLg0Smofk+85PKN6MLKQX3bU0Vwmok/4yNa8DQ2vCGhO2IgHJvT+ERQZ4X+gAQcdn6msAHSwLBg==
+react-bootstrap@^1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-1.6.3.tgz#6c2b27ed320b95a690ac416ddbb11983de1f954d"
+  integrity sha512-zsd4l0g68pusOmJ/R5LhTfofT+9RniCwcZsMMNFGJo97d1vT1H2nGlbhLWp/j/pfeXXj9zzR8ugUtKkadcoWnA==
   dependencies:
     "@babel/runtime" "^7.14.0"
     "@restart/context" "^2.1.4"
@@ -9497,7 +9497,7 @@ react-bootstrap@^1.6.0:
     invariant "^2.2.4"
     prop-types "^15.7.2"
     prop-types-extra "^1.1.0"
-    react-overlays "^5.0.1"
+    react-overlays "^5.1.1"
     react-transition-group "^4.4.1"
     uncontrollable "^7.2.1"
     warning "^4.0.3"
