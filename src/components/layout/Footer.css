@@ -1,6 +1,6 @@
 .footer {
   padding: 1rem;
-  border-top: solid 1px var(--primary);
+  border-top: solid 1px var(--bs-primary);
 }
 
 .footer span {
