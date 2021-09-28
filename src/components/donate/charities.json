@@ -34,12 +34,14 @@
   {
   "name":"The Humane Society",
   "website":"https://www.humanesociety.org/",
+  "logo":"https://www.humanesociety.org/sites/default/files/2018/11/HSUS-logo-share-image.jpg",
   "location":"United States",
   "founded": 1954,
   "mission":"With your help, we fight the big fights, working to end all forms of animal cruelty and achieve the vision behind our name: a humane society."
   },
   {
   "name":"Oceana",
+  "logo":"https://oceana.org/sites/all/themes/oceana/images/logo_en.png",
   "website":"https://oceana.org/",
   "location":"Washington, DC",
   "founded": 2001,
