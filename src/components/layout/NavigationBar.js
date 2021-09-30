@@ -16,7 +16,13 @@ export default function NavigationBar() {
   return (
     <Navbar bg="primary" expand="lg">
       <Container>
-        <Navbar.Brand href="/">PawHub</Navbar.Brand>
+        <Navbar.Brand href="/">
+        <img
+            height="30"
+            width="30"
+            src="https://media.istockphoto.com/vectors/labrador-retriever-dog-face-wearing-sunglasses-isolated-outlined-vector-id1137372147?k=20&m=1137372147&s=612x612&w=0&h=YI7OQaZOlDA9JGY4ChpEv7heAHmXVRoqiQiIwEbRquY="
+          ></img>
+          </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
           <Nav className="mr-auto">
