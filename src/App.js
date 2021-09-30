@@ -1,6 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Home from "./components/home/Home";
 import NavigationBar from "./components/layout/NavigationBar";
 import axios from "axios";
@@ -11,6 +16,7 @@ import PetInfo from "./components/pets/PetInfo";
 import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 import Resources from "./components/resources/Resources";
+import NotFound from "./components/NotFound/NotFound";
 /*  eslint-disable */
 import jwt_decode from "jwt-decode";
 /*  eslint-enable */
@@ -75,7 +81,17 @@ export default function App() {
             <Route path="/donate">
               <Donate />
             </Route>
-            <Route path="/"> {Authenticated && <Home token={token} />}</Route>
+
+            <Route path="/" exact>
+              {" "}
+              {Authenticated && <Home token={token} />}
+            </Route>
+
+            <Route path="/404">
+              <NotFound />
+            </Route>
+
+            <Redirect to="/404" />
           </Switch>
         </Container>
         <Footer />
