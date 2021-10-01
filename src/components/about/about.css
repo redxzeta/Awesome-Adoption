@@ -90,10 +90,5 @@
   border-radius: 100%;
 }
 
-.paragraph--section p {
-  text-align: left;
-}
-.paragraph--section a {
-  margin: 4.5px 0;
-  display: block;
-}
+.paragraph--section p {text-align: left;}
+.paragraph--section a {margin: 4.5px 0; display: block;}
