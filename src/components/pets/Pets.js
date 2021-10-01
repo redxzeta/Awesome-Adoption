@@ -56,8 +56,13 @@ export const AnimalType = ({ type, img, link }) => (
     md={6}
     className="pet__column d-flex flex-column align-items-center justify-content-end my-4"
   >
-    <Image src={img} alt={type} roundedCircle />
-    <Button as={Link} to={link} className="pet__button" color="primary">
+    <div className="image ">
+      <Image className="image__img" src={img} alt={type} roundedCircle />
+      <div className="image__overlay image__overlay--primary">
+        <div className="image__title">{type}</div>
+      </div>
+    </div>
+    <Button as={Link} to={link} className="pet__button my-3" color="primary">
       Click Here
     </Button>
   </Col>
