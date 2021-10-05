@@ -22,5 +22,13 @@
     "location": "United States",
     "founded": 1984,
     "mission": "To end shelter killing and Save Them All. The Best Friends Animal Society has the ambitious goal of ending shelter killing and finding home for all the abandoned animals in America. Every year over 4 million homeless pets are killed in American shelters, and Best Friends works to prevent this as much as possible by helping to make animal adoption easier and promoting spaying & neutering programs to reduce the number of animals entering the nation’s shelters."
+  },
+  {
+    "name": "SPCA of Wake County",
+    "website": "https://spcawake.org/",
+    "logo": "https://spcawake.org/wp-content/uploads/2019/06/swcnc-logo.png",
+    "location": "United States",
+    "founded": 1967,
+    "mission": "To transform the lives of pets and people through protection, care, education, and adoption. Our vision is to create a humane community."
   }
 ]
