@@ -4,6 +4,8 @@ import { Image } from "react-bootstrap";
 import Dog from "./dog.jpg";
 import GitHubLogo from "./GitHub-Mark-Light-120px-plus.png";
 import "./about.css";
+import YoutubeLogo from "./youtube.png";
+import DevPostLogo from "./devpost.png";
 
 export default function About() {
   const [avatars, setAvatars] = useState(); // by default there are no avatars
@@ -41,17 +43,25 @@ export default function About() {
           people to adopt pets and learn more information about the pets during
           covid19 - redxzeta
         </p>
-        <a target="blank" rel="noreferrer" href="https://youtu.be/vxAqS-GLna8">
-          Youtube Link
+      </section>
+      <div className="social-links-container">
+        <a
+          target="blank"
+          rel="noreferrer"
+          href="https://youtu.be/vxAqS-GLna8"
+          className="social-links"
+        >
+          <Image src={YoutubeLogo} />
         </a>
         <a
           target="blank"
           rel="noreferrer"
           href="https://devpost.com/software/pawternity-hub"
+          className="social-links"
         >
-          DevPost
+          <Image src={DevPostLogo} />
         </a>
-      </section>
+      </div>
       <div className="contributors-section">
         <h1>Contributors</h1>
         <div className="contributors" id="contributors">
