@@ -90,5 +90,36 @@
   border-radius: 100%;
 }
 
-.paragraph--section p {text-align: left;}
-.paragraph--section a {margin: 4.5px 0; display: block;}
+.paragraph--section p {
+  text-align: left;
+}
+.paragraph--section a {
+  margin: 4.5px 0;
+  display: block;
+}
+
+.social-links-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-links {
+  align-items: center;
+  width: fit-content;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.social-links img {
+  animation-name: none;
+  transition: none;
+  max-width: 4.5rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
