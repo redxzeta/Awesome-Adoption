@@ -36,7 +36,7 @@
 .social-button {
   display: flex;
   align-items: center;
-  background: var(--primary);
+  background: var(--bs-primary);
   color: #fcfcfc;
   width: fit-content;
   border-radius: 0.25rem;
