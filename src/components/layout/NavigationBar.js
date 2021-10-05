@@ -25,6 +25,7 @@ export default function NavigationBar() {
             </Nav.Link>
             <NavDropdown title="Pets" id="navbarScrollingDropdown">
               <PetTypes />
+              <NavDropdown.Divider />
               <NavDropdown.Item as={Link} to="/pets">
                 All Pets
               </NavDropdown.Item>
