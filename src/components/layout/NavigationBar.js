@@ -1,9 +1,9 @@
 import React from "react";
-import { Nav, Navbar, NavDropdown, Container } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "./NavigationBar.css";
-import Logo from "src/images/PawternityHubLogo.jpg"
+import Logo from "../../images/PawHubLogo.jpg"
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
 const PetTypes = () =>
@@ -17,7 +17,7 @@ export default function NavigationBar() {
   return (
     <Navbar bg="primary" expand="lg">
       <Container>
-        <Navbar.Brand href="/"><Image src={Logo}/></Navbar.Brand>
+        <Navbar.Brand href="/"><Image src={Logo} height={40} width={40}/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
           <Nav className="mr-auto">
