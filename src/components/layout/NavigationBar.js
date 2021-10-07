@@ -3,7 +3,7 @@ import { Nav, Navbar, NavDropdown, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "./NavigationBar.css";
-import Logo from "../../images/PawHubLogo.png"
+import Logo from "../../images/PawHubLogo.png";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
 const PetTypes = () =>
