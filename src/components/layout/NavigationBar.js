@@ -18,7 +18,7 @@ export default function NavigationBar() {
     <Navbar bg="primary" expand="lg">
       <Container>
         <Navbar.Brand href="/">
-          <Image src={Logo} height={40} width={40}/>
+          <Image src={Logo} height={40} width={40} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
