@@ -8,7 +8,7 @@ import Placeholder from "./placeholder.jpg";
 
 export default function PetInfo({ token }) {
   const { id } = useParams();
-  const [pet, setPet] = useState();
+  const [pet, setPet] = useState({});
 
   useEffect(() => {
     const config = { headers: { Authorization: `Bearer ${token}` } };
@@ -34,7 +34,7 @@ export default function PetInfo({ token }) {
     }
   };
   /*  eslint-enable */
-  return pet ? (
+  if(pet){return (
     <div className="petInfo">
       <h1>{nameCleaner(pet.name)}</h1>
       {pet.photos === undefined || pet.photos.length === 0 ? (
@@ -65,7 +65,11 @@ export default function PetInfo({ token }) {
         </Card.Body>
       </Card>
     </div>
-  ) : (
-    <Spinner />
-  );
+  )}
+  else{
+    return(
+      <Spinner />
+    );
+  }
+  
 }
