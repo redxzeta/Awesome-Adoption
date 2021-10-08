@@ -7,10 +7,11 @@ import "./about.css";
 import YoutubeLogo from "./youtube.png";
 import DevPostLogo from "./devpost.png";
 
+const apiUrl =
+  "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors";
 export default function About() {
-  const [avatars, setAvatars] = useState(); // by default there are no avatars
-  const apiUrl =
-    "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors";
+  const [avatars, setAvatars] = useState([]); // by default there are no avatars
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(apiUrl);
@@ -65,23 +66,22 @@ export default function About() {
       <div className="contributors-section">
         <h1>Contributors</h1>
         <div className="contributors" id="contributors">
-          {avatars &&
-            avatars.map((a) => (
-              <a
-                className="contributor-link"
+          {avatars.map((a) => (
+            <a
+              className="contributor-link"
+              key={a.id}
+              href={a.html_url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                className="contributor-avatar"
                 key={a.id}
-                href={a.html_url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  className="contributor-avatar"
-                  key={a.id}
-                  src={a.avatar_url}
-                  alt="Contributor Avatar"
-                />
-              </a>
-            ))}
+                src={a.avatar_url}
+                alt="Contributor Avatar"
+              />
+            </a>
+          ))}
         </div>
         <a
           className="social-button"

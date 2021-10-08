@@ -179,11 +179,7 @@ export default function PetType({ token }) {
 
       <div className="inputContainer">
         <InputGroup size="md" className="mb-3">
-          <InputGroup.Prepend>
-            <InputGroup.Text id="inputGroup-sizing-sm">
-              Enter Zip Code
-            </InputGroup.Text>
-          </InputGroup.Prepend>
+          <InputGroup.Text id="basic-addon3">Enter ZipCode:</InputGroup.Text>
           <FormControl
             ref={inputCode}
             aria-label="Small"
