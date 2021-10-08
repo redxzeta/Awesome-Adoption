@@ -34,42 +34,42 @@ export default function PetInfo({ token }) {
     }
   };
   /*  eslint-enable */
-  if(pet){return (
-    <div className="petInfo">
-      <h1>{nameCleaner(pet.name)}</h1>
-      {pet.photos === undefined || pet.photos.length === 0 ? (
-        <img src={Placeholder} alt="placeholder" />
-      ) : (
-        <Gallery data={pet.photos.map((p) => ({ src: p.large, title: "" }))} />
-      )}
+  if (pet) {
+    return (
+      <div className="petInfo">
+        <h1>{nameCleaner(pet.name)}</h1>
+        {pet.photos === undefined || pet.photos.length === 0 ? (
+          <img src={Placeholder} alt="placeholder" />
+        ) : (
+          <Gallery
+            data={pet.photos.map((p) => ({ src: p.large, title: "" }))}
+          />
+        )}
 
-      <Card>
-        <Card.Header as="h5">{pet.type}</Card.Header>
-        <Card.Body>
-          <Card.Title>Breeds</Card.Title>
-          <Card.Text>{pet.breeds.primary}</Card.Text>
-          <Card.Title>Colors</Card.Title>
-          <Card.Text>
-            {pet.colors.primary ? pet.colors.primary : "N/A"}
-          </Card.Text>
-          <Card.Title>Age</Card.Title>
-          <Card.Text>{pet.age}</Card.Text>
-          <Card.Title>Gender</Card.Title>
-          <Card.Text>{pet.gender}</Card.Text>
-          <Card.Title>Contact</Card.Title>
-          <Card.Text>Email: {pet.contact.email}</Card.Text>
+        <Card>
+          <Card.Header as="h5">{pet.type}</Card.Header>
+          <Card.Body>
+            <Card.Title>Breeds</Card.Title>
+            <Card.Text>{pet.breeds.primary}</Card.Text>
+            <Card.Title>Colors</Card.Title>
+            <Card.Text>
+              {pet.colors.primary ? pet.colors.primary : "N/A"}
+            </Card.Text>
+            <Card.Title>Age</Card.Title>
+            <Card.Text>{pet.age}</Card.Text>
+            <Card.Title>Gender</Card.Title>
+            <Card.Text>{pet.gender}</Card.Text>
+            <Card.Title>Contact</Card.Title>
+            <Card.Text>Email: {pet.contact.email}</Card.Text>
 
-          <a href={pet.url} target="_blank" without rel="noopener noreferrer">
-            More Info
-          </a>
-        </Card.Body>
-      </Card>
-    </div>
-  )}
-  else{
-    return(
-      <Spinner />
+            <a href={pet.url} target="_blank" without rel="noopener noreferrer">
+              More Info
+            </a>
+          </Card.Body>
+        </Card>
+      </div>
     );
+  } else {
+    return <Spinner />;
   }
-  
 }
