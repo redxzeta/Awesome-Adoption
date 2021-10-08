@@ -33,7 +33,6 @@ export default function PetInfo({ token }) {
         .replaceAll("&hellip;", "...");
     }
   };
-  console.log(pet);
   if (pet.name === undefined || pet.name === null) {
     return <Spinner />;
   } else {
