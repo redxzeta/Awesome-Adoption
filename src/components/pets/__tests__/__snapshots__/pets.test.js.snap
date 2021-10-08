@@ -25,9 +25,11 @@ exports[`matches animal link snapshot 1`] = `
   <a
     className="pet__button my-3 btn btn-primary"
     color="primary"
-    disabled={false}
     href="/pets/playtpus"
     onClick={[Function]}
+    onKeyDown={[Function]}
+    role="button"
+    tabIndex={0}
   >
     Click Here
   </a>

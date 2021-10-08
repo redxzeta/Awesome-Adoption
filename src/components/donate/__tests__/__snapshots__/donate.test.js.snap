@@ -38,6 +38,8 @@ exports[`matches donate card snapshot 1`] = `
       href="https://via.placeholder.com/"
       onClick={[Function]}
       onKeyDown={[Function]}
+      role="button"
+      tabIndex={0}
       target="_blank"
     >
       Click Here
