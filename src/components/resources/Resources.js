@@ -20,18 +20,18 @@ export default function Home() {
           {""} ASPCA
         </a>
         ).
-        <p className="resource__paragraph-bold">
-          More information about adopting pets can be found at the links below
-        </p>
-        <p className="resource__paragraph-bold">
-          This leaves 1.8 million pets that go untouched each year.
-        </p>
-        <p>
-          Adopting a pet is cheaper than buying a pet, and you also potentially
-          save a life by doing so. Many shelter pets are already house-trained
-          and are used to living with humans.{" "}
-        </p>{" "}
       </p>
+      <p className="resource__paragraph-bold">
+        More information about adopting pets can be found at the links below
+      </p>
+      <p className="resource__paragraph-bold">
+        This leaves 1.8 million pets that go untouched each year.
+      </p>
+      <p>
+        Adopting a pet is cheaper than buying a pet, and you also potentially
+        save a life by doing so. Many shelter pets are already house-trained and
+        are used to living with humans.{" "}
+      </p>{" "}
       <Button
         href="https://www.petfinder.com/pet-adoption-2/pet-adoption-information/"
         target="_blank"
@@ -79,7 +79,7 @@ export default function Home() {
         Pawternity Hub wants to help you stay safe and help you find a friend
         that can keep you company during the pandemic Check out the links below
         for more information about adoption during Covid-19
-      </p>{" "}
+      </p>
       <Button
         href="https://www.petfinder.com/helping-pets/covid-19-resources/how-to-adopt-a-pet-during-covid-19/"
         target="_blank"
