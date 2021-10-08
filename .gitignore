@@ -24,6 +24,12 @@ yarn-error.log*
 
 .env
 
+<<<<<<< HEAD
 # Supabase
 .supabase
 
+=======
+
+# Supabase
+.supabase
+>>>>>>> 50af7c7 (supautils)
