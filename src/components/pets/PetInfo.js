@@ -33,8 +33,10 @@ export default function PetInfo({ token }) {
         .replaceAll("&hellip;", "...");
     }
   };
-  /*  eslint-enable */
-  if (pet) {
+  console.log(pet);
+  if (pet.name === undefined || pet.name === null) {
+    return <Spinner />;
+  } else {
     return (
       <div className="petInfo">
         <h1>{nameCleaner(pet.name)}</h1>
@@ -69,7 +71,5 @@ export default function PetInfo({ token }) {
         </Card>
       </div>
     );
-  } else {
-    return <Spinner />;
   }
 }
