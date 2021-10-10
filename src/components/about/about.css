@@ -73,6 +73,7 @@
   flex-wrap: wrap;
   margin: 1rem 0;
   color: red; /* debug */
+  gap: 1rem;
 }
 .contributor-link {
   background: none;
