@@ -84,7 +84,6 @@ export default function App() {
             </Route>
             <Route path="/register" component={Register} />
             <Route path="/" exact>
-              {" "}
               {Authenticated && <Home token={token} />}
             </Route>
 
