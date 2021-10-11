@@ -11,10 +11,10 @@ const Register = () => {
   const userRegister = () => console.log(form);
   const [form, handleChange, onSubmit] = useForm(initState, userRegister);
   return (
-    <Container id="container" flud="md">
-      <div id="form-container">
-        <h1 id="form-title">Sign Up</h1>
-        <Form id="form" onSubmit={onSubmit}>
+    <Container className="register__container" flud="md">
+      <div className="register__container_form">
+        <h1 className="register__title">Sign Up</h1>
+        <Form className="register__form" onSubmit={onSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
@@ -39,7 +39,7 @@ const Register = () => {
               value={form.password}
             />
           </Form.Group>
-          <Button id="submit-button" variant="primary" type="submit">
+          <Button className="register__button" variant="primary" type="submit">
             Submit
           </Button>
         </Form>
