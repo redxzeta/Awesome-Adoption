@@ -13,7 +13,7 @@ const Register = () => {
   return (
     <Container id="container" flud="md">
       <div id="form-container">
-        <h1 id="form-title">Sing Up</h1>
+        <h1 id="form-title">Sign Up</h1>
         <Form id="form" onSubmit={onSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
