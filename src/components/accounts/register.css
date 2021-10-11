@@ -1,4 +1,4 @@
-#container {
+.register__container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-#form-container {
+.register__container_form {
   width: 100%;
   height: 90%;
   display: flex;
@@ -19,16 +19,16 @@
   border-radius: 25px;
 }
 
-#form-title {
+.register__title {
   margin-bottom: 80px;
 }
 
-#form {
+.register__form {
   width: 40%;
-  min-width: 350px;
+  min-width: 250px;
 }
 
-#submit-button {
+.register__button {
   width: 100%;
   margin-top: 15px;
 }
