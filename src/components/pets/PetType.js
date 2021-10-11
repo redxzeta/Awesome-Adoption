@@ -193,7 +193,7 @@ export default function PetType({ token }) {
           <Button onClick={search}>GO</Button>
         </InputGroup>
       </div>
-      <Row>
+      <Row className="w-100">
         {loading ? (
           <LoadingSpinner />
         ) : (
