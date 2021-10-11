@@ -13,7 +13,7 @@ const PetTypes = () =>
     </NavDropdown.Item>
   ));
 
-export default function NavigationBar() {
+export default function NavigationBar({ setIsOpen }) {
   return (
     <Navbar bg="primary" expand="lg">
       <Container>
@@ -41,6 +41,14 @@ export default function NavigationBar() {
             </Nav.Link>
             <Nav.Link as={Link} to="/donate">
               Donate
+            </Nav.Link>
+            <Nav.Link
+              onClick={(e) => {
+                e.preventDefault();
+                setIsOpen(false);
+              }}
+            >
+              Sing Up
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

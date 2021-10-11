@@ -21,10 +21,12 @@ import NotFound from "./components/NotFound/NotFound";
 import jwt_decode from "jwt-decode";
 /*  eslint-enable */
 import Donate from "./components/donate/Donate";
+import SingUp from "./components/modal/SingUp";
 
 export default function App() {
   const [token, setToken] = useState("");
   const [Authenticated, setAuthenticated] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   useEffect(() => {
     const fetchFunction = () => {
       axios
@@ -59,8 +61,9 @@ export default function App() {
 
   return (
     <Fragment>
+      <SingUp isOpen={isOpen} setIsOpen={setIsOpen} />
       <Router>
-        <NavigationBar token={token} />
+        <NavigationBar setIsOpen={setIsOpen} token={token} />
         <Container className="pawhub">
           <Switch>
             <Route path="/animal/:id">
