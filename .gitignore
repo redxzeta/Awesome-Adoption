@@ -24,15 +24,6 @@ yarn-error.log*
 
 .env
 
-<<<<<<< HEAD
 # Supabase
 .supabase
 
-<<<<<<< HEAD
-=======
-
-# Supabase
-.supabase
->>>>>>> 50af7c7 (supautils)
-=======
->>>>>>> 6d1e613 (merging errors)
