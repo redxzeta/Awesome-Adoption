@@ -21,6 +21,7 @@ import NotFound from "./components/NotFound/NotFound";
 import jwt_decode from "jwt-decode";
 /*  eslint-enable */
 import Donate from "./components/donate/Donate";
+import Register from "./components/accounts/Register";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -81,7 +82,7 @@ export default function App() {
             <Route path="/donate">
               <Donate />
             </Route>
-
+            <Route path="/register" component={Register} />
             <Route path="/" exact>
               {" "}
               {Authenticated && <Home token={token} />}
