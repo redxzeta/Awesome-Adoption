@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Image } from "react-bootstrap";
 import Dog from "./dog.jpg";
-import GitHubLogo from "./GitHub-Mark-Light-120px-plus.png";
+// import GitHubLogo from "./GitHub-Mark-Light-120px-plus.png";
 import "./about.css";
 import YoutubeLogo from "./youtube.png";
 import DevPostLogo from "./devpost.png";
@@ -92,7 +92,7 @@ export default function About() {
             </a>
           ))}
         </div>
-        <a
+        {/* <a
           className="social-button"
           href="https://github.com/redxzeta/Awesome-Adoption"
           target="_blank"
@@ -100,7 +100,7 @@ export default function About() {
         >
           <img src={GitHubLogo} alt="GitHub logo" />
           <p>GitHub</p>
-        </a>
+        </a> */}
       </div>
     </div>
   );
