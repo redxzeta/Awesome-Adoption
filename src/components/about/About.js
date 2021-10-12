@@ -6,6 +6,7 @@ import GitHubLogo from "./GitHub-Mark-Light-120px-plus.png";
 import "./about.css";
 import YoutubeLogo from "./youtube.png";
 import DevPostLogo from "./devpost.png";
+import GithubIcon from "./GitHub.png";
 
 const apiUrl =
   "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors";
@@ -61,6 +62,14 @@ export default function About() {
           className="social-links"
         >
           <Image src={DevPostLogo} />
+        </a>
+        <a
+          target="blank"
+          rel="noreferrer"
+          href="https://github.com/redxzeta/Awesome-Adoption"
+          className="social-links"
+        >
+          <Image src={GithubIcon} />
         </a>
       </div>
       <div className="contributors-section">
