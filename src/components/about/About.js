@@ -47,6 +47,15 @@ export default function About() {
       </section>
       <div className="social-links-container">
         <a
+          className="social-button"
+          href="https://github.com/redxzeta/Awesome-Adoption"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src={GitHubLogo} alt="GitHub logo" />
+          <p>GitHub</p>
+        </a>
+        <a
           target="blank"
           rel="noreferrer"
           href="https://youtu.be/vxAqS-GLna8"
@@ -83,15 +92,6 @@ export default function About() {
             </a>
           ))}
         </div>
-        <a
-          className="social-button"
-          href="https://github.com/redxzeta/Awesome-Adoption"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img src={GitHubLogo} alt="GitHub logo" />
-          <p>GitHub</p>
-        </a>
       </div>
     </div>
   );
