@@ -3,6 +3,7 @@
   /* height: 36px; */
   height: auto;
   width: 200px;
+  margin-bottom: 1.2rem;
 }
 
 .donate .card-img-top {
@@ -32,4 +33,23 @@
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+#dropdown {
+  text-transform: capitalize;
+  padding: 0.4rem;
+  border-radius: 12px;
+  background-color: whitesmoke;
+}
+
+.filtering label {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.kofi__section__donate {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
