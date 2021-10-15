@@ -8,3 +8,5 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 export const signUp = (form) => supabase.auth.signUp(form);
 
 export const signIn = (login) => supabase.auth.signIn(login);
+
+export const signOut = () => supabase.auth.signOut();
