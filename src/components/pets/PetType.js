@@ -16,6 +16,28 @@ import { postcodeValidator } from "postcode-validator";
 import Placeholder from "./placeholder.jpg";
 
 export default function PetType({ token }) {
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      console.log("Geolocation is not supported by your browser");
+    } else {
+      console.log("Locating...");
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude.toString();
+          const longitude = position.coords.longitude.toString();
+          if (latitude && longitude) {
+            findPets(1, `${latitude},${longitude}`);
+          } else {
+            console.log("OOPS! Something went wrong!");
+          }
+        },
+        () => {
+          console.log("Unable to retrieve your location");
+        }
+      );
+    }
+  };
+
   const inputCode = useRef(null);
   const [petList, setpetList] = useState("");
   const [code, setCode] = useState(19019);
@@ -25,17 +47,15 @@ export default function PetType({ token }) {
   const [totalPages, setTotalPages] = useState(1);
   const { type } = useParams();
   const findPets = useCallback(
-    (page) => {
+    (page, location) => {
+      const petFinderUrl = `https://api.petfinder.com/v2/animals?type=${type}&location=${location}&limit=12&page=${
+        page || 1
+      }`;
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .get(
-          `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=12&page=${
-            page || 1
-          }`,
-          config
-        )
+        .get(petFinderUrl, config)
         .then((response) => {
           setTotalPages(
             response.data && response.data.pagination
@@ -53,9 +73,13 @@ export default function PetType({ token }) {
   );
 
   useEffect(() => {
+    getLocation();
+  }, []);
+
+  useEffect(() => {
     setCurrentPage(1);
     setLoading(true);
-    findPets(1);
+    findPets(1, zipCode);
   }, [token, type, zipCode, findPets]);
 
   const search = () => {
