@@ -22,6 +22,7 @@ import jwt_decode from "jwt-decode";
 /*  eslint-enable */
 import Donate from "./components/donate/Donate";
 import Register from "./components/accounts/Register";
+import { supabase } from "./utils/SupaBaseUtils";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -58,6 +59,16 @@ export default function App() {
     setAuthenticated(true);
   }, []);
 
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    setSession(supabase.auth.session());
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+  console.log(session);
   return (
     <Fragment>
       <Router>
