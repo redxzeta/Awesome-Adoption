@@ -11,33 +11,13 @@ import {
   InputGroup,
   Row,
   Pagination,
+  Alert,
 } from "react-bootstrap";
 import { postcodeValidator } from "postcode-validator";
 import Placeholder from "./placeholder.jpg";
 
 export default function PetType({ token }) {
-  const getLocation = () => {
-    if (!navigator.geolocation) {
-      console.log("Geolocation is not supported by your browser");
-    } else {
-      console.log("Locating...");
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const latitude = position.coords.latitude.toString();
-          const longitude = position.coords.longitude.toString();
-          if (latitude && longitude) {
-            findPets(1, `${latitude},${longitude}`);
-          } else {
-            console.log("OOPS! Something went wrong!");
-          }
-        },
-        () => {
-          console.log("Unable to retrieve your location");
-        }
-      );
-    }
-  };
-
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
   const inputCode = useRef(null);
   const [petList, setpetList] = useState("");
   const [code, setCode] = useState(19019);
@@ -46,6 +26,27 @@ export default function PetType({ token }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { type } = useParams();
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude.toString();
+          const longitude = position.coords.longitude.toString();
+          if (latitude && longitude) {
+            findPets(1, `${latitude},${longitude}`);
+            setShowErrorAlert(false);
+          } else {
+            setShowErrorAlert(true);
+          }
+        },
+        () => {
+          setShowErrorAlert(true);
+        }
+      );
+    }
+  };
+
   const findPets = useCallback(
     (page, location) => {
       const petFinderUrl = `https://api.petfinder.com/v2/animals?type=${type}&location=${location}&limit=12&page=${
@@ -195,6 +196,11 @@ export default function PetType({ token }) {
         .replaceAll("&hellip;", "...");
     }
   }; /* eslint-enable */
+  const errorAlert = (
+    <Alert onClose={() => setShowErrorAlert(false)} dismissible>
+      Unable to retrieve your location, please enter your zip code.
+    </Alert>
+  );
 
   return (
     <div className="petList__container">
@@ -216,6 +222,7 @@ export default function PetType({ token }) {
           />
           <Button onClick={search}>GO</Button>
         </InputGroup>
+        {showErrorAlert && errorAlert}
       </div>
       <Row className="w-100">
         {loading ? (
