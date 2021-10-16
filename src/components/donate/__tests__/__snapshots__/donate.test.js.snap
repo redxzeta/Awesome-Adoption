@@ -4,46 +4,58 @@ exports[`matches donate card snapshot 1`] = `
 <div
   className="card"
 >
-  <img
-    className="card-img-top"
-    src="https://via.placeholder.com/150"
-  />
   <div
-    className="card-body"
+    className="row"
   >
     <div
-      className="card-title h5"
+      className="m-auto col-sm-4"
     >
-      Lorem Charity
+      <img
+        className="card-img-left d-block mx-auto img-fluid w-50"
+        src="https://via.placeholder.com/150"
+      />
     </div>
     <div
-      className="mb-2 text-muted card-subtitle h6"
+      className="col-sm-8"
     >
-      Location: 
-      Lorem States
+      <div
+        className="card-body"
+      >
+        <div
+          className="card-title h5"
+        >
+          Lorem Charity
+        </div>
+        <div
+          className="mb-2 text-muted card-subtitle h6"
+        >
+          Location: 
+          Lorem States
+        </div>
+        <div
+          className="mb-2 text-muted card-subtitle h6"
+        >
+          Founded: 
+          9000
+        </div>
+        <p
+          className="card-text"
+        >
+          Peace of Lorem
+        </p>
+        <a
+          className="btn btn-primary"
+          href="https://via.placeholder.com/"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          role="button"
+          tabIndex={0}
+          target="_blank"
+        >
+          Click Here
+        </a>
+      </div>
     </div>
-    <div
-      className="mb-2 text-muted card-subtitle h6"
-    >
-      Founded: 
-      9000
-    </div>
-    <p
-      className="card-text"
-    >
-      Peace of Lorem
-    </p>
-    <a
-      className="btn btn-primary"
-      href="https://via.placeholder.com/"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      role="button"
-      tabIndex={0}
-      target="_blank"
-    >
-      Click Here
-    </a>
   </div>
 </div>
 `;
