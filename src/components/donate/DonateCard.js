@@ -8,7 +8,6 @@ const DonateCard = ({ ch }) => (
           className="d-block mx-auto img-fluid w-50"
           variant="left"
           src={ch.logo}
-          // style={{ maxWidth: "200px" }}
         />
       </Col>
       <Col sm={8}>
