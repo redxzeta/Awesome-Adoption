@@ -7,9 +7,10 @@ export default function Home() {
     <div className="resources__container">
       <h1>Adopting Pets</h1>
       <p>
-        Adopting pets is a much more humane way to find your family's newest best
-        friend. Every year around 6.5 million companion pets enter shelters in
-        just the USA, and that's only dogs and cats. Out of those
+        Adopting pets is a much more humane way to find your family&apos;s
+        newest best friend. Every year around 6.5 million companion pets enter
+        shelters in just the USA, and that&apos;s only dogs and cats. Out of
+        those
         <span> 6.5 million</span>, only <span>3.2 million</span> are adopted and
         <span> 1.5 million</span> are euthanized (Statistics provided by
         <a
