@@ -24,6 +24,8 @@ import Donate from "./components/donate/Donate";
 import Register from "./components/accounts/Register";
 import { supabase } from "./utils/SupaBaseUtils";
 import SLogin from "./components/accounts/SLogin";
+import { Provider } from "react-supabase";
+import { AuthProvider } from "./context/SupaContext";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -60,55 +62,49 @@ export default function App() {
     setAuthenticated(true);
   }, []);
 
-  const [session, setSession] = useState(null);
-
-  useEffect(() => {
-    setSession(supabase.auth.session());
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
-  console.log(session);
   return (
     <Fragment>
-      <Router>
-        <NavigationBar token={token} />
-        <Container className="pawhub">
-          <Switch>
-            <Route path="/animal/:id">
-              {Authenticated && <PetInfo token={token} />}
-            </Route>
-            <Route path="/pets/:type">
-              {Authenticated && <PetType token={token} />}
-            </Route>
-            <Route path="/pets">
-              {Authenticated && <Pets token={token} />}
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/resources">
-              <Resources />
-            </Route>
-            <Route path="/donate">
-              <Donate />
-            </Route>
-            <Route path="/register" component={Register} />
-            <Route exact path="/login" component={SLogin} />
-            <Route path="/" exact>
-              {Authenticated && <Home token={token} />}
-            </Route>
+      <Provider value={supabase}>
+        <AuthProvider>
+          <Router>
+            <NavigationBar token={token} />
+            <Container className="pawhub">
+              <Switch>
+                <Route path="/animal/:id">
+                  {Authenticated && <PetInfo token={token} />}
+                </Route>
+                <Route path="/pets/:type">
+                  {Authenticated && <PetType token={token} />}
+                </Route>
+                <Route path="/pets">
+                  {Authenticated && <Pets token={token} />}
+                </Route>
+                <Route path="/about">
+                  <About />
+                </Route>
+                <Route path="/resources">
+                  <Resources />
+                </Route>
+                <Route path="/donate">
+                  <Donate />
+                </Route>
+                <Route path="/register" component={Register} />
+                <Route exact path="/login" component={SLogin} />
+                <Route path="/" exact>
+                  {Authenticated && <Home token={token} />}
+                </Route>
 
-            <Route path="/404">
-              <NotFound />
-            </Route>
+                <Route path="/404">
+                  <NotFound />
+                </Route>
 
-            <Redirect to="/404" />
-          </Switch>
-        </Container>
-        <Footer />
-      </Router>
+                <Redirect to="/404" />
+              </Switch>
+            </Container>
+            <Footer />
+          </Router>
+        </AuthProvider>
+      </Provider>
     </Fragment>
   );
 }
