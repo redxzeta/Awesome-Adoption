@@ -15,14 +15,14 @@ const PetTypes = () =>
 
 export default function NavigationBar() {
   return (
-    <Navbar bg="primary" expand="lg">
-      <Container>
+    <Navbar bg="transparent" expand="lg" className="navbar">
+      <Container className="navbar_container">
         <Navbar.Brand href="/">
           <Image src={Logo} height={40} width={40} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
-          <Nav className="mr-auto">
+          <Nav className="mr-auto nav_text">
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>

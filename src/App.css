@@ -2,6 +2,7 @@ html,
 body,
 #root {
   height: 100%;
+  font-size: 18px;
 }
 
 #root {
@@ -9,7 +10,7 @@ body,
   flex-direction: column;
 }
 
-.pawhub {
+/* .pawhub {
   flex: 1;
   padding-top: 20px;
-}
+} */

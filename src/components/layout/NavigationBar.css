@@ -5,3 +5,27 @@
 #navbarScrollingDropdown {
   cursor: pointer;
 }
+
+.navbar {
+  position: fixed !important;
+  z-index: 99;
+  width: 100%;
+}
+
+.navbar_container {
+  width: 100%;
+}
+
+.nav_text a {
+  color: #fff !important;
+  letter-spacing: 1px !important;
+  font-family: "Nunito", sans-serif;
+  font-weight: 300;
+  font-size: 85%;
+  padding: 5px 25px !important;
+  border-bottom: solid transparent 3px;
+}
+
+.nav_text a:hover {
+  border-bottom: solid rgb(255, 167, 53) 3px;
+}

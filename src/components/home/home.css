@@ -73,3 +73,72 @@
 .home__container .card-title {
   text-align: center;
 }
+
+.home_landing {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wave_home_landing {
+}
+
+.landing_text {
+  margin-top: 10%;
+  width: 100%;
+  padding: 50px;
+}
+
+.landing_text div {
+  text-align: end;
+  color: white;
+  width: 50%;
+  margin-left: 40%;
+}
+
+.landing_text div h1 {
+  font-size: 350% !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 120%;
+}
+
+.landing_text h1 span {
+  color: rgb(253, 153, 23);
+}
+
+.landing_text div button {
+  background-color: rgb(253, 153, 23) !important;
+  border-color: rgba(255, 176, 72, 0.733) !important;
+}
+
+.pet_list_div {
+  width: 80%;
+}
+
+.pet_list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.pet_type {
+  background-color: rgb(253, 153, 23);
+  padding: 10px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

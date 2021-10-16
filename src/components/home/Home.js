@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button, Image, Card, Row, Container, Col } from "react-bootstrap";
+import { Button, Card, Row, Container, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Dog from "./dog.jpg";
+// import Dog from "./dog.jpg";
 import "./home.css";
 import axios from "axios";
 import LoadingSpinner from "../shared/Spinner";
@@ -65,14 +65,54 @@ export default function Home({ token }) {
     fetchRandomPets();
   }, [token]);
 
+  const dog =
+    "https://cdn.pixabay.com/photo/2016/11/23/18/06/dog-1854119_960_720.jpg";
+
+  const allPets = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
+
   return (
     <div className="home__container">
-      <h1>Pawternity Hub</h1>
-      <Image src={Dog} alt="doggo" roundedCircle id="dog" />
-      <h2>Adopt a Buddy Today!</h2>
-      <Button as={Link} to="/pets" variant="primary">
-        Adopt
-      </Button>
+      {/* <Image src={Dog} alt="doggo" roundedCircle id="dog" /> */}
+      <div
+        className="home_landing"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2) ),url(${dog})`,
+        }}
+      >
+        <div className="landing_text">
+          <div>
+            <h1>
+              <span>Hi,</span> we are <br /> Pawternity Hub
+            </h1>
+            <Button as={Link} to="/pets" variant="primary">
+              Adopt
+            </Button>
+          </div>
+        </div>
+        <img
+          src="http://pawsitive.bold-themes.com/buddy/wp-content/uploads/sites/2/2019/08/white_bottom_wave_02.png"
+          alt="bottom"
+          width="100%"
+          height="100px"
+          className="wave_home_landing"
+        />
+      </div>
+      <div className="pet_list_div">
+        <ul className="pet_list">
+          {allPets.map((el, index) => {
+            return (
+              <li
+                className="pet_type"
+                key={index}
+                as={Link}
+                to={`/pets/${el.toLowerCase()}`}
+              >
+                {el}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       <div className="featured__pets">
         <h2>Featured Pets</h2>
         <Container>

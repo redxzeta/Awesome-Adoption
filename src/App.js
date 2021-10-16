@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
 import {
   BrowserRouter as Router,
   Switch,
@@ -61,7 +60,7 @@ export default function App() {
     <Fragment>
       <Router>
         <NavigationBar token={token} />
-        <Container className="pawhub">
+        <div className="pawhub">
           <Switch>
             <Route path="/animal/:id">
               {Authenticated && <PetInfo token={token} />}
@@ -83,7 +82,6 @@ export default function App() {
             </Route>
 
             <Route path="/" exact>
-              {" "}
               {Authenticated && <Home token={token} />}
             </Route>
 
@@ -93,7 +91,7 @@ export default function App() {
 
             <Redirect to="/404" />
           </Switch>
-        </Container>
+        </div>
         <Footer />
       </Router>
     </Fragment>
