@@ -7,9 +7,9 @@ export default function Home() {
     <div className="resources__container">
       <h1>Adopting Pets</h1>
       <p>
-        Adopting pets is a much more humane way to find your familys newest best
+        Adopting pets is a much more humane way to find your family's newest best
         friend. Every year around 6.5 million companion pets enter shelters in
-        just the USA, and thats only dogs and cats. Out of those
+        just the USA, and that's only dogs and cats. Out of those
         <span> 6.5 million</span>, only <span>3.2 million</span> are adopted and
         <span> 1.5 million</span> are euthanized (Statistics provided by
         <a
@@ -22,7 +22,7 @@ export default function Home() {
         ).
       </p>
       <p className="resource__paragraph-bold">
-        More information about adopting pets can be found at the links below
+        More information about adopting pets can be found at the links below.
       </p>
       <p className="resource__paragraph-bold">
         This leaves 1.8 million pets that go untouched each year.
@@ -59,8 +59,8 @@ export default function Home() {
         Coronavirus family. The virus causes a respiratory infection which to
         some people is a minor problem, but to others could be very deadly
         depending on many different factors. The World Health Organization has
-        annouced that Covid-19 is considered a pandemic. Many countries have
-        issued stay at home orders or recommendations to quarantine and self
+        announced that Covid-19 is considered a pandemic. Many countries have
+        issued stay-at-home orders or recommendations to quarantine and self
         isolate.
       </p>
       <p>
@@ -77,8 +77,8 @@ export default function Home() {
       </p>
       <p className="resource__paragraph-bold">
         Pawternity Hub wants to help you stay safe and help you find a friend
-        that can keep you company during the pandemic Check out the links below
-        for more information about adoption during Covid-19
+        that can keep you company during the pandemic. Check out the links below
+        for more information about adoption during Covid-19.
       </p>
       <Button
         href="https://www.petfinder.com/helping-pets/covid-19-resources/how-to-adopt-a-pet-during-covid-19/"
