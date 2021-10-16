@@ -22,7 +22,7 @@ import jwt_decode from "jwt-decode";
 /*  eslint-enable */
 import Donate from "./components/donate/Donate";
 import Register from "./components/accounts/Register";
-import Profile from "./components/accounts/Profile";
+import Profile from "./components/accounts/profile/Profile";
 
 export default function App() {
   const [token, setToken] = useState("");

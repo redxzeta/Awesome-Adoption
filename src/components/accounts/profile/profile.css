@@ -1,0 +1,25 @@
+.profile__container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.story__container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.story__container > p {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.card__container {
+  width: 18rem;
+  margin: 1rem;
+}
