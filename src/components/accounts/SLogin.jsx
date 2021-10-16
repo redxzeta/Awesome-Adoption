@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import { Form, Button, Container, Spinner } from "react-bootstrap";
 import { Redirect } from "react-router";
+import { useSignIn } from "react-supabase";
+import { useAuth } from "../../context/SupaContext";
 import useForm from "../../useHooks/useForm";
-import useSupa from "../../useHooks/useSupa";
-import { signIn } from "../../utils/SupaBaseUtils";
 
 const initState = {
   email: "",
@@ -11,16 +11,22 @@ const initState = {
 };
 const SLogin = () => {
   const [form, handleChange] = useForm(initState);
-  const { loading, error, data, fetchSupa } = useSupa();
+
+  const [{ error, fetching, user }, signIn] = useSignIn();
+
+  const onClickSignIn = async () => await signIn(form);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    fetchSupa(() => signIn(form));
+    onClickSignIn();
   };
   const errorForm = error ? <small className="text-danger">{error}</small> : "";
-  if (data && !loading) {
+  const { session } = useAuth();
+
+  if ((user && !fetching) || session) {
     return <Redirect to="/" />;
   }
+
   return (
     <Container className="register__container" flud="md">
       <div className="register__container_form">
@@ -54,9 +60,9 @@ const SLogin = () => {
             className="register__button"
             variant="primary"
             type="submit"
-            disabled={loading}
+            disabled={fetching}
           >
-            {loading ? (
+            {fetching ? (
               <Fragment>
                 Loading...
                 <Spinner

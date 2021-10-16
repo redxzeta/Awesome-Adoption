@@ -1,9 +1,10 @@
 import { Fragment } from "react";
 import { Form, Button, Container, Spinner } from "react-bootstrap";
+import { Redirect } from "react-router";
+import { useSignUp } from "react-supabase";
+import { useAuth } from "../../context/SupaContext";
 import useForm from "../../useHooks/useForm";
-import useSupa from "../../useHooks/useSupa";
 
-import { signUp } from "../../utils/SupaBaseUtils";
 import "./register.css";
 
 const initState = {
@@ -13,17 +14,26 @@ const initState = {
 
 const Register = () => {
   const [form, handleChange] = useForm(initState);
-  const { loading, error, data, fetchSupa } = useSupa();
+
+  const [{ error, fetching, user }, signUp] = useSignUp();
+
+  const onClickSignUp = async () => await signUp(form);
+
   const onSubmit = (e) => {
     e.preventDefault();
-    fetchSupa(() => signUp(form));
+    onClickSignUp();
   };
-  const errorForm = error ? <small className="text-danger">{error}</small> : "";
-
+  const errorForm = error ? (
+    <small className="text-danger">{error.message}</small>
+  ) : (
+    ""
+  );
+  const { session } = useAuth();
+  if (session) return <Redirect to="/" />;
   return (
     <Container className="register__container" flud="md">
       <div className="register__container_form">
-        {data ? (
+        {user ? (
           <Success />
         ) : (
           <Fragment>
@@ -57,9 +67,9 @@ const Register = () => {
                 className="register__button"
                 variant="primary"
                 type="submit"
-                disabled={loading}
+                disabled={fetching}
               >
-                {loading ? (
+                {fetching ? (
                   <Fragment>
                     Loading...
                     <Spinner
