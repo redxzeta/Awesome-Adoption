@@ -22,6 +22,7 @@ import jwt_decode from "jwt-decode";
 /*  eslint-enable */
 import Donate from "./components/donate/Donate";
 import Register from "./components/accounts/Register";
+import Profile from "./components/accounts/Profile";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -72,6 +73,9 @@ export default function App() {
             </Route>
             <Route path="/pets">
               {Authenticated && <Pets token={token} />}
+            </Route>
+            <Route path="/profile">
+              <Profile />
             </Route>
             <Route path="/about">
               <About />
