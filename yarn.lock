@@ -9780,6 +9780,11 @@ react-shallow-renderer@^16.13.1:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0"
 
+react-supabase@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-supabase/-/react-supabase-0.2.0.tgz#63b1083e18754b5a0e6946ef4701a0559ba713b5"
+  integrity sha512-dlAOhkFaWr8ZqHUkWflGvDpFUT69DbWE7+LxmH/a56ma/qS1EinsIKcxskPcPlaWO70QI7hxu9y8imp8qxDCLw==
+
 react-test-renderer@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-17.0.2.tgz#4cd4ae5ef1ad5670fc0ef776e8cc7e1231d9866c"
