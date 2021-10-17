@@ -83,7 +83,7 @@ The registry is a large public database of JavaScript software and the meta-in
 ##Links to bootstrap 5 and react bootstrap, react router
 BootStrap 5:
 [running tests](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-Source: getBootStarp.com
+Source: getBootStrap.com
 Download the Latest Version: [running tests](https://getbootstrap.com/docs/5.1/getting-started/download/)
 
 React BootStrap: [running tests](https://react-bootstrap.github.io/)
