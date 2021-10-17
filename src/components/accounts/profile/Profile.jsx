@@ -3,11 +3,11 @@ import "./profile.css";
 const Profile = () => {
   return (
     <div className="profile__container">
-      <h1>My Stories</h1>
       <div className="story__container">
         <Image src="https://via.placeholder.com/150x150" roundedCircle />
         <p>@username</p>
       </div>
+      <h1>My Stories</h1>
       <div className="d-flex flex-row">
         <Card className="card__container">
           <Card.Header>Featured</Card.Header>
