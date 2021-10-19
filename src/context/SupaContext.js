@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuthStateChange, useClient } from "react-supabase";
 
-const initialState = { session: null, user: null };
+const initialState = { session: null, user: null, username: null };
 export const AuthContext = createContext(initialState);
 
 export function AuthProvider({ children }) {
@@ -10,11 +10,30 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const session = client.auth.session();
-    setState({ session, user: session?.user ?? null });
+    if (session) {
+      getProfile(session.user.id);
+    } else {
+      setState((val) => ({ ...val, username: "Guest" }));
+    }
+    setState({ ...state, session, user: session?.user ?? null });
   }, []);
 
+  const getProfile = async (id) => {
+    const { data } = await client
+      .from("profiles")
+      .select("username")
+      .eq("id", id)
+      .single();
+
+    setState((val) => ({ ...val, username: data.username }));
+  };
   useAuthStateChange((event, session) => {
     setState({ session, user: session?.user ?? null, event: event });
+    if (session) {
+      getProfile(session.user.id);
+    } else {
+      setState((val) => ({ ...val, username: "Guest" }));
+    }
   });
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;

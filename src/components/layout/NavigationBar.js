@@ -26,8 +26,7 @@ export default function NavigationBar() {
   const onClickSignOut = async () => {
     await signOut();
   };
-  const { session } = useAuth();
-
+  const { session, username } = useAuth();
   return (
     <Navbar bg="primary" expand="lg">
       <Container>
@@ -60,6 +59,7 @@ export default function NavigationBar() {
               title={<i className="bi bi-person-circle"></i>}
               id="navbarScrollingDropdown"
             >
+              <NavDropdown.Item>Hello, {username}</NavDropdown.Item>
               <NavDropdown.Divider />
               {!session && (
                 <Fragment>
