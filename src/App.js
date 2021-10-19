@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import Home from "./components/home/Home";
 import NavigationBar from "./components/layout/NavigationBar";
-import axios from "axios";
 import "./App.css";
 import Pets from "./components/pets/Pets";
 import PetType from "./components/pets/PetType";
@@ -28,14 +27,17 @@ export default function App() {
   const [Authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
     const fetchFunction = () => {
-      axios
-        .post(
-          "https://api.petfinder.com/v2/oauth2/token",
-          `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`
-        )
-        .then((response) => {
-          localStorage.setItem("token", response.data.access_token);
-          setToken(response.data.access_token);
+      fetch("https://api.petfinder.com/v2/oauth2/token", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded",
+        },
+        body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem("token", data.access_token);
+          setToken(data.access_token);
         })
         .catch((error) => {
           console.log(error);
