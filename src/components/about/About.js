@@ -50,30 +50,45 @@ export default function About() {
         </p>
       </section>
       <div className="social-links-container">
-        <a
-          target="blank"
-          rel="noreferrer"
-          href="https://youtu.be/vxAqS-GLna8"
-          className="social-links"
+        <OverlayTrigger
+          key="youtube-icon"
+          overlay={<Tooltip id="tooltip-disabled">Youtube</Tooltip>}
         >
-          <Image src={YoutubeLogo} />
-        </a>
-        <a
-          target="blank"
-          rel="noreferrer"
-          href="https://devpost.com/software/pawternity-hub"
-          className="social-links"
+          <a
+            target="blank"
+            rel="noreferrer"
+            href="https://youtu.be/vxAqS-GLna8"
+            className="social-links"
+          >
+            <Image src={YoutubeLogo} />
+          </a>
+        </OverlayTrigger>
+        <OverlayTrigger
+          key="DevPost-icon"
+          overlay={<Tooltip id="tooltip-disabled">DevPost</Tooltip>}
         >
-          <Image src={DevPostLogo} />
-        </a>
-        <a
-          target="blank"
-          rel="noreferrer"
-          href="https://github.com/redxzeta/Awesome-Adoption"
-          className="social-links"
+          <a
+            target="blank"
+            rel="noreferrer"
+            href="https://devpost.com/software/pawternity-hub"
+            className="social-links"
+          >
+            <Image src={DevPostLogo} />
+          </a>
+        </OverlayTrigger>
+        <OverlayTrigger
+          key="Github-icon"
+          overlay={<Tooltip id="tooltip-disabled">Github</Tooltip>}
         >
-          <Image src={GithubIcon} />
-        </a>
+          <a
+            target="blank"
+            rel="noreferrer"
+            href="https://github.com/redxzeta/Awesome-Adoption"
+            className="social-links"
+          >
+            <Image src={GithubIcon} />
+          </a>
+        </OverlayTrigger>
       </div>
       <div className="contributors-section">
         <h1>Contributors</h1>
