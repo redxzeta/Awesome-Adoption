@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.1.9",
     "bootstrap": "5.1.1",
+    "bootstrap-icons": "^1.6.0",
     "bootswatch": "^5.1.1",
     "jwt-decode": "^3.1.2",
     "postcode-validator": "^3.1.0",
