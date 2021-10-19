@@ -1,7 +1,6 @@
 import React from "react";
 import { Nav, Navbar, NavDropdown, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import "./NavigationBar.css";
 import Logo from "../../images/PawHubLogo.png";
 
@@ -42,6 +41,17 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/donate">
               Donate
             </Nav.Link>
+            <NavDropdown
+              title={<i className="bi bi-person-circle"></i>}
+              id="navbarScrollingDropdown"
+            >
+              <NavDropdown.Item as={Link} to="/register">
+                Register
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/login">
+                Login
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
