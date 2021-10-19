@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Dog from "./dog.jpg";
 import "./about.css";
@@ -14,8 +13,13 @@ export default function About() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(apiUrl);
-      setAvatars(response.data);
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        setAvatars(data);
+      } catch (error) {
+        console.error("Error during fetching contributors", error);
+      }
     };
     fetchData();
   }, []);
