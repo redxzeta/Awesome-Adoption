@@ -68,15 +68,11 @@
   flex: 1;
   align-self: center;
 }
+.breed {
+  font-weight: 500;
+}
 .home__container .card-title {
   text-align: center;
-  font-family: Amatic SC;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-
-  color: #000000;
 }
 
 .card__header {
@@ -94,7 +90,7 @@
   color: #da4b4b;
 }
 
-.card .btn {
+.card__btn {
   background: #da4b4b;
   font-family: Arvo;
   font-style: normal;
@@ -111,4 +107,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card__title {
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+
+  color: #000000;
 }

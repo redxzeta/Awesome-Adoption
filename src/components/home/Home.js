@@ -19,7 +19,7 @@ export default function Home() {
           <Card className="card">
             <Card.Header className="card__header">
               {pet.name}
-              <Button className="card-btn" as={Link} to={`/animal/${pet.id}`}>
+              <Button className="card__btn" as={Link} to={`/animal/${pet.id}`}>
                 More Info
               </Button>
             </Card.Header>
