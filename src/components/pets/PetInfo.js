@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Card } from "react-bootstrap";
 import Gallery from "../shared/Gallery";
 import Spinner from "../shared/Spinner";
 import Placeholder from "./placeholder.jpg";
+import TokenContext from "../../context/TokenContext";
 
-export default function PetInfo({ token }) {
+export default function PetInfo() {
   const { id } = useParams();
   const [pet, setPet] = useState({});
+  const token = useContext(TokenContext);
 
   useEffect(() => {
     const config = { headers: { Authorization: `Bearer ${token}` } };
