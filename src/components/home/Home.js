@@ -3,7 +3,6 @@ import { Button, Image, Card, Row, Container, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Dog from "./dog.jpg";
 import "./home.css";
-import axios from "axios";
 import LoadingSpinner from "../shared/Spinner";
 import TokenContext from "../../context/TokenContext";
 import placeholder from "../pets/placeholder.jpg";
@@ -50,14 +49,14 @@ export default function Home() {
       const type = ["cat", "dog"];
       const randomType = type[Math.floor(Math.random() * type.length)];
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      axios
-        .get(
-          `https://api.petfinder.com/v2/animals?type=${randomType}&location=19019&limit=3
+      fetch(
+        `https://api.petfinder.com/v2/animals?type=${randomType}&location=19019&limit=3
         `,
-          config
-        )
-        .then((response) => {
-          setpetList(response.data.animals);
+        config
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setpetList(data.animals);
         })
         .catch((error) => {
           console.log(error);
