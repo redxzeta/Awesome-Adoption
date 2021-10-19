@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "../shared/Spinner";
-import axios from "axios";
 import "./pets.css";
 import {
   Button,
@@ -63,15 +62,13 @@ export default function PetType() {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      axios
-        .get(petFinderUrl, config)
-        .then((response) => {
+      fetch(petFinderUrl, config)
+        .then((response) => response.json())
+        .then((data) => {
           setTotalPages(
-            response.data && response.data.pagination
-              ? response.data.pagination.total_pages || 1
-              : 1
+            data && data.pagination ? data.pagination.total_pages || 1 : 1
           );
-          setpetList(response.data);
+          setpetList(data);
           setLoading(false);
         })
         .catch((error) => {
