@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { Card } from "react-bootstrap";
 import Gallery from "../shared/Gallery";
 import Spinner from "../shared/Spinner";
@@ -15,9 +14,9 @@ export default function PetInfo() {
   useEffect(() => {
     const config = { headers: { Authorization: `Bearer ${token}` } };
 
-    axios
-      .get(`https://api.petfinder.com/v2/animals/${id}`, config)
-      .then((response) => setPet(response.data.animal))
+    fetch(`https://api.petfinder.com/v2/animals/${id}`, config)
+      .then((response) => response.json())
+      .then((data) => setPet(data.animal))
       .catch((error) => console.log(error));
   }, [id, token]);
 
