@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, Image, Card, Row, Container, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Dog from "./dog.jpg";
 import "./home.css";
 import axios from "axios";
 import LoadingSpinner from "../shared/Spinner";
-
+import TokenContext from "../../context/TokenContext";
 import placeholder from "../pets/placeholder.jpg";
 
-export default function Home({ token }) {
+export default function Home() {
   const [petList, setpetList] = useState("");
+  const token = useContext(TokenContext);
 
   const renderCard = () => {
     return petList.map((pet) => {

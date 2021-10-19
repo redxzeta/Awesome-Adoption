@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useContext,
+} from "react";
 import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "../shared/Spinner";
 import axios from "axios";
@@ -15,8 +21,9 @@ import {
 } from "react-bootstrap";
 import { postcodeValidator } from "postcode-validator";
 import Placeholder from "./placeholder.jpg";
+import TokenContext from "../../context/TokenContext";
 
-export default function PetType({ token }) {
+export default function PetType() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const inputCode = useRef(null);
   const [petList, setpetList] = useState("");
@@ -26,6 +33,7 @@ export default function PetType({ token }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { type } = useParams();
+  const token = useContext(TokenContext);
 
   const getLocation = () => {
     if (navigator.geolocation) {

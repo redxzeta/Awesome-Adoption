@@ -21,6 +21,7 @@ import NotFound from "./components/NotFound/NotFound";
 import jwt_decode from "jwt-decode";
 /*  eslint-enable */
 import Donate from "./components/donate/Donate";
+import TokenContext from "./context/TokenContext";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -59,43 +60,39 @@ export default function App() {
 
   return (
     <Fragment>
-      <Router>
-        <NavigationBar token={token} />
-        <Container className="pawhub">
-          <Switch>
-            <Route path="/animal/:id">
-              {Authenticated && <PetInfo token={token} />}
-            </Route>
-            <Route path="/pets/:type">
-              {Authenticated && <PetType token={token} />}
-            </Route>
-            <Route path="/pets">
-              {Authenticated && <Pets token={token} />}
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/resources">
-              <Resources />
-            </Route>
-            <Route path="/donate">
-              <Donate />
-            </Route>
+      <TokenContext.Provider value={token}>
+        <Router>
+          <NavigationBar token={token} />
+          <Container className="pawhub">
+            <Switch>
+              <Route path="/animal/:id">{Authenticated && <PetInfo />}</Route>
+              <Route path="/pets/:type">{Authenticated && <PetType />}</Route>
+              <Route path="/pets">{Authenticated && <Pets />}</Route>
+              <Route path="/about">
+                <About />
+              </Route>
+              <Route path="/resources">
+                <Resources />
+              </Route>
+              <Route path="/donate">
+                <Donate />
+              </Route>
 
-            <Route path="/" exact>
-              {" "}
-              {Authenticated && <Home token={token} />}
-            </Route>
+              <Route path="/" exact>
+                {" "}
+                {Authenticated && <Home />}
+              </Route>
 
-            <Route path="/404">
-              <NotFound />
-            </Route>
+              <Route path="/404">
+                <NotFound />
+              </Route>
 
-            <Redirect to="/404" />
-          </Switch>
-        </Container>
-        <Footer />
-      </Router>
+              <Redirect to="/404" />
+            </Switch>
+          </Container>
+          <Footer />
+        </Router>
+      </TokenContext.Provider>
     </Fragment>
   );
 }
