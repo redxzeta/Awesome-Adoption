@@ -16,23 +16,22 @@ export default function Home() {
       const link = pet.primary_photo_cropped;
       return (
         <Col md={4} xs={12} key={pet.id}>
-          <Card>
+          <Card className="card">
+            <Card.Header className="card__header">
+              {pet.name}
+              <Button className="card__btn" as={Link} to={`/animal/${pet.id}`}>
+                More Info
+              </Button>
+            </Card.Header>
             <Card.Img
-              variant="top"
+              className="card__img"
               alt={link ? pet.type : `${pet.type} placeholder`}
               src={link ? link.medium : placeholder}
             />
             <Card.Body className="cardBody">
-              <Card.Title>{pet.name}</Card.Title>
-              <Card.Text>
-                <span className="breed">Breed: </span>
+              <Card.Title className="card__title">
                 {pet.breeds.primary}
-              </Card.Text>
-              <div className="button__style">
-                <Button as={Link} to={`/animal/${pet.id}`}>
-                  More Info
-                </Button>
-              </div>
+              </Card.Title>
             </Card.Body>
           </Card>
         </Col>
