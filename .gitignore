@@ -24,8 +24,14 @@ yarn-error.log*
 
 .env
 
+<<<<<<< HEAD
 
 # Supabase
 .supabase
 
 
+=======
+# Supabase
+.supabase
+
+>>>>>>> 376d407 (fix)
