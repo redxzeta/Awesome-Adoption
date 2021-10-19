@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Arvo&display=swap");
+
 @keyframes dogAnimate {
   0% {
     top: 0px;
@@ -56,12 +59,10 @@
 .home__container .card {
   margin: 10px;
   padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
     5px 5px 15px 5px rgba(0, 0, 0, 0);
-  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-  width: 100%;
+  width: 293px;
+  box-shadow: 5px 5px 13px -10px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 .cardBody {
   flex: 1;
@@ -72,4 +73,48 @@
 }
 .home__container .card-title {
   text-align: center;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+
+  color: #da4b4b;
+}
+
+.card__btn {
+  background: #da4b4b;
+  font-family: Arvo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #ffffff;
+}
+
+.card-img {
+  width: 293px;
+  height: 211.2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__title {
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+
+  color: #000000;
 }
