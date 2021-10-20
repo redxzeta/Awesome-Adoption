@@ -62,5 +62,13 @@
     "location": "Minnetonka, Minnesota",
     "founded": 2009,
     "mission": "Secondhand Hounds is a 501(c)(3) nonprofit animal rescue in Minnesota. Founded in July of 2009, our many volunteers have made a positive impact on the lives of many dogs and cats in our community. Our organization provides safe shelter, proper veterinary care and daily necessities for animals at risk, while working hard to find each a permanent, loving home!"
+  },
+  {
+    "name": "Alley Cat Allies",
+    "website": "https://www.alleycat.org/",
+    "logo": "https://cdn.shopify.com/s/files/1/0546/3005/files/ACA_Logo_Gray_350x.png?v=1587410905",
+    "location": "Bethesda, Maryland",
+    "founded": 1890,
+    "mission": "To transform and develop communities to protect and improve the lives of cats. Through their programs, Allie Cat Allies also educates communities on the Trap-Neuter-Return policy and advocates for strict adherence to existing animal cruelty laws. Their efforts have opened the eyes of many shelters and veterinarians to the importance of this method."
   }
 ]
