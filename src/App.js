@@ -32,8 +32,7 @@ export default function App() {
         headers: {
           "Content-type": "application/x-www-form-urlencoded",
         },
-        body: "grant_type=client_credentials&client_id=ceDugyUR6mG2Ffsxnqbpx81oLjAv6rZllCBZ0xzWdYJGFWRAj9&client_secret=Xe9hBtgN8IBuDYD9lgN33WQp4jd4dvCRIqMUH0wB",
-        // body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`,
+        body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`,
       })
         .then((response) => response.json())
         .then((data) => {
