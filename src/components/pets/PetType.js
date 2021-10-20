@@ -190,7 +190,7 @@ export default function PetType() {
           Use your location
         </Button>
       </div>
-      <Row className="w-100">
+      <Row className="mb-3 w-100">
         {loading ? (
           <LoadingSpinner />
         ) : (
