@@ -111,7 +111,16 @@
   line-height: 17px;
 
   color: #ffffff;
+  white-space: nowrap;
 }
+
+.home__container .card__title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 2px;
+}
+
 .card-img {
   width: auto;
   height: 211.2px;

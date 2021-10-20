@@ -5,6 +5,7 @@ import Gallery from "../shared/Gallery";
 import Spinner from "../shared/Spinner";
 import Placeholder from "./placeholder.jpg";
 import TokenContext from "../../context/TokenContext";
+import nameCleaner from "../../utils/nameCleaner";
 
 export default function PetInfo() {
   const { id } = useParams();
@@ -20,20 +21,6 @@ export default function PetInfo() {
       .catch((error) => console.log(error));
   }, [id, token]);
 
-  /*  eslint-disable */
-  const nameCleaner = (str) => {
-    if (str !== undefined) {
-      return str
-        .replace(/(^\w+:|^)\/\//, "")
-        .replaceAll("&#039;", "'")
-        .replaceAll("&#39;", "'")
-        .replaceAll("&quot;", '"')
-        .replaceAll("&rsquo;", "'")
-        .replaceAll("&amp;", "&")
-        .replaceAll("&ldquo;", '"')
-        .replaceAll("&hellip;", "...");
-    }
-  };
   if (pet.name === undefined || pet.name === null) {
     return <Spinner />;
   } else {

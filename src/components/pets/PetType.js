@@ -21,6 +21,7 @@ import {
 import { postcodeValidator } from "postcode-validator";
 import Placeholder from "./placeholder.jpg";
 import TokenContext from "../../context/TokenContext";
+import nameCleaner from "../../utils/nameCleaner";
 
 export default function PetType() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
@@ -184,20 +185,7 @@ export default function PetType() {
       findPets(newPage, petLocation);
     }
   };
-  /*  eslint-disable */
-  const nameCleaner = (str) => {
-    if (str !== undefined) {
-      return str
-        .replace(/(^\w+:|^)\/\//, "")
-        .replaceAll("&#039;", "'")
-        .replaceAll("&#39;", "'")
-        .replaceAll("&quot;", '"')
-        .replaceAll("&rsquo;", "'")
-        .replaceAll("&amp;", "&")
-        .replaceAll("&ldquo;", '"')
-        .replaceAll("&hellip;", "...");
-    }
-  }; /* eslint-enable */
+
   const errorAlert = (
     <Alert onClose={() => setShowErrorAlert(false)} dismissible>
       Unable to retrieve your location, please enter your zip code.

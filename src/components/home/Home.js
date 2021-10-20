@@ -6,6 +6,7 @@ import "./home.css";
 import LoadingSpinner from "../shared/Spinner";
 import TokenContext from "../../context/TokenContext";
 import placeholder from "../pets/placeholder.jpg";
+import nameCleaner from "../../utils/nameCleaner";
 
 export default function Home() {
   const [petList, setpetList] = useState("");
@@ -18,7 +19,7 @@ export default function Home() {
         <Col md={4} xs={12} key={pet.id}>
           <Card className="card">
             <Card.Header className="card__header">
-              {pet.name}
+              <span className="card__title">{nameCleaner(pet.name)}</span>
               <Button className="card__btn" as={Link} to={`/animal/${pet.id}`}>
                 More Info
               </Button>
