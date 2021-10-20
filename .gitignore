@@ -29,4 +29,3 @@ yarn-error.log*
 
 #npm json
 package-lock.json
-package.json
