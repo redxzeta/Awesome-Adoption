@@ -34,7 +34,7 @@ export default function PetType() {
   const { type } = useParams();
   const token = useContext(TokenContext);
 
-  const getLocation = () => {
+  const findByLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -77,10 +77,6 @@ export default function PetType() {
     },
     [token, type, zipCode]
   );
-
-  useEffect(() => {
-    getLocation();
-  }, []);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -210,7 +206,6 @@ export default function PetType() {
   return (
     <div className="petList__container">
       <h1>List Of {type} Buddies</h1>
-      <h2>ZipCode: {zipCode}</h2>
 
       <div className="inputContainer">
         <InputGroup size="md" className="mb-3">
@@ -228,6 +223,9 @@ export default function PetType() {
           <Button onClick={search}>GO</Button>
         </InputGroup>
         {showErrorAlert && errorAlert}
+        <Button className="mb-3" onClick={findByLocation}>
+          Use your location
+        </Button>
       </div>
       <Row className="w-100">
         {loading ? (
