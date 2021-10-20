@@ -56,7 +56,7 @@ export default function About() {
           href="https://youtu.be/vxAqS-GLna8"
           className="social-links"
         >
-          <Image src={YoutubeLogo} />
+          <Image src={YoutubeLogo} title="Youtube" />
         </a>
         <a
           target="blank"
@@ -64,7 +64,7 @@ export default function About() {
           href="https://devpost.com/software/pawternity-hub"
           className="social-links"
         >
-          <Image src={DevPostLogo} />
+          <Image src={DevPostLogo} title="DevPost" />
         </a>
         <a
           target="blank"
@@ -72,7 +72,7 @@ export default function About() {
           href="https://github.com/redxzeta/Awesome-Adoption"
           className="social-links"
         >
-          <Image src={GithubIcon} />
+          <Image src={GithubIcon} title="Github" />
         </a>
       </div>
       <div className="contributors-section">
