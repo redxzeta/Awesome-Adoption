@@ -26,3 +26,7 @@ yarn-error.log*
 
 # Supabase
 .supabase
+
+#npm json
+package-lock.json
+package.json
