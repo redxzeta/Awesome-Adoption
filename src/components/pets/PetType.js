@@ -41,7 +41,7 @@ export default function PetType() {
           const latitude = position.coords.latitude.toString();
           const longitude = position.coords.longitude.toString();
           if (latitude && longitude) {
-            findPets(1, `${latitude},${longitude}`);
+            setZipCode(`${latitude},${longitude}`);
             setShowErrorAlert(false);
           } else {
             setShowErrorAlert(true);
@@ -73,6 +73,7 @@ export default function PetType() {
         })
         .catch((error) => {
           console.log(error);
+          setLoading(false);
         });
     },
     [token, type, zipCode]
@@ -180,7 +181,7 @@ export default function PetType() {
     if (newPage !== currentPage) {
       setLoading(true);
       setCurrentPage(newPage);
-      findPets(newPage);
+      findPets(newPage, zipCode);
     }
   };
   /*  eslint-disable */
