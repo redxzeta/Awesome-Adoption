@@ -27,7 +27,7 @@ export default function PetType() {
   const inputCode = useRef(null);
   const [petList, setpetList] = useState("");
   const [code, setCode] = useState(19019);
-  const [zipCode, setZipCode] = useState(19019);
+  const [petLocation, setPetLocation] = useState(19019);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -41,7 +41,7 @@ export default function PetType() {
           const latitude = position.coords.latitude.toString();
           const longitude = position.coords.longitude.toString();
           if (latitude && longitude) {
-            setZipCode(`${latitude},${longitude}`);
+            setPetLocation(`${latitude},${longitude}`);
             setShowErrorAlert(false);
           } else {
             setShowErrorAlert(true);
@@ -73,21 +73,21 @@ export default function PetType() {
         })
         .catch((error) => {
           console.log(error);
-          setLoading(false);
-        });
+        })
+        .finally(() => setLoading(false));
     },
-    [token, type, zipCode]
+    [token, type, petLocation]
   );
 
   useEffect(() => {
     setCurrentPage(1);
     setLoading(true);
-    findPets(1, zipCode);
-  }, [token, type, zipCode, findPets]);
+    findPets(1, petLocation);
+  }, [token, type, petLocation, findPets]);
 
   const search = () => {
     if (postcodeValidator(code, "US")) {
-      setZipCode(code);
+      setPetLocation(code);
       setLoading(true);
     } else {
       inputCode.current.value = "Invalid ZipCode";
@@ -181,7 +181,7 @@ export default function PetType() {
     if (newPage !== currentPage) {
       setLoading(true);
       setCurrentPage(newPage);
-      findPets(newPage, zipCode);
+      findPets(newPage, petLocation);
     }
   };
   /*  eslint-disable */
