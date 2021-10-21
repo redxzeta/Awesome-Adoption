@@ -1,7 +1,7 @@
 import React from "react";
 import "./spinner.css";
 
-import spinner from "../../../images/spinner.gif";
+import spinner from "../../../images/paw.gif";
 
 const Spinner = () => (
   <div className="loader">
