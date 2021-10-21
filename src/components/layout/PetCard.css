@@ -22,14 +22,15 @@
   color: #da4b4b;
 }
 
-.card__title {
+.card .card__title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-right: 2px;
+  line-height: 1.3;
 }
 
-.card__btn {
+.card .card__btn {
   background: #da4b4b;
   font-family: Arvo;
   font-style: normal;
