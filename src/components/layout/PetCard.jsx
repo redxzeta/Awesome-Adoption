@@ -6,7 +6,30 @@ import placeholder from "../pets/placeholder.jpg";
 import nameCleaner from "../../utils/nameCleaner";
 
 export default function PetCard(props) {
-  const { id, name, type, primary_photo_cropped: link, breeds } = props.pet;
+  const {
+    id,
+    photos,
+    name,
+    type,
+    primary_photo_cropped: link,
+    breeds,
+  } = props.pet;
+
+  const onHoverPhoto = (event) => {
+    if (photos && photos.length > 1) {
+      const randomPhotoIndex = Math.floor(
+        Math.random() * (photos.length - 1) + 1
+      );
+      event.target.src = photos[randomPhotoIndex].medium;
+    }
+  };
+
+  const onBlurPhoto = (event) => {
+    if (photos && photos.length > 1) {
+      event.target.src = photos[0].medium;
+    }
+  };
+
   return (
     <Col md={4} xs={12} key={id}>
       <Card className="card">
@@ -20,6 +43,8 @@ export default function PetCard(props) {
           className="card__img"
           alt={link ? type : `${type} placeholder`}
           src={link?.medium || placeholder}
+          onMouseEnter={onHoverPhoto}
+          onMouseLeave={onBlurPhoto}
         />
         <Card.Body className="card__body">
           <Card.Title className="card__title">{breeds.primary}</Card.Title>
