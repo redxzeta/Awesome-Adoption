@@ -4,5 +4,8 @@ node_js:
   - "12"
 
 script:
+  - yarn format
+  - yarn lint
+  - yarn lint-fix
   - yarn test
   - yarn build
