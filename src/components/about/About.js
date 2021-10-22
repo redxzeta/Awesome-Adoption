@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Dog from "./dog.jpg";
 import "./about.css";
-import YoutubeLogo from "./youtube.png";
-import DevPostLogo from "./devpost.png";
+import YoutubeLogo from "./Youtube2.png";
+import DevPostLogo from "./devpost-modified.png";
 import GithubIcon from "./GitHub.png";
 
 const apiUrl =
@@ -49,6 +49,7 @@ export default function About() {
           covid19 - redxzeta
         </p>
       </section>
+      <h1>Links</h1>
       <div className="social-links-container">
         <OverlayTrigger
           key="youtube-icon"
@@ -60,7 +61,7 @@ export default function About() {
             href="https://youtu.be/vxAqS-GLna8"
             className="social-links"
           >
-            <Image src={YoutubeLogo} />
+            <Image className="contributor-avatar" src={YoutubeLogo} />
           </a>
         </OverlayTrigger>
         <OverlayTrigger
@@ -73,7 +74,7 @@ export default function About() {
             href="https://github.com/redxzeta/Awesome-Adoption"
             className="social-links"
           >
-            <Image src={DevPostLogo} />
+            <Image className="contributor-avatar" src={DevPostLogo} />
           </a>
         </OverlayTrigger>
         <OverlayTrigger
@@ -86,7 +87,7 @@ export default function About() {
             href="https://github.com/redxzeta/Awesome-Adoption"
             className="social-links"
           >
-            <Image src={GithubIcon} />
+            <Image className="contributor-avatar" src={GithubIcon} />
           </a>
         </OverlayTrigger>
       </div>
