@@ -69,13 +69,8 @@ export default function PetInfo() {
           />
         )}
 
-        <Card className="info-card">
-          <Card.Header as="h5">{pet.type}</Card.Header>
-          <Card.Body>
             <div className="info-body">
               <div className="primary-info">
-              {/* <BsFillPersonCheckFill className="icon" /> */}
-              {/* <Card.Title>Name</Card.Title> */}
               <Card.Title>Name - {pet.name}</Card.Title>
               <Card.Text className="description">{pet.description}</Card.Text>
               </div>
@@ -130,8 +125,6 @@ export default function PetInfo() {
             </Button>
             </a>
             </div>
-          </Card.Body>
-        </Card>
       </div>
     );
   }

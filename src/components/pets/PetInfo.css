@@ -1,11 +1,13 @@
 .info-card {
   margin-top: 3rem;
+  width: "100%";
 }
 
 .info-body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-top: 3rem;
 }
 
 .primary-info,
