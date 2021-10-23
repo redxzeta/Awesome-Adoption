@@ -1,47 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Button, Image, Card, Row, Container, Col } from "react-bootstrap";
+import { Button, Image, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Dog from "./dog.jpg";
 import "./home.css";
 import LoadingSpinner from "../shared/Spinner";
+import PetCard from "../layout/PetCard";
 import TokenContext from "../../context/TokenContext";
-import placeholder from "../pets/placeholder.jpg";
-import nameCleaner from "../../utils/nameCleaner";
 
 export default function Home() {
   const [petList, setpetList] = useState("");
   const token = useContext(TokenContext);
 
-  const renderCard = () => {
-    return petList.map((pet) => {
-      const link = pet.primary_photo_cropped;
-      return (
-        <Col md={4} xs={12} key={pet.id}>
-          <Card className="card">
-            <Card.Header className="card__header">
-              <span className="card__title">{nameCleaner(pet.name)}</span>
-              <Button className="card__btn" as={Link} to={`/animal/${pet.id}`}>
-                More Info
-              </Button>
-            </Card.Header>
-            <Card.Img
-              className="card__img"
-              alt={link ? pet.type : `${pet.type} placeholder`}
-              src={link ? link.medium : placeholder}
-            />
-            <Card.Body className="cardBody">
-              <Card.Title className="card__title">
-                {pet.breeds.primary}
-              </Card.Title>
-            </Card.Body>
-          </Card>
-        </Col>
-      );
-    });
-  };
-
   const renderCards = () => {
-    return petList ? renderCard() : <LoadingSpinner />;
+    return petList ? (
+      petList.map((pet, index) => <PetCard key={index} pet={pet} />)
+    ) : (
+      <LoadingSpinner />
+    );
   };
 
   useEffect(() => {

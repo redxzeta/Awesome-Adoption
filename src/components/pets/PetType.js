@@ -6,12 +6,11 @@ import React, {
   useCallback,
   useContext,
 } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import LoadingSpinner from "../shared/Spinner";
 import "./pets.css";
 import {
   Button,
-  Card,
   Col,
   FormControl,
   InputGroup,
@@ -20,9 +19,8 @@ import {
   Alert,
 } from "react-bootstrap";
 import { postcodeValidator } from "postcode-validator";
-import Placeholder from "./placeholder.jpg";
+import PetCard from "../layout/PetCard";
 import TokenContext from "../../context/TokenContext";
-import nameCleaner from "../../utils/nameCleaner";
 
 export default function PetType() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
@@ -112,30 +110,6 @@ export default function PetType() {
       setLoading(true);
     } else {
       inputCode.current.value = "Invalid ZipCode";
-    }
-  };
-
-  const onHoverPhoto = (event) => {
-    const petId = parseInt(event.target.id);
-    const pet = petList.animals.find((pet) => {
-      return pet.id === petId;
-    });
-    if (pet && pet.photos && pet.photos.length > 1) {
-      const randomPhotoIndex = Math.floor(
-        Math.random() * (pet.photos.length - 1) + 1
-      );
-      event.target.src = pet.photos[randomPhotoIndex].medium;
-    }
-  };
-
-  const onBlurPhoto = (event) => {
-    const petId = parseInt(event.target.id);
-    const pet = petList.animals.find((pet) => {
-      return pet.id === petId;
-    });
-
-    if (pet && pet.photos && pet.photos.length > 1) {
-      event.target.src = pet.photos[0].medium;
     }
   };
 
@@ -240,63 +214,12 @@ export default function PetType() {
 
         {validCodeError && <Alert variant="danger">{validCodeError}</Alert>}
       </div>
-
-      <Row className="w-100">
+      <Row className="mb-3 w-100 petList">
         {loading ? (
           <LoadingSpinner />
         ) : (
           petList &&
-          petList.animals.map((pet) => {
-            const img =
-              pet.photos === undefined || pet.photos.length === 0
-                ? "placeholder"
-                : pet.photos[0].medium;
-            // array empty or does not exist
-            return (
-              <Col md={4} xs={12} key={pet.id} className="petList__column">
-                <Card>
-                  {img === "placeholder" ? (
-                    <Card.Img
-                      id={pet.id}
-                      variant="top"
-                      alt={`${type} placeholder`}
-                      src={Placeholder}
-                      onMouseEnter={onHoverPhoto}
-                      onMouseLeave={onBlurPhoto}
-                    />
-                  ) : (
-                    <Card.Img
-                      id={pet.id}
-                      variant="top"
-                      alt={type}
-                      src={img}
-                      onMouseEnter={onHoverPhoto}
-                      onMouseLeave={onBlurPhoto}
-                    />
-                  )}
-                  <Card.Body>
-                    <Card.Title
-                      style={{
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      {nameCleaner(pet.name)}
-                    </Card.Title>
-                    <Card.Text> Breed: {pet.breeds.primary}</Card.Text>
-                    <Button
-                      as={Link}
-                      to={`/animal/${pet.id}`}
-                      variant="primary"
-                    >
-                      More Info
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            );
-          })
+          petList.animals.map((pet, index) => <PetCard key={index} pet={pet} />)
         )}
       </Row>
       {!loading && (
