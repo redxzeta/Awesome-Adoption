@@ -31,7 +31,7 @@ export default function PetCard(props) {
   };
 
   return (
-    <Col md={4} xs={12} key={id}>
+    <Col md={4} xs={12} key={id} className="card-container">
       <Card className="card">
         <Card.Header className="card__header">
           <span className="card__title">{nameCleaner(name)}</span>
