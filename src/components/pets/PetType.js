@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {
   useState,
   useEffect,
@@ -25,6 +26,8 @@ export default function PetType() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const inputCode = useRef(null);
   const [petList, setpetList] = useState("");
+  const [goBtnDisabled, setGoBtnDisabled] = useState(false);
+  const [validCodeError, setValidCodeError] = useState("");
   const [code, setCode] = useState(19019);
   const [petLocation, setPetLocation] = useState(19019);
   const [loading, setLoading] = useState(true);
@@ -83,6 +86,23 @@ export default function PetType() {
     setLoading(true);
     findPets(1, petLocation);
   }, [token, type, petLocation, findPets]);
+
+  // ! To check validity of zipcode
+  function checkValidation(e) {
+    setValidCodeError("");
+    setCode(inputCode.current.value);
+    const codeLength = e.target.value.length;
+    if (codeLength < 5 || codeLength > 5) {
+      setGoBtnDisabled(true);
+    } else {
+      if (postcodeValidator(e.target.value, "US")) {
+        setGoBtnDisabled(false);
+      } else {
+        setValidCodeError("Invalid zip Code");
+        setGoBtnDisabled(true);
+      }
+    }
+  }
 
   const search = () => {
     if (postcodeValidator(code, "US")) {
@@ -180,15 +200,19 @@ export default function PetType() {
             pattern="[0-9]{5}"
             aria-describedby="inputGroup-sizing-sm"
             value={code}
-            onChange={(e) => setCode(e.target.value)}
-            style={{ width: 100 }}
+            onChange={(e) => checkValidation(e)}
+            style={{ width: 150 }}
           />
-          <Button onClick={search}>GO</Button>
+          <Button disabled={goBtnDisabled} onClick={search}>
+            Go
+          </Button>
         </InputGroup>
         {showErrorAlert && errorAlert}
         <Button className="mb-3" onClick={findByLocation}>
           Use your location
         </Button>
+
+        {validCodeError && <Alert variant="danger">{validCodeError}</Alert>}
       </div>
       <Row className="mb-3 w-100 petList">
         {loading ? (
