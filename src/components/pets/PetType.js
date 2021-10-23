@@ -201,7 +201,6 @@ export default function PetType() {
             aria-describedby="inputGroup-sizing-sm"
             value={code}
             onChange={(e) => checkValidation(e)}
-            style={{ width: 150 }}
           />
           <Button disabled={goBtnDisabled} onClick={search}>
             Go
