@@ -1,11 +1,21 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import Gallery from "../shared/Gallery";
 import Spinner from "../shared/Spinner";
 import Placeholder from "./placeholder.jpg";
 import TokenContext from "../../context/TokenContext";
 import nameCleaner from "../../utils/nameCleaner";
+import { BsFillEnvelopeOpenFill, 
+  BsArrowRight, 
+  BsShareFill,
+  BsGenderAmbiguous
+} from "react-icons/bs";
+import { VscSymbolColor, VscTypeHierarchySub } from "react-icons/vsc";
+import { GiAges } from "react-icons/gi";
+import { HiMail } from "react-icons/hi";
+import "./PetInfo.css";
 
 export default function PetInfo() {
   const { id } = useParams();
@@ -17,9 +27,33 @@ export default function PetInfo() {
 
     fetch(`https://api.petfinder.com/v2/animals/${id}`, config)
       .then((response) => response.json())
-      .then((data) => setPet(data.animal))
+      .then((data) => {
+        setPet(data.animal);
+        console.log(data.animal);
+      })
       .catch((error) => console.log(error));
   }, [id, token]);
+
+  // ! Details for sharing
+  const shareData = {
+    title: pet.type + " for adoption.",
+    text: "Show some love to this animal. Please have a look if you want to adopt this cute life.",
+    url: window.location.href
+  };
+
+  // ! Function for calling share api
+  function handleShare(e){
+    e.preventDefault();
+
+    navigator.share(shareData)
+    .then((result) => {
+      console.log(result);
+      console.log("Shared");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 
   if (pet.name === undefined || pet.name === null) {
     return <Spinner />;
@@ -35,25 +69,67 @@ export default function PetInfo() {
           />
         )}
 
-        <Card>
+        <Card className="info-card">
           <Card.Header as="h5">{pet.type}</Card.Header>
           <Card.Body>
-            <Card.Title>Breeds</Card.Title>
-            <Card.Text>{pet.breeds.primary}</Card.Text>
-            <Card.Title>Colors</Card.Title>
-            <Card.Text>
-              {pet.colors.primary ? pet.colors.primary : "N/A"}
-            </Card.Text>
-            <Card.Title>Age</Card.Title>
-            <Card.Text>{pet.age}</Card.Text>
-            <Card.Title>Gender</Card.Title>
-            <Card.Text>{pet.gender}</Card.Text>
-            <Card.Title>Contact</Card.Title>
-            <Card.Text>Email: {pet.contact.email}</Card.Text>
+            <div className="info-body">
+              <div className="primary-info">
+              {/* <BsFillPersonCheckFill className="icon" /> */}
+              {/* <Card.Title>Name</Card.Title> */}
+              <Card.Title>Name - {pet.name}</Card.Title>
+              <Card.Text className="description">{pet.description}</Card.Text>
+              </div>
+              <div className="breed-info">
+                <VscTypeHierarchySub className="icon"/>
+              <Card.Title>Breeds</Card.Title>
+              <Card.Text>{pet.breeds.primary}</Card.Text>
+              </div>
+              <div className="color-info">
+              <VscSymbolColor className="icon"/>
+              <Card.Title>Colors</Card.Title>
+              <Card.Text>
+                {pet.colors.primary ? pet.colors.primary : "N/A"}
+              </Card.Text>
+              </div>
+            </div>
 
-            <a href={pet.url} target="_blank" without rel="noopener noreferrer">
-              More Info
+            <div className="info-body">
+              <div className="age-info">
+              <GiAges className="icon" />
+              <Card.Title>Age</Card.Title>
+              <Card.Text>{pet.age}</Card.Text>
+              </div>
+              <div className="gender-info">
+              <BsGenderAmbiguous className="icon" />
+              <Card.Title>Gender</Card.Title>
+              <Card.Text>{pet.gender}</Card.Text>
+              </div>
+              <div className="contact-info">
+              <HiMail className="icon" />
+              <Card.Title>Contact</Card.Title>
+              <Card.Text>
+              <a href={`mailto:${pet.contact.email}`} target="_blank" rel="noopener noreferrer">
+                {pet.contact.email}
+              </a>
+              </Card.Text>
+              </div>
+            </div>
+
+            <div className="actions">
+            <a href={`mailto:${pet.contact.email}`} target="_blank" rel="noopener noreferrer">
+            <Button className="action-btn" variant="info" size="lg">
+              Contact <BsFillEnvelopeOpenFill/>
+            </Button>
             </a>
+            <Button onClick={ handleShare } className="action-btn" variant="primary" size="lg">
+              Share <BsShareFill/>
+            </Button>
+            <a href={pet.url} target="_blank" rel="noopener noreferrer">
+            <Button className="action-btn" variant="success" size="lg">
+              More Info <BsArrowRight/>
+            </Button>
+            </a>
+            </div>
           </Card.Body>
         </Card>
       </div>
