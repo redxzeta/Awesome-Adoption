@@ -42,6 +42,7 @@
 
 .inputContainer {
   flex: 1;
+  max-width: 340px;
 }
 
 .petList__container .card-img-top {
@@ -50,12 +51,29 @@
   align-self: center;
   border-radius: 4;
 }
+
 .petList__container .card {
-  width: 100%;
+  margin: 10px;
   padding-top: 10px;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
     5px 5px 15px 5px rgba(0, 0, 0, 0);
-  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  width: 20rem;
+  box-shadow: 5px 5px 13px -10px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.petList__container .card__header {
+  background-color: #fff;
+}
+
+.petList__container .card-title {
+  text-align: center;
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+
+  color: #000000;
 }
 
 .petList__container .petList {
