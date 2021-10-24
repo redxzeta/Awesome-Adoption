@@ -9,7 +9,6 @@ import "./register.css";
 
 const initState = {
   email: "",
-  password: "",
 };
 
 const ForgotPassword = () => {
