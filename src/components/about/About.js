@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Image } from "react-bootstrap";
+import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Dog from "./dog.jpg";
 import "./about.css";
 import YoutubeLogo from "./youtube.png";
@@ -75,20 +75,25 @@ export default function About() {
         <h1>Contributors</h1>
         <div className="contributors" id="contributors">
           {avatars.map((a) => (
-            <a
-              className="contributor-link"
+            <OverlayTrigger
               key={a.id}
-              href={a.html_url}
-              target="_blank"
-              rel="noreferrer"
+              overlay={<Tooltip id="tooltip-disabled">{a.login}</Tooltip>}
             >
-              <img
-                className="contributor-avatar"
+              <a
+                className="contributor-link"
                 key={a.id}
-                src={a.avatar_url}
-                alt="Contributor Avatar"
-              />
-            </a>
+                href={a.html_url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className="contributor-avatar"
+                  key={a.id}
+                  src={a.avatar_url}
+                  alt="Contributor Avatar"
+                />
+              </a>
+            </OverlayTrigger>
           ))}
         </div>
       </div>

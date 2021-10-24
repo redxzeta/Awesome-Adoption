@@ -11,11 +11,13 @@ import {
   InputGroup,
   Row,
   Pagination,
+  Alert,
 } from "react-bootstrap";
 import { postcodeValidator } from "postcode-validator";
 import Placeholder from "./placeholder.jpg";
 
 export default function PetType({ token }) {
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
   const inputCode = useRef(null);
   const [petList, setpetList] = useState("");
   const [code, setCode] = useState(19019);
@@ -24,18 +26,37 @@ export default function PetType({ token }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { type } = useParams();
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude.toString();
+          const longitude = position.coords.longitude.toString();
+          if (latitude && longitude) {
+            findPets(1, `${latitude},${longitude}`);
+            setShowErrorAlert(false);
+          } else {
+            setShowErrorAlert(true);
+          }
+        },
+        () => {
+          setShowErrorAlert(true);
+        }
+      );
+    }
+  };
+
   const findPets = useCallback(
-    (page) => {
+    (page, location) => {
+      const petFinderUrl = `https://api.petfinder.com/v2/animals?type=${type}&location=${location}&limit=12&page=${
+        page || 1
+      }`;
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
       axios
-        .get(
-          `https://api.petfinder.com/v2/animals?type=${type}&location=${zipCode}&limit=12&page=${
-            page || 1
-          }`,
-          config
-        )
+        .get(petFinderUrl, config)
         .then((response) => {
           setTotalPages(
             response.data && response.data.pagination
@@ -53,9 +74,13 @@ export default function PetType({ token }) {
   );
 
   useEffect(() => {
+    getLocation();
+  }, []);
+
+  useEffect(() => {
     setCurrentPage(1);
     setLoading(true);
-    findPets(1);
+    findPets(1, zipCode);
   }, [token, type, zipCode, findPets]);
 
   const search = () => {
@@ -171,6 +196,11 @@ export default function PetType({ token }) {
         .replaceAll("&hellip;", "...");
     }
   }; /* eslint-enable */
+  const errorAlert = (
+    <Alert onClose={() => setShowErrorAlert(false)} dismissible>
+      Unable to retrieve your location, please enter your zip code.
+    </Alert>
+  );
 
   return (
     <div className="petList__container">
@@ -192,6 +222,7 @@ export default function PetType({ token }) {
           />
           <Button onClick={search}>GO</Button>
         </InputGroup>
+        {showErrorAlert && errorAlert}
       </div>
       <Row className="w-100">
         {loading ? (

@@ -47,13 +47,20 @@
     "founded": 2008,
     "mission": "Our Mission Is To End The Human/Street Dog Conflict By Creating A Humane And Sustainable Environment For Animals With Direct Benefits To The People Of Dharamsala, India.."
   },
-   {
+  {
     "name": "Stray Relief and Animal Welfare (STRAW)",
     "website": "https://www.strawindia.org/home.aspx",
     "logo": "https://www.strawindia.org/images/straw-logo-large.png",
     "location": "India",
     "founded": 2008,
     "mission": "Straw India's Mission Is To Sow The Seeds Of Empathy For People, Compassion For Animals And Care For The Environment In The Hearts Of Children, So As To Prevent Cruelty To All Living Beings."
+  },
+  {
+    "name": "Secondhand Hounds",
+    "website": "https://www.secondhandhounds.org/",
+    "logo": "https://www.secondhandhounds.org/wp-content/uploads/2016/09/cropped-favicon-225x225.png",
+    "location": "Minnetonka, Minnesota",
+    "founded": 2009,
+    "mission": "Secondhand Hounds is a 501(c)(3) nonprofit animal rescue in Minnesota. Founded in July of 2009, our many volunteers have made a positive impact on the lives of many dogs and cats in our community. Our organization provides safe shelter, proper veterinary care and daily necessities for animals at risk, while working hard to find each a permanent, loving home!"
   }
-  
 ]
