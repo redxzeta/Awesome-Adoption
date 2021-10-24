@@ -26,6 +26,7 @@ import { supabase } from "./utils/SupaBaseUtils";
 import SLogin from "./components/accounts/SLogin";
 import { Provider } from "react-supabase";
 import { AuthProvider } from "./context/SupaContext";
+import ForgotPassword from "./components/accounts/ForgotPassword";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -90,6 +91,11 @@ export default function App() {
                 </Route>
                 <Route path="/register" component={Register} />
                 <Route exact path="/login" component={SLogin} />
+                <Route
+                  exact
+                  path="/forgot-password"
+                  component={ForgotPassword}
+                />
                 <Route path="/" exact>
                   {Authenticated && <Home token={token} />}
                 </Route>
