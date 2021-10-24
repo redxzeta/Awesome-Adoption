@@ -23,6 +23,9 @@
 .donate .card {
   margin-top: 15px;
   margin-bottom: 15px;
+  margin-left: -2px;
+  position: relative;
+  width:100%;
   border: solid #bdbdbd 1px;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
