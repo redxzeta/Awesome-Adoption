@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./PetCard.css";
 import placeholder from "../pets/placeholder.jpg";
 import nameCleaner from "../../utils/nameCleaner";
+import PetIcon from "../shared/PetIcon";
 
 export default function PetCard(props) {
   const {
@@ -47,7 +48,10 @@ export default function PetCard(props) {
           onMouseLeave={onBlurPhoto}
         />
         <Card.Body className="card__body">
-          <Card.Title className="card__title">{breeds.primary}</Card.Title>
+          <Card.Title className="card__title">
+            <PetIcon type={type} />
+            {breeds.primary}
+          </Card.Title>
         </Card.Body>
       </Card>
     </Col>
