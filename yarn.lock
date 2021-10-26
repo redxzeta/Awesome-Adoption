@@ -9683,6 +9683,7 @@ react-refresh@^0.8.3:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 react-router-dom@^5.2.0:
   version "5.2.0"
   resolved "https://registry.npmjs.org/react-router-dom/-/react-router-dom-5.2.0.tgz"
@@ -9690,14 +9691,19 @@ react-router-dom@^5.2.0:
 =======
 =======
 >>>>>>> 293f3d7 (supa login setup)
+=======
+>>>>>>> add_supabase
 react-router-dom@^5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.3.0.tgz#da1bfb535a0e89a712a93b97dd76f47ad1f32363"
   integrity sha512-ObVBLjUZsphUUMVycibxgMdh5jJ1e3o+KpAZBVeHcNQZ4W+uUGGWsokurzlF4YOldQYRQL4y6yFRWM4m3svmuQ==
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 062cc60 (supa login setup)
 =======
 >>>>>>> 293f3d7 (supa login setup)
+=======
+>>>>>>> add_supabase
   dependencies:
     "@babel/runtime" "^7.12.13"
     history "^4.9.0"
@@ -9709,6 +9715,7 @@ react-router-dom@^5.3.0:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 react-router@5.2.0:
   version "5.2.0"
   resolved "https://registry.npmjs.org/react-router/-/react-router-5.2.0.tgz"
@@ -9716,14 +9723,19 @@ react-router@5.2.0:
 =======
 =======
 >>>>>>> 293f3d7 (supa login setup)
+=======
+>>>>>>> add_supabase
 react-router@5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-5.2.1.tgz#4d2e4e9d5ae9425091845b8dbc6d9d276239774d"
   integrity sha512-lIboRiOtDLFdg1VTemMwud9vRVuOCZmUIT/7lUoZiSpPODiiH1UQlfXy+vPLC/7IWdFYnhRwAyNqA/+I7wnvKQ==
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 062cc60 (supa login setup)
 =======
 >>>>>>> 293f3d7 (supa login setup)
+=======
+>>>>>>> add_supabase
   dependencies:
     "@babel/runtime" "^7.12.13"
     history "^4.9.0"
