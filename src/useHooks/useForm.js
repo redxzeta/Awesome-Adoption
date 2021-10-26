@@ -10,8 +10,7 @@ const useForm = (state, submit) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const x = submit();
-    console.log(x);
+    submit();
   };
 
   return [form, handleChange, onSubmit];
