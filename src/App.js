@@ -23,6 +23,7 @@ import Donate from "./components/donate/Donate";
 import TokenContext from "./context/TokenContext";
 import Register from "./components/accounts/Register";
 import { supabase } from "./utils/SupaBaseUtils";
+import SLogin from "./components/accounts/SLogin";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -92,6 +93,7 @@ export default function App() {
                 <Donate />
               </Route>
               <Route path="/register" component={Register} />
+              <Route exact path="/login" component={SLogin} />
               <Route path="/" exact>
                 {" "}
                 {Authenticated && <Home />}
