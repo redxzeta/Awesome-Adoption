@@ -1,0 +1,34 @@
+#container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#form-container {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid rgb(184, 184, 184);
+  background-color: #f0f0f0;
+  border-radius: 25px;
+}
+
+#form-title {
+  margin-bottom: 80px;
+}
+
+#form {
+  width: 40%;
+  min-width: 350px;
+}
+
+#submit-button {
+  width: 100%;
+  margin-top: 15px;
+}
