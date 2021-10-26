@@ -65,16 +65,6 @@ export default function App() {
     setAuthenticated(true);
   }, []);
 
-  const [session, setSession] = useState(null);
-
-  useEffect(() => {
-    setSession(supabase.auth.session());
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
-  console.log(session);
   return (
     <Fragment>
       <TokenContext.Provider value={token}>
