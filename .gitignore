@@ -24,11 +24,6 @@ yarn-error.log*
 
 .env
 
-<<<<<<< HEAD
 #npm json
 package-lock.json
-=======
-# Supabase
-.supabase
 
->>>>>>> b42d299 (fix)
