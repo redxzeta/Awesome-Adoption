@@ -4,6 +4,9 @@ import { Redirect } from "react-router";
 import { useSignUp } from "react-supabase";
 import { useAuth } from "../../context/SupaContext";
 import useForm from "../../useHooks/useForm";
+import useSupa from "../../useHooks/useSupa";
+
+import { signUp } from "../../utils/SupaBaseUtils";
 import "./register.css";
 
 const initState = {
