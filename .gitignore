@@ -24,5 +24,11 @@ yarn-error.log*
 
 .env
 
+<<<<<<< HEAD
 #npm json
 package-lock.json
+=======
+# Supabase
+.supabase
+
+>>>>>>> a1c5490 (fix)
