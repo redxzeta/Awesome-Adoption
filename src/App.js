@@ -99,10 +99,8 @@ export default function App() {
                     component={ForgotPassword}
                   />
                   <Route path="/" exact>
-                    {" "}
                     {Authenticated && <Home />}
                   </Route>
-
                   <Route path="/404">
                     <NotFound />
                   </Route>
