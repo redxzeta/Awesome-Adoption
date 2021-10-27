@@ -72,19 +72,24 @@ export default function NavigationBar() {
                 </Fragment>
               )}
               {session && (
-                <NavDropdown.Item
-                  disabled={fetching}
-                  onClick={() => onClickSignOut()}
-                >
-                  {fetching ? (
-                    <Fragment>
-                      <Spinner animation="grow" size="sm" />
-                      Logging out
-                    </Fragment>
-                  ) : (
-                    "Logout"
-                  )}
-                </NavDropdown.Item>
+                <>
+                  <NavDropdown.Item as={Link} to="/reset-password">
+                    Reset Password
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    disabled={fetching}
+                    onClick={() => onClickSignOut()}
+                  >
+                    {fetching ? (
+                      <Fragment>
+                        <Spinner animation="grow" size="sm" />
+                        Logging out
+                      </Fragment>
+                    ) : (
+                      "Logout"
+                    )}
+                  </NavDropdown.Item>
+                </>
               )}
             </NavDropdown>
           </Nav>

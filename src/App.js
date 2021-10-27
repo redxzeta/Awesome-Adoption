@@ -27,6 +27,7 @@ import SLogin from "./components/accounts/SLogin";
 import { Provider } from "react-supabase";
 import { AuthProvider } from "./context/SupaContext";
 import ForgotPassword from "./components/accounts/ForgotPassword";
+import ResetPassword from "./components/accounts/settings/resetPassword";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -98,13 +99,17 @@ export default function App() {
                     path="/forgot-password"
                     component={ForgotPassword}
                   />
+                  <Route
+                    exact
+                    path="/reset-password"
+                    component={ResetPassword}
+                  />
                   <Route path="/" exact>
                     {Authenticated && <Home />}
                   </Route>
                   <Route path="/404">
                     <NotFound />
                   </Route>
-
                   <Redirect to="/404" />
                 </Switch>
               </Container>
