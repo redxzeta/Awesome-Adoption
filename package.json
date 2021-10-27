@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@supabase/supabase-js": "^1.24.0",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.1.9",
     "bootstrap": "5.1.1",
+    "bootstrap-icons": "^1.6.0",
     "bootswatch": "^5.1.1",
     "jwt-decode": "^3.1.2",
     "postcode-validator": "^3.1.0",
@@ -14,8 +16,9 @@
     "react-bootstrap": "^2.0.0-rc.0",
     "react-dom": "^17.0.0",
     "react-icons": "^4.3.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.0"
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.0",
+    "react-supabase": "^0.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

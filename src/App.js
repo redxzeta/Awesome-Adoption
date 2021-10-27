@@ -21,6 +21,12 @@ import jwt_decode from "jwt-decode";
 /*  eslint-enable */
 import Donate from "./components/donate/Donate";
 import TokenContext from "./context/TokenContext";
+import Register from "./components/accounts/Register";
+import { supabase } from "./utils/SupaBaseUtils";
+import SLogin from "./components/accounts/SLogin";
+import { Provider } from "react-supabase";
+import { AuthProvider } from "./context/SupaContext";
+import ForgotPassword from "./components/accounts/ForgotPassword";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -63,37 +69,49 @@ export default function App() {
   return (
     <Fragment>
       <TokenContext.Provider value={token}>
-        <Router>
-          <NavigationBar token={token} />
-          <Container className="pawhub">
-            <Switch>
-              <Route path="/animal/:id">{Authenticated && <PetInfo />}</Route>
-              <Route path="/pets/:type">{Authenticated && <PetType />}</Route>
-              <Route path="/pets">{Authenticated && <Pets />}</Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/resources">
-                <Resources />
-              </Route>
-              <Route path="/donate">
-                <Donate />
-              </Route>
+        <Provider value={supabase}>
+          <AuthProvider>
+            <Router>
+              <NavigationBar token={token} />
+              <Container className="pawhub">
+                <Switch>
+                  <Route path="/animal/:id">
+                    {Authenticated && <PetInfo />}
+                  </Route>
+                  <Route path="/pets/:type">
+                    {Authenticated && <PetType />}
+                  </Route>
+                  <Route path="/pets">{Authenticated && <Pets />}</Route>
+                  <Route path="/about">
+                    <About />
+                  </Route>
+                  <Route path="/resources">
+                    <Resources />
+                  </Route>
+                  <Route path="/donate">
+                    <Donate />
+                  </Route>
+                  <Route path="/register" component={Register} />
+                  <Route exact path="/login" component={SLogin} />
+                  <Route
+                    exact
+                    path="/forgot-password"
+                    component={ForgotPassword}
+                  />
+                  <Route path="/" exact>
+                    {Authenticated && <Home />}
+                  </Route>
+                  <Route path="/404">
+                    <NotFound />
+                  </Route>
 
-              <Route path="/" exact>
-                {" "}
-                {Authenticated && <Home />}
-              </Route>
-
-              <Route path="/404">
-                <NotFound />
-              </Route>
-
-              <Redirect to="/404" />
-            </Switch>
-          </Container>
-          <Footer />
-        </Router>
+                  <Redirect to="/404" />
+                </Switch>
+              </Container>
+              <Footer />
+            </Router>
+          </AuthProvider>
+        </Provider>
       </TokenContext.Provider>
     </Fragment>
   );
