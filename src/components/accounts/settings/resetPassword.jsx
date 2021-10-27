@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { useClient, useResetPassword } from "react-supabase";
+import { useClient } from "react-supabase";
 import { Container, Form, Button, Spinner } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
+
+import useForm from "../../../useHooks/useForm";
 
 const handleValidatePassword = (newPassword, confirmation) => {
   if (newPassword !== confirmation) {
@@ -15,37 +17,37 @@ const handleValidatePassword = (newPassword, confirmation) => {
 const ResetPassword = () => {
   const { auth } = useClient();
   const session = auth.session();
-  const [{ fetching }, resetPassword] = useResetPassword();
   const [errorMsg, setErrorMsg] = useState("");
-  const [state, setState] = useState({
+  const [form, handleChange] = useForm({
     newPassword: "",
     confirmation: "",
   });
-
-  const handleUpdateState = (key) => (e) => {
-    setState((prev) => ({ ...prev, [key]: e.target.value }));
-  };
+  const [loading, setLoading] = useState(false);
 
   if (!session) {
     return <Redirect to="/" />;
   }
 
   const handleResetPassword = async () => {
-    const { error: err } = await resetPassword(session.user.email);
+    const { newPassword: password } = form;
+    const { error: err } = await auth.api.updateUser(
+      auth.currentSession.access_token,
+      { password }
+    );
     alert(err?.message ? err.message : "Password updated");
   };
 
   const handleOnSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
-    const { newPassword, confirmation } = state;
+    const { newPassword, confirmation } = form;
     const errorMessage = handleValidatePassword(newPassword, confirmation);
-    if (!errorMessage) {
-      handleResetPassword();
-    }
+    if (!errorMessage) await handleResetPassword();
     setErrorMsg(errorMessage);
+    setLoading(false);
   };
 
-  const handleSubmitContent = fetching ? (
+  const handleSubmitContent = loading ? (
     <Spinner animation="border" />
   ) : (
     "Reset Password"
@@ -62,7 +64,8 @@ const ResetPassword = () => {
               <Form.Control
                 type="password"
                 placeholder="New password"
-                onChange={handleUpdateState("newPassword")}
+                name="newPassword"
+                onChange={handleChange}
               />
             </Form.Group>
             <Form.Group className="mb-2">
@@ -70,7 +73,8 @@ const ResetPassword = () => {
               <Form.Control
                 type="password"
                 placeholder="New password"
-                onChange={handleUpdateState("confirmation")}
+                name="confirmation"
+                onChange={handleChange}
               />
             </Form.Group>
             <Button
