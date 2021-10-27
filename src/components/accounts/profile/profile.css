@@ -11,8 +11,14 @@
 }
 
 .profile__img {
-  width: 15%;
-  height: auto;
+  width: 194px;
+  height: 194px;
   border: 2px solid black;
   margin-top: -120px;
+}
+
+.blank {
+  text-align: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #375ee3 0%, #6543e0 80%);
 }
