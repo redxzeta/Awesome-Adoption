@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Image, Spinner } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import { useFilter, useSelect } from "react-supabase";
 import "./profile.css";
 const sampleUsername = "jjVYG46RTL1BpOOaTYuU";
 const Profile = () => {
-  const [userName, setUserName] = useState(sampleUsername);
+  // const [userName, setUserName] = useState(sampleUsername);
+  const userName = sampleUsername;
   const filter = useFilter(
     (query) => query.eq("username", userName).single(),
     [userName]
@@ -41,26 +41,12 @@ const Profile = () => {
     <main className="profile__section">
       <section className="banner" />
       {x}
-      <button
-        onClick={() =>
-          setUserName((x) =>
-            x === sampleUsername ? "8r4lRtrSEomxFPvVFMy9" : sampleUsername
-          )
-        }
-      >
-        change usernMame
-      </button>
-      {fetching ? (
-        <Spinner
-          as="span"
-          animation="border"
-          size="sm"
-          role="status"
-          aria-hidden="true"
-        />
-      ) : (
-        "DONE"
-      )}
+
+      {data && data.username}
+
+      <article className="story__bg story__light story__card">
+        <h1>Story</h1>
+      </article>
     </main>
   );
 };
