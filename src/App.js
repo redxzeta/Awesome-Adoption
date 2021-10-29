@@ -25,6 +25,7 @@ import { AuthProvider } from "./context/SupaContext";
 import ForgotPassword from "./components/accounts/ForgotPassword";
 import PetAuthProvider, { usePetAuth } from "./context/TokenContext";
 import ResetPassword from "./components/accounts/settings/resetPassword";
+import PrivateRoute from "./context/PrivateRoute";
 
 export default function App() {
   return (
@@ -65,9 +66,16 @@ export default function App() {
                     path="/forgot-password"
                     component={ForgotPassword}
                   />
-                  <Route path="/reset-password" exact>
-                    {Authenticated && <ResetPassword />}
-                  </Route>
+                  <Route
+                    exact
+                    path="/reset-password"
+                    component={ResetPassword}
+                  />
+                  <PrivateRoute
+                    exact
+                    path="/reset-password"
+                    component={ResetPassword}
+                  />
                   <Route path="/" exact>
                     <PetLoading>
                       <Home />
