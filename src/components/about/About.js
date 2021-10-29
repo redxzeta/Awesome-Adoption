@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Dog from "./dog.jpg";
 import "./about.css";
-import YoutubeLogo from "./youtube.png";
-import DevPostLogo from "./devpost.png";
+import YoutubeLogo from "./Youtube2.png";
+import DevPostLogo from "./devpost-modified.png";
 import GithubIcon from "./GitHub.png";
 
 const apiUrl =
@@ -49,31 +49,47 @@ export default function About() {
           covid19 - redxzeta
         </p>
       </section>
+      <h1>Links</h1>
       <div className="social-links-container">
-        <a
-          target="blank"
-          rel="noreferrer"
-          href="https://youtu.be/vxAqS-GLna8"
-          className="social-links"
+        <OverlayTrigger
+          key="youtube-icon"
+          overlay={<Tooltip id="tooltip-disabled">Youtube</Tooltip>}
         >
-          <Image src={YoutubeLogo} />
-        </a>
-        <a
-          target="blank"
-          rel="noreferrer"
-          href="https://devpost.com/software/pawternity-hub"
-          className="social-links"
+          <a
+            target="blank"
+            rel="noreferrer"
+            href="https://youtu.be/vxAqS-GLna8"
+            className="social-links"
+          >
+            <Image className="contributor-avatar" src={YoutubeLogo} />
+          </a>
+        </OverlayTrigger>
+        <OverlayTrigger
+          key="DevPost-icon"
+          overlay={<Tooltip id="tooltip-disabled">DevPost</Tooltip>}
         >
-          <Image src={DevPostLogo} />
-        </a>
-        <a
-          target="blank"
-          rel="noreferrer"
-          href="https://github.com/redxzeta/Awesome-Adoption"
-          className="social-links"
+          <a
+            target="blank"
+            rel="noreferrer"
+            href="https://github.com/redxzeta/Awesome-Adoption"
+            className="social-links"
+          >
+            <Image className="contributor-avatar" src={DevPostLogo} />
+          </a>
+        </OverlayTrigger>
+        <OverlayTrigger
+          key="Github-icon"
+          overlay={<Tooltip id="tooltip-disabled">Github</Tooltip>}
         >
-          <Image src={GithubIcon} />
-        </a>
+          <a
+            target="blank"
+            rel="noreferrer"
+            href="https://github.com/redxzeta/Awesome-Adoption"
+            className="social-links"
+          >
+            <Image className="contributor-avatar" src={GithubIcon} />
+          </a>
+        </OverlayTrigger>
       </div>
       <div className="contributors-section">
         <h1>Contributors</h1>

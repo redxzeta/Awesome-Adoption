@@ -24,8 +24,5 @@ yarn-error.log*
 
 .env
 
-# Supabase
-.supabase
-
 #npm json
 package-lock.json

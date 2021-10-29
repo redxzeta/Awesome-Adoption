@@ -3,6 +3,12 @@
     "browser": true,
     "es2021": true
   },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "latest"
+    }
+  },
   "extends": [
     "plugin:react/recommended",
     "standard",
@@ -16,6 +22,7 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
+  "ignorePatterns": ["**/*test.js"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "quotes": ["error", "double"],
