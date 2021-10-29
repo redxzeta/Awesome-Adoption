@@ -28,7 +28,7 @@ import { Provider } from "react-supabase";
 import { AuthProvider } from "./context/SupaContext";
 import ForgotPassword from "./components/accounts/ForgotPassword";
 import ResetPassword from "./components/accounts/settings/resetPassword";
-import PrivateRoute from "./context/PrivateRoute";
+import PrivateRoute from "./utils/PrivateRoute";
 
 export default function App() {
   const [token, setToken] = useState("");
