@@ -65,11 +65,9 @@ export default function App() {
                     path="/forgot-password"
                     component={ForgotPassword}
                   />
-                  <Route
-                    exact
-                    path="/reset-password"
-                    component={ResetPassword}
-                  />
+                  <Route path="/reset-password" exact>
+                    {Authenticated && <ResetPassword />}
+                  </Route>
                   <Route path="/" exact>
                     <PetLoading>
                       <Home />
