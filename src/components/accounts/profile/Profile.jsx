@@ -1,4 +1,6 @@
-import { Image } from "react-bootstrap";
+/* eslint-disable prettier/prettier */
+import { Image, Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useFilter, useSelect } from "react-supabase";
 import "./profile.css";
 const sampleUsername = "jjVYG46RTL1BpOOaTYuU";
@@ -39,14 +41,44 @@ const Profile = () => {
   }
   return (
     <main className="profile__section">
-      <section className="banner" />
+      <Image
+        src="https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        className="banner"
+        fluid
+      />
       {x}
 
       {data && data.username}
 
-      <article className="story__bg story__light story__card">
-        <h1>Story</h1>
-      </article>
+      <Link to="">
+        <Button className="mt-5 px-5" variant="primary">
+          New Story
+        </Button>
+      </Link>
+
+      <Container className="story-card">
+        <Row>
+          <Col sm={4}>
+            <Image
+              src="https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              fluid
+            />
+          </Col>
+          <Col sm={8}>
+            <div className="card-body">
+              <h1 className="story-title">This is title of story</h1>
+              <p className="story-body">
+                Auto-layout for flexbox grid columns also means you can set the
+                width of one column and have the sibling columns automatically
+                resize around it. You may use predefined grid classes (as shown
+                below), grid mixins, or inline widths. Note that the other
+                columns will resize no matter the width of the center column.
+              </p>
+              <Button variant="primary">Read more</Button>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </main>
   );
 };
