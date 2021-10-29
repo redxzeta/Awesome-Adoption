@@ -5,8 +5,7 @@
 }
 
 .banner {
-  background: linear-gradient(145deg, #375ee3 0%, #6543e0 80%);
-  height: 300px;
+  height: 18rem !important;
   width: 100%;
 }
 
@@ -25,17 +24,16 @@
 .story__bg {
   background: gray;
 }
-.story__bg {
-  background: radial-gradient(
-    circle,
-    rgba(248, 249, 250, 1) 53%,
-    rgba(235, 104, 100, 1) 100%
-  );
-}
 
-.story__card {
-  box-shadow: 0 4px 21px -12px rgb(0 0 0 / 66%);
-  width: 100%;
-  height: 300px;
-  border-radius: 15px;
+.story-card {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  padding: 8px;
+  margin: 2rem auto;
+}
+.card-body {
+  padding: 0.5rem 1.5rem;
+}
+.story-title {
+  margin: 1rem auto;
 }
