@@ -25,7 +25,7 @@ import { AuthProvider } from "./context/SupaContext";
 import ForgotPassword from "./components/accounts/ForgotPassword";
 import PetAuthProvider, { usePetAuth } from "./context/TokenContext";
 import ResetPassword from "./components/accounts/settings/resetPassword";
-import PrivateRoute from "./context/PrivateRoute";
+import PrivateRoute from "./utils/PrivateRoute";
 
 export default function App() {
   return (
