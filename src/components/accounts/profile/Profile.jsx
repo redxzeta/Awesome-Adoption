@@ -67,6 +67,9 @@ const Profile = () => {
           <Col sm={8}>
             <div className="card-body">
               <h1 className="story-title">This is title of story</h1>
+              <p>
+                <b>Last Updated -</b> 30 October 2021
+              </p>
               <p className="story-body">
                 Auto-layout for flexbox grid columns also means you can set the
                 width of one column and have the sibling columns automatically
