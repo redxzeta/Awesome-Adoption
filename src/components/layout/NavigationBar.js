@@ -20,6 +20,7 @@ export default function NavigationBar() {
         <Navbar.Brand href="/">
           <Image src={Logo} height={40} width={40} />
         </Navbar.Brand>
+        <h1>Pawternity Hub</h1>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
           <Nav className="mr-auto">
