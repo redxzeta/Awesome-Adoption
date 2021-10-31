@@ -2,7 +2,10 @@
 import { Image, Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useFilter, useSelect } from "react-supabase";
+import { useState } from "react";
 import "./profile.css";
+import EditProfileModal from "./EditProfileModal";
+
 const sampleUsername = "jjVYG46RTL1BpOOaTYuU";
 const Profile = () => {
   // const [userName, setUserName] = useState(sampleUsername);
@@ -14,6 +17,9 @@ const Profile = () => {
   const [{ data, fetching }] = useSelect("profiles", {
     filter,
   });
+  const [showModal, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   let x = "";
   if (fetching) {
@@ -49,6 +55,15 @@ const Profile = () => {
       {x}
 
       {data && data.username}
+
+      <Button variant="primary" onClick={handleShow}>
+        Edit
+      </Button>
+
+      <EditProfileModal
+        show={showModal}
+        handleClose={handleClose}
+      ></EditProfileModal>
 
       <Link to="">
         <Button className="mt-5 px-5" variant="primary">
