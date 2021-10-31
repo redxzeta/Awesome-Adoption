@@ -15,6 +15,7 @@ import PetInfo from "./components/pets/PetInfo";
 import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 import Resources from "./components/resources/Resources";
+import Stories from "./components/stories/Stories";
 import NotFound from "./components/NotFound/NotFound";
 import Donate from "./components/donate/Donate";
 import Register from "./components/accounts/Register";
@@ -58,6 +59,9 @@ export default function App() {
                   </Route>
                   <Route path="/donate">
                     <Donate />
+                  </Route>
+                  <Route path="/stories">
+                    <Stories />
                   </Route>
                   <Route path="/register" component={Register} />
                   <Route exact path="/login" component={SLogin} />
