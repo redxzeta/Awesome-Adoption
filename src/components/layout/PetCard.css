@@ -49,6 +49,7 @@
 .card__img {
   object-fit: cover;
   height: 300px;
+  width: 100%;
 }
 
 .card__body {
