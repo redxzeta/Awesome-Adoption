@@ -1,11 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 
-const initialState = { session: null, user: null, username: null };
+const initialState = { token: null, authenticated: false };
 export const AuthContext = createContext(initialState);
 
-const [token, setToken] = useState("");
-const [Authenticated, setAuthenticated] = useState(false);
+const [state, setState] = useState(initialState);
 
 useEffect(() => {
   const fetchFunction = () => {
@@ -19,7 +18,7 @@ useEffect(() => {
       .then((response) => response.json())
       .then((data) => {
         localStorage.setItem("token", data.access_token);
-        setToken(data.access_token);
+        setState(data.access_token);
       })
       .catch((error) => {
         console.log(error);
@@ -35,20 +34,20 @@ useEffect(() => {
     if (decodedToken.exp * 1000 < currentDate.getTime()) {
       fetchFunction();
     } else {
-      setToken(localStorage.getItem("token"));
+      setState(localStorage.getItem("token"));
     }
   }
 
-  setAuthenticated(true);
+  setState(true);
 }, []);
 
 const TokenContext = React.createContext("");
 
 export default TokenContext;
 
-export function useAuth() {
+export function usePetAuth() {
   const context = useContext(AuthContext);
   if (context === undefined)
-    throw Error("useAuth must be used within AuthProvider");
+    throw Error("usePetAuth must be used within AuthProvider");
   return context;
 }
