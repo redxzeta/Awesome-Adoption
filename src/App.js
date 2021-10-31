@@ -15,6 +15,7 @@ import PetInfo from "./components/pets/PetInfo";
 import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 import Resources from "./components/resources/Resources";
+import Stories from "./components/stories/Stories";
 import NotFound from "./components/NotFound/NotFound";
 /*  eslint-disable */
 import jwt_decode from "jwt-decode";
@@ -92,6 +93,9 @@ export default function App() {
                   </Route>
                   <Route path="/donate">
                     <Donate />
+                  </Route>
+                  <Route path="/stories">
+                    <Stories />
                   </Route>
                   <Route path="/register" component={Register} />
                   <Route exact path="/login" component={SLogin} />
