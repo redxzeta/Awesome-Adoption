@@ -42,7 +42,7 @@ export default function Home() {
 
   return (
     <div className="home__container">
-      <Image src={Dog} alt="doggo" roundedCircle id="dog" />
+      <Image src={Dog} alt="doggo" roundedCircle className="shadow" id="dog" />
       <h2>Adopt a Buddy Today!</h2>
       <Button as={Link} to="/pets" variant="primary">
         Adopt
