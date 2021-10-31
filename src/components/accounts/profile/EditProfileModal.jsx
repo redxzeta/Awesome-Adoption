@@ -1,4 +1,3 @@
-import "./EditProfileModal.css";
 import { Button, Modal, Form } from "react-bootstrap";
 import { useState } from "react";
 
@@ -6,6 +5,11 @@ export default function EditProfileModal({ show, handleClose }) {
   const [username, setUsername] = useState("");
   const [description, setDescription] = useState("");
   const [usernameError, setUsernameError] = useState("");
+  const [savedProfile, setSavedProfile] = useState({});
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleCloseConfirmation = () => setShowConfirmation(false);
+  const handleShowConfirmation = () => setShowConfirmation(true);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -13,13 +17,27 @@ export default function EditProfileModal({ show, handleClose }) {
     if (!username || username === "") {
       setUsernameError("Username cannot be blank!");
     } else {
-      // No errors
-      console.log("Passed validation!", {
+      // No errors:
+      const newProfile = {
         username: username,
         description: description,
-      });
+      };
+
+      setSavedProfile(newProfile);
+      console.log("Passed validation! Profile: ", newProfile);
       handleClose();
     }
+  };
+
+  const onConfirmedExit = (e) => {
+    e.preventDefault();
+
+    // Revert any changes made to profile
+    setUsername(savedProfile.username || "");
+    setDescription(savedProfile.description || "");
+
+    handleCloseConfirmation();
+    handleClose();
   };
 
   return (
@@ -56,7 +74,29 @@ export default function EditProfileModal({ show, handleClose }) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary">Cancel</Button>
+        <Button variant="secondary" onClick={handleShowConfirmation}>
+          Cancel
+        </Button>
+        <Modal
+          show={showConfirmation}
+          onHide={handleCloseConfirmation}
+          backdrop="static"
+          keyboard={false}
+          centered
+          size="sm"
+        >
+          <Modal.Header>
+            <Modal.Title>Exit Editing?</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseConfirmation}>
+              Back
+            </Button>
+            <Button variant="dark" onClick={onConfirmedExit}>
+              Confirm Exit
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <Button variant="primary" onClick={onSubmit}>
           Save
         </Button>
