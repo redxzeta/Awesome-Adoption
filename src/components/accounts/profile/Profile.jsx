@@ -3,8 +3,9 @@ import { Image, Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useFilter, useSelect } from "react-supabase";
 import { useState } from "react";
-import "./profile.css";
 import EditProfileModal from "./EditProfileModal";
+
+import "./profile.css";
 
 const sampleUsername = "jjVYG46RTL1BpOOaTYuU";
 const Profile = () => {
