@@ -105,11 +105,6 @@ export default function App() {
                     path="/forgot-password"
                     component={ForgotPassword}
                   />
-                  <Route
-                    exact
-                    path="/reset-password"
-                    component={ResetPassword}
-                  />
                   <PrivateRoute
                     exact
                     path="/reset-password"
