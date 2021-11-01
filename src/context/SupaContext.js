@@ -35,8 +35,11 @@ export function AuthProvider({ children }) {
       setState((val) => ({ ...val, username: "Guest" }));
     }
   });
-
-  return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;
+  const changeUserName = (userName) =>
+    setState((s) => ({ ...s, username: userName }));
+  const value = { ...state, changeUserName: changeUserName };
+  console.log(state);
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {

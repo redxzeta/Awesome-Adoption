@@ -40,6 +40,11 @@ const Profile = () => {
       />
     );
   }
+  const initialState = data && {
+    username: data.username,
+    description: data.description,
+    avatar_url: data.avatar_url,
+  };
   return (
     <main className="profile__section">
       <Image
@@ -57,11 +62,13 @@ const Profile = () => {
         Edit
       </Button>
 
-      <EditProfileModal
-        show={showModal}
-        handleClose={handleClose}
-      ></EditProfileModal>
-
+      {data && (
+        <EditProfileModal
+          show={showModal}
+          handleClose={handleClose}
+          initialState={initialState}
+        ></EditProfileModal>
+      )}
       <Link to="">
         <Button className="mt-5 px-5" variant="primary">
           New Story
