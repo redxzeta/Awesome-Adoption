@@ -30,6 +30,7 @@ import { AuthProvider } from "./context/SupaContext";
 import ForgotPassword from "./components/accounts/ForgotPassword";
 import ResetPassword from "./components/accounts/settings/resetPassword";
 import PrivateRoute from "./utils/PrivateRoute";
+import Profile from "./components/accounts/profile/Profile";
 
 export default function App() {
   const [token, setToken] = useState("");
@@ -114,6 +115,7 @@ export default function App() {
                     path="/reset-password"
                     component={ResetPassword}
                   />
+                  <Route exact path="/profile" component={Profile} />
                   <Route path="/" exact>
                     {Authenticated && <Home />}
                   </Route>
