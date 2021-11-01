@@ -6,14 +6,15 @@ import { useState } from "react";
 import EditProfileModal from "./EditProfileModal";
 
 import "./profile.css";
+import { useAuth } from "../../../context/SupaContext";
 
-const sampleUsername = "jjVYG46RTL1BpOOaTYuU";
 const Profile = () => {
   // const [userName, setUserName] = useState(sampleUsername);
-  const userName = sampleUsername;
+
+  const { username } = useAuth();
   const filter = useFilter(
-    (query) => query.eq("username", userName).single(),
-    [userName]
+    (query) => query.eq("username", username).single(),
+    [username]
   );
   const [{ data, fetching }] = useSelect("profiles", {
     filter,
@@ -23,14 +24,7 @@ const Profile = () => {
   const handleShow = () => setShow(true);
 
   let x = "";
-  if (fetching) {
-    x = (
-      <div className="profile__img blank">
-        <h2>Loading</h2>
-      </div>
-    );
-  } else if (!data) {
-    console.log("test");
+  if (fetching || !data) {
     x = (
       <div className="profile__img blank">
         <h2>Loading</h2>
@@ -56,6 +50,8 @@ const Profile = () => {
       {x}
 
       {data && data.username}
+
+      <small>{data && data.description}</small>
 
       <Button variant="primary" onClick={handleShow}>
         Edit
