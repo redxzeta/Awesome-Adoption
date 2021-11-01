@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useForm = (state, submit) => {
+const useForm = (state, submit = () => {}) => {
   const [form, setForm] = useState(state);
 
   const handleChange = (e) => {
@@ -10,11 +10,13 @@ const useForm = (state, submit) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const x = submit();
-    console.log(x);
+    console.log(form);
+    submit();
   };
 
-  return [form, handleChange, onSubmit];
+  const resetChanges = () => setForm(state);
+
+  return [form, handleChange, onSubmit, resetChanges];
 };
 
 export default useForm;
