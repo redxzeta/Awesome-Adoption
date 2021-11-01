@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import {
   BrowserRouter as Router,
   Switch,
@@ -26,7 +26,7 @@ import Register from "./components/accounts/Register";
 import { supabase } from "./utils/SupaBaseUtils";
 import SLogin from "./components/accounts/SLogin";
 import { Provider } from "react-supabase";
-import { AuthProvider } from "./context/SupaContext";
+import { AuthProvider, useAuth } from "./context/SupaContext";
 import ForgotPassword from "./components/accounts/ForgotPassword";
 import ResetPassword from "./components/accounts/settings/resetPassword";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -115,7 +115,11 @@ export default function App() {
                     path="/reset-password"
                     component={ResetPassword}
                   />
-                  <Route exact path="/profile" component={Profile} />
+                  <Route exact path="/profile">
+                    <SupaLoading>
+                      <Profile />
+                    </SupaLoading>
+                  </Route>
                   <Route path="/" exact>
                     {Authenticated && <Home />}
                   </Route>
@@ -133,3 +137,9 @@ export default function App() {
     </Fragment>
   );
 }
+
+const SupaLoading = ({ children }) => {
+  const { username } = useAuth();
+  if (!username) return <Spinner />;
+  return <>{children}</>;
+};
