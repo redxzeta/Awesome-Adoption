@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Image, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Dog from "./dog.jpg";
 import "./home.css";
 import LoadingSpinner from "../shared/Spinner";
 import PetCard from "../layout/PetCard";
-import TokenContext from "../../context/TokenContext";
+import { usePetAuth } from "../../context/TokenContext";
 
 export default function Home() {
   const [petList, setpetList] = useState("");
-  const token = useContext(TokenContext);
+  const { tokenHeaders } = usePetAuth();
 
   const renderCards = () => {
     return petList ? (
@@ -23,22 +23,22 @@ export default function Home() {
     const fetchRandomPets = () => {
       const type = ["cat", "dog"];
       const randomType = type[Math.floor(Math.random() * type.length)];
-      const config = { headers: { Authorization: `Bearer ${token}` } };
+
       fetch(
         `https://api.petfinder.com/v2/animals?type=${randomType}&location=19019&limit=3
         `,
-        config
+        tokenHeaders
       )
         .then((response) => response.json())
         .then((data) => {
           setpetList(data.animals);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.message);
         });
     };
     fetchRandomPets();
-  }, [token]);
+  }, []);
 
   return (
     <div className="home__container">
