@@ -21,11 +21,8 @@ export default function Home() {
 
   useEffect(() => {
     const fetchRandomPets = () => {
-      const type = ["cat", "dog"];
-      const randomType = type[Math.floor(Math.random() * type.length)];
-
       fetch(
-        `https://api.petfinder.com/v2/animals?type=${randomType}&location=19019&limit=3
+        `https://api.petfinder.com/v2/animals?limit=3&sort=random
         `,
         tokenHeaders
       )
