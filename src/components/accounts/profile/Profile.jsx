@@ -24,7 +24,8 @@ const Profile = () => {
   const handleShow = () => setShow(true);
 
   let x = "";
-  if (fetching || !data) {
+
+  if (!data || fetching) {
     x = (
       <div className="profile__img blank">
         <h2>Loading</h2>
@@ -45,18 +46,22 @@ const Profile = () => {
     description: data.description,
     avatar_url: data.avatar_url,
   };
+
   return (
     <main className="profile__section">
-      <Image
+      {/* <Image
         src="https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
         className="banner"
         fluid
-      />
+      /> */}
+      <section className="profile--banner" />
       {x}
 
-      {data && data.username}
+      <h5>{(data && data.username) || "Some Pawesome User"}</h5>
 
-      <small>{data && data.description}</small>
+      <small>
+        {(data && data.description) || "Some Pawerffic Description"}
+      </small>
 
       <Button variant="primary" onClick={handleShow}>
         Edit
@@ -67,7 +72,7 @@ const Profile = () => {
           show={showModal}
           handleClose={handleClose}
           initialState={initialState}
-        ></EditProfileModal>
+        />
       )}
       <Link to="">
         <Button className="mt-5 px-5" variant="primary">
@@ -78,10 +83,11 @@ const Profile = () => {
       <Container className="story-card">
         <Row>
           <Col sm={4}>
-            <Image
+            {/* <Image
               src="https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               fluid
-            />
+            /> */}{" "}
+            <section className="profile--banner" />
           </Col>
           <Col sm={8}>
             <div className="card-body">

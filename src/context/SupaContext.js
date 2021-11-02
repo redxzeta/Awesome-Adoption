@@ -45,7 +45,7 @@ export function AuthProvider({ children }) {
   const changeUserName = (userName) =>
     setState((s) => ({ ...s, username: userName }));
   const value = { ...state, changeUserName: changeUserName };
-  console.log(state);
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
