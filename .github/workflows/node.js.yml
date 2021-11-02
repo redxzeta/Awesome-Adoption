@@ -19,6 +19,9 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+      - uses: ChromaticHQ/javascript-lockfile-check-action@v1.2.0
+        with:
+          package-manager: yarn
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
