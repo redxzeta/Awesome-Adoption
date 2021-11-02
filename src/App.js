@@ -22,11 +22,12 @@ import Register from "./components/accounts/Register";
 import { supabase } from "./utils/SupaBaseUtils";
 import SLogin from "./components/accounts/SLogin";
 import { Provider } from "react-supabase";
-import { AuthProvider } from "./context/SupaContext";
+import { AuthProvider, useAuth } from "./context/SupaContext";
 import ForgotPassword from "./components/accounts/ForgotPassword";
 import PetAuthProvider, { usePetAuth } from "./context/TokenContext";
 import ResetPassword from "./components/accounts/settings/resetPassword";
 import PrivateRoute from "./utils/PrivateRoute";
+import Profile from "./components/accounts/profile/Profile";
 
 export default function App() {
   return (
@@ -70,16 +71,16 @@ export default function App() {
                     path="/forgot-password"
                     component={ForgotPassword}
                   />
-                  <Route
-                    exact
-                    path="/reset-password"
-                    component={ResetPassword}
-                  />
                   <PrivateRoute
                     exact
                     path="/reset-password"
                     component={ResetPassword}
                   />
+                  <Route exact path="/profile">
+                    <SupaLoading>
+                      <Profile />
+                    </SupaLoading>
+                  </Route>
                   <Route path="/" exact>
                     <PetLoading>
                       <Home />
@@ -104,6 +105,10 @@ const PetLoading = ({ children }) => {
   const { loading, tokenHeaders } = usePetAuth();
 
   if (loading || !tokenHeaders) return <Spinner />;
-
+  return <>{children}</>;
+};
+const SupaLoading = ({ children }) => {
+  const { username } = useAuth();
+  if (!username) return <Spinner />;
   return <>{children}</>;
 };
