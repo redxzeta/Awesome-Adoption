@@ -7,7 +7,7 @@ import DevPostLogo from "./devpost-modified.png";
 import GithubIcon from "./GitHub.png";
 
 const apiUrl =
-  "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors";
+  "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors?page=1&per_page=100";
 export default function About() {
   const [avatars, setAvatars] = useState([]); // by default there are no avatars
 
