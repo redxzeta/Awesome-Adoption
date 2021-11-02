@@ -20,7 +20,11 @@ const SLogin = () => {
     e.preventDefault();
     onClickSignIn();
   };
-  const errorForm = error ? <small className="text-danger">{error}</small> : "";
+  const errorForm = error ? (
+    <small className="text-danger">{error.message}</small>
+  ) : (
+    ""
+  );
   const { session } = useAuth();
 
   if ((user && !fetching) || session) {

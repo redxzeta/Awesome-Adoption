@@ -55,6 +55,9 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/donate">
               Donate
             </Nav.Link>
+            <Nav.Link as={Link} to="/stories">
+              User Story
+            </Nav.Link>
             <NavDropdown
               title={<i className="bi bi-person-circle"></i>}
               id="navbarScrollingDropdown"
@@ -72,19 +75,27 @@ export default function NavigationBar() {
                 </Fragment>
               )}
               {session && (
-                <NavDropdown.Item
-                  disabled={fetching}
-                  onClick={() => onClickSignOut()}
-                >
-                  {fetching ? (
-                    <Fragment>
-                      <Spinner animation="grow" size="sm" />
-                      Logging out
-                    </Fragment>
-                  ) : (
-                    "Logout"
-                  )}
-                </NavDropdown.Item>
+                <>
+                  <NavDropdown.Item as={Link} to="/reset-password">
+                    Reset Password
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/profile">
+                    Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    disabled={fetching}
+                    onClick={() => onClickSignOut()}
+                  >
+                    {fetching ? (
+                      <Fragment>
+                        <Spinner animation="grow" size="sm" />
+                        Logging out
+                      </Fragment>
+                    ) : (
+                      "Logout"
+                    )}
+                  </NavDropdown.Item>
+                </>
               )}
             </NavDropdown>
           </Nav>

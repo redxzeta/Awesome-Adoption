@@ -1,0 +1,20 @@
+.main_title {
+  position: relative;
+  margin-bottom: 2em;
+}
+.stories {
+  text-align: center;
+}
+.story_btn {
+  position: absolute;
+  top: 0.5em;
+  right: 3em;
+}
+@media (max-width: 990px) {
+  .story_btn{
+    position: relative;
+    display: block;
+    top: 0em;
+    right: 0em;
+  }
+}

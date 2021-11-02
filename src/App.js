@@ -15,15 +15,19 @@ import PetInfo from "./components/pets/PetInfo";
 import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 import Resources from "./components/resources/Resources";
+import Stories from "./components/stories/Stories";
 import NotFound from "./components/NotFound/NotFound";
 import Donate from "./components/donate/Donate";
 import Register from "./components/accounts/Register";
 import { supabase } from "./utils/SupaBaseUtils";
 import SLogin from "./components/accounts/SLogin";
 import { Provider } from "react-supabase";
-import { AuthProvider } from "./context/SupaContext";
+import { AuthProvider, useAuth } from "./context/SupaContext";
 import ForgotPassword from "./components/accounts/ForgotPassword";
 import PetAuthProvider, { usePetAuth } from "./context/TokenContext";
+import ResetPassword from "./components/accounts/settings/resetPassword";
+import PrivateRoute from "./utils/PrivateRoute";
+import Profile from "./components/accounts/profile/Profile";
 
 export default function App() {
   return (
@@ -57,6 +61,9 @@ export default function App() {
                   <Route path="/donate">
                     <Donate />
                   </Route>
+                  <Route path="/stories">
+                    <Stories />
+                  </Route>
                   <Route path="/register" component={Register} />
                   <Route exact path="/login" component={SLogin} />
                   <Route
@@ -64,6 +71,16 @@ export default function App() {
                     path="/forgot-password"
                     component={ForgotPassword}
                   />
+                  <PrivateRoute
+                    exact
+                    path="/reset-password"
+                    component={ResetPassword}
+                  />
+                  <Route exact path="/profile">
+                    <SupaLoading>
+                      <Profile />
+                    </SupaLoading>
+                  </Route>
                   <Route path="/" exact>
                     <PetLoading>
                       <Home />
@@ -72,7 +89,6 @@ export default function App() {
                   <Route path="/404">
                     <NotFound />
                   </Route>
-
                   <Redirect to="/404" />
                 </Switch>
               </Container>
@@ -89,6 +105,10 @@ const PetLoading = ({ children }) => {
   const { loading, tokenHeaders } = usePetAuth();
 
   if (loading || !tokenHeaders) return <Spinner />;
-
+  return <>{children}</>;
+};
+const SupaLoading = ({ children }) => {
+  const { username } = useAuth();
+  if (!username) return <Spinner />;
   return <>{children}</>;
 };
