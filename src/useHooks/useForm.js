@@ -16,7 +16,7 @@ const useForm = (state, submit = () => {}) => {
 
   const resetChanges = () => setForm(state);
 
-  return [form, handleChange, onSubmit, resetChanges];
+  return [form, handleChange, onSubmit, resetChanges, setForm];
 };
 
 export default useForm;
