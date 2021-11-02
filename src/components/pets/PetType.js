@@ -1,11 +1,4 @@
-/* eslint-disable prettier/prettier */
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useContext,
-} from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../shared/Spinner";
 import "./pets.css";
@@ -20,7 +13,7 @@ import {
 } from "react-bootstrap";
 import { postcodeValidator } from "postcode-validator";
 import PetCard from "../layout/PetCard";
-import TokenContext from "../../context/TokenContext";
+import { usePetAuth } from "../../context/TokenContext";
 
 export default function PetType() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
@@ -34,7 +27,7 @@ export default function PetType() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { type } = useParams();
-  const token = useContext(TokenContext);
+  const { tokenHeaders } = usePetAuth();
 
   const findByLocation = () => {
     if (navigator.geolocation) {
@@ -61,10 +54,8 @@ export default function PetType() {
       const petFinderUrl = `https://api.petfinder.com/v2/animals?type=${type}&location=${location}&limit=12&page=${
         page || 1
       }`;
-      const config = {
-        headers: { Authorization: `Bearer ${token}` },
-      };
-      fetch(petFinderUrl, config)
+
+      fetch(petFinderUrl, tokenHeaders)
         .then((response) => response.json())
         .then((data) => {
           setTotalPages(
@@ -78,14 +69,14 @@ export default function PetType() {
         })
         .finally(() => setLoading(false));
     },
-    [token, type, petLocation]
+    [type, petLocation]
   );
 
   useEffect(() => {
     setCurrentPage(1);
     setLoading(true);
     findPets(1, petLocation);
-  }, [token, type, petLocation, findPets]);
+  }, [type, petLocation, findPets]);
 
   // ! To check validity of zipcode
   function checkValidation(e) {

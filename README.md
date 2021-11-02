@@ -22,6 +22,16 @@ Join My [Discord](https://discord.gg/2UxwrKxCPV)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Errors Fix
+
+If you are getting this
+`InvalidTokenError: Invalid token specified: Cannot read properties of undefined (reading 'replace')`
+
+go to dev tools-> application storage-> local storage
+
+Delete the token
+
+
 ## Available Scripts
 
 ### Installing Yarn

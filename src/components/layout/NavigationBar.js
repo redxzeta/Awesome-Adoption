@@ -1,9 +1,17 @@
-import React from "react";
-import { Nav, Navbar, NavDropdown, Container, Image } from "react-bootstrap";
+import React, { Fragment } from "react";
+import {
+  Nav,
+  Navbar,
+  NavDropdown,
+  Container,
+  Image,
+  Spinner,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import "./NavigationBar.css";
 import Logo from "../../images/PawHubLogo.png";
+import { useSignOut } from "react-supabase";
+import { useAuth } from "../../context/SupaContext";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
 const PetTypes = () =>
@@ -14,6 +22,11 @@ const PetTypes = () =>
   ));
 
 export default function NavigationBar() {
+  const [{ fetching }, signOut] = useSignOut();
+  const onClickSignOut = async () => {
+    await signOut();
+  };
+  const { session, username } = useAuth();
   return (
     <Navbar bg="primary" expand="lg">
       <Container>
@@ -43,6 +56,49 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/donate">
               Donate
             </Nav.Link>
+            <Nav.Link as={Link} to="/stories">
+              User Story
+            </Nav.Link>
+            <NavDropdown
+              title={<i className="bi bi-person-circle"></i>}
+              id="navbarScrollingDropdown"
+            >
+              <NavDropdown.Item>Hello, {username}</NavDropdown.Item>
+              <NavDropdown.Divider />
+              {!session && (
+                <Fragment>
+                  <NavDropdown.Item as={Link} to="/register">
+                    Register
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/login">
+                    Login
+                  </NavDropdown.Item>
+                </Fragment>
+              )}
+              {session && (
+                <>
+                  <NavDropdown.Item as={Link} to="/reset-password">
+                    Reset Password
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/profile">
+                    Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    disabled={fetching}
+                    onClick={() => onClickSignOut()}
+                  >
+                    {fetching ? (
+                      <Fragment>
+                        <Spinner animation="grow" size="sm" />
+                        Logging out
+                      </Fragment>
+                    ) : (
+                      "Logout"
+                    )}
+                  </NavDropdown.Item>
+                </>
+              )}
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
