@@ -1,28 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Dog from "./dog.jpg";
 import "./about.css";
 import YoutubeLogo from "./Youtube2.png";
 import DevPostLogo from "./devpost-modified.png";
 import GithubIcon from "./GitHub.png";
+import { githubURL } from "../../routes/API";
+import useFetch from "../../useHooks/useFetch";
+import LoaderComponent from "../../utils/LoaderComponent";
 
-const apiUrl =
-  "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors?page=1&per_page=100";
 export default function About() {
-  const [avatars, setAvatars] = useState([]); // by default there are no avatars
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        setAvatars(data);
-      } catch (error) {
-        console.error("Error during fetching contributors", error);
-      }
-    };
-    fetchData();
-  }, []);
+  const { data, isLoading, serverError } = useFetch("GET", githubURL);
 
   return (
     <div className="about__container">
@@ -94,27 +82,30 @@ export default function About() {
       <div className="contributors-section">
         <h1>Contributors</h1>
         <div className="contributors" id="contributors">
-          {avatars.map((a) => (
-            <OverlayTrigger
-              key={a.id}
-              overlay={<Tooltip id="tooltip-disabled">{a.login}</Tooltip>}
-            >
-              <a
-                className="contributor-link"
-                key={a.id}
-                href={a.html_url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  className="contributor-avatar"
-                  key={a.id}
-                  src={a.avatar_url}
-                  alt="Contributor Avatar"
-                />
-              </a>
-            </OverlayTrigger>
-          ))}
+          <LoaderComponent isLoading={isLoading} serverError={serverError}>
+            <div data-testid="contributor-list">
+              {data &&
+                data.map((a) => (
+                  <OverlayTrigger
+                    key={a.id}
+                    overlay={<Tooltip id="tooltip-disabled">{a.login}</Tooltip>}
+                  >
+                    <a
+                      className="contributor-link"
+                      href={a.html_url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <img
+                        className="contributor-avatar"
+                        src={a.avatar_url}
+                        alt="Contributor Avatar"
+                      />
+                    </a>
+                  </OverlayTrigger>
+                ))}
+            </div>
+          </LoaderComponent>
         </div>
       </div>
     </div>

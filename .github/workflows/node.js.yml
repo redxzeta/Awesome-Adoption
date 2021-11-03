@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [main, pawternity, add_supabase]
+    branches: [main, paw-dev]
   pull_request:
-    branches: [main, pawternity, add_supabase]
+    branches: [main, paw-dev]
 
 jobs:
   build:
