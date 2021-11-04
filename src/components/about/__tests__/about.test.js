@@ -5,10 +5,14 @@ import React from "react";
 import About from "../About";
 
 test("should fetch api and render list", async () => {
-  const { getByTestId } = render(<About />);
+  const { getByTestId, queryAllByTestId } = render(<About />);
   expect(getByTestId("loading")).toBeInTheDocument();
   await waitFor(() => {
-    expect(getByTestId("contributor-list")).toBeInTheDocument();
+    const conList = queryAllByTestId("contributor-list");
+
+    expect(conList.length).toBe(2);
+    conList.forEach((y) => expect(y).toBeInTheDocument());
+    // expect(x).toBeInTheDocument();
   });
 });
 test("should fetch api and expect error", async () => {
