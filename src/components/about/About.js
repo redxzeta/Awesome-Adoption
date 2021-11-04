@@ -83,28 +83,27 @@ export default function About() {
         <h1>Contributors</h1>
         <div className="contributors" id="contributors">
           <LoaderComponent isLoading={isLoading} serverError={serverError}>
-            <div data-testid="contributor-list">
-              {data &&
-                data.map((a) => (
-                  <OverlayTrigger
-                    key={a.id}
-                    overlay={<Tooltip id="tooltip-disabled">{a.login}</Tooltip>}
+            {data &&
+              data.map((a) => (
+                <OverlayTrigger
+                  key={a.id}
+                  overlay={<Tooltip id="tooltip-disabled">{a.login}</Tooltip>}
+                >
+                  <a
+                    className="contributor-link"
+                    href={a.html_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-testid="contributor-list"
                   >
-                    <a
-                      className="contributor-link"
-                      href={a.html_url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <img
-                        className="contributor-avatar"
-                        src={a.avatar_url}
-                        alt="Contributor Avatar"
-                      />
-                    </a>
-                  </OverlayTrigger>
-                ))}
-            </div>
+                    <img
+                      className="contributor-avatar"
+                      src={a.avatar_url}
+                      alt={`${a.login} Contributor Avatar`}
+                    />
+                  </a>
+                </OverlayTrigger>
+              ))}
           </LoaderComponent>
         </div>
       </div>
