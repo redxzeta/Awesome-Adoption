@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import Gallery from "../shared/Gallery";
-import Spinner from "../shared/Spinner";
+
 import Placeholder from "./placeholder.jpg";
 import nameCleaner from "../../utils/nameCleaner";
 import {
@@ -16,33 +16,31 @@ import { GiAges } from "react-icons/gi";
 import { HiMail } from "react-icons/hi";
 import "./PetInfo.css";
 import { usePetAuth } from "../../context/TokenContext";
+import useFetch from "../../useHooks/useFetch";
+import { lookUpPet } from "../../routes/API";
+import LoaderComponent from "../../utils/LoaderComponent";
 
 export default function PetInfo() {
   const { id } = useParams();
-  const [pet, setPet] = useState({});
+
   const { tokenHeaders } = usePetAuth();
 
-  useEffect(() => {
-    fetch(`https://api.petfinder.com/v2/animals/${id}`, tokenHeaders)
-      .then((response) => response.json())
-      .then((data) => {
-        setPet(data.animal);
-        console.log(data.animal);
-      })
-      .catch((error) => console.log(error));
-  }, [id]);
+  const { data, isLoading, serverError } = useFetch(
+    "GET",
+    `${lookUpPet}${id}`,
+    null,
+    [id],
+    tokenHeaders.headers
+  );
+  const pet = data.animal;
 
-  // ! Details for sharing
-  const shareData = {
-    title: pet.type + " for adoption.",
-    text: "Show some love to this animal. Please have a look if you want to adopt this cute life.",
-    url: window.location.href,
-  };
-
-  // ! Function for calling share api
   function handleShare(e) {
     e.preventDefault();
-
+    const shareData = {
+      title: pet.type + " for adoption.",
+      text: "Show some love to this animal. Please have a look if you want to adopt this cute life.",
+      url: window.location.href,
+    };
     navigator
       .share(shareData)
       .then((result) => {
@@ -54,10 +52,8 @@ export default function PetInfo() {
       });
   }
 
-  if (pet.name === undefined || pet.name === null) {
-    return <Spinner />;
-  } else {
-    return (
+  return (
+    <LoaderComponent isLoading={isLoading} serverError={serverError}>
       <div className="petInfo">
         <h1>{nameCleaner(pet.name)}</h1>
         {pet.photos === undefined || pet.photos.length === 0 ? (
@@ -138,6 +134,6 @@ export default function PetInfo() {
           </a>
         </div>
       </div>
-    );
-  }
+    </LoaderComponent>
+  );
 }

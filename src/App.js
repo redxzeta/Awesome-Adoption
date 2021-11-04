@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Container, Spinner } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import {
   BrowserRouter as Router,
   Switch,
@@ -28,6 +28,7 @@ import PetAuthProvider, { usePetAuth } from "./context/TokenContext";
 import ResetPassword from "./components/accounts/settings/resetPassword";
 import PrivateRoute from "./utils/PrivateRoute";
 import Profile from "./components/accounts/profile/Profile";
+import LoaderComponent from "./utils/LoaderComponent";
 
 export default function App() {
   return (
@@ -102,13 +103,19 @@ export default function App() {
 }
 
 const PetLoading = ({ children }) => {
-  const { loading, tokenHeaders } = usePetAuth();
+  const { loading, errors } = usePetAuth();
 
-  if (loading || !tokenHeaders) return <Spinner />;
-  return <>{children}</>;
+  return (
+    <LoaderComponent isLoading={loading} serverError={errors}>
+      {children}
+    </LoaderComponent>
+  );
 };
 const SupaLoading = ({ children }) => {
-  const { username } = useAuth();
-  if (!username) return <Spinner />;
-  return <>{children}</>;
+  const { isLoading, error } = useAuth();
+  return (
+    <LoaderComponent isLoading={isLoading} serverError={error}>
+      {children}
+    </LoaderComponent>
+  );
 };
