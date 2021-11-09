@@ -13,13 +13,14 @@ const useFetch = (method = "GET", url, body = null, dep = []) => {
 
       try {
         const response = await fetch(url, config);
-
+        const { status, error } = response;
+        if (status === 404 || error) throw response;
         const json = await response.json();
 
         setData(json);
       } catch (error) {
         setData(null);
-        setServerError("Error Loading");
+        setServerError(true);
       } finally {
         setIsLoading(false);
       }
