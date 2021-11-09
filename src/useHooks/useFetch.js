@@ -13,7 +13,8 @@ const useFetch = (method = "GET", url, body = null, dep = [], headers = {}) => {
 
       try {
         const response = await fetch(url, config);
-
+        const { status, error } = response;
+        if (status === 404 || error) throw response;
         const json = await response.json();
 
         setData(json);
