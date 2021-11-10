@@ -1,12 +1,17 @@
 import "./donate.css";
 import charity from "./charities.json";
-import { Image } from "react-bootstrap";
+import { Image, Button } from "react-bootstrap";
 import DonateCard from "./DonateCard";
+import DonateModal from "./DonateModal";
 import { useState } from "react";
 
 const Donate = () => {
   const [location, setLocation] = useState("All");
   const [charityFiltered, setCharityFiltered] = useState(charity);
+
+  const [showModal, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleDropdown = (e) => {
     setLocation(e.target.value);
@@ -28,9 +33,15 @@ const Donate = () => {
       <section className="kofi__section">
         <p>
           Here are a list of places to donate to help pets and animals. Feel
-          free to suggest any more charities. Could also message me if you
-          donated and I&apos;ll add to a list of donors
+          free to suggest any more charities. You could also add new
+          organizations you donated below
         </p>
+        <p>
+          <Button variant="primary" onClick={handleShow}>
+            Submit an Organization
+          </Button>
+        </p>
+        <DonateModal show={showModal} handleClose={handleClose} />
         <p>If you wish to help donate the site here, you can click here</p>
         <div className="kofi__section__donate">
           <a href={process.env.REACT_APP_KOFI} target="_blank" rel="noreferrer">
