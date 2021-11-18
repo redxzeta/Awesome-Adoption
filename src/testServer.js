@@ -1,6 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import PlaceImage from "./components/about/__tests__/placeholder50px.png";
+import { createClient } from "@supabase/supabase-js";
 import { githubURL } from "./routes/API";
 const contributors = [
   {
@@ -58,10 +59,15 @@ const server = setupServer(
   )
 );
 
-beforeAll(() => server.listen());
+beforeAll(() => server.listen({ onUnhandledRequest: "bypass" }));
 afterAll(() => server.close());
 afterEach(() => {
   server.resetHandlers();
 });
 
-export { server, rest };
+const SUPABASE_URL = "https://vuxohlizzevgcsxlrggf.supabase.co";
+const KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMzg4NzYwNCwiZXhwIjoxOTQ5NDYzNjA0fQ.fxjuENwSq1mulGqA4OOnrbcZu-sW3EVVfHNQjOU0vOs";
+const supabase = createClient(SUPABASE_URL, KEY);
+
+export { server, rest, supabase };
