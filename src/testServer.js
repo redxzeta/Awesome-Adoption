@@ -25,11 +25,43 @@ const server = setupServer(
   ),
   rest.get("https://api.petfinder.com/v2/animals", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(contributors));
-  })
+  }),
+  //Login
+  rest.post(
+    "https://vuxohlizzevgcsxlrggf.supabase.co/auth/v1/token",
+    (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({ access_token: "fake_access_token" })
+      );
+    }
+  ),
+  //Register
+  rest.post(
+    "https://vuxohlizzevgcsxlrggf.supabase.co/auth/v1/signup",
+    (req, res, ctx) => {
+      const fake_new_account = {
+        id: "fake_acc_id",
+        aud: "authenticated",
+        role: "authenticated",
+        email: "fake_acc_id@test.com",
+        phone: "",
+        confirmation_sent_at: Date.now(),
+        app_metadata: { provider: "email", providers: ["email"] },
+        user_metadata: {},
+        identities: [],
+        created_at: Date.now(),
+        updated_at: Date.now(),
+      };
+      return res(ctx.status(200), ctx.json(fake_new_account));
+    }
+  )
 );
 
 beforeAll(() => server.listen());
 afterAll(() => server.close());
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  server.resetHandlers();
+});
 
 export { server, rest };

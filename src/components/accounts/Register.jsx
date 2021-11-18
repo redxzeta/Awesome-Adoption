@@ -24,7 +24,9 @@ const Register = () => {
     onClickSignUp();
   };
   const errorForm = error ? (
-    <small className="text-danger">{error.message}</small>
+    <small className="text-danger" test-id="formErrorMessage">
+      {error.message}
+    </small>
   ) : (
     ""
   );
