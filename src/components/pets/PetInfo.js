@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import Gallery from "../shared/Gallery";
-
 import Placeholder from "./placeholder.jpg";
 import nameCleaner from "../../utils/nameCleaner";
 import {
@@ -30,9 +29,9 @@ export default function PetInfo() {
     `${lookUpPet}${id}`,
     null,
     [id],
-    tokenHeaders.headers
+    tokenHeaders && tokenHeaders.headers
   );
-  const pet = data.animal;
+  const pet = data == null ? {} : data.animal;
 
   function handleShare(e) {
     e.preventDefault();
@@ -41,15 +40,17 @@ export default function PetInfo() {
       text: "Show some love to this animal. Please have a look if you want to adopt this cute life.",
       url: window.location.href,
     };
-    navigator
-      .share(shareData)
-      .then((result) => {
-        console.log(result);
-        console.log("Shared");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (navigator.share) {
+      navigator
+        .share(shareData)
+        .then((result) => {
+          console.log(result);
+          console.log("Shared");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   return (
@@ -72,13 +73,13 @@ export default function PetInfo() {
           <div className="breed-info">
             <VscTypeHierarchySub className="icon" />
             <Card.Title>Breeds</Card.Title>
-            <Card.Text>{pet.breeds.primary}</Card.Text>
+            <Card.Text>{pet.breeds && pet.breeds.primary}</Card.Text>
           </div>
           <div className="color-info">
             <VscSymbolColor className="icon" />
             <Card.Title>Colors</Card.Title>
             <Card.Text>
-              {pet.colors.primary ? pet.colors.primary : "N/A"}
+              {pet.colors && pet.colors.primary ? pet.colors.primary : "N/A"}
             </Card.Text>
           </div>
         </div>
@@ -99,11 +100,11 @@ export default function PetInfo() {
             <Card.Title>Contact</Card.Title>
             <Card.Text>
               <a
-                href={`mailto:${pet.contact.email}`}
+                href={`mailto:${pet.contact && pet.contact.email}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {pet.contact.email}
+                {pet.contact && pet.contact.email}
               </a>
             </Card.Text>
           </div>
@@ -111,7 +112,7 @@ export default function PetInfo() {
 
         <div className="actions">
           <a
-            href={`mailto:${pet.contact.email}`}
+            href={`mailto:${pet.contact && pet.contact.email}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -124,6 +125,7 @@ export default function PetInfo() {
             className="action-btn"
             variant="primary"
             size="lg"
+            data-testid="btn-share"
           >
             Share <BsShareFill />
           </Button>
