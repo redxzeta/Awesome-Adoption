@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Container } from "react-bootstrap";
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Redirect,
 } from "react-router-dom";
@@ -39,7 +39,7 @@ export default function App() {
             <Router>
               <NavigationBar />
               <Container className="pawhub">
-                <Switch>
+                <Routes>
                   <Route path="/animal/:id">
                     <PetLoading>
                       <PetInfo />
@@ -91,7 +91,7 @@ export default function App() {
                     <NotFound />
                   </Route>
                   <Redirect to="/404" />
-                </Switch>
+                </Routes>
               </Container>
               <Footer />
             </Router>
