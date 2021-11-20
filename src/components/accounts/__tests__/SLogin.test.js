@@ -1,10 +1,9 @@
 import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { wait } from "@testing-library/user-event/dist/utils";
 import React from "react";
 import { Provider } from "react-supabase";
 import { server, supabase, rest } from "../../../testServer";
-
+import { MemoryRouter } from "react-router-dom";
 import SLogin from "../SLogin";
 
 test("should show error message for empty fields", async () => {
@@ -89,35 +88,46 @@ test("wrong password", async () => {
   expect(postButton).toBeEnabled();
 });
 
-// test("login should be successful", async () => {
-//   render(
-//     <Provider value={supabase}>
-//       <SLogin />
-//     </Provider>
-//   );
+test("login success", async () => {
+  server.use(
+    rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          access_token: "fake_access_token",
+          expires_at: 9999999999,
+          expires_in: 9600,
+          refresh_token: "cute_doggo",
+          token_type: "bearer",
+          user: { id: "1234" },
+          message: "No message",
+        })
+      );
+    })
+  );
+  render(
+    <Provider value={supabase}>
+      <MemoryRouter initialEntries={["/login"]}>
+        <SLogin />
+      </MemoryRouter>
+    </Provider>
+  );
+  const nameField = screen.getByLabelText(/email/i);
+  userEvent.type(nameField, "poodle@woof.com");
+  const passwordField = screen.getByLabelText(/password/i);
+  userEvent.type(passwordField, "bones1234");
+  const submitButton = screen.getByRole("button", { name: /submit/i });
+  expect(submitButton).toBeEnabled();
 
-//   const nameField = screen.getByLabelText(/email/i);
-//   userEvent.type(nameField, "jojo@yareyare.com");
-//   const passwordField = screen.getByLabelText(/password/i);
-//   userEvent.type(passwordField, "not_a_jojo_reference");
-//   const submitButton = screen.getByRole("button", { name: /submit/i });
-//   expect(submitButton).toBeEnabled();
+  userEvent.click(screen.getByText(/submit/i));
 
-//   userEvent.click(screen.getByText(/submit/i));
-//   await waitFor(() => {
-//     const LoadingButton = screen.getByRole("button", {
-//       name: /Loading.../i,
-//     });
-//     expect(LoadingButton).toBeDisabled();
-//   });
+  const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+  expect(LoadingButton).toBeDisabled();
 
-// const postButton = screen.getByRole("button", { name: /submit/i });
-// expect(postButton).toBeEnabled();
-// await waitFor(() => {
-//   expect(
-//     screen.getByText(/Unable to validate email address: invalid format/i)
-//   ).toBeInTheDocument();
-// });
-// const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
-// expect(LoadingButton).toBeDisabled();
-// });
+  const submitPostButton = await screen.findByRole("button", {
+    name: /submit/i,
+  });
+  expect(submitPostButton).toBeInTheDocument();
+  expect(submitPostButton).toBeEnabled();
+  expect(screen.queryByText(/No message/i)).not.toBeInTheDocument();
+});
