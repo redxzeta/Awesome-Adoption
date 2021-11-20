@@ -1,8 +1,11 @@
 import { Fragment } from "react";
 import { Form, Button, Container, Spinner } from "react-bootstrap";
-import { Redirect } from "react-router";
+import {
+  // Redirect,
+  useHistory,
+} from "react-router";
 import { useSignIn } from "react-supabase";
-import { useAuth } from "../../context/SupaContext";
+// import { useAuth } from "../../context/SupaContext";
 import useForm from "../../useHooks/useForm";
 
 const initState = {
@@ -11,25 +14,26 @@ const initState = {
 };
 const SLogin = () => {
   const [form, handleChange] = useForm(initState);
+  const history = useHistory();
+  const [{ error, fetching }, signIn] = useSignIn();
 
-  const [{ error, fetching, user }, signIn] = useSignIn();
+  // const onClickSignIn = async () => await signIn(form);
 
-  const onClickSignIn = async () => await signIn(form);
-
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    onClickSignIn();
+
+    const { session } = await signIn(form);
+    // console.log(user);
+    // console.log(session);
+    if (!error && !fetching && session) {
+      history.push("/");
+    }
   };
   const errorForm = error ? (
     <small className="text-danger">{error.message}</small>
   ) : (
     ""
   );
-  const { session } = useAuth();
-
-  if ((user && !fetching) || session) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <Container className="register__container" flud="md">
