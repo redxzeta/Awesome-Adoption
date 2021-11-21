@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useClient } from "react-supabase";
 import { Container, Form, Button, Spinner } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import useForm from "../../../useHooks/useForm";
 
@@ -25,7 +25,7 @@ const ResetPassword = () => {
   const [loading, setLoading] = useState(false);
 
   if (!session) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
 
   const handleResetPassword = async () => {

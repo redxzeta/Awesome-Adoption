@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { Form, Button, Container, Spinner } from "react-bootstrap";
-import { Redirect } from "react-router";
+import { Navigate } from "react-router-dom";
 import { useResetPassword } from "react-supabase";
 import { useAuth } from "../../context/SupaContext";
 import useForm from "../../useHooks/useForm";
@@ -29,7 +29,7 @@ const ForgotPassword = () => {
   );
 
   const { session } = useAuth();
-  if (session) return <Redirect to="/" />;
+  if (session) return <Navigate to="/" />;
 
   return (
     <Container className="register__container" flud="md">
