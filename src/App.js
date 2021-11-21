@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Redirect,
+  Navigate,
 } from "react-router-dom";
 import Home from "./components/home/Home";
 import NavigationBar from "./components/layout/NavigationBar";
@@ -65,24 +65,19 @@ export default function App() {
                   <Route path="/stories">
                     <Stories />
                   </Route>
-                  <Route path="/register" component={Register} />
-                  <Route exact path="/login" component={SLogin} />
-                  <Route
-                    exact
-                    path="/forgot-password"
-                    component={ForgotPassword}
-                  />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<SLogin />} />
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
                   <PrivateRoute
-                    exact
                     path="/reset-password"
-                    component={ResetPassword}
+                    element={<ResetPassword />}
                   />
-                  <Route exact path="/profile">
+                  <Route path="/profile">
                     <SupaLoading>
                       <Profile />
                     </SupaLoading>
                   </Route>
-                  <Route path="/" exact>
+                  <Route path="/">
                     <PetLoading>
                       <Home />
                     </PetLoading>
@@ -90,7 +85,7 @@ export default function App() {
                   <Route path="/404">
                     <NotFound />
                   </Route>
-                  <Redirect to="/404" />
+                  <Navigate to="/404" />
                 </Routes>
               </Container>
               <Footer />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Navigate } from "react-router-dom";
 import { useAuth } from "../context/SupaContext";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        session ? <Component {...props} /> : <Redirect to="/" />
+        session ? <Component {...props} /> : <Navigate to="/" />
       }
     />
   );

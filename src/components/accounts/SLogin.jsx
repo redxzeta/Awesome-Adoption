@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Form, Button, Container, Spinner } from "react-bootstrap";
-import { Redirect } from "react-router";
+import { Navigate } from "react-router-dom";
 import { useSignIn } from "react-supabase";
 import { useAuth } from "../../context/SupaContext";
 import useForm from "../../useHooks/useForm";
@@ -28,7 +28,7 @@ const SLogin = () => {
   const { session } = useAuth();
 
   if ((user && !fetching) || session) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
 
   return (
