@@ -31,7 +31,14 @@ const server = setupServer(
   rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.json({ access_token: "fake_access_token" })
+      ctx.json({
+        access_token: "fake_access_token",
+        expires_at: 9999999999,
+        expires_in: 3600,
+        refresh_token: "uCtyqUsj5FJqtIxCkz2Mvg",
+        token_type: "bearer",
+        user: { id: "1234" },
+      })
     );
   }),
   rest.post("https://test.supabase.co/auth/v1/magicLink", (req, res, ctx) => {

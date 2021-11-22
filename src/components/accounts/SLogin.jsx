@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { Form, Button, Container, Spinner } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSignIn } from "react-supabase";
-import { useAuth } from "../../context/SupaContext";
+
 import useForm from "../../useHooks/useForm";
 
 const initState = {
@@ -10,26 +10,25 @@ const initState = {
   password: "",
 };
 const SLogin = () => {
+  const navigate = useNavigate();
   const [form, handleChange] = useForm(initState);
 
-  const [{ error, fetching, user }, signIn] = useSignIn();
+  const [{ error, fetching }, signIn] = useSignIn();
 
-  const onClickSignIn = async () => await signIn(form);
-
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    onClickSignIn();
+
+    const { session } = await signIn(form);
+
+    if (!error && !fetching && session) {
+      navigate("/");
+    }
   };
   const errorForm = error ? (
     <small className="text-danger">{error.message}</small>
   ) : (
     ""
   );
-  const { session } = useAuth();
-
-  if ((user && !fetching) || session) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <Container className="register__container" flud="md">
