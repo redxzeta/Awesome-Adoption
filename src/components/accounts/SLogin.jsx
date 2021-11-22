@@ -12,8 +12,6 @@ const initState = {
 const SLogin = () => {
   const navigate = useNavigate();
   const [form, handleChange] = useForm(initState);
-  const history = useHistory();
-  const [{ error, fetching }, signIn] = useSignIn();
 
   const [{ error, fetching }, signIn] = useSignIn();
 
