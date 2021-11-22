@@ -3,13 +3,15 @@ import userEvent from "@testing-library/user-event";
 import React from "react";
 import { Provider } from "react-supabase";
 import { server, supabase, rest } from "../../../testServer";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import SLogin from "../SLogin";
 
 test("should show error message for empty fields", async () => {
   const { getByText } = render(
     <Provider value={supabase}>
-      <SLogin />
+      <BrowserRouter>
+        <SLogin />
+      </BrowserRouter>
     </Provider>
   );
 
@@ -27,7 +29,9 @@ test("should show error message for empty fields", async () => {
 test("should show error message for incorrect email format", async () => {
   const { getByLabelText, getByText } = render(
     <Provider value={supabase}>
-      <SLogin />
+      <BrowserRouter>
+        <SLogin />{" "}
+      </BrowserRouter>
     </Provider>
   );
 
@@ -67,7 +71,9 @@ test("wrong password", async () => {
   );
   render(
     <Provider value={supabase}>
-      <SLogin />
+      <BrowserRouter>
+        <SLogin />{" "}
+      </BrowserRouter>
     </Provider>
   );
   const nameField = screen.getByLabelText(/email/i);
