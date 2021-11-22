@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
+  // Navigate,
 } from "react-router-dom";
 import Home from "./components/home/Home";
 import NavigationBar from "./components/layout/NavigationBar";
@@ -40,52 +40,55 @@ export default function App() {
               <NavigationBar />
               <Container className="pawhub">
                 <Routes>
-                  <Route path="/animal/:id">
-                    <PetLoading>
-                      <PetInfo />
-                    </PetLoading>
-                  </Route>
-                  <Route path="/pets/:type">
-                    <PetLoading>
-                      <PetType />
-                    </PetLoading>
-                  </Route>
-                  <Route path="/pets">
-                    <Pets />
-                  </Route>
-                  <Route path="/about">
-                    <About />
-                  </Route>
-                  <Route path="/resources">
-                    <Resources />
-                  </Route>
-                  <Route path="/donate">
-                    <Donate />
-                  </Route>
-                  <Route path="/stories">
-                    <Stories />
-                  </Route>
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/login" element={<SLogin />} />
-                  <Route path="/forgot-password" element={<ForgotPassword />} />
-                  <PrivateRoute
-                    path="/reset-password"
-                    element={<ResetPassword />}
+                  <Route
+                    path="animal/:id"
+                    element={
+                      <PetLoading>
+                        {" "}
+                        <PetInfo />{" "}
+                      </PetLoading>
+                    }
                   />
-                  <Route path="/profile">
-                    <SupaLoading>
-                      <Profile />
-                    </SupaLoading>
+                  <Route
+                    path="pets/:type"
+                    element={
+                      <PetLoading>
+                        {" "}
+                        <PetType />{" "}
+                      </PetLoading>
+                    }
+                  />
+                  <Route path="pets" element={<Pets />} />
+                  <Route path="about" element={<About />} />
+                  <Route path="resources" element={<Resources />} />
+                  <Route path="donate" element={<Donate />} />
+                  <Route path="stories" element={<Stories />} />
+                  <Route path="register" element={<Register />} />
+                  <Route path="login" element={<SLogin />} />
+                  <Route path="forgot-password" element={<ForgotPassword />} />
+                  <Route element={<PrivateRoute />}>
+                    <Route path="reset-password" element={<ResetPassword />} />
                   </Route>
-                  <Route path="/">
-                    <PetLoading>
-                      <Home />
-                    </PetLoading>
-                  </Route>
-                  <Route path="/404">
-                    <NotFound />
-                  </Route>
-                  <Navigate to="/404" />
+                  <Route
+                    path="profile"
+                    element={
+                      <SupaLoading>
+                        {" "}
+                        <Profile />{" "}
+                      </SupaLoading>
+                    }
+                  />
+                  <Route
+                    path="/"
+                    element={
+                      <PetLoading>
+                        {" "}
+                        <Home />{" "}
+                      </PetLoading>
+                    }
+                  />
+                  <Route path="*" element={<NotFound />} />
+                  {/* <Navigate to="/404" /> */}
                 </Routes>
               </Container>
               <Footer />
