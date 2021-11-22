@@ -7,45 +7,82 @@ import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import SLogin from "../SLogin";
 
 test("should show error message for empty fields", async () => {
-  const { getByText } = render(
+  render(
     <Provider value={supabase}>
       <BrowserRouter>
         <SLogin />
       </BrowserRouter>
     </Provider>
   );
+  expect(
+    screen.queryByText(
+      /You must provide either an email, phone number or a third-party provider/i
+    )
+  ).not.toBeInTheDocument();
+  const submitButton = screen.getByRole("button", { name: /submit/i });
+  expect(submitButton).toBeEnabled();
 
-  fireEvent.click(getByText(/submit/i));
+  userEvent.click(submitButton);
 
-  await waitFor(() => {
-    expect(
-      screen.getByText(
-        /You must provide either an email, phone number or a third-party provider/i
-      )
-    ).toBeInTheDocument();
-  });
+  const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+  expect(LoadingButton).toBeDisabled();
+
+  expect(
+    await screen.findByText(
+      /You must provide either an email, phone number or a third-party provider/i
+    )
+  ).toBeInTheDocument();
 });
 
 test("should show error message for incorrect email format", async () => {
-  const { getByLabelText, getByText } = render(
+  server.use(
+    rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
+      const { email } = req.body;
+      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        return res(
+          ctx.status(401),
+          ctx.json({
+            message: "Unable to validate email address: invalid format",
+          })
+        );
+      } else {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            message: "Success",
+          })
+        );
+      }
+    })
+  );
+
+  render(
     <Provider value={supabase}>
       <BrowserRouter>
         <SLogin />{" "}
       </BrowserRouter>
     </Provider>
   );
+  expect(
+    screen.queryByText(/Unable to validate email address: invalid format/i)
+  ).not.toBeInTheDocument();
+  const nameField = screen.getByLabelText(/email/i);
+  userEvent.type(nameField, "whatisemail");
+  const passwordField = screen.getByLabelText(/password/i);
+  userEvent.type(passwordField, "bones1234");
 
-  fireEvent.change(getByLabelText(/email/i), {
-    target: { value: "incorrect_format" },
-  });
+  const submitButton = screen.getByRole("button", { name: /submit/i });
+  expect(submitButton).toBeEnabled();
 
-  fireEvent.click(getByText(/submit/i));
+  userEvent.click(submitButton);
 
-  await waitFor(() => {
-    expect(
-      screen.getByText(/Unable to validate email address: invalid format/i)
-    ).toBeInTheDocument();
-  });
+  const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+  expect(LoadingButton).toBeDisabled();
+
+  const invalidEmail = await screen.findByText(
+    /Unable to validate email address: invalid format/i
+  );
+  expect(invalidEmail).toBeInTheDocument();
 });
 
 test("wrong password", async () => {
