@@ -1,11 +1,6 @@
 import React, { Fragment } from "react";
 import { Container } from "react-bootstrap";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  // Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import NavigationBar from "./components/layout/NavigationBar";
 import "./App.css";
@@ -66,9 +61,15 @@ export default function App() {
                   <Route path="register" element={<Register />} />
                   <Route path="login" element={<SLogin />} />
                   <Route path="forgot-password" element={<ForgotPassword />} />
-                  <Route element={<PrivateRoute />}>
-                    <Route path="reset-password" element={<ResetPassword />} />
-                  </Route>
+                  <Route
+                    path="reset-password"
+                    element={
+                      <PrivateRoute>
+                        {" "}
+                        <ResetPassword />{" "}
+                      </PrivateRoute>
+                    }
+                  />
                   <Route
                     path="profile"
                     element={
@@ -88,7 +89,6 @@ export default function App() {
                     }
                   />
                   <Route path="*" element={<NotFound />} />
-                  {/* <Navigate to="/404" /> */}
                 </Routes>
               </Container>
               <Footer />
