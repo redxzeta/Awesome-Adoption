@@ -38,7 +38,6 @@ const randomPet = { img: Random, type };
 linkData.push(randomPet);
 
 export default function Pets() {
-  // const { url } = useRouteMatch();
   return (
     <div className="pet__container">
       <h1>Adopt Your Buddy</h1>
@@ -47,7 +46,7 @@ export default function Pets() {
           <AnimalType
             img={pet.img}
             type={pet.type}
-            link={`/${pet.type}`}
+            link={`${pet.type}`}
             key={pet.type}
           />
         ))}
