@@ -35,7 +35,7 @@ test("Pets component should render with button", () => {
   const ClickHereButton = screen.getAllByRole("button", {
     name: /Click Here/i,
   });
-  expect(ClickHereButton[0]).toBeInTheDocument();
+  expect(ClickHereButton[0]).toHaveAttribute("href", "/dog");
 });
 
 test("should render list", () => {
@@ -44,6 +44,17 @@ test("should render list", () => {
       <Pets />
     </BrowserRouter>
   );
-  const petTypeList = screen.getAllByAltText(/Image Img/i);
-  expect(petTypeList.length).toBe(6);
+  const petTypeList = screen.getAllByRole("link");
+  expect(petTypeList.length).toBe(5);
+  expect(petTypeList[0]).toHaveAttribute("href", "/dog");
+});
+
+test("should render with image", () => {
+  render(
+    <BrowserRouter>
+      <Pets />
+    </BrowserRouter>
+  );
+  const petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(5);
 });
