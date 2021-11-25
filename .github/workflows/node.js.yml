@@ -21,7 +21,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: ChromaticHQ/javascript-lockfile-check-action@v1.2.0
+        
+      - name: Check JS Lockfile
+        if: matrix.os == 'ubuntu-latest'
+        uses: ChromaticHQ/javascript-lockfile-check-action@v1.1.0
         with:
           package-manager: yarn
       - name: Install dependencies
