@@ -176,21 +176,23 @@ export default function PetType() {
       Unable to retrieve your location, please enter your zip code.
     </Alert>
   );
-
   return (
     <div className="petList__container">
       <h1>List Of {type} Buddies</h1>
 
       <div className="inputContainer">
         <InputGroup size="md" className="mb-3">
-          <InputGroup.Text id="basic-addon3">Enter ZipCode:</InputGroup.Text>
+          <InputGroup.Text as="label" id="zipcode-group">
+            Enter ZipCode:
+          </InputGroup.Text>
           <FormControl
             ref={inputCode}
-            aria-label="Small"
+            aria-label="zipcode"
             type="text"
             pattern="[0-9]{5}"
-            aria-describedby="inputGroup-sizing-sm"
+            aria-describedby="zipcode-group"
             value={code}
+            name="zipcode"
             onChange={(e) => checkValidation(e)}
           />
           <Button disabled={goBtnDisabled} onClick={search}>
