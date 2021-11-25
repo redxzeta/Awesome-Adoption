@@ -13,10 +13,7 @@ export default function Stories() {
         </Button>
       </div>
       <Row className="mb-2 w-100 petList">
-        {userData &&
-          userData.map((userData, index) => (
-            <UserCard key={index} userData={userData} />
-          ))}
+        {userData && userData.map((u) => <UserCard key={u.id} userData={u} />)}
       </Row>
     </div>
   );
