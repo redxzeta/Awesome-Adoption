@@ -63,11 +63,7 @@ const Donate = () => {
               {[
                 ...new Set(charity.map((item) => item.location.toLowerCase())),
               ].map((cha, idx) => (
-                <option
-                  value={cha.toLowerCase()}
-                  data-testid={`donate-test-selection-${cha.replace(" ", "-")}`}
-                  key={idx + cha}
-                >
+                <option value={cha.toLowerCase()} key={idx + cha}>
                   {cha}
                 </option>
               ))}
