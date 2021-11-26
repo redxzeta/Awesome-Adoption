@@ -41,23 +41,27 @@ test("Test for filtering", () => {
 
   userEvent.selectOptions(
     screen.getByTestId("dropdown"),
-    screen.getByTestId("donate-test-selection-united-states", {
+    screen.getByRole("option", {
       name: "united states",
     })
   );
 
   expect(
-    screen.getByTestId("donate-test-selection-united-states", {
+    screen.getByRole("option", {
       name: "united states",
     }).selected
   ).toBeTruthy();
 
   expect(
-    screen.getByTestId("donate-test-selection-united-states").selected
+    screen.getByRole("option", {
+      name: "united states",
+    }).selected
   ).toBeTruthy();
 
   expect(
-    screen.getByTestId("donate-test-selection-india").selected
+    screen.getByRole("option", {
+      name: "india",
+    }).selected
   ).toBeFalsy();
 
   expect(
@@ -67,4 +71,10 @@ test("Test for filtering", () => {
   expect(
     screen.queryAllByText(/^Location: United States$/i).length
   ).toBeGreaterThan(0);
+
+  expect(
+    screen.getByRole("option", { name: "united states" })
+  ).toBeInTheDocument();
+
+  expect(screen.getAllByRole("option").length).toBe(10);
 });
