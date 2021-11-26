@@ -53,12 +53,21 @@ const Donate = () => {
           </a>
           <div className="filtering">
             <label htmlFor="dropdown">Filter by place: </label>
-            <select value={location} id="dropdown" onChange={handleDropdown}>
+            <select
+              value={location}
+              id="dropdown"
+              data-testid="dropdown"
+              onChange={handleDropdown}
+            >
               <option value="All">All</option>
               {[
                 ...new Set(charity.map((item) => item.location.toLowerCase())),
               ].map((cha, idx) => (
-                <option value={cha.toLowerCase()} key={idx + cha}>
+                <option
+                  value={cha.toLowerCase()}
+                  data-testid={`donate-test-selection-${cha.replace(" ", "-")}`}
+                  key={idx + cha}
+                >
                   {cha}
                 </option>
               ))}
