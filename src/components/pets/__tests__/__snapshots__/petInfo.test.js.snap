@@ -1,0 +1,378 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test rendered component data fetched matches petInfo snapshot 1`] = `
+<div
+  className="petInfo"
+>
+  <h1>
+    Nebula
+  </h1>
+  <div
+    className="gallery-slider__main"
+  >
+    <div
+      className="carousel slide"
+      onKeyDown={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+    >
+      <div
+        className="carousel-indicators"
+      >
+        <button
+          aria-current={true}
+          aria-label="Slide 1"
+          className="active"
+          data-bs-target=""
+          onClick={[Function]}
+          type="button"
+        />
+      </div>
+      <div
+        className="carousel-inner"
+      >
+        <div
+          className="active carousel-item"
+        >
+          <img
+            alt=""
+            className="d-block w-100"
+            src="https://photos.petfinder.com/photos/pets/124/1/?bust=1546042081&width=600"
+          />
+        </div>
+      </div>
+      <a
+        className="carousel-control-prev"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <span
+          aria-hidden="true"
+          className="carousel-control-prev-icon"
+        />
+        <span
+          className="visually-hidden"
+        >
+          Previous
+        </span>
+      </a>
+      <a
+        className="carousel-control-next"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        role="button"
+        tabIndex={0}
+      >
+        <span
+          aria-hidden="true"
+          className="carousel-control-next-icon"
+        />
+        <span
+          className="visually-hidden"
+        >
+          Next
+        </span>
+      </a>
+    </div>
+  </div>
+  <div
+    className="info-body"
+  >
+    <div
+      className="primary-info"
+    >
+      <div
+        className="card-title h5"
+      >
+        Name - 
+        Nebula
+      </div>
+      <p
+        className="description card-text"
+      >
+        Nebula is a shorthaired, shy cat. She is very affectionate once she warms up to you.
+      </p>
+    </div>
+    <div
+      className="breed-info"
+    >
+      <svg
+        className="icon"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13.5 11h-1.729L8.438 6H9.5l.5-.5v-4L9.5 1h-4l-.5.5v4l.5.5h1.062l-3.333 5H1.5l-.5.5v3l.5.5h3l.5-.5v-3l-.5-.5h-.068L7.5 6.4l3.068 4.6H10.5l-.5.5v3l.5.5h3l.5-.5v-3l-.5-.5zM6 5V2h3v3H6zm-2 7v2H2v-2h2zm9 2h-2v-2h2v2z"
+        />
+      </svg>
+      <div
+        className="card-title h5"
+      >
+        Breeds
+      </div>
+      <p
+        className="card-text"
+      >
+        American Shorthair
+      </p>
+    </div>
+    <div
+      className="color-info"
+    >
+      <svg
+        className="icon"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clipRule="evenodd"
+          d="M8 1.003a7 7 0 0 0-7 7v.43c.09 1.51 1.91 1.79 3 .7a1.87 1.87 0 0 1 2.64 2.64c-1.1 1.16-.79 3.07.8 3.2h.6a7 7 0 1 0 0-14l-.04.03zm0 13h-.52a.58.58 0 0 1-.36-.14.56.56 0 0 1-.15-.3 1.24 1.24 0 0 1 .35-1.08 2.87 2.87 0 0 0 0-4 2.87 2.87 0 0 0-4.06 0 1 1 0 0 1-.9.34.41.41 0 0 1-.22-.12.42.42 0 0 1-.1-.29v-.37a6 6 0 1 1 6 6l-.04-.04zM9 3.997a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 7.007a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-7-5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm7-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM13 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+          fillRule="evenodd"
+        />
+      </svg>
+      <div
+        className="card-title h5"
+      >
+        Colors
+      </div>
+      <p
+        className="card-text"
+      >
+        Tortoiseshell
+      </p>
+    </div>
+  </div>
+  <div
+    className="info-body"
+  >
+    <div
+      className="age-info"
+    >
+      <svg
+        className="icon"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 512 512"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M360 73c-14.43 0-27.79 7.71-38.055 21.395-10.263 13.684-16.943 33.2-16.943 54.94 0 21.74 6.68 41.252 16.943 54.936 10.264 13.686 23.625 21.396 38.055 21.396s27.79-7.71 38.055-21.395C408.318 190.588 415 171.075 415 149.335c0-21.74-6.682-41.255-16.945-54.94C387.79 80.71 374.43 73 360 73zm-240 96c-10.012 0-19.372 5.32-26.74 15.145C85.892 193.968 81 208.15 81 224c0 15.85 4.892 30.032 12.26 39.855C100.628 273.68 109.988 279 120 279c10.012 0 19.374-5.32 26.742-15.145 7.368-9.823 12.256-24.006 12.256-39.855 0-15.85-4.888-30.032-12.256-39.855C139.374 174.32 130.012 169 120 169zm188.805 47.674c-1.625 1.26-3.208 2.58-4.737 3.974-13.716 12.524-23.816 31.052-31.53 54.198-14.59 43.765-20.404 103.306-30.063 164.154h235.05c-9.66-60.848-15.476-120.39-30.064-164.154-7.714-23.146-17.812-41.674-31.528-54.198-1.53-1.396-3.112-2.715-4.737-3.974-12.84 16.293-30.942 26.994-51.195 26.994s-38.355-10.7-51.195-26.994zM81.27 277.658c-.573.485-1.143.978-1.702 1.488-9.883 9.024-17.315 22.554-23.03 39.7-10.6 31.8-15.045 75.344-22.063 120.154h171.048c-7.017-44.81-11.462-88.354-22.062-120.154-5.714-17.146-13.145-30.676-23.028-39.7-.56-.51-1.127-1.003-1.702-1.488C148.853 289.323 135.222 297 120 297c-15.222 0-28.852-7.678-38.73-19.342z"
+        />
+      </svg>
+      <div
+        className="card-title h5"
+      >
+        Age
+      </div>
+      <p
+        className="card-text"
+      >
+        Young
+      </p>
+    </div>
+    <div
+      className="gender-info"
+    >
+      <svg
+        className="icon"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.5 1a.5.5 0 0 1 0-1h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-3.45 3.45A4 4 0 0 1 8.5 10.97V13H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V14H6a.5.5 0 0 1 0-1h1.5v-2.03a4 4 0 1 1 3.471-6.648L14.293 1H11.5zm-.997 4.346a3 3 0 1 0-5.006 3.309 3 3 0 0 0 5.006-3.31z"
+          fillRule="evenodd"
+        />
+      </svg>
+      <div
+        className="card-title h5"
+      >
+        Gender
+      </div>
+      <p
+        className="card-text"
+      >
+        Female
+      </p>
+    </div>
+    <div
+      className="contact-info"
+    >
+      <svg
+        className="icon"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 20 20"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+        />
+        <path
+          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+        />
+      </svg>
+      <div
+        className="card-title h5"
+      >
+        Contact
+      </div>
+      <p
+        className="card-text"
+      >
+        <a
+          href="mailto:petfindertechsupport@gmail.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          petfindertechsupport@gmail.com
+        </a>
+      </p>
+    </div>
+  </div>
+  <div
+    className="actions"
+  >
+    <a
+      href="mailto:petfindertechsupport@gmail.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <button
+        className="action-btn btn btn-info btn-lg"
+        disabled={false}
+        type="button"
+      >
+        Contact 
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8.941.435a2 2 0 0 0-1.882 0l-6 3.2A2 2 0 0 0 0 5.4v.313l6.709 3.933L8 8.928l1.291.717L16 5.715V5.4a2 2 0 0 0-1.059-1.765l-6-3.2zM16 6.873l-5.693 3.337L16 13.372v-6.5zm-.059 7.611L8 10.072.059 14.484A2 2 0 0 0 2 16h12a2 2 0 0 0 1.941-1.516zM0 13.373l5.693-3.163L0 6.873v6.5z"
+          />
+        </svg>
+      </button>
+    </a>
+    <button
+      className="action-btn btn btn-primary btn-lg"
+      data-testid="btn-share"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Share 
+      <svg
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"
+        />
+      </svg>
+    </button>
+    <a
+      href="https://www.petfinder.com/cat/nebula-124/nj/jersey-city/nj333-petfinder-test-account/?referrer_id=d7e3700b-2e07-11e9-b3f3-0800275f82b1"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <button
+        className="action-btn btn btn-success btn-lg"
+        disabled={false}
+        type="button"
+      >
+        More Info 
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </button>
+    </a>
+  </div>
+</div>
+`;
