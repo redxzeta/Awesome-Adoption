@@ -1,7 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuthStateChange, useClient } from "react-supabase";
 
-const initialState = { session: null, user: null, username: null };
+const initialState = {
+  session: null,
+  user: null,
+  username: "Guest",
+  error: null,
+  isLoading: false,
+};
 export const AuthContext = createContext(initialState);
 
 export function AuthProvider({ children }) {
@@ -22,18 +28,27 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    const session = client.auth.session();
-    if (session) {
-      const { user } = session;
-      handleUpdateUsername(user.id);
-    } else {
-      handleUpdateState("username", "Guest");
-    }
+    handleUpdateState("isLoading", true);
+    handleUpdateState("error", false);
+    try {
+      const session = client.auth.session();
+      if (session) {
+        const { user } = session;
+        handleUpdateUsername(user.id);
+      } else {
+        handleUpdateState("username", "Guest");
+      }
 
-    setState((prev) => ({ ...prev, session, user: session?.user ?? null }));
+      setState((prev) => ({ ...prev, session, user: session?.user ?? null }));
+    } catch (error) {
+      handleUpdateState("error", true);
+    } finally {
+      handleUpdateState("isLoading", false);
+    }
   }, []);
 
   useAuthStateChange(async (event, session) => {
+    handleUpdateState("isLoading", true);
     setState({ session, user: session?.user ?? null, event: event });
     let username = "Guest";
     if (session) {
@@ -41,6 +56,7 @@ export function AuthProvider({ children }) {
       username = data.username;
     }
     handleUpdateState("username", username);
+    handleUpdateState("isLoading", false);
   });
   const changeUserName = (userName) =>
     setState((s) => ({ ...s, username: userName }));

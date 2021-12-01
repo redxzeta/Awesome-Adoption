@@ -4,13 +4,13 @@ const useForm = (state, submit = () => {}) => {
   const [form, setForm] = useState(state);
 
   const handleChange = (e) => {
-    e.persist();
-    setForm((val) => ({ ...val, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setForm((val) => ({ ...val, [name]: value }));
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+
     submit();
   };
 

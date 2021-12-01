@@ -1,11 +1,6 @@
 import React, { Fragment } from "react";
-import { Container, Spinner } from "react-bootstrap";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import NavigationBar from "./components/layout/NavigationBar";
 import "./App.css";
@@ -28,6 +23,7 @@ import PetAuthProvider, { usePetAuth } from "./context/TokenContext";
 import ResetPassword from "./components/accounts/settings/resetPassword";
 import PrivateRoute from "./utils/PrivateRoute";
 import Profile from "./components/accounts/profile/Profile";
+import LoaderComponent from "./utils/LoaderComponent";
 
 export default function App() {
   return (
@@ -38,59 +34,62 @@ export default function App() {
             <Router>
               <NavigationBar />
               <Container className="pawhub">
-                <Switch>
-                  <Route path="/animal/:id">
-                    <PetLoading>
-                      <PetInfo />
-                    </PetLoading>
-                  </Route>
-                  <Route path="/pets/:type">
-                    <PetLoading>
-                      <PetType />
-                    </PetLoading>
-                  </Route>
-                  <Route path="/pets">
-                    <Pets />
-                  </Route>
-                  <Route path="/about">
-                    <About />
-                  </Route>
-                  <Route path="/resources">
-                    <Resources />
-                  </Route>
-                  <Route path="/donate">
-                    <Donate />
-                  </Route>
-                  <Route path="/stories">
-                    <Stories />
-                  </Route>
-                  <Route path="/register" component={Register} />
-                  <Route exact path="/login" component={SLogin} />
+                <Routes>
                   <Route
-                    exact
-                    path="/forgot-password"
-                    component={ForgotPassword}
+                    path="animal/:id"
+                    element={
+                      <PetLoading>
+                        {" "}
+                        <PetInfo />{" "}
+                      </PetLoading>
+                    }
                   />
-                  <PrivateRoute
-                    exact
-                    path="/reset-password"
-                    component={ResetPassword}
+                  <Route
+                    path="pets/:type"
+                    element={
+                      <PetLoading>
+                        {" "}
+                        <PetType />{" "}
+                      </PetLoading>
+                    }
                   />
-                  <Route exact path="/profile">
-                    <SupaLoading>
-                      <Profile />
-                    </SupaLoading>
-                  </Route>
-                  <Route path="/" exact>
-                    <PetLoading>
-                      <Home />
-                    </PetLoading>
-                  </Route>
-                  <Route path="/404">
-                    <NotFound />
-                  </Route>
-                  <Redirect to="/404" />
-                </Switch>
+                  <Route path="pets" element={<Pets />} />
+                  <Route path="about" element={<About />} />
+                  <Route path="resources" element={<Resources />} />
+                  <Route path="donate" element={<Donate />} />
+                  <Route path="stories" element={<Stories />} />
+                  <Route path="register" element={<Register />} />
+                  <Route path="login" element={<SLogin />} />
+                  <Route path="forgot-password" element={<ForgotPassword />} />
+                  <Route
+                    path="reset-password"
+                    element={
+                      <PrivateRoute>
+                        {" "}
+                        <ResetPassword />{" "}
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="profile"
+                    element={
+                      <SupaLoading>
+                        {" "}
+                        <Profile />{" "}
+                      </SupaLoading>
+                    }
+                  />
+                  <Route
+                    path="/"
+                    element={
+                      <PetLoading>
+                        {" "}
+                        <Home />{" "}
+                      </PetLoading>
+                    }
+                  />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
               </Container>
               <Footer />
             </Router>
@@ -102,13 +101,19 @@ export default function App() {
 }
 
 const PetLoading = ({ children }) => {
-  const { loading, tokenHeaders } = usePetAuth();
+  const { loading, errors } = usePetAuth();
 
-  if (loading || !tokenHeaders) return <Spinner />;
-  return <>{children}</>;
+  return (
+    <LoaderComponent isLoading={loading} serverError={errors}>
+      {children}
+    </LoaderComponent>
+  );
 };
 const SupaLoading = ({ children }) => {
-  const { username } = useAuth();
-  if (!username) return <Spinner />;
-  return <>{children}</>;
+  const { isLoading, error } = useAuth();
+  return (
+    <LoaderComponent isLoading={isLoading} serverError={error}>
+      {children}
+    </LoaderComponent>
+  );
 };

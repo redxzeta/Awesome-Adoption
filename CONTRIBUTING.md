@@ -3,7 +3,8 @@
 The current issue labels being handled are features, enhancements, and bugs.
 
 ### Setup
-- fork repo and clone it 
+
+- fork repo and clone it
 - switch branch to `paw-dev` unless instructed to switch to another branch
 - use yarn to install `node-modules`
 

@@ -6,10 +6,9 @@
 
 ![image](https://user-images.githubusercontent.com/19883954/139918347-f33fbce9-0f4c-4726-947d-dd4a0caca6d7.png)
 
+A web application that helps users find pets to adopt around their area. It started out as a Hackathon project and then Open Source during Hacktoberfest All levels are welcome to contribute.
 
-A web application that helps users find pets to adopt around their area. It started out as a Hackathon project and then Open Source during Hacktoberfest All levels are welcome to contribute. 
-
-## Contribution 
+## Contribution
 
 Read Here [Contribution](https://github.com/redxzeta/Awesome-Adoption/blob/main/CONTRIBUTING.md)
 
@@ -41,7 +40,6 @@ If you are getting this
 go to dev tools-> application storage-> local storage
 
 Delete the token
-
 
 ## Available Scripts
 

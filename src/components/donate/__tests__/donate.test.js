@@ -4,6 +4,7 @@ import Donate from "../Donate";
 import renderer from "react-test-renderer";
 import DonateCard from "../DonateCard";
 import { BrowserRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 afterEach(() => {
   cleanup();
 });
@@ -33,4 +34,47 @@ test("matches donate card snapshot", () => {
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
+});
+
+test("Test for filtering", () => {
+  render(<Donate />);
+
+  userEvent.selectOptions(
+    screen.getByTestId("dropdown"),
+    screen.getByRole("option", {
+      name: "united states",
+    })
+  );
+
+  expect(
+    screen.getByRole("option", {
+      name: "united states",
+    }).selected
+  ).toBeTruthy();
+
+  expect(
+    screen.getByRole("option", {
+      name: "united states",
+    }).selected
+  ).toBeTruthy();
+
+  expect(
+    screen.getByRole("option", {
+      name: "india",
+    }).selected
+  ).toBeFalsy();
+
+  expect(
+    screen.queryAllByText(/^Location: ((?!United States).)*$/i)
+  ).toHaveLength(0);
+
+  expect(
+    screen.queryAllByText(/^Location: United States$/i).length
+  ).toBeGreaterThan(0);
+
+  expect(
+    screen.getByRole("option", { name: "united states" })
+  ).toBeInTheDocument();
+
+  expect(screen.getAllByRole("option").length).toBe(10);
 });

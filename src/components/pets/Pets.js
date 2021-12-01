@@ -7,8 +7,8 @@ import Dog from "./doggo.jpg";
 import Cat from "./cat.jpg";
 import Horse from "./horse.jpg";
 import Rabbit from "./rabbit.jpg";
-import Random from "./random.png";
-import { Link, useRouteMatch } from "react-router-dom";
+// import Random from "./random.png";
+import { Link } from "react-router-dom";
 
 const linkData = [
   {
@@ -32,13 +32,12 @@ const linkData = [
     type: "rabbit",
   },
 ];
-const randomIndex = Math.floor(linkData.length * Math.random());
-const type = linkData[randomIndex].type;
-const randomPet = { img: Random, type };
-linkData.push(randomPet);
+// const randomIndex = Math.floor(linkData.length * Math.random());
+// const type = linkData[randomIndex].type;
+// const randomPet = { img: Random, type };
+// linkData.push(randomPet);
 
 export default function Pets() {
-  const { url } = useRouteMatch();
   return (
     <div className="pet__container">
       <h1>Adopt Your Buddy</h1>
@@ -47,7 +46,7 @@ export default function Pets() {
           <AnimalType
             img={pet.img}
             type={pet.type}
-            link={`${url}/${pet.type}`}
+            link={`${pet.type}`}
             key={pet.type}
           />
         ))}
