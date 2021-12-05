@@ -1,6 +1,6 @@
 on:
   schedule:
-  - cron: 50 18 * * SUN
+  - cron: 35 19 * * SUN
 name: Update
 jobs:
   package-update:
@@ -16,7 +16,6 @@ jobs:
         AUTHOR_NAME: redxzeta
         EXECUTE: "true"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        LOG_LEVEL: debug
         UPDATE_COMMAND: yarn
       with:
-        args: -u --packageFile package.json --loglevel verbose
+        args: upgrade --latest
