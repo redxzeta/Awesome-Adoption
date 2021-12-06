@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import Gallery from "../shared/Gallery";
@@ -20,6 +20,9 @@ import { lookUpPet } from "../../routes/API";
 import LoaderComponent from "../../utils/LoaderComponent";
 
 export default function PetInfo() {
+  const [loading, setLoading] = useState(false);
+  const [pet, setPet] = useState({});
+
   const { id } = useParams();
 
   const { tokenHeaders } = usePetAuth();
@@ -31,7 +34,15 @@ export default function PetInfo() {
     [id],
     tokenHeaders && tokenHeaders.headers
   );
-  const pet = data == null ? {} : data.animal;
+
+  useEffect(() => {
+    if (!data && !serverError) {
+      setLoading(true);
+    } else {
+      setLoading(isLoading);
+      setPet(data.animal);
+    }
+  }, [isLoading]);
 
   function handleShare(e) {
     e.preventDefault();
@@ -54,7 +65,7 @@ export default function PetInfo() {
   }
 
   return (
-    <LoaderComponent isLoading={isLoading} serverError={serverError}>
+    <LoaderComponent isLoading={loading} serverError={serverError}>
       <div className="petInfo">
         <h1>{nameCleaner(pet.name)}</h1>
         {pet.photos === undefined || pet.photos.length === 0 ? (
