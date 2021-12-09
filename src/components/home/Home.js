@@ -19,21 +19,22 @@ export default function Home() {
     );
   };
 
+  const fetchRandomPets = () => {
+    fetch(
+      `https://api.petfinder.com/v2/animals?limit=3&sort=random
+      `,
+      tokenHeaders
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setpetList(data.animals);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   useEffect(() => {
-    const fetchRandomPets = () => {
-      fetch(
-        `https://api.petfinder.com/v2/animals?limit=3&sort=random
-        `,
-        tokenHeaders
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setpetList(data.animals);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-    };
     fetchRandomPets();
   }, []);
 
@@ -50,6 +51,9 @@ export default function Home() {
           <Row>{renderCards()}</Row>
         </Container>
       </div>
+      <Button variant="primary" onClick={fetchRandomPets} className="refresh">
+        Refresh
+      </Button>
     </div>
   );
 }
