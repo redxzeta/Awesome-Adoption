@@ -1,21 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { rest, server } from "../../../testServer";
 import React from "react";
-
 import About from "../About";
-
-test("should fetch api and render list", async () => {
-  render(<About />);
-  expect(screen.getByRole("status")).toBeInTheDocument();
-  expect(screen.queryAllByAltText(/Contributor Avatar/i)).toHaveLength(0);
-  await waitFor(() =>
-    expect(screen.queryByRole("status")).not.toBeInTheDocument()
-  );
-  const conList = screen.getAllByAltText(/Contributor Avatar/i);
-  expect(conList.length).toBe(2);
-  expect(conList[0]).toHaveAccessibleName("abe Contributor Avatar");
-  expect(conList[1]).toHaveAccessibleName("label Contributor Avatar");
-});
+import { customRender } from "../../../swrconfigtest";
 
 test("should fetch api and expect error", async () => {
   server.use(
@@ -27,7 +14,7 @@ test("should fetch api and expect error", async () => {
     )
   );
 
-  render(<About />);
+  customRender(<About />);
   expect(screen.getByRole("status")).toBeInTheDocument();
   await waitFor(() =>
     expect(screen.queryByRole("status")).not.toBeInTheDocument()
@@ -36,6 +23,19 @@ test("should fetch api and expect error", async () => {
     name: /Error Loading/i,
     level: 1,
   });
-  // const errorTitle = await screen.getByTitle(/Error Loading/i);
+
   expect(errorTitle).toBeInTheDocument();
+});
+
+test("should fetch api and render list", async () => {
+  customRender(<About />);
+  expect(screen.getByRole("status")).toBeInTheDocument();
+  expect(screen.queryAllByAltText(/Contributor Avatar/i)).toHaveLength(0);
+  await waitFor(() =>
+    expect(screen.queryByRole("status")).not.toBeInTheDocument()
+  );
+  const conList = screen.getAllByAltText(/Contributor Avatar/i);
+  expect(conList.length).toBe(2);
+  expect(conList[0]).toHaveAccessibleName("abe Contributor Avatar");
+  expect(conList[1]).toHaveAccessibleName("label Contributor Avatar");
 });
