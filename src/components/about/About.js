@@ -5,13 +5,9 @@ import "./about.css";
 import YoutubeLogo from "./Youtube2.png";
 import DevPostLogo from "./devpost-modified.png";
 import GithubIcon from "./GitHub.png";
-import { githubURL } from "../../routes/API";
-import useFetch from "../../useHooks/useFetch";
-import LoaderComponent from "../../utils/LoaderComponent";
+import Contributors from "./Contributors";
 
 export default function About() {
-  const { data, isLoading, serverError } = useFetch("GET", githubURL);
-
   return (
     <div className="about__container">
       <section className="paragraph--section">
@@ -82,29 +78,7 @@ export default function About() {
       <div className="contributors-section">
         <h1>Contributors</h1>
         <div className="contributors" id="contributors">
-          <LoaderComponent isLoading={isLoading} serverError={serverError}>
-            {data &&
-              data.map((a) => (
-                <OverlayTrigger
-                  key={a.id}
-                  overlay={<Tooltip id="tooltip-disabled">{a.login}</Tooltip>}
-                >
-                  <a
-                    className="contributor-link"
-                    href={a.html_url}
-                    target="_blank"
-                    rel="noreferrer"
-                    data-testid="contributor-list"
-                  >
-                    <img
-                      className="contributor-avatar"
-                      src={a.avatar_url}
-                      alt={`${a.login} Contributor Avatar`}
-                    />
-                  </a>
-                </OverlayTrigger>
-              ))}
-          </LoaderComponent>
+          <Contributors />
         </div>
       </div>
     </div>

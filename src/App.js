@@ -35,21 +35,12 @@ export default function App() {
               <NavigationBar />
               <Container className="pawhub">
                 <Routes>
-                  <Route
-                    path="animal/:id"
-                    element={
-                      <PetLoading>
-                        {" "}
-                        <PetInfo />{" "}
-                      </PetLoading>
-                    }
-                  />
+                  <Route path="animal/:id" element={<PetInfo />} />
                   <Route
                     path="pets/:type"
                     element={
                       <PetLoading>
-                        {" "}
-                        <PetType />{" "}
+                        <PetType />
                       </PetLoading>
                     }
                   />
@@ -65,7 +56,6 @@ export default function App() {
                     path="reset-password"
                     element={
                       <PrivateRoute>
-                        {" "}
                         <ResetPassword />{" "}
                       </PrivateRoute>
                     }
