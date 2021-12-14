@@ -50,12 +50,14 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/about">
               About
             </Nav.Link>
-            <Nav.Link as={Link} to="/resources">
-              Resources
-            </Nav.Link>
-            <Nav.Link as={Link} to="/tips">
-              Tips
-            </Nav.Link>
+            <NavDropdown title="Resources" id="navbarScrollingDropdown">
+              <NavDropdown.Item as={Link} to="/resources">
+                Resources
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/tips">
+                Tips
+              </NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link as={Link} to="/donate">
               Donate
             </Nav.Link>
