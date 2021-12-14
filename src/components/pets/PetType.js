@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import LoadingSpinner from "../shared/Spinner";
+import LoadPlaceHolder from "../shared/PlaceHolderCard";
 import "./pets.css";
 import {
   Button,
@@ -208,7 +208,11 @@ export default function PetType() {
       </div>
       <Row className="mb-3 w-100 petList">
         {loading ? (
-          <LoadingSpinner />
+          <Row>
+            <LoadPlaceHolder />
+            <LoadPlaceHolder />
+            <LoadPlaceHolder />
+          </Row>
         ) : (
           petList &&
           petList.animals.map((pet, index) => <PetCard key={index} pet={pet} />)
