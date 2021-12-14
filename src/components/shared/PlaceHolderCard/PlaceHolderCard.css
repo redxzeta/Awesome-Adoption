@@ -1,0 +1,23 @@
+.card-container {
+  display: flex;
+}
+.card {
+  margin: 10px;
+  padding-top: 10px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  width: 20rem;
+  box-shadow: 5px 5px 13px -10px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+
+  color: #da4b4b;
+}
+
+.card__img {
+  background-color: gray;
+}

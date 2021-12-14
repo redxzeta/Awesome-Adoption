@@ -3,8 +3,8 @@ import { Button, Image, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Dog from "./dog.jpg";
 import "./home.css";
-import LoadingSpinner from "../shared/Spinner";
 import PetCard from "../layout/PetCard";
+import LoadPlaceHolder from "../shared/PlaceHolderCard";
 import { usePetAuth } from "../../context/TokenContext";
 
 export default function Home() {
@@ -15,7 +15,11 @@ export default function Home() {
     return petList ? (
       petList.map((pet, index) => <PetCard key={index} pet={pet} />)
     ) : (
-      <LoadingSpinner />
+      <Row>
+        <LoadPlaceHolder />
+        <LoadPlaceHolder />
+        <LoadPlaceHolder />
+      </Row>
     );
   };
 
