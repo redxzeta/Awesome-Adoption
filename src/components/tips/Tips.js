@@ -1,7 +1,8 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./tips.css";
+import AdoptionPet from "./adoption-pet.jpg";
 export default function Home() {
   return (
     <>
@@ -93,6 +94,8 @@ export default function Home() {
           little bit of thorough preparation, you can have your own success
           story when you adopt a dog.
         </h5>
+        <Image src={AdoptionPet} className="adoption__pet" alt="Adoption pet" />
+        <br></br>
         <Button as={Link} to="/pets" variant="primary">
           Adopt
         </Button>
