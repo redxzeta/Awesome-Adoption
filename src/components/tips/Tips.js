@@ -7,10 +7,8 @@ export default function Home() {
   return (
     <>
       <div className="tips__container">
-        <h1>
+        <h1 className={"mb-4"}>
           <u>Tips to adopting Pets</u>
-          <br></br>
-          <br></br>
         </h1>
         <p>
           <span>Lifestyle & Flexibility: </span>What is your current lifestyle
@@ -36,10 +34,8 @@ export default function Home() {
       <hr />
       {/* ------------------------------------------------- */}
       <div className="tips__container">
-        <h1>
+        <h1 className={"mb-4"}>
           <u>Final steps to guide you on how to best adopt or rehome a dog</u>
-          <br></br>
-          <br></br>
         </h1>
         <p>
           <ul>
