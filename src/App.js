@@ -10,6 +10,7 @@ import PetInfo from "./components/pets/PetInfo";
 import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 import Resources from "./components/resources/Resources";
+import Tips from "./components/tips/Tips";
 import Stories from "./components/stories/Stories";
 import NotFound from "./components/NotFound/NotFound";
 import Donate from "./components/donate/Donate";
@@ -47,6 +48,7 @@ export default function App() {
                   <Route path="pets" element={<Pets />} />
                   <Route path="about" element={<About />} />
                   <Route path="resources" element={<Resources />} />
+                  <Route path="tips" element={<Tips />} />
                   <Route path="donate" element={<Donate />} />
                   <Route path="stories" element={<Stories />} />
                   <Route path="register" element={<Register />} />
