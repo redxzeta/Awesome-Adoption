@@ -110,7 +110,7 @@ export default function PetInfo() {
         <div className="contact-info">
           <HiMail className="icon" />
           <Card.Title>Contact</Card.Title>
-          <Card.Text>
+          <Card.Text className="contact">
             <a
               href={`mailto:${pet.contact && pet.contact.email}`}
               target="_blank"
