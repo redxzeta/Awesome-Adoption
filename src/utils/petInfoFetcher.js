@@ -6,7 +6,12 @@ async function fetcher(url, tokenHeaders) {
       headers: tokenHeaders ? tokenHeaders.headers : "",
     });
     const data = await res.json();
-    return data.animal;
+    if (data.animal) {
+      return data.animal;
+    }
+    if (data.animals) {
+      return data.animals[0];
+    }
   } catch (e) {
     return null;
   }
