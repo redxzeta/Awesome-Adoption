@@ -43,13 +43,21 @@ export default function Home() {
       <div className="featured__pets">
         <h2>Featured Pets</h2>
         {error || !petList ? (
-          <Row>
-            <h5>Oops! An Error Occurred Getting The Pets</h5>
-          </Row>
-        ) : null}
-        <Container>
-          <Row>{renderCards()}</Row>
-        </Container>
+          <Container>
+            <Row>
+              <h5>Oops! An Error Occurred Getting The Pets</h5>
+            </Row>
+            <Row>
+              <h6>
+                Apparently we had an internal error, please try again later!
+              </h6>
+            </Row>
+          </Container>
+        ) : (
+          <Container>
+            <Row>{renderCards()}</Row>
+          </Container>
+        )}
       </div>
       <Button
         variant="primary"
