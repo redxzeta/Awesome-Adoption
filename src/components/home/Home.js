@@ -44,7 +44,7 @@ export default function Home() {
         <h2>Featured Pets</h2>
         {error || !petList ? (
           <Row>
-            <h5>Oops! An Error Occurred Getting The Pets :(</h5>
+            <h5>Oops! An Error Occurred Getting The Pets</h5>
           </Row>
         ) : null}
         <Container>
@@ -54,6 +54,7 @@ export default function Home() {
       <Button
         variant="primary"
         className="refresh"
+        data-testid="btn-refresh"
         onClick={async () => {
           mutate(randomPetsList, { ...error, ...petList }, false);
         }}
