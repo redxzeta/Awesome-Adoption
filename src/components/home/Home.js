@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button, Image, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Dog from "./dog.jpg";
@@ -6,41 +6,32 @@ import "./home.css";
 import PetCard from "../layout/PetCard";
 import LoadPlaceHolder from "../shared/PlaceHolderCard";
 import { usePetAuth } from "../../context/TokenContext";
+import { randomPetsList } from "../../routes/API";
+import { fetcher } from "../../utils/homePageFetcher";
+import useSWR, { useSWRConfig } from "swr";
 
 export default function Home() {
-  const [petList, setpetList] = useState("");
   const { tokenHeaders } = usePetAuth();
+  const { mutate } = useSWRConfig();
+
+  const { error, data: petList } = useSWR(
+    [tokenHeaders ? randomPetsList : null, tokenHeaders],
+    fetcher
+  );
 
   const renderCards = () => {
-    return petList ? (
+    return petList && !error ? (
       petList.map((pet, index) => <PetCard key={index} pet={pet} />)
     ) : (
-      <Row>
-        <LoadPlaceHolder />
-        <LoadPlaceHolder />
-        <LoadPlaceHolder />
-      </Row>
+      <Container>
+        <Row>
+          <LoadPlaceHolder />
+          <LoadPlaceHolder />
+          <LoadPlaceHolder />
+        </Row>
+      </Container>
     );
   };
-
-  const fetchRandomPets = () => {
-    fetch(
-      `https://api.petfinder.com/v2/animals?limit=3&sort=random
-      `,
-      tokenHeaders
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setpetList(data.animals);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-  useEffect(() => {
-    fetchRandomPets();
-  }, []);
 
   return (
     <div className="home__container">
@@ -51,11 +42,22 @@ export default function Home() {
       </Button>
       <div className="featured__pets">
         <h2>Featured Pets</h2>
+        {error || !petList ? (
+          <Row>
+            <h5>Oops! An Error Occurred Getting The Pets :(</h5>
+          </Row>
+        ) : null}
         <Container>
           <Row>{renderCards()}</Row>
         </Container>
       </div>
-      <Button variant="primary" onClick={fetchRandomPets} className="refresh">
+      <Button
+        variant="primary"
+        className="refresh"
+        onClick={async () => {
+          mutate(randomPetsList, { ...error, ...petList }, false);
+        }}
+      >
         Refresh
       </Button>
     </div>
