@@ -38,6 +38,7 @@ const linkData = [
 ];
 
 const randomPetURL = "https://api.petfinder.com/v2/animals?limit=1&sort=random";
+let randomPetFound = false;
 // const randomIndex = Math.floor(linkData.length * Math.random());
 // const type = linkData[randomIndex].type;
 // const randomPet = { img: Random, type };
@@ -78,31 +79,9 @@ export default function Pets() {
     }
     return <h1>No pet data</h1>;
   }
-  if (!pet && !error) {
-    return (
-      <div className="pet__container">
-        <h1>Adopt Your Buddy</h1>
-        <Row>
-          {linkData.map((pet) => (
-            <AnimalType
-              img={pet.img}
-              type={pet.type}
-              link={`${pet.type}`}
-              key={pet.type}
-            />
-          ))}
-          <Spinner
-            animation="grow"
-            variant="primary"
-            role="status"
-            data-testid="spinner-load"
-            style={{ padding: "100px", margin: "auto auto" }}
-          >
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </Row>
-      </div>
-    );
+
+  if (pet) {
+    randomPetFound = true;
   }
 
   return (
@@ -117,12 +96,7 @@ export default function Pets() {
             key={pet.type}
           />
         ))}
-        <AnimalType
-          img={randomPetImage}
-          type={pet.name}
-          link={"/animal/" + pet.id}
-          key={pet.type}
-        />
+        <RandomPet randomPetImage={randomPetImage} pet={pet} />
       </Row>
     </div>
   );
@@ -147,3 +121,22 @@ export const AnimalType = ({ type, img, link }) => (
     </Button>
   </Col>
 );
+
+export const RandomPet = ({ randomPetImage, pet }) =>
+  randomPetFound ? (
+    <AnimalType
+      img={randomPetImage}
+      type={pet.name}
+      link={"/animal/" + pet.id}
+      key={pet.type}
+    />
+  ) : (
+    <Spinner
+      className="spinner_loading"
+      animation="grow"
+      variant="primary"
+      role="status"
+    >
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+  );
