@@ -1,9 +1,10 @@
 import { Fragment } from "react";
-import { Form, Button, Container, Spinner } from "react-bootstrap";
+import { Form, Container } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { useSignUp } from "react-supabase";
 import { useAuth } from "../../context/SupaContext";
 import useForm from "../../useHooks/useForm";
+import { FetchingButton } from "../layout/Buttons/FetchingButton";
 
 import "./register.css";
 
@@ -17,19 +18,13 @@ const Register = () => {
 
   const [{ error, fetching, user }, signUp] = useSignUp();
 
-  const onClickSignUp = async () => await signUp(form);
+  const onClickSignUp = async () => signUp(form);
 
   const onSubmit = (e) => {
     e.preventDefault();
     onClickSignUp();
   };
-  const errorForm = error ? (
-    <small className="text-danger" test-id="formErrorMessage">
-      {error.message}
-    </small>
-  ) : (
-    ""
-  );
+
   const { session } = useAuth();
   if (session) return <Navigate to="/" />;
   return (
@@ -65,28 +60,17 @@ const Register = () => {
                   value={form.password}
                 />
               </Form.Group>
-              <Button
-                className="register__button"
-                variant="primary"
+              <FetchingButton
+                fetching={fetching}
+                action="Submit"
                 type="submit"
-                disabled={fetching}
-              >
-                {fetching ? (
-                  <Fragment>
-                    Loading...
-                    <Spinner
-                      as="span"
-                      animation="border"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                  </Fragment>
-                ) : (
-                  "Submit"
-                )}
-              </Button>
-              {errorForm}
+                className="register__button"
+              />
+              {error && (
+                <small className="text-danger" test-id="formErrorMessage">
+                  {error.message}
+                </small>
+              )}
             </Form>
           </Fragment>
         )}

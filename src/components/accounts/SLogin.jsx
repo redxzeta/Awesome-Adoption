@@ -1,9 +1,8 @@
-import { Fragment } from "react";
-import { Form, Button, Container, Spinner } from "react-bootstrap";
+import { Form, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useSignIn } from "react-supabase";
-
 import useForm from "../../useHooks/useForm";
+import { FetchingButton } from "../layout/Buttons/FetchingButton";
 
 const initState = {
   email: "",
@@ -24,11 +23,6 @@ const SLogin = () => {
       navigate("/");
     }
   };
-  const errorForm = error ? (
-    <small className="text-danger">{error.message}</small>
-  ) : (
-    ""
-  );
 
   return (
     <Container className="register__container" flud="md">
@@ -59,28 +53,17 @@ const SLogin = () => {
               value={form.password}
             />
           </Form.Group>
-          <Button
-            className="register__button"
-            variant="primary"
+          <FetchingButton
+            fetching={fetching}
+            action="Submit"
             type="submit"
-            disabled={fetching}
-          >
-            {fetching ? (
-              <Fragment>
-                Loading...
-                <Spinner
-                  as="span"
-                  animation="border"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                />
-              </Fragment>
-            ) : (
-              "Submit"
-            )}
-          </Button>
-          {errorForm}
+            className="register__button"
+          />
+          {error && (
+            <small className="text-danger" test-id="formErrorMessage">
+              {error.message}
+            </small>
+          )}
         </Form>
       </div>
     </Container>
