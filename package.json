@@ -1,7 +1,11 @@
 {
-  "name": "pet-adoption",
-  "version": "0.1.0",
-  "private": true,
+  "name": "pawternity-hub",
+  "version": "0.2.0",
+  "license": "MIT",
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^1.28.5",
     "@testing-library/jest-dom": "^5.16.1",
