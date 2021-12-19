@@ -8,7 +8,7 @@ export default function NoPetsCard() {
     <Col md={4} xs={12} className="card-container">
       <Card className="card">
         <Card.Header className="card__header">
-          <span className="card__title">No Pets Found!</span>
+          <span className="card__title">No Pets Found In Your Area!</span>
         </Card.Header>
         <Card.Img className="card__img" src={missing} />
         <Card.Body className="card__body">
