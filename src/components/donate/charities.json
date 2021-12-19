@@ -94,5 +94,13 @@
     "location": "Thailand",
     "founded": 2013,
     "mission": "Rescue P.A.W.S.’ mission is to reduce the overpopulation of dogs and cats in Thailand, improve the overall well-being of the street animals in our province, and create a healthy relationship between the human and animal communities. We believe we will achieve this through sterilization, vaccination, and education. We aim to use our resources effectively and efficiently, keeping in mind our mission every day and with everything we do."
-  }
+  },
+  {
+    "name": "Help Animal India",
+    "website": "https://helpanimalsindia.org/",
+    "logo": "https://helpanimalsindia.org/assets/build/img/logo.png",
+    "location": "India",
+    "founded": 1998,
+    "mission": "Help Animals India strives not only to achieve immediate assistance for India’s animals, but to nurture an enduring culture of protecting animals in India. This builds capacity through education, consultation, networking, and financial support, which enables these groups to fulfill their aims, grow, and most importantly, help more animals."
+  },
 ]
