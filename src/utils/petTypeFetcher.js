@@ -11,7 +11,8 @@ async function fetcher(url, tokenHeaders) {
       error.status = res.status;
       throw error;
     }
-    return await res.json();
+    const data = await res.json();
+    return data;
   } catch (e) {
     return null;
   }
