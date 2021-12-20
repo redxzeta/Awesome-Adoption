@@ -39,7 +39,7 @@ export default function PetType() {
       tokenHeaders,
     ],
     fetcher,
-    { revalidateOnFocus: false }
+    { revalidateOnFocus: true }
   );
 
   // If there is no data or error, show the loading placeholder
@@ -61,6 +61,7 @@ export default function PetType() {
     setCurrentPage(1);
   }, [type, petLocation]);
 
+  console.log(petList);
   // Conditional rendering for the the pets cards
   const renderPetList = () => {
     let petListItems;
