@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Card, Button, Spinner } from "react-bootstrap";
 import Gallery from "../shared/Gallery";
 import Placeholder from "./placeholder.jpg";
-import nameCleaner from "../../utils/nameCleaner";
+import { nameCleaner } from "../../utils/utilsCleaner/index";
 import { fetcher } from "../../utils/petInfoFetcher";
 import {
   BsFillEnvelopeOpenFill,
