@@ -1,15 +1,18 @@
 /*  eslint-disable */
 export const nameCleaner = (str) => {
   if (str !== undefined) {
-    return str
-      .replace(/(^\w+:|^)\/\//, "")
-      .replace(/&#039;/gim, "'")
-      .replace(/&#39;/gim, "'")
-      .replace(/&quot;/gim, '"')
-      .replace(/&rsquo;/gim, "'")
-      .replace(/&amp;/gim, "&")
-      .replace(/&ldquo;/gim, '"')
-      .replace(/&hellip;/gim, "...");
+    return (
+      str
+        // Using replace and regex to change HTML source code to plain text
+        .replace(/(^\w+:|^)\/\//, "")
+        .replace(/&#039;/gim, "'")
+        .replace(/&#39;/gim, "'")
+        .replace(/&quot;/gim, '"')
+        .replace(/&rsquo;/gim, "'")
+        .replace(/&amp;/gim, "&")
+        .replace(/&ldquo;/gim, '"')
+        .replace(/&hellip;/gim, "...")
+    );
   }
 
   return str;
