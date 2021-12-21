@@ -2,8 +2,7 @@ import React from "react";
 import { Card, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./UserCard.css";
-import nameCleaner from "../../utils/nameCleaner";
-import storyCleaner from "../../utils/storyCleaner";
+import { nameCleaner, storyCleaner } from "../../utils/utilsCleaner/index";
 
 export default function UserCard(props) {
   const { id, photos, name, description, story } = props.userData;
