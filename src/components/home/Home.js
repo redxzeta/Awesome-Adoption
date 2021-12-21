@@ -8,30 +8,15 @@ import LoadPlaceHolder from "../shared/PlaceHolderCard";
 import { usePetAuth } from "../../context/TokenContext";
 import { randomPetsList } from "../../routes/API";
 import { fetcher } from "../../utils/homePageFetcher";
-import useSWR, { useSWRConfig } from "swr";
+import useSWR from "swr";
 
 export default function Home() {
   const { tokenHeaders } = usePetAuth();
-  const { mutate } = useSWRConfig();
-
-  const { error, data: petList } = useSWR(
-    [tokenHeaders ? randomPetsList : null, tokenHeaders],
-    fetcher
-  );
-
-  const renderCards = () => {
-    return petList && !error ? (
-      petList.map((pet, index) => <PetCard key={index} pet={pet} />)
-    ) : (
-      <Container>
-        <Row>
-          <LoadPlaceHolder />
-          <LoadPlaceHolder />
-          <LoadPlaceHolder />
-        </Row>
-      </Container>
-    );
-  };
+  const {
+    error,
+    data: petList,
+    mutate,
+  } = useSWR([tokenHeaders ? randomPetsList : null, tokenHeaders], fetcher);
 
   return (
     <div className="home__container">
@@ -42,29 +27,34 @@ export default function Home() {
       </Button>
       <div className="featured__pets">
         <h2>Featured Pets</h2>
-        {error || !petList ? (
+        {error ? (
+          <h5>Oops! An Error Occurred Getting The Pets</h5>
+        ) : !petList ? (
           <Container>
             <Row>
-              <h5>Oops! An Error Occurred Getting The Pets</h5>
+              <h4 role="status">Loading...</h4>
             </Row>
             <Row>
-              <h6>
-                Apparently we had an internal error, please try again later!
-              </h6>
+              <LoadPlaceHolder />
+              <LoadPlaceHolder />
+              <LoadPlaceHolder />
             </Row>
           </Container>
         ) : (
           <Container>
-            <Row>{renderCards()}</Row>
+            <Row>
+              {petList.map((pet, index) => (
+                <PetCard key={index} pet={pet} />
+              ))}
+            </Row>
           </Container>
         )}
       </div>
       <Button
         variant="primary"
         className="refresh"
-        data-testid="btn-refresh"
         onClick={async () => {
-          mutate(randomPetsList, { ...error, ...petList }, false);
+          mutate(petList, { error, petList }, false);
         }}
       >
         Refresh

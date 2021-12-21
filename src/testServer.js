@@ -17,6 +17,74 @@ const contributors = [
     avatar_url: PlaceImage,
   },
 ];
+
+// mock pet list
+const petList = [
+  {
+    id: 53910428,
+    url: "https://www.petfinder.com/dog/harley-53910428/mi/allegan/allegan-county-animal-shelter-operated-by-wishbone-pet-rescue-alliance-mi299/?referrer_id=fb5d8374-0e7d-46e3-9214-3d9b8f6ba774",
+    type: "Dog",
+    species: "Dog",
+    breeds: {
+      primary: "Labrador Retriever",
+      secondary: null,
+      mixed: false,
+      unknown: false,
+    },
+    name: "Harley",
+    primary_photo_cropped: {
+      small:
+        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53910428/1/?bust=1639594992&width=300",
+      medium:
+        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53910428/1/?bust=1639594992&width=450",
+      large:
+        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53910428/1/?bust=1639594992&width=600",
+      full: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53910428/1/?bust=1639594992",
+    },
+  },
+  {
+    id: 53922194,
+    url: "https://www.petfinder.com/dog/israel-53922194/tx/houston/city-of-houston-barc-animal-shelter-and-adoptions-tx973/?referrer_id=fb5d8374-0e7d-46e3-9214-3d9b8f6ba774",
+    type: "Dog",
+    species: "Dog",
+    breeds: {
+      primary: "Labrador Retriever",
+      secondary: "Mixed Breed",
+    },
+    tags: [],
+    name: "ISRAEL",
+    primary_photo_cropped: {
+      small:
+        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53922194/1/?bust=1639698824&width=300",
+      medium:
+        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53922194/1/?bust=1639698824&width=450",
+      large:
+        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53922194/1/?bust=1639698824&width=600",
+      full: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53922194/1/?bust=1639698824",
+    },
+  },
+  {
+    id: 53305470,
+    url: "https://www.petfinder.com/dog/andy-and-mandy-53305470/az/mesa/angels-for-paws-animal-rescue-az715/?referrer_id=fb5d8374-0e7d-46e3-9214-3d9b8f6ba774",
+    type: "Dog",
+    species: "Dog",
+    breeds: {
+      primary: "Chihuahua",
+      secondary: null,
+    },
+    name: "Andy & Mandy",
+    primary_photo_cropped: {
+      small:
+        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53305470/1/?bust=1634610254&width=300",
+      medium:
+        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53305470/1/?bust=1634610254&width=450",
+      large:
+        "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53305470/1/?bust=1634610254&width=600",
+      full: "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53305470/1/?bust=1634610254",
+    },
+  },
+];
+
 const server = setupServer(
   rest.get(
     "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",
@@ -25,7 +93,7 @@ const server = setupServer(
     }
   ),
   rest.get("https://api.petfinder.com/v2/animals", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(contributors));
+    return res(ctx.status(200), ctx.json(petList));
   }),
   //Login
   rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
