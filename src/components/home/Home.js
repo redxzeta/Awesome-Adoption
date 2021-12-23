@@ -32,7 +32,7 @@ export default function Home() {
         ) : !petList ? (
           <Container>
             <Row>
-              <h4 role="status">Loading...</h4>
+              <h4>Loading...</h4>
             </Row>
             <Row>
               <LoadPlaceHolder />
