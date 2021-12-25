@@ -34,7 +34,7 @@ export default function App() {
           <AuthProvider>
             <Router>
               <NavigationBar />
-              <Container className="pawhub">
+              <Container fluid className="pawhub">
                 <Routes>
                   <Route path="animal/:id" element={<PetInfo />} />
                   <Route
