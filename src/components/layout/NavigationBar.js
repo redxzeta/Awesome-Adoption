@@ -37,7 +37,7 @@ export default function NavigationBar() {
         : 0;
       setNumFavorites(numFavorites);
     }, []);
-  }, 5000);
+  }, []);
 
   return (
     <Navbar bg="primary" expand="lg">
