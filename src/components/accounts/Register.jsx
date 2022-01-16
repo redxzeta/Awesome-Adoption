@@ -28,7 +28,7 @@ const Register = () => {
   const { session } = useAuth();
   if (session) return <Navigate to="/" />;
   return (
-    <Container className="register__container" flud="md">
+    <Container className="register__container pawhub" flud="md">
       <div className="register__container_form">
         {user ? (
           <Success />

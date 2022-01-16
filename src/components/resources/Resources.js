@@ -1,10 +1,10 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./resources.css";
 export default function Home() {
   return (
-    <>
+    <Container className="pawhub">
       <div className="resources__container">
         <h1>
           <u>Adopting Pets</u>
@@ -113,6 +113,6 @@ export default function Home() {
           Adopt
         </Button>
       </div>
-    </>
+    </Container>
   );
 }

@@ -1,11 +1,11 @@
 import React from "react";
-import { Button, Image } from "react-bootstrap";
+import { Button, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./tips.css";
 import AdoptionPet from "./adoption-pet.jpg";
 export default function Home() {
   return (
-    <>
+    <Container className="pawhub">
       <div className="tips__container ">
         <h1 className="mb-4 text-decoration-underline">
           Tips to adopting Pets
@@ -102,6 +102,6 @@ export default function Home() {
           Adopt
         </Button>
       </div>
-    </>
+    </Container>
   );
 }
