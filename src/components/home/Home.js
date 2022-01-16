@@ -32,41 +32,40 @@ export default function Home() {
           Adopt
         </Button>
         <div className="featured__pets">
-        <h2>Featured Pets</h2>
-        {error ? (
-          <h5>Oops! An Error Occurred Getting The Pets</h5>
-        ) : !petList ? (
-          <Container>
-            <Row>
-              <h4>Loading...</h4>
-            </Row>
-            <Row>
-              <LoadPlaceHolder />
-              <LoadPlaceHolder />
-              <LoadPlaceHolder />
-            </Row>
-          </Container>
-        ) : (
-          <Container>
-            <Row>
-              {petList.map((pet, index) => (
-                <PetCard key={index} pet={pet} />
-              ))}
-            </Row>
-          </Container>
-        )}
-      </div>
-      <Button
-        variant="primary"
-        className="refresh"
-        onClick={async () => {
-          mutate(petList, { error, petList }, false);
-        }}
-      >
-        Refresh
-      </Button>
+          <h2>Featured Pets</h2>
+          {error ? (
+            <h5>Oops! An Error Occurred Getting The Pets</h5>
+          ) : !petList ? (
+            <Container>
+              <Row>
+                <h4>Loading...</h4>
+              </Row>
+              <Row>
+                <LoadPlaceHolder />
+                <LoadPlaceHolder />
+                <LoadPlaceHolder />
+              </Row>
+            </Container>
+          ) : (
+            <Container>
+              <Row>
+                {petList.map((pet, index) => (
+                  <PetCard key={index} pet={pet} />
+                ))}
+              </Row>
+            </Container>
+          )}
+        </div>
+        <Button
+          variant="primary"
+          className="refresh"
+          onClick={async () => {
+            mutate(petList, { error, petList }, false);
+          }}
+        >
+          Refresh
+        </Button>
       </div>
     </>
-
   );
 }
