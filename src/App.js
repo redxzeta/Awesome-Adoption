@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import Home from "./components/home/Home";
 import NavigationBar from "./components/layout/NavigationBar";
 import "./App.css";
