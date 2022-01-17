@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import NavigationBar from "./components/layout/NavigationBar";
@@ -35,7 +34,7 @@ export default function App() {
           <AuthProvider>
             <Router>
               <NavigationBar />
-              <Container className="pawhub">
+                <Container className="pawhub">
                 <Routes>
                   <Route path="animal/:id" element={<PetInfo />} />
                   <Route

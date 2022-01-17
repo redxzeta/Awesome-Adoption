@@ -10,6 +10,7 @@ import {
   Row,
   Pagination,
   Alert,
+  Container,
 } from "react-bootstrap";
 import { postcodeValidator } from "postcode-validator";
 import PetCard from "../layout/PetCard";
@@ -177,55 +178,59 @@ export default function PetType() {
     </Alert>
   );
   return (
-    <div className="petList__container">
-      <h1>List Of {type} Buddies</h1>
+    <Container className="pawhub">
+      <div className="petList__container">
+        <h1>List Of {type} Buddies</h1>
 
-      <div className="inputContainer">
-        <InputGroup size="md" className="mb-3">
-          <InputGroup.Text as="label" id="zipcode-group">
-            Enter ZipCode:
-          </InputGroup.Text>
-          <FormControl
-            ref={inputCode}
-            aria-label="zipcode"
-            type="text"
-            pattern="[0-9]{5}"
-            aria-describedby="zipcode-group"
-            value={code}
-            name="zipcode"
-            onChange={(e) => checkValidation(e)}
-          />
-          <Button disabled={goBtnDisabled} onClick={search}>
-            Go
+        <div className="inputContainer">
+          <InputGroup size="md" className="mb-3">
+            <InputGroup.Text as="label" id="zipcode-group">
+              Enter ZipCode:
+            </InputGroup.Text>
+            <FormControl
+              ref={inputCode}
+              aria-label="zipcode"
+              type="text"
+              pattern="[0-9]{5}"
+              aria-describedby="zipcode-group"
+              value={code}
+              name="zipcode"
+              onChange={(e) => checkValidation(e)}
+            />
+            <Button disabled={goBtnDisabled} onClick={search}>
+              Go
+            </Button>
+          </InputGroup>
+          {showErrorAlert && errorAlert}
+          <Button className="mb-3" onClick={findByLocation}>
+            Use your location
           </Button>
-        </InputGroup>
-        {showErrorAlert && errorAlert}
-        <Button className="mb-3" onClick={findByLocation}>
-          Use your location
-        </Button>
 
-        {validCodeError && <Alert variant="danger">{validCodeError}</Alert>}
-      </div>
-      <Row className="mb-3 w-100 petList">
-        {loading ? (
-          <Row>
-            <LoadPlaceHolder />
-            <LoadPlaceHolder />
-            <LoadPlaceHolder />
-          </Row>
-        ) : (
-          petList &&
-          petList.animals.map((pet, index) => <PetCard key={index} pet={pet} />)
-        )}
-      </Row>
-      {!loading && (
-        <Row>
-          <Col md={12} xs={12}>
-            <Pagination>{renderPagination()}</Pagination>
-          </Col>
+          {validCodeError && <Alert variant="danger">{validCodeError}</Alert>}
+        </div>
+        <Row className="mb-3 w-100 petList">
+          {loading ? (
+            <Row>
+              <LoadPlaceHolder />
+              <LoadPlaceHolder />
+              <LoadPlaceHolder />
+            </Row>
+          ) : (
+            petList &&
+            petList.animals.map((pet, index) => (
+              <PetCard key={index} pet={pet} />
+            ))
+          )}
         </Row>
-      )}
-      <br />
-    </div>
+        {!loading && (
+          <Row>
+            <Col md={12} xs={12}>
+              <Pagination>{renderPagination()}</Pagination>
+            </Col>
+          </Row>
+        )}
+        <br />
+      </div>
+    </Container>
   );
 }

@@ -25,7 +25,7 @@ const SLogin = () => {
   };
 
   return (
-    <Container className="register__container" flud="md">
+    <Container className="register__container pawhub" flud="md">
       <div className="register__container_form">
         <h1 className="register__title">Login</h1>
         <Form className="register__form" onSubmit={onSubmit}>

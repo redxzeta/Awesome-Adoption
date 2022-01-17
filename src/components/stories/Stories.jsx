@@ -1,6 +1,6 @@
 import userData from "./UserData";
 import { Link } from "react-router-dom";
-import { Form, Row, Button, Modal } from "react-bootstrap";
+import { Form, Row, Button, Modal, Container } from "react-bootstrap";
 import UserCard from "../layout/UserCard";
 import { useState } from "react";
 import { useInsert } from "react-supabase";
@@ -48,101 +48,106 @@ export default function Stories() {
   };
 
   return (
-    <div className="stories">
-      <div className="main_title">
-        <h1>User Story</h1>
-        {user ? (
-          <Button className="story_btn" onClick={handleShow}>
-            Create your Story
-          </Button>
-        ) : (
-          <Button className="story_btn" as={Link} to={"/login"}>
-            Login
-          </Button>
-        )}
+    <Container className="pawhub">
+      <div className="stories">
+        <div className="main_title">
+          <h1>User Story</h1>
+          {user ? (
+            <Button className="story_btn" onClick={handleShow}>
+              Create your Story
+            </Button>
+          ) : (
+            <Button className="story_btn" as={Link} to={"/login"}>
+              Login
+            </Button>
+          )}
+        </div>
+        <Row className="mb-2 w-100 petList">
+          {userData &&
+            userData.map((u) => <UserCard key={u.id} userData={u} />)}
+        </Row>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Create Your Story</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="formContainer">
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="form.title">
+                  <Form.Label className="str-form-label">Title</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="form.description">
+                  <Form.Label className="str-form-label">
+                    Description
+                  </Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    value={desc}
+                    name="desc"
+                    onChange={(e) => setDesc(e.target.value)}
+                    rows={5}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="form.country">
+                  <Form.Label className="str-form-label">Country</Form.Label>
+                  <CountryDropdown
+                    className="country"
+                    name="country"
+                    value={country}
+                    onChange={(val) => setCountry(val)}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="form.region">
+                  <Form.Label className="str-form-label">Region</Form.Label>
+                  <RegionDropdown
+                    className="region"
+                    name="region"
+                    blankOptionLabel="No Country Selected"
+                    country={country}
+                    value={region}
+                    onChange={(val) => setRegion(val)}
+                    required
+                  />
+                </Form.Group>
+                <br />
+                <hr />
+                <div className="btnContainer">
+                  <button className="mBtn clearBtn" onClick={clearInput}>
+                    Clear
+                  </button>
+                  <button className="mBtn closeBtn" onClick={handleClose}>
+                    Close
+                  </button>
+                  <FetchingButton
+                    fetching={fetching}
+                    action="Save"
+                    type="submit"
+                    className="mBtn saveBtn"
+                  />
+                </div>
+              </Form>
+            </div>
+          </Modal.Body>
+          {err && (
+            <div className="alert alert-danger" role="alert">
+              {err}
+            </div>
+          )}
+        </Modal>
       </div>
-      <Row className="mb-2 w-100 petList">
-        {userData && userData.map((u) => <UserCard key={u.id} userData={u} />)}
-      </Row>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Create Your Story</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="formContainer">
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="form.title">
-                <Form.Label className="str-form-label">Title</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group controlId="form.description">
-                <Form.Label className="str-form-label">Description</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  value={desc}
-                  name="desc"
-                  onChange={(e) => setDesc(e.target.value)}
-                  rows={5}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group controlId="form.country">
-                <Form.Label className="str-form-label">Country</Form.Label>
-                <CountryDropdown
-                  className="country"
-                  name="country"
-                  value={country}
-                  onChange={(val) => setCountry(val)}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group controlId="form.region">
-                <Form.Label className="str-form-label">Region</Form.Label>
-                <RegionDropdown
-                  className="region"
-                  name="region"
-                  blankOptionLabel="No Country Selected"
-                  country={country}
-                  value={region}
-                  onChange={(val) => setRegion(val)}
-                  required
-                />
-              </Form.Group>
-              <br />
-              <hr />
-              <div className="btnContainer">
-                <button className="mBtn clearBtn" onClick={clearInput}>
-                  Clear
-                </button>
-                <button className="mBtn closeBtn" onClick={handleClose}>
-                  Close
-                </button>
-                <FetchingButton
-                  fetching={fetching}
-                  action="Save"
-                  type="submit"
-                  className="mBtn saveBtn"
-                />
-              </div>
-            </Form>
-          </div>
-        </Modal.Body>
-        {err && (
-          <div className="alert alert-danger" role="alert">
-            {err}
-          </div>
-        )}
-      </Modal>
-    </div>
+    </Container>
   );
 }
