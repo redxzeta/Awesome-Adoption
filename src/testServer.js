@@ -2,7 +2,7 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import PlaceImage from "./components/about/__tests__/placeholder50px.png";
 import { createClient } from "@supabase/supabase-js";
-import { githubURL } from "./routes/API";
+
 const contributors = [
   {
     id: 1,
@@ -17,6 +17,7 @@ const contributors = [
     avatar_url: PlaceImage,
   },
 ];
+
 const server = setupServer(
   rest.get(
     "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",

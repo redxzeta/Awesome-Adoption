@@ -32,7 +32,7 @@ const ForgotPassword = () => {
   if (session) return <Navigate to="/" />;
 
   return (
-    <Container className="register__container" flud="md">
+    <Container className="register__container pawhub" flud="md">
       <div className="register__container_form">
         <Fragment>
           <h1 className="register__title">Reset Password</h1>

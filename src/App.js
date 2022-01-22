@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import NavigationBar from "./components/layout/NavigationBar";
@@ -10,6 +9,7 @@ import PetInfo from "./components/pets/PetInfo";
 import Footer from "./components/layout/Footer";
 import About from "./components/about/About";
 import Resources from "./components/resources/Resources";
+import Tips from "./components/tips/Tips";
 import Stories from "./components/stories/Stories";
 import NotFound from "./components/NotFound/NotFound";
 import Donate from "./components/donate/Donate";
@@ -33,54 +33,47 @@ export default function App() {
           <AuthProvider>
             <Router>
               <NavigationBar />
-              <Container className="pawhub">
-                <Routes>
-                  <Route path="animal/:id" element={<PetInfo />} />
-                  <Route
-                    path="pets/:type"
-                    element={
-                      <PetLoading>
-                        <PetType />
-                      </PetLoading>
-                    }
-                  />
-                  <Route path="pets" element={<Pets />} />
-                  <Route path="about" element={<About />} />
-                  <Route path="resources" element={<Resources />} />
-                  <Route path="donate" element={<Donate />} />
-                  <Route path="stories" element={<Stories />} />
-                  <Route path="register" element={<Register />} />
-                  <Route path="login" element={<SLogin />} />
-                  <Route path="forgot-password" element={<ForgotPassword />} />
-                  <Route
-                    path="reset-password"
-                    element={
-                      <PrivateRoute>
-                        <ResetPassword />{" "}
-                      </PrivateRoute>
-                    }
-                  />
-                  <Route
-                    path="profile"
-                    element={
-                      <SupaLoading>
-                        {" "}
-                        <Profile />{" "}
-                      </SupaLoading>
-                    }
-                  />
-                  <Route
-                    path="/"
-                    element={
-                      <PetLoading>
-                        {" "}
-                        <Home />{" "}
-                      </PetLoading>
-                    }
-                  />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Container>
+
+              <Routes>
+                <Route path="animal/:id" element={<PetInfo />} />
+                <Route
+                  path="pets/:type"
+                  element={
+                    <PetLoading>
+                      <PetType />
+                    </PetLoading>
+                  }
+                />
+                <Route path="pets" element={<Pets />} />
+                <Route path="about" element={<About />} />
+                <Route path="resources" element={<Resources />} />
+                <Route path="tips" element={<Tips />} />
+                <Route path="donate" element={<Donate />} />
+                <Route path="stories" element={<Stories />} />
+                <Route path="register" element={<Register />} />
+                <Route path="login" element={<SLogin />} />
+                <Route path="forgot-password" element={<ForgotPassword />} />
+                <Route
+                  path="reset-password"
+                  element={
+                    <PrivateRoute>
+                      <ResetPassword />{" "}
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="profile"
+                  element={
+                    <SupaLoading>
+                      {" "}
+                      <Profile />{" "}
+                    </SupaLoading>
+                  }
+                />
+                <Route path="/" element={<Home />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+
               <Footer />
             </Router>
           </AuthProvider>

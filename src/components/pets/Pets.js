@@ -1,6 +1,5 @@
 import React from "react";
-import { Row, Col, Image, Button, Spinner } from "react-bootstrap";
-
+import { Row, Col, Image, Button, Container } from "react-bootstrap";
 import "./pets.css";
 import Bird from "./bird.jpg";
 import Dog from "./doggo.jpg";
@@ -85,20 +84,21 @@ export default function Pets() {
   }
 
   return (
-    <div className="pet__container">
-      <h1>Adopt Your Buddy</h1>
-      <Row>
-        {linkData.map((pet) => (
-          <AnimalType
-            img={pet.img}
-            type={pet.type}
-            link={`${pet.type}`}
-            key={pet.type}
-          />
-        ))}
-        <RandomPet randomPetImage={randomPetImage} pet={pet} />
-      </Row>
-    </div>
+    <Container className="pawhub">
+      <div className="pet__container">
+        <h1>Adopt Your Buddy</h1>
+        <Row>
+          {linkData.map((pet) => (
+            <AnimalType
+              img={pet.img}
+              type={pet.type}
+              link={`${pet.type}`}
+              key={pet.type}
+            />
+          ))}
+        </Row>
+      </div>
+    </Container>
   );
 }
 
