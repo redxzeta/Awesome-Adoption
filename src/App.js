@@ -19,7 +19,7 @@ import SLogin from "./components/accounts/SLogin";
 import { Provider } from "react-supabase";
 import { AuthProvider, useAuth } from "./context/SupaContext";
 import ForgotPassword from "./components/accounts/ForgotPassword";
-import PetAuthProvider, { usePetAuth } from "./context/TokenContext";
+import PetAuthProvider from "./context/TokenContext";
 import ResetPassword from "./components/accounts/settings/resetPassword";
 import PrivateRoute from "./utils/PrivateRoute";
 import Profile from "./components/accounts/profile/Profile";
