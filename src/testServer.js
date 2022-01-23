@@ -19,13 +19,15 @@ const contributors = [
 ];
 
 const petList = {
-  id: 1,
-  name: "Baby Yoda",
-  photos: [
-    {
-      medium: "babyYoda.medium.jpg",
-    },
-  ],
+  animal: {
+    id: 1,
+    name: "Baby Yoda",
+    photos: [
+      {
+        medium: "babyYoda.medium.jpg",
+      },
+    ],
+  },
 };
 const server = setupServer(
   rest.get(
@@ -42,7 +44,6 @@ const server = setupServer(
     const limit = req.url.searchParams.get("limit");
 
     if (sort === "random" && limit === "1") {
-      console.log(sort + " 23 " + limit);
       return res(ctx.status(200), ctx.json(petList));
     }
     return res(ctx.status(200), ctx.json(contributors));

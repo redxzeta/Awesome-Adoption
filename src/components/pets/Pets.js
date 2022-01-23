@@ -91,7 +91,7 @@ const RandomPet = () => {
     }
   );
   const isLoading = !error && !data;
-  console.log(data);
+
   if (isLoading)
     return (
       <Spinner animation="grow" variant="primary" role="status">
