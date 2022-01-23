@@ -36,14 +36,7 @@ export default function App() {
 
               <Routes>
                 <Route path="animal/:id" element={<PetInfo />} />
-                <Route
-                  path="pets/:type"
-                  element={
-                    <PetLoading>
-                      <PetType />
-                    </PetLoading>
-                  }
-                />
+                <Route path="pets/:type" element={<PetType />} />
                 <Route path="pets" element={<Pets />} />
                 <Route path="about" element={<About />} />
                 <Route path="resources" element={<Resources />} />
@@ -83,15 +76,6 @@ export default function App() {
   );
 }
 
-const PetLoading = ({ children }) => {
-  const { loading, errors } = usePetAuth();
-
-  return (
-    <LoaderComponent isLoading={loading} serverError={errors}>
-      {children}
-    </LoaderComponent>
-  );
-};
 const SupaLoading = ({ children }) => {
   const { isLoading, error } = useAuth();
   return (
