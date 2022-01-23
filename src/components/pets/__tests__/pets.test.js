@@ -98,6 +98,9 @@ test("should render random pet", async () => {
 
 test("should render random pet error", async () => {
   server.use(
+    rest.post("https://api.petfinder.com/v2/oauth2/token", (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({ access_token: "234566" }));
+    }),
     rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
       return res(ctx.status(404), ctx.json({ error: "Error" }));
     })
