@@ -92,6 +92,5 @@ test("should render random pet", async () => {
 
   petImage = screen.getAllByRole("img");
   expect(petImage.length).toBe(6);
-  // const newPetImage = screen.getAllByRole("img");
-  // expect(newPetImage.length).toBe(6);
+  expect(petImage[5]).toHaveAttribute("alt", "Baby Yoda");
 });
