@@ -1,7 +1,8 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import Pets, { AnimalType } from "../Pets";
 import renderer from "react-test-renderer";
 import { BrowserRouter } from "react-router-dom";
+import PetAuthProvider, { usePetAuth } from "../../../context/TokenContext";
 afterEach(() => {
   cleanup();
 });
@@ -70,4 +71,27 @@ test("should render with image", () => {
   expect(petImage[2]).toHaveAttribute("alt", "bird");
   expect(petImage[3]).toHaveAttribute("alt", "horse");
   expect(petImage[4]).toHaveAttribute("alt", "rabbit");
+});
+
+test("should render random pet", async () => {
+  render(
+    <BrowserRouter>
+      <PetAuthProvider>
+        <Pets />
+      </PetAuthProvider>
+    </BrowserRouter>
+  );
+
+  let petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(5);
+  expect(screen.getByRole("status")).toBeInTheDocument();
+  await waitFor(() =>
+    expect(screen.queryByRole("status")).not.toBeInTheDocument()
+  );
+  // expect(screen.queryByRole("status")).not.toBeInTheDocument();
+
+  petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(6);
+  // const newPetImage = screen.getAllByRole("img");
+  // expect(newPetImage.length).toBe(6);
 });

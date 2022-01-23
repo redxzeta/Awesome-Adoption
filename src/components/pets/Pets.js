@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Image, Button, Container } from "react-bootstrap";
+import { Row, Col, Image, Button, Container, Spinner } from "react-bootstrap";
 import "./pets.css";
 import Bird from "./bird.jpg";
 import Dog from "./doggo.jpg";
@@ -7,7 +7,6 @@ import Cat from "./cat.jpg";
 import Horse from "./horse.jpg";
 import Rabbit from "./rabbit.jpg";
 import Placeholder from "./placeholder.jpg";
-// import Random from "./random.png";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
 import { usePetAuth } from "../../context/TokenContext";
@@ -36,53 +35,7 @@ const linkData = [
   },
 ];
 
-const randomPetURL = "https://api.petfinder.com/v2/animals?limit=1&sort=random";
-let randomPetFound = false;
-// const randomIndex = Math.floor(linkData.length * Math.random());
-// const type = linkData[randomIndex].type;
-// const randomPet = { img: Random, type };
-// linkData.push(randomPet);
-
 export default function Pets() {
-  let randomPetImage = "";
-  const { tokenHeaders } = usePetAuth();
-
-  const { error, data: pet } = useSWR(
-    [tokenHeaders ? randomPetURL : null, tokenHeaders],
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      revalidateIfStale: false,
-      revalidateOnReconnect: false,
-    }
-  );
-
-  // assigns randomPetImage according to if a photo is available
-  if (pet && pet.photos && pet.photos[0]) {
-    if (typeof pet.photos[0] === "string") {
-      randomPetImage = pet.photos[0];
-    } else if (pet.photos[0].large) {
-      randomPetImage = String(pet.photos[0].large);
-    } else if (pet.photos[0].medium) {
-      randomPetImage = pet.photos[0].medium;
-    } else {
-      randomPetImage = Placeholder;
-    }
-  } else {
-    randomPetImage = Placeholder;
-  }
-
-  if (error || (pet && !pet.name)) {
-    if (error) {
-      return <h1>An Error Occurred</h1>;
-    }
-    return <h1>No pet data</h1>;
-  }
-
-  if (pet) {
-    randomPetFound = true;
-  }
-
   return (
     <Container className="pawhub">
       <div className="pet__container">
@@ -96,6 +49,7 @@ export default function Pets() {
               key={pet.type}
             />
           ))}
+          <RandomPet />
         </Row>
       </div>
     </Container>
@@ -122,21 +76,43 @@ export const AnimalType = ({ type, img, link }) => (
   </Col>
 );
 
-export const RandomPet = ({ randomPetImage, pet }) =>
-  randomPetFound ? (
-    <AnimalType
-      img={randomPetImage}
-      type={pet.name}
-      link={"/animal/" + pet.id}
-      key={pet.type}
-    />
-  ) : (
-    <Spinner
-      className="spinner_loading"
-      animation="grow"
-      variant="primary"
-      role="status"
-    >
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>
+const RandomPet = () => {
+  const randomPetURL =
+    "https://api.petfinder.com/v2/animals?limit=1&sort=random";
+  const { tokenHeaders } = usePetAuth();
+
+  const { error, data } = useSWR(
+    [tokenHeaders ? randomPetURL : null, tokenHeaders],
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateIfStale: false,
+      revalidateOnReconnect: false,
+    }
   );
+  const isLoading = !error && !data;
+  console.log(data);
+  if (isLoading)
+    return (
+      <Spinner animation="grow" variant="primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  if (error || (data && !data.name)) {
+    if (error) {
+      return <h1>An Error Occurred</h1>;
+    }
+    return <h1>No pet data</h1>;
+  }
+
+  const randomPetImage = data.photos[0].medium ?? Placeholder;
+
+  // assigns randomPetImage according to if a photo is available
+  return (
+    <AnimalType
+      type={data.name}
+      img={randomPetImage}
+      link={`/animal/${data.id}`}
+    />
+  );
+};

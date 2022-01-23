@@ -18,6 +18,15 @@ const contributors = [
   },
 ];
 
+const petList = {
+  id: 1,
+  name: "Baby Yoda",
+  photos: [
+    {
+      medium: "babyYoda.medium.jpg",
+    },
+  ],
+};
 const server = setupServer(
   rest.get(
     "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",
@@ -25,7 +34,17 @@ const server = setupServer(
       return res(ctx.status(200), ctx.json(contributors));
     }
   ),
+  rest.post("https://api.petfinder.com/v2/oauth2/token", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ access_token: "234566" }));
+  }),
   rest.get("https://api.petfinder.com/v2/animals", (req, res, ctx) => {
+    const sort = req.url.searchParams.get("sort");
+    const limit = req.url.searchParams.get("limit");
+
+    if (sort === "random" && limit === "1") {
+      console.log(sort + " 23 " + limit);
+      return res(ctx.status(200), ctx.json(petList));
+    }
     return res(ctx.status(200), ctx.json(contributors));
   }),
   //Login
