@@ -7,7 +7,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^1.28.5",
+    "@supabase/supabase-js": "^1.29.3",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -24,7 +24,7 @@
     "react-router-dom": "6",
     "react-scripts": "^5.0.0",
     "react-supabase": "^0.2.0",
-    "swr": "^1.1.2-beta.0",
+    "swr": "^1.1.2",
     "validator": "^13.7.0"
   },
   "scripts": {

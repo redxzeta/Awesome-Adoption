@@ -2,7 +2,9 @@ import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import Pets, { AnimalType } from "../Pets";
 import renderer from "react-test-renderer";
 import { BrowserRouter } from "react-router-dom";
-import PetAuthProvider, { usePetAuth } from "../../../context/TokenContext";
+import PetAuthProvider from "../../../context/TokenContext";
+import { server, rest } from "../../../testServer";
+import { customRender } from "../../../swrconfigtest";
 afterEach(() => {
   cleanup();
 });
@@ -74,7 +76,7 @@ test("should render with image", () => {
 });
 
 test("should render random pet", async () => {
-  render(
+  customRender(
     <BrowserRouter>
       <PetAuthProvider>
         <Pets />
@@ -88,9 +90,34 @@ test("should render random pet", async () => {
   await waitFor(() =>
     expect(screen.queryByRole("status")).not.toBeInTheDocument()
   );
-  // expect(screen.queryByRole("status")).not.toBeInTheDocument();
 
   petImage = screen.getAllByRole("img");
   expect(petImage.length).toBe(6);
   expect(petImage[5]).toHaveAttribute("alt", "Baby Yoda");
+});
+
+test("should render random pet error", async () => {
+  server.use(
+    rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
+      return res(ctx.status(404), ctx.json({ error: "Error" }));
+    })
+  );
+
+  customRender(
+    <BrowserRouter>
+      <PetAuthProvider>
+        <Pets />
+      </PetAuthProvider>
+    </BrowserRouter>
+  );
+
+  let petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(5);
+  expect(screen.getByRole("status")).toBeInTheDocument();
+  await waitFor(() =>
+    expect(screen.queryByRole("status")).not.toBeInTheDocument()
+  );
+
+  petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(5);
 });
