@@ -82,7 +82,7 @@ const RandomPet = () => {
   const { tokenHeaders } = usePetAuth();
 
   const { error, data } = useSWR(
-    [tokenHeaders ? randomPetURL : null, tokenHeaders],
+    tokenHeaders ? [randomPetURL, tokenHeaders] : null,
     fetcher,
     {
       revalidateOnFocus: false,
