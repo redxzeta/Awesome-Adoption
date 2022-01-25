@@ -1,14 +1,16 @@
 import React from "react";
-import { Row, Col, Image, Button } from "react-bootstrap";
-
+import { Row, Col, Image, Button, Container, Spinner } from "react-bootstrap";
 import "./pets.css";
 import Bird from "./bird.jpg";
 import Dog from "./doggo.jpg";
 import Cat from "./cat.jpg";
 import Horse from "./horse.jpg";
 import Rabbit from "./rabbit.jpg";
-// import Random from "./random.png";
+import Placeholder from "./placeholder.jpg";
 import { Link } from "react-router-dom";
+import useSWR from "swr";
+import { usePetAuth } from "../../context/TokenContext";
+import { fetcher } from "../../utils/petInfoFetcher";
 
 const linkData = [
   {
@@ -32,26 +34,25 @@ const linkData = [
     type: "rabbit",
   },
 ];
-// const randomIndex = Math.floor(linkData.length * Math.random());
-// const type = linkData[randomIndex].type;
-// const randomPet = { img: Random, type };
-// linkData.push(randomPet);
 
 export default function Pets() {
   return (
-    <div className="pet__container">
-      <h1>Adopt Your Buddy</h1>
-      <Row>
-        {linkData.map((pet) => (
-          <AnimalType
-            img={pet.img}
-            type={pet.type}
-            link={`${pet.type}`}
-            key={pet.type}
-          />
-        ))}
-      </Row>
-    </div>
+    <Container className="pawhub">
+      <div className="pet__container">
+        <h1>Adopt Your Buddy</h1>
+        <Row>
+          {linkData.map((pet) => (
+            <AnimalType
+              img={pet.img}
+              type={pet.type}
+              link={`${pet.type}`}
+              key={pet.type}
+            />
+          ))}
+          <RandomPet />
+        </Row>
+      </div>
+    </Container>
   );
 }
 
@@ -74,3 +75,44 @@ export const AnimalType = ({ type, img, link }) => (
     </Button>
   </Col>
 );
+
+const RandomPet = () => {
+  const randomPetURL =
+    "https://api.petfinder.com/v2/animals?limit=1&sort=random";
+  const { tokenHeaders } = usePetAuth();
+
+  const { error, data } = useSWR(
+    tokenHeaders ? [randomPetURL, tokenHeaders] : null,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateIfStale: false,
+      revalidateOnReconnect: false,
+    }
+  );
+  const isLoading = !error && !data;
+
+  if (isLoading)
+    return (
+      <Spinner animation="grow" variant="primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  if (error || (data && !data.name)) {
+    if (error) {
+      return <h1>An Error Occurred</h1>;
+    }
+    return <h1>No pet data</h1>;
+  }
+
+  const randomPetImage = data.photos[0].medium ?? Placeholder;
+
+  // assigns randomPetImage according to if a photo is available
+  return (
+    <AnimalType
+      type={data.name}
+      img={randomPetImage}
+      link={`/animal/${data.id}`}
+    />
+  );
+};

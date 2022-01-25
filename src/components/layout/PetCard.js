@@ -3,7 +3,7 @@ import { Button, Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./PetCard.css";
 import placeholder from "../pets/placeholder.jpg";
-import nameCleaner from "../../utils/nameCleaner";
+import { nameCleaner } from "../../utils/utilsCleaner/index";
 import PetIcon from "../shared/PetIcon";
 
 export default function PetCard(props) {

@@ -1,14 +1,14 @@
 import React from "react";
-import { Button, Image } from "react-bootstrap";
+import { Button, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./tips.css";
 import AdoptionPet from "./adoption-pet.jpg";
 export default function Home() {
   return (
-    <>
-      <div className="tips__container">
-        <h1 className={"mb-4"}>
-          <u>Tips to adopting Pets</u>
+    <Container className="pawhub">
+      <div className="tips__container ">
+        <h1 className="mb-4 text-decoration-underline">
+          Tips to adopting Pets
         </h1>
         <p>
           <span>Lifestyle & Flexibility: </span>What is your current lifestyle
@@ -34,12 +34,14 @@ export default function Home() {
       <hr />
       {/* ------------------------------------------------- */}
       <div className="tips__container">
-        <h1 className={"mb-4"}>
-          <u>Final steps to guide you on how to best adopt or rehome a dog</u>
+        <h1 className="mb-4" text-decoration-underline>
+          Final steps to guide you on how to best adopt or rehome a dog
         </h1>
         <p>
           <ul>
-            <li>Review your new dog’s history, background & special needs</li>
+            <li>
+              Review your new dog&apos;s history, background & special needs
+            </li>
             <li>
               Choose
               <a rel="noreferrer" href="/pets">
@@ -90,12 +92,16 @@ export default function Home() {
           little bit of thorough preparation, you can have your own success
           story when you adopt a dog.
         </h5>
-        <Image src={AdoptionPet} className="adoption__pet" alt="Adoption pet" />
-        <br></br>
+        <Image
+          src={AdoptionPet}
+          className="adoption__pet mb-2 d-block mx-auto "
+          alt="Adoption pet"
+        />
+
         <Button as={Link} to="/pets" variant="primary">
           Adopt
         </Button>
       </div>
-    </>
+    </Container>
   );
 }

@@ -1,7 +1,10 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import Pets, { AnimalType } from "../Pets";
 import renderer from "react-test-renderer";
 import { BrowserRouter } from "react-router-dom";
+import PetAuthProvider from "../../../context/TokenContext";
+import { server, rest } from "../../../testServer";
+import { customRender } from "../../../swrconfigtest";
 afterEach(() => {
   cleanup();
 });
@@ -70,4 +73,99 @@ test("should render with image", () => {
   expect(petImage[2]).toHaveAttribute("alt", "bird");
   expect(petImage[3]).toHaveAttribute("alt", "horse");
   expect(petImage[4]).toHaveAttribute("alt", "rabbit");
+});
+
+test("should render random pet", async () => {
+  customRender(
+    <BrowserRouter>
+      <PetAuthProvider>
+        <Pets />
+      </PetAuthProvider>
+    </BrowserRouter>
+  );
+
+  let petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(5);
+  expect(screen.getByRole("status")).toBeInTheDocument();
+  await waitFor(() =>
+    expect(screen.queryByRole("status")).not.toBeInTheDocument()
+  );
+
+  petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(6);
+  expect(petImage[5]).toHaveAttribute("alt", "Baby Yoda");
+  expect(petImage[5]).toHaveAttribute("src", "babyYoda.medium.jpg");
+});
+
+test("should render random pet error", async () => {
+  server.use(
+    rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
+      return res(ctx.status(404), ctx.json({ error: "Error" }));
+    })
+  );
+
+  customRender(
+    <BrowserRouter>
+      <PetAuthProvider>
+        <Pets />
+      </PetAuthProvider>
+    </BrowserRouter>
+  );
+
+  let petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(5);
+  expect(screen.getByRole("status")).toBeInTheDocument();
+  await waitFor(() =>
+    expect(screen.queryByRole("status")).not.toBeInTheDocument()
+  );
+
+  petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(5);
+  const errorTitle = screen.getByRole("heading", {
+    name: /An Error Occurred/i,
+    level: 1,
+  });
+
+  expect(errorTitle).toBeInTheDocument();
+});
+
+test("should render random pet with no image", async () => {
+  server.use(
+    rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          animal: {
+            id: 5,
+            name: "Baby Yoda",
+            photos: [
+              {
+                medium: null,
+              },
+            ],
+          },
+        })
+      );
+    })
+  );
+
+  customRender(
+    <BrowserRouter>
+      <PetAuthProvider>
+        <Pets />
+      </PetAuthProvider>
+    </BrowserRouter>
+  );
+
+  let petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(5);
+  expect(screen.getByRole("status")).toBeInTheDocument();
+  await waitFor(() =>
+    expect(screen.queryByRole("status")).not.toBeInTheDocument()
+  );
+
+  petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(6);
+  expect(petImage[5]).toHaveAttribute("alt", "Baby Yoda");
+  expect(petImage[5]).toHaveAttribute("src", "placeholder.jpg");
 });
