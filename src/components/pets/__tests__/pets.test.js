@@ -94,13 +94,11 @@ test("should render random pet", async () => {
   petImage = screen.getAllByRole("img");
   expect(petImage.length).toBe(6);
   expect(petImage[5]).toHaveAttribute("alt", "Baby Yoda");
+  expect(petImage[5]).toHaveAttribute("src", "babyYoda.medium.jpg");
 });
 
 test("should render random pet error", async () => {
   server.use(
-    rest.post("https://api.petfinder.com/v2/oauth2/token", (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json({ access_token: "234566" }));
-    }),
     rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
       return res(ctx.status(404), ctx.json({ error: "Error" }));
     })
@@ -123,4 +121,51 @@ test("should render random pet error", async () => {
 
   petImage = screen.getAllByRole("img");
   expect(petImage.length).toBe(5);
+  const errorTitle = screen.getByRole("heading", {
+    name: /An Error Occurred/i,
+    level: 1,
+  });
+
+  expect(errorTitle).toBeInTheDocument();
+});
+
+test("should render random pet with no image", async () => {
+  server.use(
+    rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          animal: {
+            id: 5,
+            name: "Baby Yoda",
+            photos: [
+              {
+                medium: null,
+              },
+            ],
+          },
+        })
+      );
+    })
+  );
+
+  customRender(
+    <BrowserRouter>
+      <PetAuthProvider>
+        <Pets />
+      </PetAuthProvider>
+    </BrowserRouter>
+  );
+
+  let petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(5);
+  expect(screen.getByRole("status")).toBeInTheDocument();
+  await waitFor(() =>
+    expect(screen.queryByRole("status")).not.toBeInTheDocument()
+  );
+
+  petImage = screen.getAllByRole("img");
+  expect(petImage.length).toBe(6);
+  expect(petImage[5]).toHaveAttribute("alt", "Baby Yoda");
+  expect(petImage[5]).toHaveAttribute("src", "placeholder.jpg");
 });

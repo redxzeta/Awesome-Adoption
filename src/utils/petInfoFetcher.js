@@ -2,7 +2,7 @@ async function fetcher(url, tokenHeaders) {
   const res = await fetch(url, {
     method: "GET",
     body: null,
-    headers: tokenHeaders ? tokenHeaders.headers : "",
+    headers: tokenHeaders,
   });
   if (!res.ok) {
     const error = new Error("An error occurred while fetching the data.");
