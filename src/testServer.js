@@ -29,6 +29,7 @@ const petList = {
     ],
   },
 };
+
 const server = setupServer(
   rest.get(
     "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",
@@ -48,6 +49,7 @@ const server = setupServer(
     }
     return res(ctx.status(200), ctx.json(contributors));
   }),
+
   //Login
   rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
     return res(
