@@ -4,7 +4,7 @@ import "./PlaceHolderCard.css";
 
 const PlaceHolderCard = () => (
   <Col md={4} xs={12} className="card-container">
-    <Card className="card">
+    <Card className="card" role="status">
       <Card.Header>
         <Placeholder className="card__header" animation="glow">
           <Placeholder xs={4} />

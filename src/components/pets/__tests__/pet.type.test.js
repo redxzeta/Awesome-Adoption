@@ -1,17 +1,45 @@
-import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { screen, waitFor } from "@testing-library/react";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import PetType from "../PetType";
 import userEvent from "@testing-library/user-event";
 import { server, rest } from "../../../testServer";
-import { fetcher } from "../../../utils/petTypeFetcher";
-import { SWRConfig, cache } from "swr";
+import { customRender } from "../../../swrconfigtest";
+import PetAuthProvider from "../../../context/TokenContext";
 
-describe("Test zipcode search", () => {
-  test("check init zipcode", async () => {
-    render(
-      <BrowserRouter>
-        <PetType />
-      </BrowserRouter>
+describe("Test Pet Search", () => {
+  test("pet load successful", async () => {
+    customRender(
+      <MemoryRouter initialEntries={["/pets/dog"]}>
+        <PetAuthProvider>
+          <Routes>
+            <Route path="pets/:type" element={<PetType />} />
+          </Routes>
+        </PetAuthProvider>
+      </MemoryRouter>
+    );
+
+    expect(screen.getAllByRole("status")[0]).toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.queryByRole("status")).not.toBeInTheDocument()
+    );
+
+    const petCards = screen.getAllByRole("button", { name: /More Info/i });
+    expect(petCards).toHaveLength(12);
+  });
+
+  test("validity of zipcode", async () => {
+    customRender(
+      <MemoryRouter initialEntries={["/pets/dog"]}>
+        <PetAuthProvider>
+          <Routes>
+            <Route path="pets/:type" element={<PetType />} />
+          </Routes>
+        </PetAuthProvider>
+      </MemoryRouter>
+    );
+    expect(screen.getAllByRole("status")[0]).toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.queryByRole("status")).not.toBeInTheDocument()
     );
     const goZip = await screen.findByRole("button", { name: /Go/i });
     expect(goZip).toBeInTheDocument();
@@ -20,41 +48,15 @@ describe("Test zipcode search", () => {
 
     const zipForm = screen.getByLabelText(/zipcode/i);
     expect(zipForm).toHaveValue("19019");
-  });
-
-  // test("no value zipcode disabled", async () => {
-  //   render(
-  //     <BrowserRouter>
-  //       <PetType />
-  //     </BrowserRouter>
-  //   );
-  //   const zipForm = screen.getByLabelText(/zipcode/i);
-  //   userEvent.clear(zipForm);
-  //   expect(zipForm).toHaveValue("");
-  //   const goZip = await screen.findByRole("button", { name: /Go/i });
-  //   expect(goZip).toBeDisabled();
-  // });
-});
-
-// These tests test pet data that have been returned by fetch
-describe("Testing API requests with data", () => {
-  test("renders pet cards", async () => {
-    render(<PetType />);
-
-    const dog1 = await screen.findByText(/Cinnamon/i);
-    const dog2 = await screen.findByText(/Rosie/i);
-    expect(dog1).toBeInTheDocument();
-    expect(dog2).toBeInTheDocument();
+    userEvent.clear(screen.getByLabelText(/zipcode/i));
+    expect(zipForm).toHaveValue("");
+    expect(goZip).toBeDisabled();
+    userEvent.type(zipForm, "abcde");
+    expect(goZip).toBeDisabled();
+    expect(screen.getByText(/Invalid zip Code/i)).toBeInTheDocument();
+    userEvent.clear(screen.getByLabelText(/zipcode/i));
+    expect(screen.queryByText(/Invalid zip Code/i)).not.toBeInTheDocument();
+    expect(zipForm).toHaveValue("");
+    expect(goZip).toBeDisabled();
   });
 });
-
-const AllTheProviders = ({ children }) => {
-  return (
-    <SWRConfig value={{ dedupingInterval: 0, provider: () => new Map() }}>
-      <BrowserRouter>{children}</BrowserRouter>
-    </SWRConfig>
-  );
-};
-
-const customRender = (ui, options) =>
-  render(ui, { wrapper: AllTheProviders, ...options });
