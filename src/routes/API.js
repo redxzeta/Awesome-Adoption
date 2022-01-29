@@ -11,4 +11,3 @@ export const petFinderURL = (type, page, location) => {
 
 export const randomPetsList =
   "https://api.petfinder.com/v2/animals?limit=3&sort=random";
-

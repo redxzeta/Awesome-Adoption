@@ -31,41 +31,35 @@ export default function PetInfo() {
       url: window.location.href,
     };
     if (navigator.share) {
-      navigator
-        .share(shareData)
-        .then((result) => {
-          console.log(result);
-          console.log("Shared");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      navigator.share(shareData);
+      // .then((result) => {
+      //   console.log(result);
+      //   console.log("Shared");
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
     }
   }
 
   const { error, data: pet } = useSWR(
-    [tokenHeaders ? lookUpPet + id : null, tokenHeaders],
+    tokenHeaders ? [lookUpPet + id, tokenHeaders] : null,
     fetcher
   );
-
+  const isLoading = !pet && !error;
   // const isLoading = !error && !data;
-  if (error || (pet && !pet.name)) {
-    if (error) {
-      return <h1>An Error Occurred</h1>;
-    }
-    return <h1>No pet data</h1>;
-  }
-  if (!pet && !error) {
+
+  if (isLoading) {
     return (
-      <Spinner
-        animation="grow"
-        variant="primary"
-        role="status"
-        data-testid="spinner-load"
-      >
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
+      <Container className="pawhub">
+        <Spinner animation="grow" variant="primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </Container>
     );
+  }
+  if (error) {
+    return <h1>An Error Occurred</h1>;
   }
 
   return (
@@ -76,7 +70,9 @@ export default function PetInfo() {
           <img src={Placeholder} alt="placeholder" />
         ) : (
           <Gallery
-            data={pet.photos.map((p) => ({ src: p.large, title: "" }))}
+            data={pet.photos.map((p, index) => {
+              return { src: p.large, title: `${pet.name}-large-${index}` };
+            })}
           />
         )}
 
@@ -88,14 +84,12 @@ export default function PetInfo() {
           <div className="breed-info">
             <VscTypeHierarchySub className="icon" />
             <Card.Title>Breeds</Card.Title>
-            <Card.Text>{pet.breeds && pet.breeds.primary}</Card.Text>
+            <Card.Text>{pet.breeds.primary}</Card.Text>
           </div>
           <div className="color-info">
             <VscSymbolColor className="icon" />
             <Card.Title>Colors</Card.Title>
-            <Card.Text>
-              {pet.colors && pet.colors.primary ? pet.colors.primary : "N/A"}
-            </Card.Text>
+            <Card.Text>{pet.colors.primary ?? "N/A"}</Card.Text>
           </div>
         </div>
 
@@ -119,7 +113,7 @@ export default function PetInfo() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {pet.contact && pet.contact.email}
+                {pet.contact.email}
               </a>
             </Card.Text>
           </div>
@@ -127,7 +121,7 @@ export default function PetInfo() {
 
         <div className="actions">
           <a
-            href={`mailto:${pet.contact && pet.contact.email}`}
+            href={`mailto:${pet.contact.email}`}
             target="_blank"
             rel="noopener noreferrer"
           >
