@@ -21,10 +21,26 @@ const contributors = [
 const petList = {
   animal: {
     id: 1,
+    url: "https://wwww.mandalorian.com",
     name: "Baby Yoda",
+    type: "Grogu",
+    contact: {
+      email: "yoda@onefor.me",
+    },
+    breeds: {
+      primary: "Grogu",
+    },
+    colors: {
+      primary: "green",
+    },
+    age: "Baby",
+    gender: "male",
+    description:
+      "He is a toddler member of the same unnamed alien species as the Star Wars characters Yoda and Yaddle, with whom he shares a strong ability in the Force",
     photos: [
       {
         medium: "babyYoda.medium.jpg",
+        large: "babyYoda.large.jpg",
       },
     ],
   },
@@ -39,6 +55,13 @@ const server = setupServer(
   ),
   rest.post("https://api.petfinder.com/v2/oauth2/token", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ access_token: "234566" }));
+  }),
+  rest.get("https://api.petfinder.com/v2/animals/:id", (req, res, ctx) => {
+    const { id } = req.params;
+    if (id === "1") {
+      return res(ctx.status(200), ctx.json(petList));
+    }
+    return res(ctx.status(404), ctx.json({ message: "Yoda does not exist" }));
   }),
   rest.get("https://api.petfinder.com/v2/animals", (req, res, ctx) => {
     const sort = req.url.searchParams.get("sort");

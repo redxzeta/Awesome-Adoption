@@ -6,7 +6,7 @@ const Gallery = ({ data }) => {
     <div className="gallery-slider__main">
       <Carousel interval={1000}>
         {data.map((item) => (
-          <Carousel.Item key={item.src}>
+          <Carousel.Item key={item.title}>
             <img className="d-block w-100" src={item.src} alt={item.title} />
           </Carousel.Item>
         ))}
