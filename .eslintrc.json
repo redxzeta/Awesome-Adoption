@@ -27,7 +27,7 @@
     "react/react-in-jsx-scope": "off",
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
-    "no-console": "off",
+    "no-console": "warn",
     "react/prop-types": 0,
     "no-restricted-syntax": [
       "error",

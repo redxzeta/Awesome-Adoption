@@ -71,6 +71,9 @@ const server = setupServer(
     const page = req.url.searchParams.get("page");
     if (sort === "random" && limit === "1") {
       return res(ctx.status(200), ctx.json(petList));
+    } else if (sort === "random" && limit === "3") {
+      const threePets = DogSample.animals.slice(0, 3);
+      return res(ctx.status(200), ctx.json({ animals: threePets }));
     } else if (type === "dog" && location && limit === "12") {
       return res(ctx.status(200), ctx.json(DogSample));
     }

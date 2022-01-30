@@ -17,13 +17,12 @@ import Register from "./components/accounts/Register";
 import { supabase } from "./utils/SupaBaseUtils";
 import SLogin from "./components/accounts/SLogin";
 import { Provider } from "react-supabase";
-import { AuthProvider, useAuth } from "./context/SupaContext";
+import { AuthProvider } from "./context/SupaContext";
 import ForgotPassword from "./components/accounts/ForgotPassword";
 import PetAuthProvider from "./context/TokenContext";
 import ResetPassword from "./components/accounts/settings/resetPassword";
 import PrivateRoute from "./utils/PrivateRoute";
 import Profile from "./components/accounts/profile/Profile";
-import LoaderComponent from "./utils/LoaderComponent";
 
 export default function App() {
   return (
@@ -33,7 +32,6 @@ export default function App() {
           <AuthProvider>
             <Router>
               <NavigationBar />
-
               <Routes>
                 <Route path="animal/:id" element={<PetInfo />} />
                 <Route path="pets/:type" element={<PetType />} />
@@ -50,19 +48,11 @@ export default function App() {
                   path="reset-password"
                   element={
                     <PrivateRoute>
-                      <ResetPassword />{" "}
+                      <ResetPassword />
                     </PrivateRoute>
                   }
                 />
-                <Route
-                  path="profile"
-                  element={
-                    <SupaLoading>
-                      {" "}
-                      <Profile />{" "}
-                    </SupaLoading>
-                  }
-                />
+                <Route path="profile" element={<Profile />} />
                 <Route path="/" element={<Home />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
@@ -75,12 +65,3 @@ export default function App() {
     </Fragment>
   );
 }
-
-const SupaLoading = ({ children }) => {
-  const { isLoading, error } = useAuth();
-  return (
-    <LoaderComponent isLoading={isLoading} serverError={error}>
-      {children}
-    </LoaderComponent>
-  );
-};

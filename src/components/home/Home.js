@@ -36,28 +36,17 @@ const LoadingPetCards = () => {
     error,
     data: petList,
     mutate,
-  } = useSWR([tokenHeaders ? randomPetsList : null, tokenHeaders], fetcher);
+  } = useSWR(tokenHeaders ? [randomPetsList, tokenHeaders] : null, fetcher);
+
   const isLoading = !error && !petList;
   if (isLoading)
     return (
       <Container>
         <Row>
-          <h4>Loading...</h4>
-        </Row>
-        <Row>
           <LoadPlaceHolder />
           <LoadPlaceHolder />
           <LoadPlaceHolder />
         </Row>
-        <Button
-          variant="primary"
-          className="refresh"
-          onClick={async () => {
-            mutate(petList, { error, petList }, false);
-          }}
-        >
-          refresh
-        </Button>
       </Container>
     );
   if (error)
@@ -71,7 +60,7 @@ const LoadingPetCards = () => {
             mutate(petList, { error, petList }, false);
           }}
         >
-          refresh
+          Refresh
         </Button>
       </>
     );
@@ -81,9 +70,9 @@ const LoadingPetCards = () => {
         <h2>Featured Pets</h2>
 
         <Container>
-          <Row>
-            {petList.map((pet, index) => (
-              <PetCard key={index} pet={pet} />
+          <Row className="fadeInUp">
+            {petList.map((pet) => (
+              <PetCard key={pet.id} pet={pet} />
             ))}
           </Row>
         </Container>
@@ -95,7 +84,7 @@ const LoadingPetCards = () => {
           mutate(petList, { error, petList }, false);
         }}
       >
-        refresh
+        Refresh
       </Button>
     </>
   );
