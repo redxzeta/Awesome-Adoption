@@ -7,7 +7,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^1.28.5",
+    "@supabase/supabase-js": "^1.29.3",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -21,10 +21,10 @@
     "react-country-region-selector": "^3.4.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
-    "react-router-dom": "6",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.0",
     "react-supabase": "^0.2.0",
-    "swr": "^1.1.2-beta.0",
+    "swr": "^1.1.2",
     "validator": "^13.7.0"
   },
   "scripts": {

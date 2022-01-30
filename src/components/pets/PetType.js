@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
-import LoadPlaceHolder from "../shared/PlaceHolderCard";
+
+// import NoPetsCard from "../layout/NoPetsCard";
 import "./pets.css";
 import {
   Button,
@@ -15,20 +16,48 @@ import {
 import { postcodeValidator } from "postcode-validator";
 import PetCard from "../layout/PetCard";
 import { usePetAuth } from "../../context/TokenContext";
+import useSWR from "swr";
+import { fetcher } from "../../utils/petTypeFetcher";
+import { petFinderURL } from "../../routes/API";
+import { PetErrorLoading, PetLoader } from "./loader";
 
 export default function PetType() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const inputCode = useRef(null);
-  const [petList, setpetList] = useState("");
   const [goBtnDisabled, setGoBtnDisabled] = useState(false);
   const [validCodeError, setValidCodeError] = useState("");
   const [code, setCode] = useState(19019);
   const [petLocation, setPetLocation] = useState(19019);
-  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { type } = useParams();
   const { tokenHeaders } = usePetAuth();
+
+  // Fetching the data through SWR
+  const { data: petSearchList, error: fetcherror } = useSWR(
+    tokenHeaders
+      ? [petFinderURL(type, currentPage, petLocation), tokenHeaders]
+      : null,
+    fetcher
+  );
+
+  // If there is no data or error, show the loading placeholder
+  const loading = !petSearchList && !fetcherror;
+
+  // useEffect for managing the pagination
+  useEffect(() => {
+    setCurrentPage(currentPage);
+    setTotalPages(
+      petSearchList && petSearchList.pagination
+        ? petSearchList.pagination.total_pages || 1
+        : 1
+    );
+  }, [petSearchList, fetcherror, currentPage]);
+
+  // useEffect for reseting pagination when location or type is changed
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [type, petLocation]);
 
   const findByLocation = () => {
     if (navigator.geolocation) {
@@ -50,35 +79,6 @@ export default function PetType() {
     }
   };
 
-  const findPets = useCallback(
-    (page, location) => {
-      const petFinderUrl = `https://api.petfinder.com/v2/animals?type=${type}&location=${location}&limit=12&page=${
-        page || 1
-      }`;
-
-      fetch(petFinderUrl, tokenHeaders)
-        .then((response) => response.json())
-        .then((data) => {
-          setTotalPages(
-            data && data.pagination ? data.pagination.total_pages || 1 : 1
-          );
-          setpetList(data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => setLoading(false));
-    },
-    [type, petLocation]
-  );
-
-  useEffect(() => {
-    setCurrentPage(1);
-    setLoading(true);
-    findPets(1, petLocation);
-  }, [type, petLocation, findPets]);
-
   // ! To check validity of zipcode
   function checkValidation(e) {
     setValidCodeError("");
@@ -99,7 +99,6 @@ export default function PetType() {
   const search = () => {
     if (postcodeValidator(code, "US")) {
       setPetLocation(code);
-      setLoading(true);
     } else {
       inputCode.current.value = "Invalid ZipCode";
     }
@@ -164,19 +163,17 @@ export default function PetType() {
     return pageItems;
   };
 
-  const changePage = (newPage) => {
-    if (newPage !== currentPage) {
-      setLoading(true);
-      setCurrentPage(newPage);
-      findPets(newPage, petLocation);
-    }
-  };
+  const changePage = (newPage) =>
+    setCurrentPage((curr) => (curr !== newPage ? newPage : newPage));
 
   const errorAlert = (
     <Alert onClose={() => setShowErrorAlert(false)} dismissible>
       Unable to retrieve your location, please enter your zip code.
     </Alert>
   );
+
+  if (loading) return <PetLoader type={type} />;
+  if (fetcherror) return <PetErrorLoading type={type} />;
   return (
     <Container className="pawhub">
       <div className="petList__container">
@@ -205,31 +202,19 @@ export default function PetType() {
           <Button className="mb-3" onClick={findByLocation}>
             Use your location
           </Button>
-
           {validCodeError && <Alert variant="danger">{validCodeError}</Alert>}
         </div>
-        <Row className="mb-3 w-100 petList">
-          {loading ? (
-            <Row>
-              <LoadPlaceHolder />
-              <LoadPlaceHolder />
-              <LoadPlaceHolder />
-            </Row>
-          ) : (
-            petList &&
-            petList.animals.map((pet, index) => (
-              <PetCard key={index} pet={pet} />
-            ))
-          )}
+        <Row className="mb-3 w-100 petList fadeInUp">
+          {petSearchList.animals.map((pet) => (
+            <PetCard key={pet.id} pet={pet} />
+          ))}
         </Row>
-        {!loading && (
-          <Row>
-            <Col md={12} xs={12}>
-              <Pagination>{renderPagination()}</Pagination>
-            </Col>
-          </Row>
-        )}
-        <br />
+
+        <Row>
+          <Col md={12} xs={12}>
+            <Pagination>{renderPagination()}</Pagination>
+          </Col>
+        </Row>
       </div>
     </Container>
   );

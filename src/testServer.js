@@ -2,7 +2,7 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import PlaceImage from "./components/about/__tests__/placeholder50px.png";
 import { createClient } from "@supabase/supabase-js";
-
+import DogSample from "./testData/sample.json";
 const contributors = [
   {
     id: 1,
@@ -18,6 +18,34 @@ const contributors = [
   },
 ];
 
+const petList = {
+  animal: {
+    id: 1,
+    url: "https://wwww.mandalorian.com",
+    name: "Baby Yoda",
+    type: "Grogu",
+    contact: {
+      email: "yoda@onefor.me",
+    },
+    breeds: {
+      primary: "Grogu",
+    },
+    colors: {
+      primary: "green",
+    },
+    age: "Baby",
+    gender: "male",
+    description:
+      "He is a toddler member of the same unnamed alien species as the Star Wars characters Yoda and Yaddle, with whom he shares a strong ability in the Force",
+    photos: [
+      {
+        medium: "babyYoda.medium.jpg",
+        large: "babyYoda.large.jpg",
+      },
+    ],
+  },
+};
+
 const server = setupServer(
   rest.get(
     "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",
@@ -25,9 +53,33 @@ const server = setupServer(
       return res(ctx.status(200), ctx.json(contributors));
     }
   ),
+  rest.post("https://api.petfinder.com/v2/oauth2/token", (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ access_token: "234566" }));
+  }),
+  rest.get("https://api.petfinder.com/v2/animals/:id", (req, res, ctx) => {
+    const { id } = req.params;
+    if (id === "1") {
+      return res(ctx.status(200), ctx.json(petList));
+    }
+    return res(ctx.status(404), ctx.json({ message: "Yoda does not exist" }));
+  }),
   rest.get("https://api.petfinder.com/v2/animals", (req, res, ctx) => {
+    const sort = req.url.searchParams.get("sort");
+    const limit = req.url.searchParams.get("limit");
+    const type = req.url.searchParams.get("type");
+    const location = req.url.searchParams.get("location");
+    const page = req.url.searchParams.get("page");
+    if (sort === "random" && limit === "1") {
+      return res(ctx.status(200), ctx.json(petList));
+    } else if (sort === "random" && limit === "3") {
+      const threePets = DogSample.animals.slice(0, 3);
+      return res(ctx.status(200), ctx.json({ animals: threePets }));
+    } else if (type === "dog" && location && limit === "12") {
+      return res(ctx.status(200), ctx.json(DogSample));
+    }
     return res(ctx.status(200), ctx.json(contributors));
   }),
+
   //Login
   rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
     return res(

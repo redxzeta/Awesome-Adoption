@@ -125,3 +125,9 @@
 .image__overlay:hover > * {
   transform: translateY(0);
 }
+
+.spinner_loading {
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+}
