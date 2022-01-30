@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Nav,
   Navbar,
@@ -12,6 +12,7 @@ import "./NavigationBar.css";
 import Logo from "../../images/PawHubLogo.png";
 import { useSignOut } from "react-supabase";
 import { useAuth } from "../../context/SupaContext";
+import { IoIosHeart } from "react-icons/io";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
 const PetTypes = () =>
@@ -27,6 +28,17 @@ export default function NavigationBar() {
     await signOut();
   };
   const { session, username } = useAuth();
+  const [numFavorites, setNumFavorites] = useState(0);
+
+  useEffect(() => {
+    setInterval(() => {
+      const numFavorites = JSON.parse(localStorage.getItem("favorites"))
+        ? JSON.parse(localStorage.getItem("favorites")).length
+        : 0;
+      setNumFavorites(numFavorites);
+    }, []);
+  }, []);
+
   return (
     <Navbar bg="primary" expand="lg">
       <Container>
@@ -63,6 +75,10 @@ export default function NavigationBar() {
             </Nav.Link>
             <Nav.Link as={Link} to="/stories">
               User Story
+            </Nav.Link>
+            <Nav.Link as={Link} to="/favorites">
+              <IoIosHeart />
+              <span style={{ fontSize: "14px" }}>{numFavorites}</span>
             </Nav.Link>
             <NavDropdown
               title={<i className="bi bi-person-circle"></i>}

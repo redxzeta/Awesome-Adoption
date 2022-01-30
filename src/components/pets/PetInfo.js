@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Button, Spinner, Container } from "react-bootstrap";
 import Gallery from "../shared/Gallery";
@@ -18,10 +18,14 @@ import "./PetInfo.css";
 import { usePetAuth } from "../../context/TokenContext";
 import { lookUpPet } from "../../routes/API";
 import useSWR from "swr";
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 
 export default function PetInfo() {
   const { id } = useParams();
   const { tokenHeaders } = usePetAuth();
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites"))
+  );
 
   function handleShare(e) {
     e.preventDefault();
@@ -46,8 +50,18 @@ export default function PetInfo() {
     tokenHeaders ? [lookUpPet + id, tokenHeaders] : null,
     fetcher
   );
+  useEffect(() => {
+    if (!favorites) setFavorites([]);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const addFav = (id) => {
+    favorites.indexOf(id) > -1
+      ? setFavorites((favorites) => favorites.filter((value) => value !== id))
+      : setFavorites((favorites) => [...favorites, id]);
+  };
   const isLoading = !pet && !error;
-  // const isLoading = !error && !data;
+
 
   if (isLoading) {
     return (
@@ -65,7 +79,19 @@ export default function PetInfo() {
   return (
     <Container className="pawhub">
       <div className="petInfo">
-        <h1>{nameCleaner(pet.name)}</h1>
+        <div className="head__section">
+          <h1>{nameCleaner(pet.name)}</h1>
+          <h1>
+            {favorites.includes(id) ? (
+              <IoIosHeart onClick={() => addFav(id)} style={{ color: "red" }} />
+            ) : (
+              <IoIosHeartEmpty
+                onClick={() => addFav(id)}
+                style={{ color: "red" }}
+              />
+            )}
+          </h1>
+        </div>
         {pet.photos === undefined || pet.photos.length === 0 ? (
           <img src={Placeholder} alt="placeholder" />
         ) : (
@@ -75,7 +101,6 @@ export default function PetInfo() {
             })}
           />
         )}
-
         <div className="info-body">
           <div className="primary-info">
             <Card.Title>Name - {pet.name}</Card.Title>
