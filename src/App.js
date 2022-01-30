@@ -56,7 +56,6 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
-
               <Footer />
             </Router>
           </AuthProvider>

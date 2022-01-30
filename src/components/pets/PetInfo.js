@@ -33,7 +33,6 @@ export default function PetInfo() {
     if (navigator.share) {
       navigator.share(shareData);
       // .then((result) => {
-      //   console.log(result);
       //   console.log("Shared");
       // })
       // .catch((err) => {
@@ -47,7 +46,6 @@ export default function PetInfo() {
     fetcher
   );
   const isLoading = !pet && !error;
-  // const isLoading = !error && !data;
 
   if (isLoading) {
     return (

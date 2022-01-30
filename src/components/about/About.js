@@ -9,7 +9,7 @@ import Contributors from "./Contributors";
 
 export default function About() {
   return (
-    <Container className="pawhub">
+    <Container className="pawhub py-4">
       <div className="about__container">
         <section className="paragraph--section">
           <Image src={Dog} alt="doggo" roundedCircle />
