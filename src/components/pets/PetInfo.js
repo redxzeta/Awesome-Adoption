@@ -62,7 +62,6 @@ export default function PetInfo() {
   };
   const isLoading = !pet && !error;
 
-
   if (isLoading) {
     return (
       <Container className="pawhub">
