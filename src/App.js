@@ -17,6 +17,11 @@ import NavigationBar from "./components/layout/NavigationBar";
 import PetInfo from "./components/pets/PetInfo";
 import PetType from "./components/pets/PetType";
 import Pets from "./components/pets/Pets";
+import PetType from "./components/pets/PetType";
+import Favorites from "./components/pets/Favorites";
+import PetInfo from "./components/pets/PetInfo";
+import Footer from "./components/layout/Footer";
+import About from "./components/about/About";
 import Resources from "./components/resources/Resources";
 import Stories from "./components/stories/Stories";
 import Tips from "./components/tips/Tips";
@@ -42,6 +47,7 @@ export default function App() {
                 <Route path="tips" element={<Tips />} />
                 <Route path="donate" element={<Donate />} />
                 <Route path="stories" element={<Stories />} />
+                <Route path="favorites" element={<Favorites />} />
                 <Route path="register" element={<Register />} />
                 <Route path="login" element={<SLogin />} />
                 <Route path="forgot-password" element={<ForgotPassword />} />
