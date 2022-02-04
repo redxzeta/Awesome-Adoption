@@ -9,20 +9,22 @@ import { BrowserRouter } from "react-router-dom";
 
 // mock pet list
 
-test("list of Pets renders correctly", async () => {
-  customRender(
-    <BrowserRouter>
-      <PetAuthProvider>
-        <Home />
-      </PetAuthProvider>
-    </BrowserRouter>
-  );
-  expect(screen.getAllByRole("status")).toHaveLength(3);
-  await waitFor(() =>
-    expect(screen.queryByRole("status")).not.toBeInTheDocument()
-  );
-  const petCards = screen.getAllByRole("button", { name: /More Info/i });
-  expect(petCards).toHaveLength(3);
+describe("<Home/>", () => {
+  test("list of Pets renders correctly", async () => {
+    customRender(
+      <BrowserRouter>
+        <PetAuthProvider>
+          <Home />
+        </PetAuthProvider>
+      </BrowserRouter>
+    );
+    expect(screen.getAllByRole("status")).toHaveLength(3);
+    await waitFor(() =>
+      expect(screen.queryByRole("status")).not.toBeInTheDocument()
+    );
+    const petCards = screen.getAllByRole("button", { name: /More Info/i });
+    expect(petCards).toHaveLength(3);
+  });
 });
 
 // test("list of Pets renders error", async () => {

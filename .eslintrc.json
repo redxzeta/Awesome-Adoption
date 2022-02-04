@@ -12,7 +12,8 @@
   "extends": [
     "plugin:react/recommended",
     "standard",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:jest-dom/recommended"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -21,7 +22,16 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "testing-library", "jest-dom"],
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ],
   "ignorePatterns": ["**/*test.js", "testServer.js"],
   "rules": {
     "react/react-in-jsx-scope": "off",
@@ -35,6 +45,10 @@
         "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
         "message": "Unexpected property on console object was called"
       }
-    ]
+    ],
+    "testing-library/await-async-query": "error",
+    "testing-library/no-await-sync-query": "error",
+    "testing-library/no-debugging-utils": "warn",
+    "testing-library/no-dom-import": "off"
   }
 }

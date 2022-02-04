@@ -6,7 +6,7 @@ import { server, rest } from "../../../testServer";
 import { customRender } from "../../../swrconfigtest";
 import PetAuthProvider from "../../../context/TokenContext";
 
-describe("Test Pet Search", () => {
+describe("<PetType/>", () => {
   test("pet load successful", async () => {
     customRender(
       <MemoryRouter initialEntries={["/pets/dog"]}>
@@ -18,7 +18,7 @@ describe("Test Pet Search", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getAllByRole("status")[0]).toBeInTheDocument();
+    expect(screen.getAllByRole("status")).toHaveLength(3);
     await waitFor(() =>
       expect(screen.queryByRole("status")).not.toBeInTheDocument()
     );
@@ -37,7 +37,7 @@ describe("Test Pet Search", () => {
         </PetAuthProvider>
       </MemoryRouter>
     );
-    expect(screen.getAllByRole("status")[0]).toBeInTheDocument();
+    expect(screen.getAllByRole("status")).toHaveLength(3);
     await waitFor(() =>
       expect(screen.queryByRole("status")).not.toBeInTheDocument()
     );
