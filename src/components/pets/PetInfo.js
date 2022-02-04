@@ -19,7 +19,11 @@ import useSWR from "swr";
 
 import { usePetAuth } from "../../context/TokenContext";
 import { lookUpPet } from "../../routes/API";
-import useSWR from "swr";
+import { fetcher } from "../../utils/petInfoFetcher";
+import { nameCleaner } from "../../utils/utilsCleaner/index";
+import Gallery from "../shared/Gallery";
+import "./PetInfo.css";
+import Placeholder from "./placeholder.jpg";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 
 export default function PetInfo() {
