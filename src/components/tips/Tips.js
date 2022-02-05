@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./tips.css";
+
 import AdoptionPet from "./adoption-pet.jpg";
+import "./tips.css";
+
 export default function Home() {
   return (
     <Container className="pawhub">

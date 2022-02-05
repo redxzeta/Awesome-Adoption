@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import { useUpsert } from "react-supabase";
+
 import { useAuth } from "../../../context/SupaContext";
 import useForm from "../../../useHooks/useForm";
 import { ERROR_CODE_23505 } from "../../../utils/SupaErrors";

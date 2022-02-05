@@ -1,25 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
-
-// import NoPetsCard from "../layout/NoPetsCard";
-import "./pets.css";
+import { postcodeValidator } from "postcode-validator";
+import React, { useEffect, useRef, useState } from "react";
 import {
+  Alert,
   Button,
   Col,
+  Container,
   FormControl,
   InputGroup,
-  Row,
   Pagination,
-  Alert,
-  Container,
+  Row,
 } from "react-bootstrap";
-import { postcodeValidator } from "postcode-validator";
-import PetCard from "../layout/PetCard";
-import { usePetAuth } from "../../context/TokenContext";
+import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { fetcher } from "../../utils/petTypeFetcher";
+
+import { usePetAuth } from "../../context/TokenContext";
 import { petFinderURL } from "../../routes/API";
+import { fetcher } from "../../utils/petTypeFetcher";
+import PetCard from "../layout/PetCard";
 import { PetErrorLoading, PetLoader } from "./loader";
+// import NoPetsCard from "../layout/NoPetsCard";
+import "./pets.css";
 
 export default function PetType() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);

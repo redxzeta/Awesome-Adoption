@@ -1,8 +1,10 @@
+import { createClient } from "@supabase/supabase-js";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+
 import PlaceImage from "./components/about/__tests__/placeholder50px.png";
-import { createClient } from "@supabase/supabase-js";
 import DogSample from "./testData/sample.json";
+
 const contributors = [
   {
     id: 1,

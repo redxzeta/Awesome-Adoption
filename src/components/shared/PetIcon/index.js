@@ -1,9 +1,10 @@
 import React from "react";
-import DogIcon from "../../../images/icons/dog.png";
-import CatIcon from "../../../images/icons/cat.png";
-import RabbitIcon from "../../../images/icons/rabbit.png";
-import HorseIcon from "../../../images/icons/horse.png";
+
 import BirdIcon from "../../../images/icons/bird.png";
+import CatIcon from "../../../images/icons/cat.png";
+import DogIcon from "../../../images/icons/dog.png";
+import HorseIcon from "../../../images/icons/horse.png";
+import RabbitIcon from "../../../images/icons/rabbit.png";
 import "./petIcon.css";
 
 const PetIcon = ({ type }) => {

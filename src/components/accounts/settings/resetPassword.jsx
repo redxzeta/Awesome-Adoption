@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useClient } from "react-supabase";
-import { Container, Form, Button, Spinner } from "react-bootstrap";
+import { Button, Container, Form, Spinner } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
+import { useClient } from "react-supabase";
 
 import useForm from "../../../useHooks/useForm";
 

@@ -1,9 +1,10 @@
-import "./donate.css";
-import charity from "./charities.json";
-import { Image, Button, Container } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Container, Image } from "react-bootstrap";
+
 import DonateCard from "./DonateCard";
 import DonateModal from "./DonateModal";
-import { useState } from "react";
+import charity from "./charities.json";
+import "./donate.css";
 
 const Donate = () => {
   const [location, setLocation] = useState("All");

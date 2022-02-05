@@ -1,10 +1,11 @@
 import { screen, waitFor } from "@testing-library/react";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
-import PetType from "../PetType";
 import userEvent from "@testing-library/user-event";
-import { server, rest } from "../../../testServer";
-import { customRender } from "../../../swrconfigtest";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+
 import PetAuthProvider from "../../../context/TokenContext";
+import { customRender } from "../../../swrconfigtest";
+import { rest, server } from "../../../testServer";
+import PetType from "../PetType";
 
 describe("<PetType/>", () => {
   test("pet load successful", async () => {

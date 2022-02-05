@@ -1,8 +1,9 @@
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootswatch/dist/journal/bootstrap.min.css";
 import React from "react";
 import ReactDOM from "react-dom";
+
 import App from "./App";
-import "bootswatch/dist/journal/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(

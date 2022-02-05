@@ -1,11 +1,12 @@
 import React from "react";
 import { Container, Image, OverlayTrigger, Tooltip } from "react-bootstrap";
-import Dog from "./dog.jpg";
-import "./about.css";
-import YoutubeLogo from "./Youtube2.png";
-import DevPostLogo from "./devpost-modified.png";
-import GithubIcon from "./GitHub.png";
+
 import Contributors from "./Contributors";
+import GithubIcon from "./GitHub.png";
+import YoutubeLogo from "./Youtube2.png";
+import "./about.css";
+import DevPostLogo from "./devpost-modified.png";
+import Dog from "./dog.jpg";
 
 export default function About() {
   return (

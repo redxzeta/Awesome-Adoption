@@ -1,5 +1,6 @@
+import { act, renderHook } from "@testing-library/react-hooks";
+
 import useForm from "../useForm";
-import { renderHook, act } from "@testing-library/react-hooks";
 
 test("testing useForm hook", () => {
   const initState = {

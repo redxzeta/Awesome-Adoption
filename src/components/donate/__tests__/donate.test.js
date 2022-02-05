@@ -1,10 +1,11 @@
 import { cleanup, render, screen } from "@testing-library/react";
-import Donate from "../Donate";
-
-import renderer from "react-test-renderer";
-import DonateCard from "../DonateCard";
-import { BrowserRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
+import { BrowserRouter } from "react-router-dom";
+import renderer from "react-test-renderer";
+
+import Donate from "../Donate";
+import DonateCard from "../DonateCard";
+
 afterEach(() => {
   cleanup();
 });

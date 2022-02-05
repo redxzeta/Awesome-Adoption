@@ -1,14 +1,15 @@
 import React from "react";
-import { Button, Row, Container } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import Dog from "./dog.jpg";
-import "./home.css";
-import PetCard from "../layout/PetCard";
-import LoadPlaceHolder from "../shared/PlaceHolderCard";
+import useSWR from "swr";
+
 import { usePetAuth } from "../../context/TokenContext";
 import { randomPetsList } from "../../routes/API";
 import { fetcher } from "../../utils/homePageFetcher";
-import useSWR from "swr";
+import PetCard from "../layout/PetCard";
+import LoadPlaceHolder from "../shared/PlaceHolderCard";
+// import Dog from "./dog.jpg";
+import "./home.css";
 
 export default function Home() {
   return (

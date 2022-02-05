@@ -1,9 +1,10 @@
 import { screen, waitForElementToBeRemoved } from "@testing-library/react";
-import PetInfo from "../PetInfo";
 import React from "react";
-import { customRender } from "../../../swrconfigtest";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
+
 import PetAuthProvider from "../../../context/TokenContext";
+import { customRender } from "../../../swrconfigtest";
+import PetInfo from "../PetInfo";
 
 describe("<PetInfo/>", () => {
   it("should display peta data successfully", async () => {
