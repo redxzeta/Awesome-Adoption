@@ -1,28 +1,29 @@
 import React, { Fragment } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/home/Home";
-import NavigationBar from "./components/layout/NavigationBar";
-import "./App.css";
-import Pets from "./components/pets/Pets";
-import PetType from "./components/pets/PetType";
-import PetInfo from "./components/pets/PetInfo";
-import Footer from "./components/layout/Footer";
-import About from "./components/about/About";
-import Resources from "./components/resources/Resources";
-import Tips from "./components/tips/Tips";
-import Stories from "./components/stories/Stories";
-import NotFound from "./components/NotFound/NotFound";
-import Donate from "./components/donate/Donate";
-import Register from "./components/accounts/Register";
-import { supabase } from "./utils/SupaBaseUtils";
-import SLogin from "./components/accounts/SLogin";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Provider } from "react-supabase";
-import { AuthProvider } from "./context/SupaContext";
+
+import "./App.css";
+import NotFound from "./components/NotFound/NotFound";
+import About from "./components/about/About";
 import ForgotPassword from "./components/accounts/ForgotPassword";
-import PetAuthProvider from "./context/TokenContext";
-import ResetPassword from "./components/accounts/settings/resetPassword";
-import PrivateRoute from "./utils/PrivateRoute";
+import Register from "./components/accounts/Register";
+import SLogin from "./components/accounts/SLogin";
 import Profile from "./components/accounts/profile/Profile";
+import ResetPassword from "./components/accounts/settings/resetPassword";
+import Donate from "./components/donate/Donate";
+import Home from "./components/home/Home";
+import Footer from "./components/layout/Footer";
+import NavigationBar from "./components/layout/NavigationBar";
+import PetInfo from "./components/pets/PetInfo";
+import PetType from "./components/pets/PetType";
+import Pets from "./components/pets/Pets";
+import Resources from "./components/resources/Resources";
+import Stories from "./components/stories/Stories";
+import Tips from "./components/tips/Tips";
+import { AuthProvider } from "./context/SupaContext";
+import PetAuthProvider from "./context/TokenContext";
+import PrivateRoute from "./utils/PrivateRoute";
+import { supabase } from "./utils/SupaBaseUtils";
 
 export default function App() {
   return (

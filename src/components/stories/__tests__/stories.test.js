@@ -1,9 +1,11 @@
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import React from "react";
 import ReactDOM from "react-dom";
-jest.mock("../Stories");
+
 import Stories from "../Stories";
+
+jest.mock("../Stories");
 
 describe("stories", () => {
   it("renders form without crashing", () => {

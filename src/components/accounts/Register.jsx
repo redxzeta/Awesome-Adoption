@@ -1,11 +1,11 @@
 import { Fragment } from "react";
-import { Form, Container } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { useSignUp } from "react-supabase";
+
 import { useAuth } from "../../context/SupaContext";
 import useForm from "../../useHooks/useForm";
 import { FetchingButton } from "../layout/Buttons/FetchingButton";
-
 import "./register.css";
 
 const initState = {

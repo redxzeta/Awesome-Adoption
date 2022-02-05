@@ -1,8 +1,9 @@
 import { screen, waitFor } from "@testing-library/react";
-import { rest, server } from "../../../testServer";
 import React from "react";
-import About from "../About";
+
 import { customRender } from "../../../swrconfigtest";
+import { rest, server } from "../../../testServer";
+import About from "../About";
 
 describe("<About/>", () => {
   test("should fetch api and expect error", async () => {

@@ -1,10 +1,11 @@
 import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./PetCard.css";
-import placeholder from "../pets/placeholder.jpg";
+
 import { nameCleaner } from "../../utils/utilsCleaner/index";
+import placeholder from "../pets/placeholder.jpg";
 import PetIcon from "../shared/PetIcon";
+import "./PetCard.css";
 
 export default function PetCard(props) {
   const {

@@ -1,23 +1,24 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { Card, Button, Spinner, Container } from "react-bootstrap";
-import Gallery from "../shared/Gallery";
-import Placeholder from "./placeholder.jpg";
-import { nameCleaner } from "../../utils/utilsCleaner/index";
-import { fetcher } from "../../utils/petInfoFetcher";
+import { Button, Card, Container, Spinner } from "react-bootstrap";
 import {
-  BsFillEnvelopeOpenFill,
   BsArrowRight,
-  BsShareFill,
+  BsFillEnvelopeOpenFill,
   BsGenderAmbiguous,
+  BsShareFill,
 } from "react-icons/bs";
-import { VscSymbolColor, VscTypeHierarchySub } from "react-icons/vsc";
 import { GiAges } from "react-icons/gi";
 import { HiMail } from "react-icons/hi";
-import "./PetInfo.css";
+import { VscSymbolColor, VscTypeHierarchySub } from "react-icons/vsc";
+import { useParams } from "react-router-dom";
+import useSWR from "swr";
+
 import { usePetAuth } from "../../context/TokenContext";
 import { lookUpPet } from "../../routes/API";
-import useSWR from "swr";
+import { fetcher } from "../../utils/petInfoFetcher";
+import { nameCleaner } from "../../utils/utilsCleaner/index";
+import Gallery from "../shared/Gallery";
+import "./PetInfo.css";
+import Placeholder from "./placeholder.jpg";
 
 export default function PetInfo() {
   const { id } = useParams();

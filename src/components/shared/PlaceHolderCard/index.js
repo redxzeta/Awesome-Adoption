@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, Placeholder, Image, Col } from "react-bootstrap";
+import { Card, Col, Image, Placeholder } from "react-bootstrap";
+
 import "./PlaceHolderCard.css";
 
 const PlaceHolderCard = () => (

@@ -1,16 +1,17 @@
 import React from "react";
-import { Row, Col, Image, Button, Container, Spinner } from "react-bootstrap";
-import "./pets.css";
-import Bird from "./bird.jpg";
-import Dog from "./doggo.jpg";
-import Cat from "./cat.jpg";
-import Horse from "./horse.jpg";
-import Rabbit from "./rabbit.jpg";
-import Placeholder from "./placeholder.jpg";
+import { Button, Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
+
 import { usePetAuth } from "../../context/TokenContext";
 import { fetcher } from "../../utils/petInfoFetcher";
+import Bird from "./bird.jpg";
+import Cat from "./cat.jpg";
+import Dog from "./doggo.jpg";
+import Horse from "./horse.jpg";
+import "./pets.css";
+import Placeholder from "./placeholder.jpg";
+import Rabbit from "./rabbit.jpg";
 
 const linkData = [
   {

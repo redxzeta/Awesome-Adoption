@@ -2,6 +2,7 @@ import { Container, Row } from "react-bootstrap";
 
 import LoadPlaceHolder from "../../shared/PlaceHolderCard";
 import PetImg from "./PetErrorImg.jpg";
+
 export const PetLoader = ({ type }) => {
   return (
     <Container className="pawhub">

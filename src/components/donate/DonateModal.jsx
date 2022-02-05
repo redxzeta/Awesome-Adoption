@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
-import useForm from "../../useHooks/useForm";
+import { Button, Form, Modal } from "react-bootstrap";
 import validator from "validator";
+
+import useForm from "../../useHooks/useForm";
 
 export default function DonateModal({ show, handleClose }) {
   const [nameError, setNameError] = useState(false);

@@ -1,13 +1,15 @@
-import userData from "./UserData";
-import { Link } from "react-router-dom";
-import { Form, Row, Button, Modal, Container } from "react-bootstrap";
-import UserCard from "../layout/UserCard";
 import { useState } from "react";
+import { Button, Container, Form, Modal, Row } from "react-bootstrap";
+import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+import { Link } from "react-router-dom";
 import { useInsert } from "react-supabase";
+
 import { useAuth } from "../../context/SupaContext";
 import { FetchingButton } from "../layout/Buttons/FetchingButton";
-import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+import UserCard from "../layout/UserCard";
 import "./Stories.css";
+import userData from "./UserData";
+
 export default function Stories() {
   const [show, setShow] = useState(false);
   const [country, setCountry] = useState("");

@@ -1,9 +1,10 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import { Provider } from "react-supabase";
-import { server, supabase, rest } from "../../../testServer";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { Provider } from "react-supabase";
+
+import { rest, server, supabase } from "../../../testServer";
 import SLogin from "../SLogin";
 
 describe("<SLogin/>", () => {

@@ -1,17 +1,18 @@
 import React, { Fragment } from "react";
 import {
-  Nav,
-  Navbar,
-  NavDropdown,
   Container,
   Image,
+  Nav,
+  NavDropdown,
+  Navbar,
   Spinner,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./NavigationBar.css";
-import Logo from "../../images/PawHubLogo.png";
 import { useSignOut } from "react-supabase";
+
 import { useAuth } from "../../context/SupaContext";
+import Logo from "../../images/PawHubLogo.png";
+import "./NavigationBar.css";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
 const PetTypes = () =>

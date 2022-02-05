@@ -13,7 +13,8 @@
     "plugin:react/recommended",
     "standard",
     "plugin:prettier/recommended",
-    "plugin:jest-dom/recommended"
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/react"
   ],
   "parserOptions": {
     "ecmaFeatures": {

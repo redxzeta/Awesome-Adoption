@@ -1,7 +1,8 @@
 import React from "react";
 import { Card, Col } from "react-bootstrap";
-import "./NoPetsCard.css";
+
 import missing from "../home/dog.jpg";
+import "./NoPetsCard.css";
 
 export default function NoPetsCard() {
   return (

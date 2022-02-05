@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
-import { Image, Container, Row, Col, Button } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useFilter, useSelect } from "react-supabase";
-import { useState } from "react";
-import EditProfileModal from "./EditProfileModal";
 
-import "./profile.css";
 import { useAuth } from "../../../context/SupaContext";
+import EditProfileModal from "./EditProfileModal";
+import "./profile.css";
 
 const Profile = () => {
   // const [userName, setUserName] = useState(sampleUsername);
