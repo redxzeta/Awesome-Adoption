@@ -48,9 +48,3 @@
 .contact {
   word-wrap: break-word;
 }
-
-.head__section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
