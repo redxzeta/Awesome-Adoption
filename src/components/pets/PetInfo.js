@@ -21,6 +21,7 @@ import { usePetAuth } from "../../context/TokenContext";
 import { lookUpPet } from "../../routes/API";
 import { fetcher } from "../../utils/petInfoFetcher";
 import { nameCleaner } from "../../utils/utilsCleaner/index";
+import FavoriteButton from "../layout/FavoriteButton";
 import Gallery from "../shared/Gallery";
 import "./PetInfo.css";
 import Placeholder from "./placeholder.jpg";
@@ -81,21 +82,17 @@ export default function PetInfo() {
   }
 
   return (
-    <Container className="pawhub">
+    <Container className="pawhub  ">
       <div className="petInfo">
-        <div className="head__section">
+        <div className="head__section  ">
           <h1>{nameCleaner(pet.name)}</h1>
-          <h1>
-            {favorites.includes(id) ? (
-              <IoIosHeart onClick={() => addFav(id)} style={{ color: "red" }} />
-            ) : (
-              <IoIosHeartEmpty
-                onClick={() => addFav(id)}
-                style={{ color: "red" }}
-              />
-            )}
-          </h1>
+
+          <FavoriteButton
+            action={() => addFav(id)}
+            status={favorites.includes(id)}
+          />
         </div>
+
         {pet.photos === undefined || pet.photos.length === 0 ? (
           <img src={Placeholder} alt="placeholder" />
         ) : (
