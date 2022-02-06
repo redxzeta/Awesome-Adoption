@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import LoadPlaceHolder from "../shared/PlaceHolderCard";
-import "./pets.css";
-import { Row, Container } from "react-bootstrap";
-import PetCard from "../layout/PetCard";
+import React, { useEffect, useState } from "react";
+import { Container, Row } from "react-bootstrap";
+
 import { usePetAuth } from "../../context/TokenContext";
 import { lookUpPet } from "../../routes/API";
+import PetCard from "../layout/PetCard";
+import LoadPlaceHolder from "../shared/PlaceHolderCard";
+import "./pets.css";
 
 export default function Favorites() {
   const [error, setError] = useState();

@@ -7,14 +7,13 @@ import {
   Navbar,
   Spinner,
 } from "react-bootstrap";
+import { IoIosHeart } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useSignOut } from "react-supabase";
 
 import { useAuth } from "../../context/SupaContext";
-import { IoIosHeart } from "react-icons/io";
 import Logo from "../../images/PawHubLogo.png";
 import "./NavigationBar.css";
-import { IoIosHeart } from "react-icons/io";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
 const PetTypes = () =>

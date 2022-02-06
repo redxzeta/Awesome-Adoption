@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Card, Button, Spinner, Container } from "react-bootstrap";
-import Gallery from "../shared/Gallery";
-import Placeholder from "./placeholder.jpg";
-import { nameCleaner } from "../../utils/utilsCleaner/index";
-import { fetcher } from "../../utils/petInfoFetcher";
+import React, { useEffect, useState } from "react";
+import { Button, Card, Container, Spinner } from "react-bootstrap";
 import {
   BsArrowRight,
   BsFillEnvelopeOpenFill,
@@ -25,7 +20,6 @@ import FavoriteButton from "../layout/FavoriteButton";
 import Gallery from "../shared/Gallery";
 import "./PetInfo.css";
 import Placeholder from "./placeholder.jpg";
-import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 
 export default function PetInfo() {
   const { id } = useParams();
@@ -91,8 +85,7 @@ export default function PetInfo() {
             action={() => addFav(id)}
             status={favorites.includes(id)}
           />
-        </div>
-
+        </div>{" "}
         {pet.photos === undefined || pet.photos.length === 0 ? (
           <img src={Placeholder} alt="placeholder" />
         ) : (
@@ -118,7 +111,6 @@ export default function PetInfo() {
             <Card.Text>{pet.colors.primary ?? "N/A"}</Card.Text>
           </div>
         </div>
-
         <div className="info-body">
           <div className="age-info">
             <GiAges className="icon" />
@@ -144,7 +136,6 @@ export default function PetInfo() {
             </Card.Text>
           </div>
         </div>
-
         <div className="actions">
           <Button
             as="a"
