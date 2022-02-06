@@ -4,7 +4,6 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 import PetAuthProvider from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
-import { rest, server } from "../../../testServer";
 import PetType from "../PetType";
 
 describe("<PetType/>", () => {

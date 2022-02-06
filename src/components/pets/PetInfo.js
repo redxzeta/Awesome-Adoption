@@ -119,29 +119,38 @@ export default function PetInfo() {
         </div>
 
         <div className="actions">
-          <a
-            href={`mailto:${pet.contact.email}`}
+          <Button
+            as="a"
             target="_blank"
             rel="noopener noreferrer"
+            className="action-btn"
+            variant="info"
+            size="lg"
+            href={`mailto:${pet.contact.email}`}
           >
-            <Button className="action-btn" variant="info" size="lg">
-              Contact <BsFillEnvelopeOpenFill />
-            </Button>
-          </a>
+            Contact <BsFillEnvelopeOpenFill />
+          </Button>
+
           <Button
             onClick={handleShare}
             className="action-btn"
             variant="primary"
             size="lg"
-            data-testid="btn-share"
           >
             Share <BsShareFill />
           </Button>
-          <a href={pet.url} target="_blank" rel="noopener noreferrer">
-            <Button className="action-btn" variant="success" size="lg">
-              More Info <BsArrowRight />
-            </Button>
-          </a>
+
+          <Button
+            as="a"
+            href={pet.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="action-btn"
+            variant="success"
+            size="lg"
+          >
+            More Info <BsArrowRight />
+          </Button>
         </div>
       </div>
     </Container>

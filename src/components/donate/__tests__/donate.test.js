@@ -1,14 +1,10 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 
 import Donate from "../Donate";
 import DonateCard from "../DonateCard";
-
-afterEach(() => {
-  cleanup();
-});
 
 test("should render donate component", () => {
   render(<Donate />);
@@ -60,14 +56,14 @@ test("Test for filtering", () => {
   ).toBeTruthy();
 
   expect(
-    screen.getByRole("option", {
+    screen.queryByRole("option", {
       name: "india",
     }).selected
   ).toBeFalsy();
 
   expect(
-    screen.queryAllByText(/^Location: ((?!United States).)*$/i)
-  ).toHaveLength(0);
+    screen.queryByText(/^Location: ((?!United States).)*$/i)
+  ).not.toBeInTheDocument();
 
   expect(
     screen.queryAllByText(/^Location: United States$/i).length
