@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
@@ -39,22 +39,12 @@ describe("<SLogin/>", () => {
   test("should show error message for incorrect email format", async () => {
     server.use(
       rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
-        const { email } = req.body;
-        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-          return res(
-            ctx.status(401),
-            ctx.json({
-              message: "Unable to validate email address: invalid format",
-            })
-          );
-        } else {
-          return res(
-            ctx.status(200),
-            ctx.json({
-              message: "Success",
-            })
-          );
-        }
+        return res(
+          ctx.status(401),
+          ctx.json({
+            message: "Unable to validate email address: invalid format",
+          })
+        );
       })
     );
 

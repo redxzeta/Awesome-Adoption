@@ -27,12 +27,14 @@ describe("<PetInfo/>", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/He is a toddler member /i)).toBeInTheDocument();
     expect(screen.getByText(/Grogu/i)).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /Contact/i }).closest("a")
-    ).toHaveAttribute("href", "mailto:yoda@onefor.me");
-    expect(
-      screen.getByRole("button", { name: /More Info/i }).closest("a")
-    ).toHaveAttribute("href", "https://wwww.mandalorian.com");
+    expect(screen.getByRole("button", { name: /Contact/i })).toHaveAttribute(
+      "href",
+      "mailto:yoda@onefor.me"
+    );
+    expect(screen.getByRole("button", { name: /More Info/i })).toHaveAttribute(
+      "href",
+      "https://wwww.mandalorian.com"
+    );
   });
   it("should display pet data error", async () => {
     customRender(

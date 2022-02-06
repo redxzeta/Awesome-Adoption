@@ -12,7 +12,7 @@ import Register from "../Register";
 
 describe("<Register/>", () => {
   test("should register sucessfully", async () => {
-    const { getByLabelText, getByText } = render(
+    render(
       <Provider value={supabase}>
         <Register />
       </Provider>
@@ -28,7 +28,7 @@ describe("<Register/>", () => {
     userEvent.click(submitButton);
     const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
     expect(LoadingButton).toBeDisabled();
-    await waitForElementToBeRemoved(screen.getByText(/Loading.../i));
+    await waitForElementToBeRemoved(screen.queryByText(/Loading.../i));
     expect(screen.getByText(/Success/i)).toBeInTheDocument();
   });
 

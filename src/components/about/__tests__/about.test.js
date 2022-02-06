@@ -32,7 +32,8 @@ describe("<About/>", () => {
   test("should fetch api and render list", async () => {
     customRender(<About />);
     expect(screen.getByRole("status")).toBeInTheDocument();
-    expect(screen.queryAllByAltText(/Contributor Avatar/i)).toHaveLength(0);
+    const avatarAltTexts = screen.queryByAltText(/Contributor Avatar/i);
+    expect(avatarAltTexts).not.toBeInTheDocument();
     await waitFor(() =>
       expect(screen.queryByRole("status")).not.toBeInTheDocument()
     );
