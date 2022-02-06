@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Provider } from "react-supabase";
 
 import "./App.css";
@@ -32,35 +32,33 @@ export default function App() {
       <PetAuthProvider>
         <Provider value={supabase}>
           <AuthProvider>
-            <Router>
-              <NavigationBar />
-              <Routes>
-                <Route path="animal/:id" element={<PetInfo />} />
-                <Route path="pets/:type" element={<PetType />} />
-                <Route path="pets" element={<Pets />} />
-                <Route path="about" element={<About />} />
-                <Route path="resources" element={<Resources />} />
-                <Route path="tips" element={<Tips />} />
-                <Route path="donate" element={<Donate />} />
-                <Route path="stories" element={<Stories />} />
-                <Route path="favorites" element={<Favorites />} />
-                <Route path="register" element={<Register />} />
-                <Route path="login" element={<SLogin />} />
-                <Route path="forgot-password" element={<ForgotPassword />} />
-                <Route
-                  path="reset-password"
-                  element={
-                    <PrivateRoute>
-                      <ResetPassword />
-                    </PrivateRoute>
-                  }
-                />
-                <Route path="profile" element={<Profile />} />
-                <Route path="/" element={<Home />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-              <Footer />
-            </Router>
+            <NavigationBar />
+            <Routes>
+              <Route path="animal/:id" element={<PetInfo />} />
+              <Route path="pets/:type" element={<PetType />} />
+              <Route path="pets" element={<Pets />} />
+              <Route path="about" element={<About />} />
+              <Route path="resources" element={<Resources />} />
+              <Route path="tips" element={<Tips />} />
+              <Route path="donate" element={<Donate />} />
+              <Route path="stories" element={<Stories />} />
+              <Route path="favorites" element={<Favorites />} />
+              <Route path="register" element={<Register />} />
+              <Route path="login" element={<SLogin />} />
+              <Route path="forgot-password" element={<ForgotPassword />} />
+              <Route
+                path="reset-password"
+                element={
+                  <PrivateRoute>
+                    <ResetPassword />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="profile" element={<Profile />} />
+              <Route path="/" element={<Home />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
           </AuthProvider>
         </Provider>
       </PetAuthProvider>
