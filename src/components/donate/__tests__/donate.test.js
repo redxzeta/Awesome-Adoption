@@ -73,5 +73,5 @@ test("Test for filtering", () => {
     screen.getByRole("option", { name: "united states" })
   ).toBeInTheDocument();
 
-  expect(screen.getAllByRole("option").length).toBe(10);
+  expect(screen.getAllByRole("option").length).toBe(11);
 });
