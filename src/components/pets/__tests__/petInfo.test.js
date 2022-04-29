@@ -5,7 +5,7 @@ import { Provider } from "react-supabase";
 
 import PetAuthProvider from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
-import { rest, server, supabase } from "../../../testServer";
+import { supabase } from "../../../testServer";
 import PetInfo from "../PetInfo";
 
 describe("<PetInfo/>", () => {
