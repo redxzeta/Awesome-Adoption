@@ -1,20 +1,24 @@
 import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-supabase";
 
 import PetAuthProvider from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
+import { rest, server, supabase } from "../../../testServer";
 import PetInfo from "../PetInfo";
 
 describe("<PetInfo/>", () => {
   it("should display peta data successfully", async () => {
     customRender(
       <MemoryRouter initialEntries={["/animal/1"]}>
-        <PetAuthProvider>
-          <Routes>
-            <Route path="animal/:id" element={<PetInfo />} />
-          </Routes>
-        </PetAuthProvider>
+        <Provider value={supabase}>
+          <PetAuthProvider>
+            <Routes>
+              <Route path="animal/:id" element={<PetInfo />} />
+            </Routes>
+          </PetAuthProvider>
+        </Provider>
       </MemoryRouter>
     );
 
@@ -39,11 +43,14 @@ describe("<PetInfo/>", () => {
   it("should display pet data error", async () => {
     customRender(
       <MemoryRouter initialEntries={["/animal/123456"]}>
-        <PetAuthProvider>
-          <Routes>
-            <Route path="animal/:id" element={<PetInfo />} />
-          </Routes>
-        </PetAuthProvider>
+        {" "}
+        <Provider value={supabase}>
+          <PetAuthProvider>
+            <Routes>
+              <Route path="animal/:id" element={<PetInfo />} />
+            </Routes>
+          </PetAuthProvider>{" "}
+        </Provider>
       </MemoryRouter>
     );
 
