@@ -7,7 +7,7 @@ import Stories from "../Stories";
 
 jest.mock("../Stories");
 
-describe("stories", () => {
+describe.skip("stories", () => {
   it("renders form without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<Stories initShow={true} />, div);
@@ -21,7 +21,7 @@ describe("stories", () => {
   });
 });
 
-describe("modal form", () => {
+describe.skip("modal form", () => {
   it("should render text fields correctly", () => {
     render(<Stories initShow={true} />);
     userEvent.type(screen.getByRole("title"), "My story");
