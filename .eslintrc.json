@@ -7,7 +7,7 @@
   "settings": {
     "react": {
       "pragma": "React",
-      "version": "latest"
+      "version": "18"
     }
   },
   "extends": [

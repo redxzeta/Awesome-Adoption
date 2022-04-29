@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button, Card, Container, Spinner } from "react-bootstrap";
 import {
   BsArrowRight,
@@ -16,17 +16,14 @@ import { usePetAuth } from "../../context/TokenContext";
 import { lookUpPet } from "../../routes/API";
 import { fetcher } from "../../utils/petInfoFetcher";
 import { nameCleaner } from "../../utils/utilsCleaner/index";
-import FavoriteButton from "../layout/FavoriteButton";
 import Gallery from "../shared/Gallery";
+import FavoriteSection from "./Favorites/FavoriteSection";
 import "./PetInfo.css";
 import Placeholder from "./placeholder.jpg";
 
 export default function PetInfo() {
   const { id } = useParams();
   const { tokenHeaders } = usePetAuth();
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("favorites"))
-  );
 
   function handleShare(e) {
     e.preventDefault();
@@ -50,21 +47,12 @@ export default function PetInfo() {
     tokenHeaders ? [lookUpPet + id, tokenHeaders] : null,
     fetcher
   );
-  useEffect(() => {
-    if (!favorites) setFavorites([]);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
 
-  const addFav = (id) => {
-    favorites.indexOf(id) > -1
-      ? setFavorites((favorites) => favorites.filter((value) => value !== id))
-      : setFavorites((favorites) => [...favorites, id]);
-  };
   const isLoading = !pet && !error;
 
   if (isLoading) {
     return (
-      <Container className="pawhub">
+      <Container className="pawhub py-4">
         <Spinner animation="grow" variant="primary" role="status">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
@@ -76,16 +64,13 @@ export default function PetInfo() {
   }
 
   return (
-    <Container className="pawhub  ">
+    <Container className="pawhub py-4">
       <div className="petInfo">
-        <div className="head__section  ">
+        <div className="head__section d-flex justify-content-between">
           <h1>{nameCleaner(pet.name)}</h1>
 
-          <FavoriteButton
-            action={() => addFav(id)}
-            status={favorites.includes(id)}
-          />
-        </div>{" "}
+          <FavoriteSection id={id} />
+        </div>
         {pet.photos === undefined || pet.photos.length === 0 ? (
           <img src={Placeholder} alt="placeholder" />
         ) : (
