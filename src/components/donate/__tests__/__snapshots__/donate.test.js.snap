@@ -45,6 +45,7 @@ exports[`matches donate card snapshot 1`] = `
         </p>
         <a
           className="btn btn-primary"
+          disabled={false}
           href="https://via.placeholder.com/"
           onClick={[Function]}
           onKeyDown={[Function]}
