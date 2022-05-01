@@ -6,7 +6,8 @@ import FavoriteButton from "../../layout/FavoriteButton";
 
 const FavoriteSection = ({ id }) => {
   const [{ fetching }, execute] = useInsert("favoritepets");
-  const { user, session, favoritePets, addNewFav } = useAuth();
+  const { user, session, favoritePets, addNewFav, removeFavoritePet } =
+    useAuth();
   const [status, setStatus] = useState(false);
   const [removalId, setRemovalId] = useState(0);
   if (!session) return null;
@@ -19,16 +20,18 @@ const FavoriteSection = ({ id }) => {
     addNewFav(data[0]);
   };
 
-  const removeFav = async (petId) =>
-    await executeDelete((query) => query.eq("id", petId), {
+  const removeFav = async () => {
+    await executeDelete((query) => query.eq("id", removalId), {
       returning: "minimal",
       count: "estimated",
     });
+    removeFavoritePet(removalId);
+  };
   useEffect(() => {
     const checkFav = favoritePets.some((el) => el.pet === id);
     if (checkFav) {
       setStatus(true);
-      setRemovalId(favoritePets.find((fav) => fav.pet === id));
+      setRemovalId(favoritePets.find((fav) => fav.pet === id).id);
     } else {
       setStatus(false);
       setRemovalId(0);
@@ -39,7 +42,7 @@ const FavoriteSection = ({ id }) => {
     <FavoriteButton
       loading={fetching || deleteFetching}
       add={() => addFav(id)}
-      remove={() => removeFav(removalId)}
+      remove={removeFav}
       status={status}
     />
   );

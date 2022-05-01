@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import {
   Container,
   Image,
@@ -28,17 +28,7 @@ export default function NavigationBar() {
   const onClickSignOut = async () => {
     await signOut();
   };
-  const { session, username } = useAuth();
-  const [numFavorites, setNumFavorites] = useState(0);
-
-  useEffect(() => {
-    setInterval(() => {
-      const numFavorites = JSON.parse(localStorage.getItem("favorites"))
-        ? JSON.parse(localStorage.getItem("favorites")).length
-        : 0;
-      setNumFavorites(numFavorites);
-    }, []);
-  }, []);
+  const { session, username, favoritePets } = useAuth();
 
   return (
     <Navbar bg="primary" expand="lg">
@@ -77,10 +67,12 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/stories">
               User Story
             </Nav.Link>
-            <Nav.Link as={Link} to="/favorites">
-              <IoIosHeart />
-              <span style={{ fontSize: "14px" }}>{numFavorites}</span>
-            </Nav.Link>
+            {session && (
+              <Nav.Link as={Link} to="/favorites">
+                <IoIosHeart />
+                <span style={{ fontSize: "14px" }}>{favoritePets.length}</span>
+              </Nav.Link>
+            )}
             <NavDropdown
               title={<i className="bi bi-person-circle"></i>}
               id="navbarScrollingDropdown"
