@@ -1,4 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { Provider } from "react-supabase";
@@ -18,17 +22,19 @@ describe("<Register/>", () => {
     const passwordField = screen.getByLabelText(/password/i);
     userEvent.type(passwordField, "fake_password");
 
-    const submitButton = screen.getByRole("button", { name: /submit/i });
+    const submitButton = screen.getByRole("button", { name: /Submit/i });
     expect(submitButton).toBeEnabled();
 
     userEvent.click(submitButton);
-    // const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
-    // expect(LoadingButton).toBeDisabled();
-    // await waitForElementToBeRemoved(screen.queryByText(/Loading.../i));
-    // expect(screen.getByText(/Success/i)).toBeInTheDocument();
+    const LoadingButton = await screen.findByRole("button", {
+      name: /Loading.../i,
+    });
+    expect(LoadingButton).toBeDisabled();
+    await waitForElementToBeRemoved(screen.queryByText(/Loading.../i));
+    expect(screen.getByText(/Success/i)).toBeInTheDocument();
   });
 
-  test.skip("should register unsucessfully", async () => {
+  test("should register unsucessfully", async () => {
     server.use(
       rest.post("https://test.supabase.co/auth/v1/signup", (_req, res, ctx) => {
         return res(
@@ -52,7 +58,9 @@ describe("<Register/>", () => {
     expect(submitButton).toBeEnabled();
 
     userEvent.click(screen.getByText(/submit/i));
-    const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+    const LoadingButton = await screen.findByRole("button", {
+      name: /Loading.../i,
+    });
     expect(LoadingButton).toBeDisabled();
 
     const errorMessage = await screen.findByText(/Unable To Register/i);

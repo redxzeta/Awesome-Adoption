@@ -53,7 +53,7 @@ describe("<PetType/>", () => {
     expect(goZip).toBeDisabled();
     userEvent.type(zipForm, "abcde");
     expect(goZip).toBeDisabled();
-    expect(screen.getByText(/Invalid zip Code/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Invalid zip Code/i)).toBeInTheDocument();
     userEvent.clear(screen.getByLabelText(/zipcode/i));
     expect(screen.queryByText(/Invalid zip Code/i)).not.toBeInTheDocument();
     expect(zipForm).toHaveValue("");
