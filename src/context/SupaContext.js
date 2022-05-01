@@ -72,7 +72,7 @@ export function AuthProvider({ children }) {
   const addNewFav = (newFav) =>
     setState((s) => ({ ...s, favoritePets: [...s.favoritePets, newFav] }));
 
-  const removeFav = (favId) =>
+  const removeFavoritePet = (favId) =>
     setState((s) => ({
       ...s,
       favoritePets: state.favoritePets.filter((el) => el.id !== favId),
@@ -82,7 +82,7 @@ export function AuthProvider({ children }) {
     ...state,
     changeUserName: changeUserName,
     addNewFav: addNewFav,
-    removeFav,
+    removeFavoritePet: removeFavoritePet,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
