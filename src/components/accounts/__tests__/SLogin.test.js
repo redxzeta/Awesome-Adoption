@@ -18,7 +18,7 @@ describe("<SLogin/>", () => {
     );
     expect(
       screen.queryByText(
-        /You must provide either an email, phone number or a third-party provider/i
+        /You must provide either an email, phone number, a third-party provider or OpenID Connect./i
       )
     ).not.toBeInTheDocument();
     const submitButton = screen.getByRole("button", { name: /submit/i });
@@ -26,12 +26,14 @@ describe("<SLogin/>", () => {
 
     userEvent.click(submitButton);
 
-    const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+    const LoadingButton = await screen.findByRole("button", {
+      name: /Loading.../i,
+    });
     expect(LoadingButton).toBeDisabled();
 
     expect(
       await screen.findByText(
-        /You must provide either an email, phone number or a third-party provider/i
+        /You must provide either an email, phone number, a third-party provider or OpenID Connect./i
       )
     ).toBeInTheDocument();
   });
@@ -68,7 +70,9 @@ describe("<SLogin/>", () => {
 
     userEvent.click(submitButton);
 
-    const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+    const LoadingButton = await screen.findByRole("button", {
+      name: /Loading.../i,
+    });
     expect(LoadingButton).toBeDisabled();
 
     const invalidEmail = await screen.findByText(
@@ -113,7 +117,9 @@ describe("<SLogin/>", () => {
     expect(submitButton).toBeEnabled();
 
     userEvent.click(screen.getByText(/submit/i));
-    const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+    const LoadingButton = await screen.findByRole("button", {
+      name: /Loading.../i,
+    });
     expect(LoadingButton).toBeDisabled();
 
     const errorMessage = await screen.findByText(/Wrong Password/i);
@@ -156,7 +162,9 @@ describe("<SLogin/>", () => {
 
     userEvent.click(screen.getByText(/submit/i));
 
-    const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+    const LoadingButton = await screen.findByRole("button", {
+      name: /Loading.../i,
+    });
     expect(LoadingButton).toBeDisabled();
 
     const submitPostButton = await screen.findByRole("button", {
