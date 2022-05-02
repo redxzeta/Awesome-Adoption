@@ -1,19 +1,53 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { useAuthStateChange, useClient } from "react-supabase";
 
-const initialState = {
-  session: null,
-  user: { id: null },
-  username: "Guest",
-  error: null,
-  isLoading: false,
-  favoritePets: [],
-};
+import { initialState, supaReducer } from "../reducers/supaReducer";
+
 export const AuthContext = createContext(initialState);
 
 export function AuthProvider({ children }) {
   const client = useClient();
-  const [state, setState] = useState(initialState);
+
+  const [state, dispatch] = useReducer(supaReducer, initialState);
+
+  const dispatchLoadingSupa = () => dispatch({ type: "LOADING_SUPA" });
+
+  const dispatchLoadedSupa = () => dispatch({ type: "LOADED_SUPA" });
+
+  const changeUserName = (userName) =>
+    dispatch({ type: "CHANGE_USERNAME", payload: userName });
+
+  const addNewFav = (newFav) => dispatch({ type: "ADD_PET", payload: newFav });
+
+  const removeFavoritePet = (favId) =>
+    dispatch({ type: "REMOVE_FAV", payload: favId });
+
+  const sessionLoad = async () => {
+    dispatchLoadingSupa();
+    try {
+      const session = client.auth.session();
+      if (session) {
+        const sessionState = {
+          session,
+          user: session?.user ?? null,
+        };
+        dispatch({ type: "UPDATE_AUTH", payload: sessionState });
+        const {
+          data: { username, favoritepets },
+        } = await handleUpdateProfile(session.user.id);
+        dispatch({
+          type: "UPDATE_PROFILE",
+          payload: { username: username, favoritepets: favoritepets },
+        });
+      } else {
+        dispatch({ type: "LOGOUT" });
+      }
+    } catch (error) {
+      dispatch({ type: "ERROR" });
+    } finally {
+      dispatchLoadedSupa();
+    }
+  };
 
   const handleGetUserProfile = (id) =>
     client
@@ -22,61 +56,46 @@ export function AuthProvider({ children }) {
       .eq("id", id)
       .single();
 
-  const handleUpdateState = (key, value) =>
-    setState((prev) => ({ ...prev, [key]: value }));
-
-  const handleUpdateProfile = async (id) => {
+  const handleUpdateProfile = (id) => {
     const {
       data: { username, favoritepets },
-    } = await handleGetUserProfile(id);
+    } = handleGetUserProfile(id);
 
-    handleUpdateState("username", username);
-    handleUpdateState("favoritePets", favoritepets);
+    dispatch({
+      type: "UPDATE_PROFILE",
+      payload: {
+        username: username,
+        favoritepets: favoritepets,
+      },
+    });
   };
 
   useEffect(() => {
-    handleUpdateState("isLoading", true);
-    handleUpdateState("error", false);
-    try {
-      const session = client.auth.session();
-      if (session) {
-        const { user } = session;
-        handleUpdateProfile(user.id);
-      } else {
-        handleUpdateState("username", "Guest");
-        handleUpdateState("favoritePets", []);
-      }
-
-      setState((prev) => ({ ...prev, session, user: session?.user ?? null }));
-    } catch (error) {
-      handleUpdateState("error", true);
-    } finally {
-      handleUpdateState("isLoading", false);
-    }
+    sessionLoad();
   }, []);
 
   useAuthStateChange(async (event, session) => {
-    handleUpdateState("isLoading", true);
-    setState({ session, user: session?.user ?? null, event: event });
+    dispatchLoadingSupa();
 
     if (session) {
-      await handleUpdateProfile(session.user.id);
+      const sessionState = {
+        session,
+        user: session?.user ?? null,
+        event: event,
+      };
+      dispatch({ type: "UPDATE_AUTH", payload: sessionState });
+      const {
+        data: { username, favoritepets },
+      } = await handleUpdateProfile(session.user.id);
+      dispatch({
+        type: "UPDATE_PROFILE",
+        payload: { username: username, favoritepets: favoritepets },
+      });
     } else {
-      handleUpdateState("username", "Guest");
-      handleUpdateState("favoritePets", []);
+      dispatch({ type: "LOGOUT" });
     }
+    dispatchLoadedSupa();
   });
-  const changeUserName = (userName) =>
-    setState((s) => ({ ...s, username: userName }));
-
-  const addNewFav = (newFav) =>
-    setState((s) => ({ ...s, favoritePets: [...s.favoritePets, newFav] }));
-
-  const removeFavoritePet = (favId) =>
-    setState((s) => ({
-      ...s,
-      favoritePets: state.favoritePets.filter((el) => el.id !== favId),
-    }));
 
   const value = {
     ...state,
