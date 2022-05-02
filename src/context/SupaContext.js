@@ -34,13 +34,13 @@ export function AuthProvider({ children }) {
         dispatch({ type: "UPDATE_AUTH", payload: sessionState });
         const {
           data: { username, favoritepets },
-        } = await handleUpdateProfile(session.user.id);
+        } = await handleGetUserProfile(session.user.id);
         dispatch({
           type: "UPDATE_PROFILE",
           payload: { username: username, favoritepets: favoritepets },
         });
       } else {
-        dispatch({ type: "LOGOUT" });
+        dispatch({ type: "LOGGED_OUT" });
       }
     } catch (error) {
       dispatch({ type: "ERROR" });
@@ -49,26 +49,12 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const handleGetUserProfile = (id) =>
-    client
+  const handleGetUserProfile = async (id) =>
+    await client
       .from("profiles")
       .select("username, favoritepets(id,pet)")
       .eq("id", id)
       .single();
-
-  const handleUpdateProfile = (id) => {
-    const {
-      data: { username, favoritepets },
-    } = handleGetUserProfile(id);
-
-    dispatch({
-      type: "UPDATE_PROFILE",
-      payload: {
-        username: username,
-        favoritepets: favoritepets,
-      },
-    });
-  };
 
   useEffect(() => {
     sessionLoad();
@@ -86,13 +72,13 @@ export function AuthProvider({ children }) {
       dispatch({ type: "UPDATE_AUTH", payload: sessionState });
       const {
         data: { username, favoritepets },
-      } = await handleUpdateProfile(session.user.id);
+      } = await handleGetUserProfile(session.user.id);
       dispatch({
         type: "UPDATE_PROFILE",
         payload: { username: username, favoritepets: favoritepets },
       });
     } else {
-      dispatch({ type: "LOGOUT" });
+      dispatch({ type: "LOGGED_OUT" });
     }
     dispatchLoadedSupa();
   });
