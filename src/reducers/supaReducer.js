@@ -26,7 +26,7 @@ export const supaReducer = (state = initialState, { type, payload }) => {
         username: payload.username,
         favoritePets: payload.favoritepets,
       };
-    case "LOGOUT":
+    case "LOGGED_OUT":
       return initialState;
     case "CHANGE_USERNAME":
       return {
