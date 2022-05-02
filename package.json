@@ -35,7 +35,8 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "lint": "eslint ./",
     "lint-fix": "eslint ./ --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:coverage": "react-scripts test --watchAll=false --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -80,5 +81,23 @@
     "hooks": {
       "pre-commit": "lint-staged && pretty-quick --staged"
     }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 26,
+        "functions": 26,
+        "lines": 26,
+        "statements": 26
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ]
   }
 }
