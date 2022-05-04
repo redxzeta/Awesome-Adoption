@@ -118,6 +118,24 @@ const server = setupServer(
       updated_at: Date.now(),
     };
     return res(ctx.status(200), ctx.json(fakeNewAccount));
+  }),
+
+  rest.get("https://test.supabase.co/rest/v1/profiles", (req, res, ctx) => {
+    const fakeNewProfile = {
+      id: "35",
+      username: "SupaAwesome",
+      description: "Supa Awesome yet ",
+      avatar_url: "cuteDoggoAndCat.jpg",
+    };
+    return res(ctx.status(200), ctx.json(fakeNewProfile));
+  }),
+
+  rest.get("https://test.supabase.co/rest/v1/favoritepets", (req, res, ctx) => {
+    const fakeNewFavorites = [
+      { id: 1, pet: "1" },
+      { id: 2, pet: "2" },
+    ];
+    return res(ctx.status(200), ctx.json(fakeNewFavorites));
   })
 );
 
