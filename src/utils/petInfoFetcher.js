@@ -19,5 +19,12 @@ async function fetcher(url, tokenHeaders) {
     return data.animals[0];
   }
 }
+const multipleFetcher = (urls, tokenHeaders) => {
+  if (urls.length === 0) return [];
+  if (urls.length > 1) {
+    return Promise.all(urls.map((u) => fetcher(u, tokenHeaders)));
+  }
+  return [fetcher(urls, tokenHeaders)];
+};
 
-export { fetcher };
+export { fetcher, multipleFetcher };
