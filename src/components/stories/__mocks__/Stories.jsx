@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Form, Button, Modal } from "react-bootstrap";
-import { FetchingButton } from "../../layout/Buttons/FetchingButton";
+import { Button, Form, Modal } from "react-bootstrap";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+
+import { FetchingButton } from "../../layout/Buttons/FetchingButton";
 import "../Stories.css";
+
 function Stories(initShow, success = false) {
   const [show, setShow] = useState(initShow);
   const [country, setCountry] = useState("");

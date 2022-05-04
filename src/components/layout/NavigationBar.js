@@ -1,17 +1,19 @@
 import React, { Fragment } from "react";
 import {
-  Nav,
-  Navbar,
-  NavDropdown,
   Container,
   Image,
+  Nav,
+  NavDropdown,
+  Navbar,
   Spinner,
 } from "react-bootstrap";
+import { IoIosHeart } from "react-icons/io";
 import { Link } from "react-router-dom";
-import "./NavigationBar.css";
-import Logo from "../../images/PawHubLogo.png";
 import { useSignOut } from "react-supabase";
+
 import { useAuth } from "../../context/SupaContext";
+import Logo from "../../images/PawHubLogo.png";
+import "./NavigationBar.css";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
 const PetTypes = () =>
@@ -26,7 +28,8 @@ export default function NavigationBar() {
   const onClickSignOut = async () => {
     await signOut();
   };
-  const { session, username } = useAuth();
+  const { session, username, favoritePets } = useAuth();
+
   return (
     <Navbar bg="primary" expand="lg">
       <Container>
@@ -64,6 +67,12 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/stories">
               User Story
             </Nav.Link>
+            {session && (
+              <Nav.Link as={Link} to="/favorites">
+                <IoIosHeart />
+                <span style={{ fontSize: "14px" }}>{favoritePets.length}</span>
+              </Nav.Link>
+            )}
             <NavDropdown
               title={<i className="bi bi-person-circle"></i>}
               id="navbarScrollingDropdown"

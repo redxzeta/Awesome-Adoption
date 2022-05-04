@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 import "./resources.css";
+
 export default function Home() {
   return (
     <Container className="pawhub">

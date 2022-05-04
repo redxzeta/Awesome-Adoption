@@ -1,9 +1,10 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import { Provider } from "react-supabase";
-import { server, supabase, rest } from "../../../testServer";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { Provider } from "react-supabase";
+
+import { rest, server, supabase } from "../../../testServer";
 import SLogin from "../SLogin";
 
 describe("<SLogin/>", () => {
@@ -17,7 +18,7 @@ describe("<SLogin/>", () => {
     );
     expect(
       screen.queryByText(
-        /You must provide either an email, phone number or a third-party provider/i
+        /You must provide either an email, phone number, a third-party provider or OpenID Connect./i
       )
     ).not.toBeInTheDocument();
     const submitButton = screen.getByRole("button", { name: /submit/i });
@@ -25,12 +26,14 @@ describe("<SLogin/>", () => {
 
     userEvent.click(submitButton);
 
-    const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+    const LoadingButton = await screen.findByRole("button", {
+      name: /Loading.../i,
+    });
     expect(LoadingButton).toBeDisabled();
 
     expect(
       await screen.findByText(
-        /You must provide either an email, phone number or a third-party provider/i
+        /You must provide either an email, phone number, a third-party provider or OpenID Connect./i
       )
     ).toBeInTheDocument();
   });
@@ -38,22 +41,12 @@ describe("<SLogin/>", () => {
   test("should show error message for incorrect email format", async () => {
     server.use(
       rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
-        const { email } = req.body;
-        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-          return res(
-            ctx.status(401),
-            ctx.json({
-              message: "Unable to validate email address: invalid format",
-            })
-          );
-        } else {
-          return res(
-            ctx.status(200),
-            ctx.json({
-              message: "Success",
-            })
-          );
-        }
+        return res(
+          ctx.status(401),
+          ctx.json({
+            message: "Unable to validate email address: invalid format",
+          })
+        );
       })
     );
 
@@ -77,7 +70,9 @@ describe("<SLogin/>", () => {
 
     userEvent.click(submitButton);
 
-    const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+    const LoadingButton = await screen.findByRole("button", {
+      name: /Loading.../i,
+    });
     expect(LoadingButton).toBeDisabled();
 
     const invalidEmail = await screen.findByText(
@@ -122,7 +117,9 @@ describe("<SLogin/>", () => {
     expect(submitButton).toBeEnabled();
 
     userEvent.click(screen.getByText(/submit/i));
-    const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+    const LoadingButton = await screen.findByRole("button", {
+      name: /Loading.../i,
+    });
     expect(LoadingButton).toBeDisabled();
 
     const errorMessage = await screen.findByText(/Wrong Password/i);
@@ -165,7 +162,9 @@ describe("<SLogin/>", () => {
 
     userEvent.click(screen.getByText(/submit/i));
 
-    const LoadingButton = screen.getByRole("button", { name: /Loading.../i });
+    const LoadingButton = await screen.findByRole("button", {
+      name: /Loading.../i,
+    });
     expect(LoadingButton).toBeDisabled();
 
     const submitPostButton = await screen.findByRole("button", {

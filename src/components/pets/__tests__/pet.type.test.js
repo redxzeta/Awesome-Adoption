@@ -1,10 +1,10 @@
 import { screen, waitFor } from "@testing-library/react";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
-import PetType from "../PetType";
 import userEvent from "@testing-library/user-event";
-import { server, rest } from "../../../testServer";
-import { customRender } from "../../../swrconfigtest";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
+
 import PetAuthProvider from "../../../context/TokenContext";
+import { customRender } from "../../../swrconfigtest";
+import PetType from "../PetType";
 
 describe("<PetType/>", () => {
   test("pet load successful", async () => {
@@ -53,7 +53,7 @@ describe("<PetType/>", () => {
     expect(goZip).toBeDisabled();
     userEvent.type(zipForm, "abcde");
     expect(goZip).toBeDisabled();
-    expect(screen.getByText(/Invalid zip Code/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Invalid zip Code/i)).toBeInTheDocument();
     userEvent.clear(screen.getByLabelText(/zipcode/i));
     expect(screen.queryByText(/Invalid zip Code/i)).not.toBeInTheDocument();
     expect(zipForm).toHaveValue("");

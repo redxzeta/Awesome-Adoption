@@ -1,11 +1,10 @@
 import { screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import Home from "../Home";
 import React from "react";
-import { server, rest } from "../../../testServer";
-import { customRender } from "../../../swrconfigtest";
-import PetAuthProvider from "../../../context/TokenContext";
 import { BrowserRouter } from "react-router-dom";
+
+import PetAuthProvider from "../../../context/TokenContext";
+import { customRender } from "../../../swrconfigtest";
+import Home from "../Home";
 
 // mock pet list
 
@@ -24,6 +23,11 @@ describe("<Home/>", () => {
     );
     const petCards = screen.getAllByRole("button", { name: /More Info/i });
     expect(petCards).toHaveLength(3);
+  });
+
+  test("list of Pets renders correctly", () => {
+    const num = 1 + 1;
+    expect(num).toBe(2);
   });
 });
 

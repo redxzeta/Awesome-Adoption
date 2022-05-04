@@ -1,8 +1,10 @@
+import { createClient } from "@supabase/supabase-js";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+
 import PlaceImage from "./components/about/__tests__/placeholder50px.png";
-import { createClient } from "@supabase/supabase-js";
 import DogSample from "./testData/sample.json";
+
 const contributors = [
   {
     id: 1,
@@ -68,7 +70,7 @@ const server = setupServer(
     const limit = req.url.searchParams.get("limit");
     const type = req.url.searchParams.get("type");
     const location = req.url.searchParams.get("location");
-    const page = req.url.searchParams.get("page");
+    // const page = req.url.searchParams.get("page");
     if (sort === "random" && limit === "1") {
       return res(ctx.status(200), ctx.json(petList));
     } else if (sort === "random" && limit === "3") {
@@ -80,7 +82,7 @@ const server = setupServer(
     return res(ctx.status(200), ctx.json(contributors));
   }),
 
-  //Login
+  // Login
   rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -100,9 +102,9 @@ const server = setupServer(
       ctx.json({ message: "Unable to validate email address: invalid format" })
     );
   }),
-  //Register
+  // Register
   rest.post("https://test.supabase.co/auth/v1/signup", (req, res, ctx) => {
-    const fake_new_account = {
+    const fakeNewAccount = {
       id: "fake_acc_id",
       aud: "authenticated",
       role: "authenticated",
@@ -115,11 +117,29 @@ const server = setupServer(
       created_at: Date.now(),
       updated_at: Date.now(),
     };
-    return res(ctx.status(200), ctx.json(fake_new_account));
+    return res(ctx.status(200), ctx.json(fakeNewAccount));
+  }),
+
+  rest.get("https://test.supabase.co/rest/v1/profiles", (req, res, ctx) => {
+    const fakeNewProfile = {
+      id: "35",
+      username: "SupaAwesome",
+      description: "Supa Awesome yet ",
+      avatar_url: "cuteDoggoAndCat.jpg",
+    };
+    return res(ctx.status(200), ctx.json(fakeNewProfile));
+  }),
+
+  rest.get("https://test.supabase.co/rest/v1/favoritepets", (req, res, ctx) => {
+    const fakeNewFavorites = [
+      { id: 1, pet: "1" },
+      { id: 2, pet: "2" },
+    ];
+    return res(ctx.status(200), ctx.json(fakeNewFavorites));
   })
 );
 
-beforeAll(() => server.listen({ onUnhandledRequest: "bypass" }));
+beforeAll(() => server.listen());
 afterAll(() => server.close());
 afterEach(() => {
   server.resetHandlers();

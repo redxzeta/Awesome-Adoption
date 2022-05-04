@@ -1,66 +1,94 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { useAuthStateChange, useClient } from "react-supabase";
 
-const initialState = {
-  session: null,
-  user: null,
-  username: "Guest",
-  error: null,
-  isLoading: false,
-};
+import { initialState, supaReducer } from "../reducers/supaReducer";
+
 export const AuthContext = createContext(initialState);
 
 export function AuthProvider({ children }) {
   const client = useClient();
-  const [state, setState] = useState(initialState);
 
-  const handleGetUserProfile = (id) =>
-    client.from("profiles").select("username").eq("id", id).single();
+  const [state, dispatch] = useReducer(supaReducer, initialState);
 
-  const handleUpdateState = (key, value) =>
-    setState((prev) => ({ ...prev, [key]: value }));
+  const dispatchLoadingSupa = () => dispatch({ type: "LOADING_SUPA" });
 
-  const handleUpdateUsername = async (id) => {
-    const {
-      data: { username },
-    } = await handleGetUserProfile(id);
-    handleUpdateState("username", username);
-  };
+  const dispatchLoadedSupa = () => dispatch({ type: "LOADED_SUPA" });
 
-  useEffect(() => {
-    handleUpdateState("isLoading", true);
-    handleUpdateState("error", false);
+  const changeUserName = (userName) =>
+    dispatch({ type: "CHANGE_USERNAME", payload: userName });
+
+  const addNewFav = (newFav) => dispatch({ type: "ADD_PET", payload: newFav });
+
+  const removeFavoritePet = (favId) =>
+    dispatch({ type: "REMOVE_FAV", payload: favId });
+
+  const sessionLoad = async () => {
+    dispatchLoadingSupa();
     try {
       const session = client.auth.session();
       if (session) {
-        const { user } = session;
-        handleUpdateUsername(user.id);
+        const sessionState = {
+          session,
+          user: session?.user ?? null,
+        };
+        dispatch({ type: "UPDATE_AUTH", payload: sessionState });
+        const {
+          data: { username, favoritepets },
+        } = await handleGetUserProfile(session.user.id);
+        dispatch({
+          type: "UPDATE_PROFILE",
+          payload: { username: username, favoritepets: favoritepets },
+        });
       } else {
-        handleUpdateState("username", "Guest");
+        dispatch({ type: "LOGGED_OUT" });
       }
-
-      setState((prev) => ({ ...prev, session, user: session?.user ?? null }));
     } catch (error) {
-      handleUpdateState("error", true);
+      dispatch({ type: "ERROR" });
     } finally {
-      handleUpdateState("isLoading", false);
+      dispatchLoadedSupa();
     }
+  };
+
+  const handleGetUserProfile = async (id) =>
+    await client
+      .from("profiles")
+      .select("username, favoritepets(id,pet)")
+      .eq("id", id)
+      .single();
+
+  useEffect(() => {
+    sessionLoad();
   }, []);
 
   useAuthStateChange(async (event, session) => {
-    handleUpdateState("isLoading", true);
-    setState({ session, user: session?.user ?? null, event: event });
-    let username = "Guest";
+    dispatchLoadingSupa();
+
     if (session) {
-      const { data } = await handleGetUserProfile(session.user.id);
-      username = data.username;
+      const sessionState = {
+        session,
+        user: session?.user ?? null,
+        event: event,
+      };
+      dispatch({ type: "UPDATE_AUTH", payload: sessionState });
+      const {
+        data: { username, favoritepets },
+      } = await handleGetUserProfile(session.user.id);
+      dispatch({
+        type: "UPDATE_PROFILE",
+        payload: { username: username, favoritepets: favoritepets },
+      });
+    } else {
+      dispatch({ type: "LOGGED_OUT" });
     }
-    handleUpdateState("username", username);
-    handleUpdateState("isLoading", false);
+    dispatchLoadedSupa();
   });
-  const changeUserName = (userName) =>
-    setState((s) => ({ ...s, username: userName }));
-  const value = { ...state, changeUserName: changeUserName };
+
+  const value = {
+    ...state,
+    changeUserName: changeUserName,
+    addNewFav: addNewFav,
+    removeFavoritePet: removeFavoritePet,
+  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

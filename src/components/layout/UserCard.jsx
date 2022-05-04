@@ -1,8 +1,9 @@
 import React from "react";
-import { Card, Col, Button } from "react-bootstrap";
+import { Button, Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./UserCard.css";
+
 import { nameCleaner, storyCleaner } from "../../utils/utilsCleaner/index";
+import "./UserCard.css";
 
 export default function UserCard(props) {
   const { id, photos, name, description, story } = props.userData;

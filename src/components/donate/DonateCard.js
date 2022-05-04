@@ -1,4 +1,4 @@
-import { Card, Button, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 
 const DonateCard = ({ ch }) => (
   <Card>

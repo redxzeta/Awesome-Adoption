@@ -1,10 +1,10 @@
 import { Fragment, useState } from "react";
-import { Form, Button, Container, Spinner } from "react-bootstrap";
+import { Button, Container, Form, Spinner } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { useResetPassword } from "react-supabase";
+
 import { useAuth } from "../../context/SupaContext";
 import useForm from "../../useHooks/useForm";
-
 import "./register.css";
 
 const initState = {

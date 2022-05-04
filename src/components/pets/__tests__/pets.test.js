@@ -1,10 +1,11 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import Pets, { AnimalType } from "../Pets";
-import renderer from "react-test-renderer";
 import { BrowserRouter } from "react-router-dom";
+import renderer from "react-test-renderer";
+
 import PetAuthProvider from "../../../context/TokenContext";
-import { server, rest } from "../../../testServer";
 import { customRender } from "../../../swrconfigtest";
+import { rest, server } from "../../../testServer";
+import Pets, { AnimalType } from "../Pets";
 
 test("matches animal link snapshot", () => {
   const animalLink = {

@@ -1,13 +1,10 @@
-import { cleanup, render, screen } from "@testing-library/react";
-import Donate from "../Donate";
-
-import renderer from "react-test-renderer";
-import DonateCard from "../DonateCard";
-import { BrowserRouter } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-afterEach(() => {
-  cleanup();
-});
+import { BrowserRouter } from "react-router-dom";
+import renderer from "react-test-renderer";
+
+import Donate from "../Donate";
+import DonateCard from "../DonateCard";
 
 test("should render donate component", () => {
   render(<Donate />);
@@ -36,37 +33,26 @@ test("matches donate card snapshot", () => {
   expect(tree).toMatchSnapshot();
 });
 
-test("Test for filtering", () => {
+test("Test for filtering", async () => {
   render(<Donate />);
-
-  userEvent.selectOptions(
-    screen.getByTestId("dropdown"),
-    screen.getByRole("option", {
-      name: "united states",
-    })
-  );
+  const locationDropdown = screen.getByLabelText(/Filter by place:/i);
+  await userEvent.selectOptions(locationDropdown, "united states");
 
   expect(
     screen.getByRole("option", {
       name: "united states",
     }).selected
-  ).toBeTruthy();
+  ).toBe(true);
 
   expect(
-    screen.getByRole("option", {
-      name: "united states",
-    }).selected
-  ).toBeTruthy();
-
-  expect(
-    screen.getByRole("option", {
+    screen.queryByRole("option", {
       name: "india",
     }).selected
-  ).toBeFalsy();
+  ).toBe(false);
 
   expect(
-    screen.queryAllByText(/^Location: ((?!United States).)*$/i)
-  ).toHaveLength(0);
+    screen.queryByText(/^Location: ((?!United States).)*$/i)
+  ).not.toBeInTheDocument();
 
   expect(
     screen.queryAllByText(/^Location: United States$/i).length
@@ -76,5 +62,5 @@ test("Test for filtering", () => {
     screen.getByRole("option", { name: "united states" })
   ).toBeInTheDocument();
 
-  expect(screen.getAllByRole("option").length).toBe(10);
+  expect(screen.getAllByRole("option").length).toBe(11);
 });

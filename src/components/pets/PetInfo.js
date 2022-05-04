@@ -1,23 +1,25 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { Card, Button, Spinner, Container } from "react-bootstrap";
-import Gallery from "../shared/Gallery";
-import Placeholder from "./placeholder.jpg";
-import { nameCleaner } from "../../utils/utilsCleaner/index";
-import { fetcher } from "../../utils/petInfoFetcher";
+import { Button, Card, Container, Spinner } from "react-bootstrap";
 import {
-  BsFillEnvelopeOpenFill,
   BsArrowRight,
-  BsShareFill,
+  BsFillEnvelopeOpenFill,
   BsGenderAmbiguous,
+  BsShareFill,
 } from "react-icons/bs";
-import { VscSymbolColor, VscTypeHierarchySub } from "react-icons/vsc";
 import { GiAges } from "react-icons/gi";
 import { HiMail } from "react-icons/hi";
-import "./PetInfo.css";
+import { VscSymbolColor, VscTypeHierarchySub } from "react-icons/vsc";
+import { useParams } from "react-router-dom";
+import useSWR from "swr";
+
 import { usePetAuth } from "../../context/TokenContext";
 import { lookUpPet } from "../../routes/API";
-import useSWR from "swr";
+import { fetcher } from "../../utils/petInfoFetcher";
+import { nameCleaner } from "../../utils/utilsCleaner/index";
+import Gallery from "../shared/Gallery";
+import FavoriteSection from "./Favorites/FavoriteSection";
+import "./PetInfo.css";
+import Placeholder from "./placeholder.jpg";
 
 export default function PetInfo() {
   const { id } = useParams();
@@ -45,11 +47,12 @@ export default function PetInfo() {
     tokenHeaders ? [lookUpPet + id, tokenHeaders] : null,
     fetcher
   );
+
   const isLoading = !pet && !error;
 
   if (isLoading) {
     return (
-      <Container className="pawhub">
+      <Container className="pawhub py-4">
         <Spinner animation="grow" variant="primary" role="status">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
@@ -61,9 +64,13 @@ export default function PetInfo() {
   }
 
   return (
-    <Container className="pawhub">
+    <Container className="pawhub py-4">
       <div className="petInfo">
-        <h1>{nameCleaner(pet.name)}</h1>
+        <div className="head__section d-flex justify-content-between">
+          <h1>{nameCleaner(pet.name)}</h1>
+
+          <FavoriteSection id={id} />
+        </div>
         {pet.photos === undefined || pet.photos.length === 0 ? (
           <img src={Placeholder} alt="placeholder" />
         ) : (
@@ -73,7 +80,6 @@ export default function PetInfo() {
             })}
           />
         )}
-
         <div className="info-body">
           <div className="primary-info">
             <Card.Title>Name - {pet.name}</Card.Title>
@@ -90,7 +96,6 @@ export default function PetInfo() {
             <Card.Text>{pet.colors.primary ?? "N/A"}</Card.Text>
           </div>
         </div>
-
         <div className="info-body">
           <div className="age-info">
             <GiAges className="icon" />
@@ -116,31 +121,39 @@ export default function PetInfo() {
             </Card.Text>
           </div>
         </div>
-
         <div className="actions">
-          <a
-            href={`mailto:${pet.contact.email}`}
+          <Button
+            as="a"
             target="_blank"
             rel="noopener noreferrer"
+            className="action-btn"
+            variant="info"
+            size="lg"
+            href={`mailto:${pet.contact.email}`}
           >
-            <Button className="action-btn" variant="info" size="lg">
-              Contact <BsFillEnvelopeOpenFill />
-            </Button>
-          </a>
+            Contact <BsFillEnvelopeOpenFill />
+          </Button>
+
           <Button
             onClick={handleShare}
             className="action-btn"
             variant="primary"
             size="lg"
-            data-testid="btn-share"
           >
             Share <BsShareFill />
           </Button>
-          <a href={pet.url} target="_blank" rel="noopener noreferrer">
-            <Button className="action-btn" variant="success" size="lg">
-              More Info <BsArrowRight />
-            </Button>
-          </a>
+
+          <Button
+            as="a"
+            href={pet.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="action-btn"
+            variant="success"
+            size="lg"
+          >
+            More Info <BsArrowRight />
+          </Button>
         </div>
       </div>
     </Container>

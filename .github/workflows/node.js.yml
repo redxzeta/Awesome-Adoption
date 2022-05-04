@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-        
+
       - name: Check JS Lockfile
         if: matrix.os == 'ubuntu-latest'
         uses: ChromaticHQ/javascript-lockfile-check-action@v1.1.0
@@ -43,4 +43,6 @@ jobs:
         run: yarn test
 
       - name: Build
+        env:
+          CI: false
         run: yarn build

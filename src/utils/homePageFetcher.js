@@ -8,7 +8,7 @@ async function fetcher(url, tokenHeaders) {
     const data = await res.json();
     return data.animals;
   } catch (e) {
-    return null;
+    return e.message;
   }
 }
 

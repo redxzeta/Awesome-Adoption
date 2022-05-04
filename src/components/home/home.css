@@ -131,14 +131,6 @@
   margin-right: 2px;
 }
 
-.card-img {
-  width: auto;
-  height: 211.2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .home__container .col-12 {
   display: flex;
   justify-content: center;

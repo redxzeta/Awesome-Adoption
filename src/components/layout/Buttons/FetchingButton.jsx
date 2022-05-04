@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Button, Spinner } from "react-bootstrap";
+
 export const FetchingButton = ({ fetching, className = "", action }) => (
   <Button
     className={className}

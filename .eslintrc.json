@@ -1,19 +1,21 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "settings": {
     "react": {
       "pragma": "React",
-      "version": "latest"
+      "version": "18"
     }
   },
   "extends": [
     "plugin:react/recommended",
     "standard",
     "plugin:prettier/recommended",
-    "plugin:jest-dom/recommended"
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/react"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -32,7 +34,7 @@
       "extends": ["plugin:testing-library/react"]
     }
   ],
-  "ignorePatterns": ["**/*test.js", "testServer.js"],
+
   "rules": {
     "react/react-in-jsx-scope": "off",
     "quotes": ["error", "double"],
