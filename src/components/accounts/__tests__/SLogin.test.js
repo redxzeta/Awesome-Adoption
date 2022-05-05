@@ -16,6 +16,7 @@ describe("<SLogin/>", () => {
         </BrowserRouter>
       </Provider>
     );
+    const user = userEvent.setup();
     expect(
       screen.queryByText(
         /You must provide either an email, phone number, a third-party provider or OpenID Connect./i
@@ -24,7 +25,7 @@ describe("<SLogin/>", () => {
     const submitButton = screen.getByRole("button", { name: /submit/i });
     expect(submitButton).toBeEnabled();
 
-    userEvent.click(submitButton);
+    await user.click(submitButton);
 
     const LoadingButton = await screen.findByRole("button", {
       name: /Loading.../i,
@@ -57,18 +58,19 @@ describe("<SLogin/>", () => {
         </BrowserRouter>
       </Provider>
     );
+    const user = userEvent.setup();
     expect(
       screen.queryByText(/Unable to validate email address: invalid format/i)
     ).not.toBeInTheDocument();
     const nameField = screen.getByLabelText(/email/i);
-    userEvent.type(nameField, "whatisemail");
+    await user.type(nameField, "whatisemail");
     const passwordField = screen.getByLabelText(/password/i);
-    userEvent.type(passwordField, "bones1234");
+    await user.type(passwordField, "bones1234");
 
     const submitButton = screen.getByRole("button", { name: /submit/i });
     expect(submitButton).toBeEnabled();
 
-    userEvent.click(submitButton);
+    await user.click(submitButton);
 
     const LoadingButton = await screen.findByRole("button", {
       name: /Loading.../i,
@@ -109,14 +111,15 @@ describe("<SLogin/>", () => {
         </BrowserRouter>
       </Provider>
     );
+    const user = userEvent.setup();
     const nameField = screen.getByLabelText(/email/i);
-    userEvent.type(nameField, "poodle@woof.com");
+    await user.type(nameField, "poodle@woof.com");
     const passwordField = screen.getByLabelText(/password/i);
-    userEvent.type(passwordField, "bones1234");
+    await user.type(passwordField, "bones1234");
     const submitButton = screen.getByRole("button", { name: /submit/i });
     expect(submitButton).toBeEnabled();
 
-    userEvent.click(screen.getByText(/submit/i));
+    await user.click(screen.getByText(/submit/i));
     const LoadingButton = await screen.findByRole("button", {
       name: /Loading.../i,
     });
@@ -153,14 +156,15 @@ describe("<SLogin/>", () => {
         </MemoryRouter>
       </Provider>
     );
+    const user = userEvent.setup();
     const nameField = screen.getByLabelText(/email/i);
-    userEvent.type(nameField, "poodle@woof.com");
+    await user.type(nameField, "poodle@woof.com");
     const passwordField = screen.getByLabelText(/password/i);
-    userEvent.type(passwordField, "bones1234");
+    await user.type(passwordField, "bones1234");
     const submitButton = screen.getByRole("button", { name: /submit/i });
     expect(submitButton).toBeEnabled();
 
-    userEvent.click(screen.getByText(/submit/i));
+    await user.click(screen.getByText(/submit/i));
 
     const LoadingButton = await screen.findByRole("button", {
       name: /Loading.../i,
