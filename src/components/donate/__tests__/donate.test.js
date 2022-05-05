@@ -35,8 +35,9 @@ test("matches donate card snapshot", () => {
 
 test("Test for filtering", async () => {
   render(<Donate />);
+  const user = userEvent.setup();
   const locationDropdown = screen.getByLabelText(/Filter by place:/i);
-  await userEvent.selectOptions(locationDropdown, "united states");
+  await user.selectOptions(locationDropdown, "united states");
 
   expect(
     screen.getByRole("option", {

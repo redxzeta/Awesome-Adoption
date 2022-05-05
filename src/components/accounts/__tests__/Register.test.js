@@ -12,20 +12,21 @@ import Register from "../Register";
 
 describe("<Register/>", () => {
   test("should register sucessfully", async () => {
+    const user = userEvent.setup();
     render(
       <Provider value={supabase}>
         <Register />
       </Provider>
     );
     const nameField = screen.getByLabelText(/email/i);
-    userEvent.type(nameField, "fake_acc_id");
+    await user.type(nameField, "fake_acc_id");
     const passwordField = screen.getByLabelText(/password/i);
-    userEvent.type(passwordField, "fake_password");
+    await user.type(passwordField, "fake_password");
 
     const submitButton = screen.getByRole("button", { name: /Submit/i });
     expect(submitButton).toBeEnabled();
 
-    userEvent.click(submitButton);
+    await user.click(submitButton);
     const LoadingButton = await screen.findByRole("button", {
       name: /Loading.../i,
     });
@@ -43,6 +44,7 @@ describe("<Register/>", () => {
         );
       })
     );
+    const user = userEvent.setup();
     render(
       <Provider value={supabase}>
         <Register />
@@ -51,13 +53,13 @@ describe("<Register/>", () => {
 
     expect(screen.queryByText(/Unable To Register/i)).not.toBeInTheDocument();
     const nameField = screen.getByLabelText(/email/i);
-    userEvent.type(nameField, "bad_fake_acc_id@fake.com");
+    await user.type(nameField, "bad_fake_acc_id@fake.com");
     const passwordField = screen.getByLabelText(/password/i);
-    userEvent.type(passwordField, "bad_fake_password");
+    await user.type(passwordField, "bad_fake_password");
     const submitButton = screen.getByRole("button", { name: /submit/i });
     expect(submitButton).toBeEnabled();
 
-    userEvent.click(screen.getByText(/submit/i));
+    await user.click(screen.getByText(/submit/i));
     const LoadingButton = await screen.findByRole("button", {
       name: /Loading.../i,
     });

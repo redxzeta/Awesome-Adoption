@@ -37,6 +37,7 @@ describe("<PetType/>", () => {
         </PetAuthProvider>
       </MemoryRouter>
     );
+    const user = userEvent.setup();
     expect(screen.getAllByRole("status")).toHaveLength(3);
     await waitFor(() =>
       expect(screen.queryByRole("status")).not.toBeInTheDocument()
@@ -48,13 +49,13 @@ describe("<PetType/>", () => {
 
     const zipForm = screen.getByLabelText(/zipcode/i);
     expect(zipForm).toHaveValue("19019");
-    userEvent.clear(screen.getByLabelText(/zipcode/i));
+    await user.clear(screen.getByLabelText(/zipcode/i));
     expect(zipForm).toHaveValue("");
     expect(goZip).toBeDisabled();
-    userEvent.type(zipForm, "abcde");
+    await user.type(zipForm, "abcde");
     expect(goZip).toBeDisabled();
     expect(await screen.findByText(/Invalid zip Code/i)).toBeInTheDocument();
-    userEvent.clear(screen.getByLabelText(/zipcode/i));
+    await user.clear(screen.getByLabelText(/zipcode/i));
     expect(screen.queryByText(/Invalid zip Code/i)).not.toBeInTheDocument();
     expect(zipForm).toHaveValue("");
     expect(goZip).toBeDisabled();
