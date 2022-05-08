@@ -1,28 +1,35 @@
-import { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { useSignUp } from "react-supabase";
 
 import { useAuth } from "../../context/SupaContext";
-import useForm from "../../useHooks/useForm";
 import { FetchingButton } from "../layout/Buttons/FetchingButton";
 import "./register.css";
 
-const initState = {
+type RegisterType = {
+  email: string;
+  password: string;
+};
+
+const registerFormState: RegisterType = {
   email: "",
   password: "",
 };
-
 const Register = () => {
-  const [form, handleChange] = useForm(initState);
-
+  const [registerForm, setRegisterForm] = useState(registerFormState);
   const [{ error, fetching, user }, signUp] = useSignUp();
 
-  const onClickSignUp = async () => signUp(form);
+  const onClickSignUp = async () => signUp(registerForm);
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onClickSignUp();
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setRegisterForm((val) => ({ ...val, [name]: value }));
   };
 
   const { session } = useAuth();
@@ -43,7 +50,7 @@ const Register = () => {
                   placeholder="Enter email"
                   name="email"
                   onChange={handleChange}
-                  value={form.email}
+                  value={registerForm.email}
                 />
                 <Form.Text className="text-muted">
                   We will never share your email with anyone else.
@@ -57,13 +64,12 @@ const Register = () => {
                   placeholder="Password"
                   name="password"
                   onChange={handleChange}
-                  value={form.password}
+                  value={registerForm.password}
                 />
               </Form.Group>
               <FetchingButton
                 fetching={fetching}
                 action="Submit"
-                type="submit"
                 className="register__button"
               />
               {error && (

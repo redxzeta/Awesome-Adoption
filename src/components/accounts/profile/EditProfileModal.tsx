@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useUpsert } from "react-supabase";

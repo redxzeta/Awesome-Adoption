@@ -1,24 +1,36 @@
+import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useSignIn } from "react-supabase";
 
-import useForm from "../../useHooks/useForm";
 import { FetchingButton } from "../layout/Buttons/FetchingButton";
 
-const initState = {
+type LoginType = {
+  email: string;
+  password: string;
+};
+
+const loginFormState: LoginType = {
   email: "",
   password: "",
 };
 const SLogin = () => {
   const navigate = useNavigate();
-  const [form, handleChange] = useForm(initState);
+  // const [form, handleChange] = useForm(initState);
+
+  const [loginForm, setLoginForm] = useState(loginFormState);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLoginForm((val) => ({ ...val, [name]: value }));
+  };
 
   const [{ error, fetching }, signIn] = useSignIn();
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { session } = await signIn(form);
+    const { session } = await signIn(loginForm);
 
     if (!error && !fetching && session) {
       navigate("/");
@@ -37,7 +49,7 @@ const SLogin = () => {
               placeholder="Enter email"
               name="email"
               onChange={handleChange}
-              value={form.email}
+              value={loginForm.email}
             />
             <Form.Text className="text-muted">
               We will never share your email with anyone else.
@@ -51,13 +63,12 @@ const SLogin = () => {
               placeholder="Password"
               name="password"
               onChange={handleChange}
-              value={form.password}
+              value={loginForm.password}
             />
           </Form.Group>
           <FetchingButton
             fetching={fetching}
             action="Submit"
-            type="submit"
             className="register__button"
           />
           {error && (
