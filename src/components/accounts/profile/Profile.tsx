@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import { useState } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";

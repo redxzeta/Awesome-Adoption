@@ -9,11 +9,11 @@ import { Provider } from "react-supabase";
 
 import "./App.css";
 import About from "./components/about/About";
-import ForgotPassword from "./components/accounts/ForgotPassword";
+// import ForgotPassword from "./components/accounts/ForgotPassword";
 import Register from "./components/accounts/Register";
 import SLogin from "./components/accounts/SLogin";
 // import Profile from "./components/accounts/profile/Profile";
-import ResetPassword from "./components/accounts/settings/resetPassword";
+// import ResetPassword from "./components/accounts/settings/resetPassword";
 import Donate from "./components/donate/Donate";
 import Home from "./components/home/Home";
 import Favorites from "./components/pets/Favorites";
@@ -23,7 +23,7 @@ import Resources from "./components/resources/Resources";
 import Tips from "./components/tips/Tips";
 import { AuthProvider } from "./context/SupaContext";
 import PetAuthProvider from "./context/TokenContext";
-import PrivateRoute from "./utils/PrivateRoute";
+// import PrivateRoute from "./utils/PrivateRoute";
 import { supabase } from "./utils/SupaBaseUtils";
 
 export default function App() {
@@ -45,15 +45,15 @@ export default function App() {
               <Route path="favorites" element={<Favorites />} />
               <Route path="register" element={<Register />} />
               <Route path="login" element={<SLogin />} />
-              <Route path="forgot-password" element={<ForgotPassword />} />
-              <Route
+              {/* <Route path="forgot-password" element={<ForgotPassword />} /> */}
+              {/* <Route
                 path="reset-password"
                 element={
                   <PrivateRoute>
                     <ResetPassword />
                   </PrivateRoute>
                 }
-              />
+              /> */}
               {/* <Route path="profile" element={<Profile />} /> */}
               <Route path="/" element={<Home />} />
               <Route path="*" element={<NotFound />} />
