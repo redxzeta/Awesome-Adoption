@@ -4,6 +4,9 @@
     "es2021": true,
     "jest": true
   },
+  "globals": {
+    "JSX": true
+  },
   "settings": {
     "react": {
       "pragma": "React",
@@ -11,12 +14,14 @@
     }
   },
   "extends": [
+    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "standard",
     "plugin:prettier/recommended",
     "plugin:jest-dom/recommended",
     "plugin:testing-library/react"
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -24,7 +29,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "testing-library", "jest-dom"],
+  "plugins": ["react", "testing-library", "jest-dom", "@typescript-eslint"],
   "overrides": [
     {
       "files": [
@@ -37,6 +42,10 @@
 
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ], //should add ".ts" if typescript project
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "no-console": "warn",
