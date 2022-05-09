@@ -1,9 +1,8 @@
-/* eslint-disable */
-// @ts-nocheck
-import { render } from "@testing-library/react";
+import { RenderOptions, render } from "@testing-library/react";
+import React, { ReactElement } from "react";
 import { SWRConfig } from "swr";
 
-const AllTheProviders = ({ children }) => {
+const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0 }}>
       {children}
@@ -11,5 +10,7 @@ const AllTheProviders = ({ children }) => {
   );
 };
 
-export const customRender = (ui, options) =>
-  render(ui, { wrapper: AllTheProviders, ...options });
+export const customRender = (
+  ui: ReactElement,
+  options?: Omit<RenderOptions, "wrapper">
+) => render(ui, { wrapper: AllTheProviders, ...options });
