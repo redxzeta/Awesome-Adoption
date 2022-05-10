@@ -1,6 +1,7 @@
 import { Button, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
+import { PetSearchType } from "utils/petTypeFetcher";
 
 import { usePetAuth } from "../../context/TokenContext";
 import { randomPetsList } from "../../routes/API";
@@ -35,10 +36,12 @@ const LoadingPetCards = () => {
   const {
     error,
     data: petList,
-    // mutate,
-  } = useSWR(tokenHeaders ? [randomPetsList, tokenHeaders] : null, fetcher);
-
-  const isLoading = !error && !petList;
+    mutate,
+  } = useSWR(tokenHeaders ? [randomPetsList, tokenHeaders] : null, fetcher, {
+    revalidateOnFocus: false,
+  });
+  const mutatePetlist = async () => mutate({} as PetSearchType);
+  const isLoading = !error && !petList?.animals;
   if (isLoading)
     return (
       <Container>
@@ -53,13 +56,7 @@ const LoadingPetCards = () => {
     return (
       <>
         <h5>Oops! An Error Occurred Getting The Pets</h5>{" "}
-        <Button
-          variant="primary"
-          className="refresh"
-          // onClick={async () => {
-          //   mutate(petList, { error, petList });
-          // }}
-        >
+        <Button variant="primary" className="refresh" onClick={mutatePetlist}>
           Refresh
         </Button>
       </>
@@ -85,13 +82,7 @@ const LoadingPetCards = () => {
           </Row>
         </Container>
       </div>
-      <Button
-        variant="primary"
-        className="refresh"
-        // onClick={async () => {
-        //   mutate(petList, { error, petList });
-        // }}
-      >
+      <Button variant="primary" className="refresh" onClick={mutatePetlist}>
         Refresh
       </Button>
     </>

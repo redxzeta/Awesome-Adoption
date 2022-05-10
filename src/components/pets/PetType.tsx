@@ -10,7 +10,7 @@ import {
   Pagination,
   Row,
 } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { PetListType } from "types/PetType";
 
@@ -34,7 +34,7 @@ export default function PetType() {
   const { type } = useParams<{ type: PetListType }>();
   const { tokenHeaders } = usePetAuth();
 
-  if (!type) return null;
+  if (!type) return <Navigate to={"/pet"} replace={true} />;
 
   // Fetching the data through SWR
   const { data: petSearchList, error: fetcherror } = useSWR(

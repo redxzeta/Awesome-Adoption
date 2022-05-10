@@ -37,8 +37,6 @@ async function fetcher(url: string, tokenHeaders: string): Promise<PetInfo> {
 const multipleFetcher = (
   urls: string[],
   tokenHeaders: string
-): // | Promise<(PetInfo )[]>
-// | PetInfo[]
-Promise<PetInfo[]> => Promise.all(urls.map((u) => fetcher(u, tokenHeaders)));
+): Promise<PetInfo[]> => Promise.all(urls.map((u) => fetcher(u, tokenHeaders)));
 
 export { fetcher, multipleFetcher };
