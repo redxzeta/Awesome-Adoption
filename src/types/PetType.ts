@@ -3,17 +3,20 @@ export type AnimalPhotos = {
   medium: string;
 };
 
-export type PetListType =
-  | "Dog"
-  | "Cat"
-  | "Rabbit"
-  | "Horse"
-  | "Bird"
-  | "dog"
-  | "cat"
-  | "rabbit"
-  | "horse"
-  | "bird";
+export const PET_LIST_CONST = [
+  "Dog",
+  "Cat",
+  "Rabbit",
+  "Horse",
+  "Bird",
+  "dog",
+  "cat",
+  "rabbit",
+  "horse",
+  "bird",
+] as const;
+
+export type PetListType = typeof PET_LIST_CONST[number];
 
 export type PetCardType = {
   id: string;
