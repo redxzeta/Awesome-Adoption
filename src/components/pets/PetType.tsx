@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import { Navigate, useParams } from "react-router-dom";
 import useSWR from "swr";
-import { PetListType } from "types/PetType";
+import { PET_LIST_CONST, PetListType } from "types/PetType";
 
 import { usePetAuth } from "../../context/TokenContext";
 import { petFinderURL } from "../../routes/API";
@@ -34,7 +34,8 @@ export default function PetType() {
   const { type } = useParams<{ type: PetListType }>();
   const { tokenHeaders } = usePetAuth();
 
-  if (!type) return <Navigate to={"/pet"} replace={true} />;
+  if (!type || !PET_LIST_CONST.includes(type))
+    return <Navigate to={"/pets"} replace={true} />;
 
   // Fetching the data through SWR
   const { data: petSearchList, error: fetcherror } = useSWR(
