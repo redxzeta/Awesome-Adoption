@@ -66,9 +66,9 @@ export default function NavigationBar() {
             <Nav.Link as={Link} to="/donate">
               Donate
             </Nav.Link>
-            <Nav.Link as={Link} to="/stories">
+            {/* <Nav.Link as={Link} to="/stories">
               User Story
-            </Nav.Link>
+            </Nav.Link> */}
             {session && (
               <Nav.Link as={Link} to="/favorites">
                 <IoIosHeart />
