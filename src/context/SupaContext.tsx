@@ -60,7 +60,7 @@ export function AuthProvider({ children }: Props) {
   const handleGetUserProfile = async (id: string) =>
     await client
       .from<IProfileUpdate>("profiles")
-      .select("username, favoritepets(id,pet)")
+      .select("username, favoritepets(id,pet,created_at)")
       .eq("id", id)
       .single();
 
