@@ -9,7 +9,7 @@ import { Provider } from "react-supabase";
 
 import "./App.css";
 import About from "./components/about/About";
-// import ForgotPassword from "./components/accounts/ForgotPassword";
+import ForgotPassword from "./components/accounts/ForgotPassword";
 import Register from "./components/accounts/Register";
 import SLogin from "./components/accounts/SLogin";
 // import Profile from "./components/accounts/profile/Profile";
@@ -45,7 +45,7 @@ export default function App() {
               <Route path="favorites" element={<Favorites />} />
               <Route path="register" element={<Register />} />
               <Route path="login" element={<SLogin />} />
-              {/* <Route path="forgot-password" element={<ForgotPassword />} /> */}
+              <Route path="forgot-password" element={<ForgotPassword />} />
               {/* <Route
                 path="reset-password"
                 element={
