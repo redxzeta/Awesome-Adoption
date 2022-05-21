@@ -12,7 +12,7 @@ import About from "./components/about/About";
 import ForgotPassword from "./components/accounts/ForgotPassword";
 import Register from "./components/accounts/Register";
 import SLogin from "./components/accounts/SLogin";
-// import Profile from "./components/accounts/profile/Profile";
+import Profile from "./components/accounts/profile/Profile";
 // import ResetPassword from "./components/accounts/settings/resetPassword";
 import Donate from "./components/donate/Donate";
 import Home from "./components/home/Home";
@@ -54,7 +54,7 @@ export default function App() {
                   </PrivateRoute>
                 }
               /> */}
-              {/* <Route path="profile" element={<Profile />} /> */}
+              <Route path="profile/:name" element={<Profile />} />
               <Route path="/" element={<Home />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
