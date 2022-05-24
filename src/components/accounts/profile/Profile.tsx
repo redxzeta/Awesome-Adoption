@@ -28,6 +28,7 @@ const Profile = () => {
   const [profile, setProfile] = useState<ProfileType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [errorProfile, setErrorProfile] = useState<PostgrestError | null>();
+  const [background, setBackground] = useState<string | null>(null);
 
   const fetchProfile = async () => {
     setLoading(true);
@@ -51,7 +52,22 @@ const Profile = () => {
 
   useEffect(() => {
     fetchProfile();
+    downloadImage();
   }, []);
+  const downloadImage = async () => {
+    try {
+      const { data, error } = await client.storage
+        .from("profile")
+        .download("emerald.png");
+
+      if (error || !data) {
+        throw error;
+      }
+
+      const url = URL.createObjectURL(data);
+      setBackground(url);
+    } catch (error) {}
+  };
 
   if (loading) return <h1>Loading</h1>;
 
@@ -61,7 +77,7 @@ const Profile = () => {
   return (
     <Container className="pawhub">
       <main className="profile__section">
-        <Image src={CandyLandImg} alt="background" />
+        <Image src={background || CandyLandImg} alt="background" />
         <Image
           src={profile.avatar_url}
           className="profile__img"
