@@ -17,6 +17,10 @@ import "./profile.css";
 export type ProfileType = {
   avatar_url: string;
   description: string;
+  background: {
+    id: number;
+    background_url: string;
+  };
 } & IProfileUpdate;
 
 const Profile = () => {
@@ -28,7 +32,7 @@ const Profile = () => {
   const [profile, setProfile] = useState<ProfileType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [errorProfile, setErrorProfile] = useState<PostgrestError | null>();
-  const [background, setBackground] = useState<string | null>(null);
+  const [background, setBackground] = useState<string>(CandyLandImg);
 
   const fetchProfile = async () => {
     setLoading(true);
@@ -36,12 +40,13 @@ const Profile = () => {
     try {
       const { data, error } = await client
         .from<ProfileType>("profiles")
-        .select("*, favoritepets(id,pet,created_at) ")
+        .select("*, favoritepets(id,pet,created_at), background(*) ")
         .eq("username", profileSearch)
 
         .single();
       if (error) throw error;
       setProfile(data);
+      downloadImage(data.background.background_url);
     } catch (error) {
       setProfile(null);
       setErrorProfile(error as PostgrestError);
@@ -52,13 +57,12 @@ const Profile = () => {
 
   useEffect(() => {
     fetchProfile();
-    downloadImage();
   }, []);
-  const downloadImage = async () => {
+  const downloadImage = async (backgroundUrl: string) => {
     try {
       const { data, error } = await client.storage
         .from("profile")
-        .download("emerald.png");
+        .download(backgroundUrl);
 
       if (error || !data) {
         throw error;
@@ -66,7 +70,9 @@ const Profile = () => {
 
       const url = URL.createObjectURL(data);
       setBackground(url);
-    } catch (error) {}
+    } catch (error) {
+      setBackground(CandyLandImg);
+    }
   };
 
   if (loading) return <h1>Loading</h1>;
@@ -77,7 +83,7 @@ const Profile = () => {
   return (
     <Container className="pawhub">
       <main className="profile__section">
-        <Image src={background || CandyLandImg} alt="background" />
+        <Image src={background} alt="background" />
         <Image
           src={profile.avatar_url}
           className="profile__img"
