@@ -41,7 +41,8 @@
     "lint": "eslint ./",
     "lint-fix": "eslint ./ --fix",
     "prepare": "husky install",
-    "test:coverage": "react-scripts test --watchAll=false --coverage"
+    "test:coverage": "react-scripts test --watchAll=false --coverage",
+    "pre-commit": "yarn lint && react-scripts test --watchAll=false "
   },
   "eslintConfig": {
     "extends": "react-app"
