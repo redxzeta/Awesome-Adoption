@@ -1,0 +1,76 @@
+.innerNotFound {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+.HoldAnimation {
+  width: 55%;
+}
+
+.HoldAnimation > img {
+  width: 100%;
+}
+
+.HoldText {
+  margin-left: 8vw;
+  margin-top: 50px;
+  width: 30%;
+  position: relative;
+}
+
+.HeaderText {
+  margin-bottom: 2rem;
+}
+.HeaderText > h1,
+h4 {
+  text-align: center;
+}
+
+.pageList {
+  padding-left: 2em;
+  list-style-type: circle;
+}
+
+/* For smaller screens */
+@media only screen and (max-width: 1024px) {
+  .innerNotFound {
+    flex-direction: column;
+  }
+
+  .HoldAnimation {
+    width: 70%;
+  }
+
+  .HoldText {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .pageList li {
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .innerNotFound {
+    height: initial;
+  }
+
+  .HoldAnimation {
+    width: 90%;
+  }
+
+  .HoldText {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .pageList li {
+    margin-bottom: 0;
+  }
+}
