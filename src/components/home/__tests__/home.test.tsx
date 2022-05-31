@@ -76,6 +76,7 @@ describe("<Home/>", () => {
     await waitFor(() =>
       expect(screen.queryByRole("status")).not.toBeInTheDocument()
     );
+
     expect(
       screen.getByRole("heading", {
         level: 5,
