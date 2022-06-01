@@ -1,5 +1,5 @@
 import { Button, Container, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 import AdoptionPet from "./adoption-pet.jpg";
 import "./tips.css";
@@ -99,9 +99,9 @@ export default function Home() {
           alt="Adoption pet"
         />
         {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-        <Button as={Link as any} to="/pets" variant="primary">
-          Adopt
-        </Button>
+        <LinkContainer to="/pets">
+          <Button variant="primary">Adopt</Button>
+        </LinkContainer>
       </div>
     </Container>
   );
