@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import { PetCardType } from "types/PetType";
 
@@ -40,14 +41,14 @@ export default function PetCard(props: PetCardType) {
       <Card className="card">
         <Card.Header className="card__header">
           <span className="card__title">{nameCleaner(name)}</span>
-          <Button
-            className="card__btn"
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            as={Link as any}
-            to={`/animal/${id}`}
-          >
-            More Info
-          </Button>
+          <LinkContainer to={`/animal/${id}`}>
+            <Button
+              className="card__btn"
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            >
+              More Info
+            </Button>
+          </LinkContainer>
         </Card.Header>
         <Link to={`/animal/${id}`}>
           <Card.Img

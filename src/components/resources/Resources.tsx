@@ -1,5 +1,5 @@
 import { Button, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 import "./resources.css";
 
@@ -111,14 +111,15 @@ export default function Home() {
       <div className="resources__container">
         <h2>Adopt a Buddy Today!</h2>
 
-        <Button
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          as={Link as any}
-          to="/pets"
-          variant="primary"
-        >
-          Adopt
-        </Button>
+        <LinkContainer to="/pets">
+          <Button
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+            variant="primary"
+          >
+            Adopt
+          </Button>
+        </LinkContainer>
       </div>
     </Container>
   );
