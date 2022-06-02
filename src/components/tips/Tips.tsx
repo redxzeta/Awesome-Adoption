@@ -98,7 +98,6 @@ export default function Home() {
           className="adoption__pet mb-2 d-block mx-auto "
           alt="Adoption pet"
         />
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <LinkContainer to="/pets">
           <Button variant="primary">Adopt</Button>
         </LinkContainer>

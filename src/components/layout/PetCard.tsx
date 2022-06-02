@@ -42,12 +42,7 @@ export default function PetCard(props: PetCardType) {
         <Card.Header className="card__header">
           <span className="card__title">{nameCleaner(name)}</span>
           <LinkContainer to={`/animal/${id}`}>
-            <Button
-              className="card__btn"
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            >
-              More Info
-            </Button>
+            <Button className="card__btn">More Info</Button>
           </LinkContainer>
         </Card.Header>
         <Link to={`/animal/${id}`}>

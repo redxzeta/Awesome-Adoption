@@ -112,13 +112,7 @@ export default function Home() {
         <h2>Adopt a Buddy Today!</h2>
 
         <LinkContainer to="/pets">
-          <Button
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-
-            variant="primary"
-          >
-            Adopt
-          </Button>
+          <Button variant="primary">Adopt</Button>
         </LinkContainer>
       </div>
     </Container>

@@ -24,12 +24,7 @@ export default function UserCard(props) {
           <div className="story_Section">
             <div className="story">{storyCleaner(story)}</div>
             <LinkContainer to={"/404/"}>
-              <Button
-                className="user-card__btn"
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              >
-                More Info
-              </Button>
+              <Button className="user-card__btn">More Info</Button>
             </LinkContainer>
           </div>
         </Card.Body>

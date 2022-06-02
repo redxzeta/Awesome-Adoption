@@ -60,7 +60,6 @@ export default function Stories() {
               Create your Story
             </Button>
           ) : (
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             <LinkContainer to="/login">
               <Button className="story_btn">Login</Button>
             </LinkContainer>

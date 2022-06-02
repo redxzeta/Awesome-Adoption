@@ -86,11 +86,7 @@ export const AnimalType = ({
       </div>
     </Link>
     <LinkContainer to={link}>
-      <Button
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        className="pet__button my-3"
-        color="primary"
-      >
+      <Button className="pet__button my-3" color="primary">
         Click Here
       </Button>
     </LinkContainer>
