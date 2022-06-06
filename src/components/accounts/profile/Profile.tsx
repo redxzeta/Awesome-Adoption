@@ -1,83 +1,39 @@
-import { PostgrestError } from "@supabase/supabase-js";
 import PetCard from "components/layout/PetCard";
 import { usePetAuth } from "context/TokenContext";
-import { useEffect, useState } from "react";
 import { Container, Image, Row } from "react-bootstrap";
 import { Navigate, useParams } from "react-router-dom";
 import { useClient } from "react-supabase";
-import { FavoritePets, IProfileUpdate } from "reducers/supaReducer";
+import { FavoritePets } from "reducers/supaReducer";
 import { lookUpPet } from "routes/API";
 import useSWR from "swr";
 import { multipleFetcher } from "utils/petInfoFetcher";
+import { fetchImage, fetchSupaProfile } from "utils/supaFetcher";
 
 import LoadPlaceHolder from "../../shared/PlaceHolderCard";
 import CandyLandImg from "./candyland.png";
 import "./profile.css";
 
-export type ProfileType = {
-  avatar_url: string;
-  description: string;
-  background: {
-    id: number;
-    background_url: string;
-  };
-} & IProfileUpdate;
-
+const settings = { revalidateOnFocus: false };
 const Profile = () => {
   const { name } = useParams<{ name: string }>();
   if (!name) return <Navigate to="/" replace={true} />;
-
-  const profileSearch = name;
   const client = useClient();
-  const [profile, setProfile] = useState<ProfileType | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [errorProfile, setErrorProfile] = useState<PostgrestError | null>();
-  const [background, setBackground] = useState<string>(CandyLandImg);
+  const profileSearch = name;
 
-  const fetchProfile = async () => {
-    setLoading(true);
-    setErrorProfile(null);
-    try {
-      const { data, error } = await client
-        .from<ProfileType>("profiles")
-        .select("*, favoritepets(id,pet,created_at), background(*) ")
-        .eq("username", profileSearch)
+  const { error: errorProfile, data: profile } = useSWR(
+    profileSearch ? [client, profileSearch] : null,
+    fetchSupaProfile,
+    settings
+  );
 
-        .single();
-      if (error) throw error;
-      setProfile(data);
-      downloadImage(data.background.background_url);
-    } catch (error) {
-      setProfile(null);
-      setErrorProfile(error as PostgrestError);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data: background } = useSWR(
+    profile ? [client, profile.background, "profile", CandyLandImg] : null,
+    fetchImage,
+    settings
+  );
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
-  const downloadImage = async (backgroundUrl: string) => {
-    try {
-      const { data, error } = await client.storage
-        .from("profile")
-        .download(backgroundUrl);
-
-      if (error || !data) {
-        throw error;
-      }
-
-      const url = URL.createObjectURL(data);
-      setBackground(url);
-    } catch (error) {
-      setBackground(CandyLandImg);
-    }
-  };
-
-  if (loading) return <h1>Loading</h1>;
-
-  if (errorProfile || !profile) return <h1>ERROR</h1>;
+  if (errorProfile) return <h1>ERROR</h1>;
+  if (!profile) return <h1>Loading</h1>;
 
   const showFeaturedFavoritedPets = profile.favoritepets.slice(0, 3);
   return (
@@ -143,8 +99,15 @@ const ShowFavorites = ({ favoritePets }: { favoritePets: FavoritePets[] }) => {
     multipleFetcher
   );
 
-  const isLoading = !petList && !error;
-  if (isLoading)
+  if (error)
+    return (
+      <Container>
+        <h3>There was a problem getting the pet information :(</h3>
+        <h4>Try again later!</h4>
+      </Container>
+    );
+
+  if (!petList)
     return (
       <Container className="pawhub">
         <div className="petList__container">
@@ -154,14 +117,6 @@ const ShowFavorites = ({ favoritePets }: { favoritePets: FavoritePets[] }) => {
             <LoadPlaceHolder />
           </Row>{" "}
         </div>
-      </Container>
-    );
-
-  if (error || !petList)
-    return (
-      <Container>
-        <h3>There was a problem getting the pet information :(</h3>
-        <h4>Try again later!</h4>
       </Container>
     );
 
