@@ -8,6 +8,9 @@ import placeholder from "../pets/placeholder.jpg";
 import PetIcon from "../shared/PetIcon";
 import "./PetCard.css";
 
+import FavoriteSection from "components/pets/Favorites/FavoriteSection";
+
+
 export default function PetCard(props: PetCardType) {
   const { id, photos, name, type, primary_photo_cropped: link, breeds } = props;
 
@@ -48,6 +51,7 @@ export default function PetCard(props: PetCardType) {
           >
             More Info
           </Button>
+          <FavoriteSection id={id} />
         </Card.Header>
         <Link to={`/animal/${id}`}>
           <Card.Img
