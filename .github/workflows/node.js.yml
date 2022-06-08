@@ -33,14 +33,8 @@ jobs:
       - name: Format
         run: yarn format
 
-      - name: lint
-        run: yarn lint
-
-      - name: lint
-        run: yarn lint-fix
-
       - name: Run the tests
-        run: yarn test
+        run: yarn test:coverage
 
       - name: Build
         env:
