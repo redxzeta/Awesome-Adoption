@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import { ProfileType } from "utils/supaFetcher";
 
 import PlaceImage from "./components/about/__tests__/placeholder50px.png";
 import DogSample from "./testData/sample.json";
@@ -204,11 +205,16 @@ const server = setupServer(
   }),
 
   rest.get("https://test.supabase.co/rest/v1/profiles", (_req, res, ctx) => {
-    const fakeNewProfile = {
+    const fakeNewProfile: ProfileType = {
       id: "35",
       username: "SupaAwesome",
       description: "Supa Awesome yet ",
       avatar_url: "cuteDoggoAndCat.jpg",
+      favoritepets: [],
+      background: {
+        id: 1,
+        background_url: "someImage.png",
+      },
     };
     return res(ctx.status(200), ctx.json(fakeNewProfile));
   }),
@@ -221,6 +227,20 @@ const server = setupServer(
         { id: 2, pet: "2" },
       ];
       return res(ctx.status(200), ctx.json(fakeNewFavorites));
+    }
+  ),
+
+  rest.get(
+    "https://test.supabase.co/storage/v1/object/profile/[object%20Object]",
+    (_req, res, ctx) => {
+      const myBlob = new Blob(
+        [
+          `/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/
+      2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/`,
+        ],
+        { type: "image/jpeg" }
+      );
+      return res(ctx.status(200), ctx.json(myBlob));
     }
   )
 );
