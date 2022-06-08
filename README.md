@@ -32,6 +32,18 @@ Join My [Discord](https://discord.gg/2UxwrKxCPV)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Setup
+
+`yarn`
+
+`yarn prepare`
+
+`yarn start`
+
+test
+
+`yarn test`
+
 ## Errors Fix
 
 If you are getting this
