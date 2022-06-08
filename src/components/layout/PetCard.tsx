@@ -1,3 +1,4 @@
+import FavoriteSection from "components/pets/Favorites/FavoriteSection";
 import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
@@ -8,9 +9,6 @@ import { nameCleaner } from "../../utils/utilsCleaner/index";
 import placeholder from "../pets/placeholder.jpg";
 import PetIcon from "../shared/PetIcon";
 import "./PetCard.css";
-
-import FavoriteSection from "components/pets/Favorites/FavoriteSection";
-
 
 export default function PetCard(props: PetCardType) {
   const { id, photos, name, type, primary_photo_cropped: link, breeds } = props;
