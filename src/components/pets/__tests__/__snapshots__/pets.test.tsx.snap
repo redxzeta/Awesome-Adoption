@@ -35,6 +35,7 @@ exports[`matches animal link snapshot 1`] = `
     onClick={[Function]}
     onKeyDown={[Function]}
     role="button"
+    style={null}
     tabIndex={0}
   >
     Click Here

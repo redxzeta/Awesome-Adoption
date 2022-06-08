@@ -13,7 +13,7 @@ import {
   UpdateProfile,
 } from "./supaActions";
 
-export type FavoritePets = { id: number; pet: string; create_at: Date };
+export type FavoritePets = { id: number; pet: string; created_at: Date };
 
 export type IProfileUpdate = {
   username: string;

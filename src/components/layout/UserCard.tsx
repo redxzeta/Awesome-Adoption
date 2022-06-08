@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 import { Button, Card, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 import { nameCleaner, storyCleaner } from "../../utils/utilsCleaner/index";
 import "./UserCard.css";
@@ -23,14 +23,9 @@ export default function UserCard(props) {
           </div>
           <div className="story_Section">
             <div className="story">{storyCleaner(story)}</div>
-            <Button
-              className="user-card__btn"
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              as={Link as any}
-              to={"/404/"}
-            >
-              More Info
-            </Button>
+            <LinkContainer to={"/404/"}>
+              <Button className="user-card__btn">More Info</Button>
+            </LinkContainer>
           </div>
         </Card.Body>
       </Card>

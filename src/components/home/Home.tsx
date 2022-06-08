@@ -1,5 +1,5 @@
 import { Button, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 import useSWR from "swr";
 import { PetSearchType } from "utils/petTypeFetcher";
 
@@ -21,10 +21,10 @@ export default function Home() {
           </div>
         </Container>
         <h2>Adopt a Buddy Today!</h2>
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-        <Button as={Link as any} to="/pets" variant="primary">
-          Adopt
-        </Button>
+
+        <LinkContainer to="/pets">
+          <Button variant="primary">Adopt</Button>
+        </LinkContainer>
         <LoadingPetCards />
       </div>
     </Container>

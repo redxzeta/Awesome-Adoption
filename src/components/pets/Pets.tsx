@@ -1,4 +1,5 @@
 import { Button, Col, Container, Image, Row, Spinner } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
 import { PetListType } from "types/PetType";
@@ -84,15 +85,11 @@ export const AnimalType = ({
         </div>
       </div>
     </Link>
-    <Button
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      as={Link as any}
-      to={link}
-      className="pet__button my-3"
-      color="primary"
-    >
-      Click Here
-    </Button>
+    <LinkContainer to={link}>
+      <Button className="pet__button my-3" color="primary">
+        Click Here
+      </Button>
+    </LinkContainer>
   </Col>
 );
 

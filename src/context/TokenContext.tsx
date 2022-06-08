@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type PetTokenType = {
+export type PetTokenType = {
   tokenHeaders: string | null;
   loading: boolean;
   errors: boolean;

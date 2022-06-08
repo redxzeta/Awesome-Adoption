@@ -1,14 +1,19 @@
 import { screen, waitFor } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-supabase";
+import { FavoritePets, ISupaState } from "reducers/supaReducer";
 
-import { AuthProvider } from "../../../context/SupaContext";
-import PetAuthProvider from "../../../context/TokenContext";
+import { AuthContext, AuthProvider } from "../../../context/SupaContext";
+import PetAuthProvider, {
+  PetAuthContext,
+  PetTokenType,
+} from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
 import { supabase } from "../../../testServer";
 import Favorites from "../Favorites";
 
-describe.skip("Favorites", () => {
-  it("should render user favorite pets", async () => {
+describe("Favorites", () => {
+  it("should render no favorite pets", async () => {
     customRender(
       <Provider value={supabase}>
         <PetAuthProvider>
@@ -18,10 +23,6 @@ describe.skip("Favorites", () => {
         </PetAuthProvider>
       </Provider>
     );
-    expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
 
     expect(
       screen.getByRole("heading", {
@@ -29,5 +30,54 @@ describe.skip("Favorites", () => {
         level: 5,
       })
     ).toBeInTheDocument();
+  });
+
+  it("should render user favorited pets", async () => {
+    const start: Date = new Date();
+    const favoritePets: FavoritePets[] = [
+      {
+        id: 50,
+        pet: "2",
+        created_at: start,
+      },
+      {
+        id: 51,
+        pet: "3",
+        created_at: start,
+      },
+      {
+        id: 52,
+        pet: "4",
+        created_at: start,
+      },
+    ];
+    const supaInitialState = {
+      favoritePets: favoritePets,
+    } as ISupaState;
+    const initialState: PetTokenType = {
+      tokenHeaders: "yayeet",
+      loading: false,
+      errors: false,
+    };
+    customRender(
+      <BrowserRouter>
+        <Provider value={supabase}>
+          <PetAuthContext.Provider value={initialState}>
+            <AuthContext.Provider
+              value={{ ...supaInitialState, dispatch: () => undefined }}
+            >
+              <Favorites />
+            </AuthContext.Provider>
+          </PetAuthContext.Provider>
+        </Provider>
+      </BrowserRouter>
+    );
+
+    expect(screen.getAllByRole("status")).toHaveLength(3);
+    await waitFor(() =>
+      expect(screen.queryAllByRole("status")).not.toHaveLength(3)
+    );
+    const petCards = screen.getAllByRole("button", { name: /More Info/i });
+    expect(petCards).toHaveLength(3);
   });
 });

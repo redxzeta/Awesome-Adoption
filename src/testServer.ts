@@ -48,6 +48,76 @@ const petList = {
   },
 };
 
+const petListFav = [
+  {
+    animal: {
+      id: 2,
+
+      name: "Courage the Cowardly Dog",
+      type: "dog",
+      age: "Baby",
+      gender: "male",
+      description: "Woof",
+      primary_photo_cropped: {
+        medium: "courage.jpg",
+      },
+      breeds: {
+        primary: "dog",
+      },
+      photos: [
+        {
+          medium: "courage.medium.jpg",
+          large: "courage.large.jpg",
+        },
+      ],
+    },
+  },
+  {
+    animal: {
+      id: 3,
+      name: "jake",
+      type: "dog",
+      age: "young",
+      gender: "male",
+      description: "finns friend",
+      primary_photo_cropped: {
+        medium: "jake.png",
+      },
+      breeds: {
+        primary: "dog",
+      },
+      photos: [
+        {
+          medium: "finn.medium.jpg",
+          large: "finn.large.jpg",
+        },
+      ],
+    },
+  },
+  {
+    animal: {
+      id: 4,
+      name: "puss n boots",
+      type: "cat",
+      age: "young",
+      gender: "male",
+      description: "masterr of sowrds",
+      primary_photo_cropped: {
+        medium: "boots.jpg",
+      },
+      breeds: {
+        primary: "cat",
+      },
+      photos: [
+        {
+          medium: "cat.medium.jpg",
+          large: "cat.large.jpg",
+        },
+      ],
+    },
+  },
+];
+
 const server = setupServer(
   rest.get(
     "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",
@@ -60,10 +130,23 @@ const server = setupServer(
   }),
   rest.get("https://api.petfinder.com/v2/animals/:id", (req, res, ctx) => {
     const { id } = req.params;
-    if (id === "1") {
-      return res(ctx.status(200), ctx.json(petList));
+
+    switch (id) {
+      case "1":
+        return res(ctx.status(200), ctx.json(petList));
+      case "2":
+        return res(ctx.status(200), ctx.json(petListFav[0]));
+      case "3":
+        return res(ctx.status(200), ctx.json(petListFav[1]));
+      case "4":
+        return res(ctx.status(200), ctx.json(petListFav[2]));
+
+      default:
+        return res(
+          ctx.status(404),
+          ctx.json({ message: "Yoda does not exist" })
+        );
     }
-    return res(ctx.status(404), ctx.json({ message: "Yoda does not exist" }));
   }),
   rest.get("https://api.petfinder.com/v2/animals", (req, res, ctx) => {
     const sort = req.url.searchParams.get("sort");
