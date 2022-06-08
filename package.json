@@ -39,6 +39,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:coverage": "react-scripts test --watchAll=false --coverage",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "lint": "eslint ./",
+    "lint-fix": "eslint ./ --fix",
     "prepare": "husky install"
   },
   "eslintConfig": {

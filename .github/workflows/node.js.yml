@@ -30,9 +30,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Format
-        run: yarn format
-
       - name: Run the tests
         run: yarn test:coverage
 
