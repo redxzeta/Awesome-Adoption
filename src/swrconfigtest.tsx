@@ -1,5 +1,6 @@
 import { RenderOptions, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { PetAuthContext, PetTokenType } from "context/TokenContext";
 import React, { ReactElement } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-supabase";
@@ -47,11 +48,18 @@ export const customRouterRender = (
 const customProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <Provider value={supabase}>
-      <BrowserRouter>
-        <SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0 }}>
-          {children}
-        </SWRConfig>
-      </BrowserRouter>
+      <PetAuthContext.Provider value={initialState}>
+        <BrowserRouter>
+          <SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0 }}>
+            {children}
+          </SWRConfig>
+        </BrowserRouter>
+      </PetAuthContext.Provider>
     </Provider>
   );
+};
+const initialState: PetTokenType = {
+  tokenHeaders: "yayeet",
+  loading: false,
+  errors: false,
 };

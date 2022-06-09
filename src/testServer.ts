@@ -119,6 +119,34 @@ const petListFav = [
   },
 ];
 
+const fakenewProfiles: ProfileType[] = [
+  {
+    id: "35",
+    username: "supaAwesome",
+    description: "Supa Awesome yet ",
+    avatar_url: "cuteDoggoAndCat.jpg",
+    favoritepets: [],
+    background: {
+      id: 1,
+      background_url: "someImage.png",
+    },
+  },
+  {
+    id: "36",
+    username: "supaPet",
+    description: "Supa Awesome yet ",
+    avatar_url: "cuteDoggoAndCat.jpg",
+    favoritepets: [
+      { id: 1, pet: "2", created_at: new Date("01/01/2020") },
+      { id: 2, pet: "3", created_at: new Date("01/02/2020") },
+    ],
+    background: {
+      id: 1,
+      background_url: "someImage.png",
+    },
+  },
+];
+
 const server = setupServer(
   rest.get(
     "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",
@@ -204,19 +232,16 @@ const server = setupServer(
     return res(ctx.status(200), ctx.json(fakeNewAccount));
   }),
 
-  rest.get("https://test.supabase.co/rest/v1/profiles", (_req, res, ctx) => {
-    const fakeNewProfile: ProfileType = {
-      id: "35",
-      username: "SupaAwesome",
-      description: "Supa Awesome yet ",
-      avatar_url: "cuteDoggoAndCat.jpg",
-      favoritepets: [],
-      background: {
-        id: 1,
-        background_url: "someImage.png",
-      },
-    };
-    return res(ctx.status(200), ctx.json(fakeNewProfile));
+  rest.get("https://test.supabase.co/rest/v1/profiles", (req, res, ctx) => {
+    const name = req.url.searchParams.get("username")?.replace("eq.", "");
+    switch (name) {
+      case "supaAwesome":
+        return res(ctx.status(200), ctx.json(fakenewProfiles[0]));
+      case "supaPet":
+        return res(ctx.status(200), ctx.json(fakenewProfiles[1]));
+      default:
+        return res(ctx.status(404), ctx.json({ message: "ERROR" }));
+    }
   }),
 
   rest.get(
