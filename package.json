@@ -38,12 +38,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "test:coverage": "react-scripts test --watchAll=false --coverage",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "lint": "eslint ./",
     "lint-fix": "eslint ./ --fix",
-    "prepare": "husky install",
-    "test:coverage": "react-scripts test --watchAll=false --coverage",
-    "pre-commit": "yarn lint && react-scripts test --watchAll=false "
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -78,22 +77,13 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-testing-library": "^5.0.5",
-    "husky": "^6.0.0",
-    "lint-staged": "^11.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.0",
     "msw": "^0.39.2",
-    "prettier": "^2.3.0",
+    "prettier": "^2.6.2",
     "pretty-quick": "^3.1.0",
     "react-test-renderer": "^18.1.0",
-    "standard": "^17.0.0",
-    "ts-migrate": "^0.1.28"
-  },
-  "lint-staged": {
-    "*.js": "eslint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && pretty-quick --staged"
-    }
+    "standard": "^17.0.0"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -111,6 +101,12 @@
     },
     "coverageReporters": [
       "text"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,jsx,tsx,md,css,html}": [
+      "eslint --fix",
+      "prettier --write"
     ]
   }
 }
