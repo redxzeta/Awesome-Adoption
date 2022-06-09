@@ -59,4 +59,25 @@ describe("Profile Page", () => {
     const petCards = screen.getAllByRole("button", { name: /More Info/i });
     expect(petCards).toHaveLength(2);
   });
+
+  test("profile does not load", async () => {
+    customRouterRender(
+      <Routes>
+        <Route path="profiles/:name" element={<Profile />} />
+      </Routes>,
+      { name: "profileTest", route: "/profiles/error" }
+    );
+
+    expect(
+      screen.getByRole("heading", { level: 1, name: /Loading/i })
+    ).toBeInTheDocument();
+
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("heading", { level: 1, name: /Loading/i })
+      ).not.toBeInTheDocument()
+    );
+
+    expect(screen.getByRole("heading", { level: 1, name: /ERROR/i }));
+  });
 });
