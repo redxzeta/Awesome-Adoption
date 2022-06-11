@@ -8,27 +8,107 @@
 }
 
 .register__container_form {
-  width: 100%;
-  height: 90%;
+  width: 40%;
+  height: 75%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 4px solid rgb(184, 184, 184);
-  background-color: #f0f0f0;
-  border-radius: 25px;
+  background-color: #ffffff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 2px;
+  padding: 5rem 4rem;
+}
+
+.register__form__title {
+  width: 100%;
 }
 
 .register__title {
-  margin-bottom: 80px;
+  margin-bottom: 16px;
+}
+
+.register__title__span {
+  display: flex;
+  font-size: 14px;
+}
+
+.register__title__span a {
+  text-decoration: none;
+  margin-left: 2px;
+  margin-bottom: 2rem;
 }
 
 .register__form {
-  width: 40%;
+  width: 100%;
   min-width: 250px;
+}
+
+.register__form div {
+  height: 4rem;
+}
+
+.form-control {
+  padding: 0.65rem 1rem;
+}
+
+label {
+  color: #777;
+  position: relative;
+  bottom: 37px;
+  left: 15px;
+  margin-bottom: 0;
+  font-size: 14px;
+  transition: 0.4s all ease;
+}
+
+input:focus+label,
+.active-label {
+  font-size: 10px;
+  bottom: 50px;
+}
+
+
+.form-text {
+  display: block;
+  font-size: 12px;
+  position: relative;
+  bottom: 14px;
 }
 
 .register__button {
   width: 100%;
-  margin-top: 15px;
+  margin-top: 24px;
+  padding: 0.65rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .register__container_form {
+    width: 65%;
+  }
+
+  .register__title {
+    margin-bottom: 8px;
+  }
+}
+
+@media screen and (max-width: 455px) {
+  .register__container_form {
+    width: 100%;
+    padding: 3rem 1.5rem;
+  }
+
+  .register__title {
+    font-size: 24px;
+  }
+
+  .register__title__span {
+    font-size: 13px;
+  }
+
+  label {
+    font-size: 12px;
+  }
 }

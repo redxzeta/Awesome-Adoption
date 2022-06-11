@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Container, Form } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useSignUp } from "react-supabase";
 
 import { useAuth } from "../../context/SupaContext";
@@ -21,6 +21,7 @@ const Register = () => {
   const [{ error, fetching, user }, signUp] = useSignUp();
 
   const onClickSignUp = async () => signUp(registerForm);
+  let labelEle = document.querySelector('label');
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,6 +31,12 @@ const Register = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setRegisterForm((val) => ({ ...val, [name]: value }));
+
+    if (e.target.value !== "") {
+      labelEle?.classList.add("active-label");
+    } else {
+      labelEle?.classList.remove("active-label");
+    }
   };
 
   const { session } = useAuth();
@@ -41,32 +48,40 @@ const Register = () => {
           <Success />
         ) : (
           <Fragment>
-            <h1 className="register__title">Sign Up</h1>
+            <div className="register__form__title">
+              <h1 className="register__title">Sign up with your email</h1>
+              <span className="register__title__span">
+                <p>Already have an account? </p>
+                <Link to="/login">
+                  <a>Sign in</a>
+                </Link>
+              </span>
+            </div>
+
             <Form className="register__form" onSubmit={onSubmit}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+              <Form.Group controlId="formBasicEmail">
                 <Form.Control
                   type="email"
-                  placeholder="Enter email"
                   name="email"
                   onChange={handleChange}
                   value={registerForm.email}
                 />
-                <Form.Text className="text-muted">
-                  We will never share your email with anyone else.
-                </Form.Text>
+                <Form.Label>Email address</Form.Label>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
+              <Form.Group controlId="formBasicPassword">
                 <Form.Control
                   type="password"
-                  placeholder="Password"
                   name="password"
                   onChange={handleChange}
-                  value={registerForm.password}
-                />
+                  value={registerForm.password} />
+                <Form.Label>Password</Form.Label>
               </Form.Group>
+
+              <Form.Text className="text-muted">
+                * We will never share your email with anyone else.
+              </Form.Text>
+
               <FetchingButton
                 fetching={fetching}
                 action="Submit"

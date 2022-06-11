@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSignIn } from "react-supabase";
 
 import { FetchingButton } from "../layout/Buttons/FetchingButton";
@@ -14,15 +14,26 @@ const loginFormState: LoginType = {
   email: "",
   password: "",
 };
+
+
 const SLogin = () => {
   const navigate = useNavigate();
-  // const [form, handleChange] = useForm(initState);
+  let labelEle = document.querySelector('label');
 
   const [loginForm, setLoginForm] = useState(loginFormState);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLoginForm((val) => ({ ...val, [name]: value }));
+
+    if (e.target.value !== "") {
+      labelEle?.classList.add("active-label");
+    } else {
+      labelEle?.classList.remove("active-label");
+    }
+
+    console.log(e.target.value);
+
   };
 
   const [{ error, fetching }, signIn] = useSignIn();
@@ -40,32 +51,41 @@ const SLogin = () => {
   return (
     <Container className="register__container pawhub" fluid="md">
       <div className="register__container_form">
-        <h1 className="register__title">Login</h1>
+        <div className="register__form__title">
+          <h1 className="register__title">Sign in with your email</h1>
+          <span className="register__title__span">
+            <p>Don't have an account? </p>
+            <Link to="/register">
+              <a>Sign up</a>
+            </Link>
+          </span>
+        </div>
+
         <Form className="register__form" onSubmit={onSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+          <Form.Group controlId="formBasicEmail">
             <Form.Control
               type="email"
-              placeholder="Enter email"
               name="email"
               onChange={handleChange}
               value={loginForm.email}
             />
-            <Form.Text className="text-muted">
-              We will never share your email with anyone else.
-            </Form.Text>
+            <Form.Label>Email address</Form.Label>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+          <Form.Group controlId="formBasicPassword">
             <Form.Control
               type="password"
-              placeholder="Password"
               name="password"
               onChange={handleChange}
               value={loginForm.password}
             />
+            <Form.Label>Password</Form.Label>
           </Form.Group>
+
+          <Form.Text className="text-muted">
+            * We will never share your email with anyone else.
+          </Form.Text>
+
           <FetchingButton
             fetching={fetching}
             action="Submit"
