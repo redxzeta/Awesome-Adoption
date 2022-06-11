@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Container, Form } from "react-bootstrap";
-import { Navigate, Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useSignUp } from "react-supabase";
 
 import { useAuth } from "../../context/SupaContext";
@@ -21,7 +21,7 @@ const Register = () => {
   const [{ error, fetching, user }, signUp] = useSignUp();
 
   const onClickSignUp = async () => signUp(registerForm);
-  let labelEle = document.querySelector('label');
+  const labelEle = document.querySelector("label");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ const Register = () => {
             <div className="register__form__title">
               <h1 className="register__title">Sign up with your email</h1>
               <span className="register__title__span">
-                <p>Already have an account? </p>
+                <p>Already have an account?</p>
                 <Link to="/login">
                   <a>Sign in</a>
                 </Link>

@@ -15,10 +15,9 @@ const loginFormState: LoginType = {
   password: "",
 };
 
-
 const SLogin = () => {
   const navigate = useNavigate();
-  let labelEle = document.querySelector('label');
+  const labelEle = document.querySelector("label");
 
   const [loginForm, setLoginForm] = useState(loginFormState);
 
@@ -54,7 +53,7 @@ const SLogin = () => {
         <div className="register__form__title">
           <h1 className="register__title">Sign in with your email</h1>
           <span className="register__title__span">
-            <p>Don't have an account? </p>
+            <p>Don't have an account?</p>
             <Link to="/register">
               <a>Sign up</a>
             </Link>
