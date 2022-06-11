@@ -5,7 +5,7 @@ The current issue labels being handled are features, enhancements, and bugs.
 ### Setup
 
 - fork repo and clone it
-- switch branch to `paw-dev` unless instructed to switch to another branch
+- create a new branch based off on `main`
 - use yarn to install `node-modules`
 
 ### Feature Issue
@@ -45,7 +45,7 @@ Brief walkthrough on what changes being done:
 
 - Issue or Feature being implemented
 - Short summary of what is being done
-- Make a pull request to target branch and not `main`
+- Make a pull request to target branch `main`
 
 ### Update your fork
 
