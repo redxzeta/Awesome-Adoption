@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import { ProfileType } from "utils/supaFetcher";
 
 import PlaceImage from "./components/about/__tests__/placeholder50px.png";
 import DogSample from "./testData/sample.json";
@@ -118,6 +119,34 @@ const petListFav = [
   },
 ];
 
+const fakenewProfiles: ProfileType[] = [
+  {
+    id: "35",
+    username: "supaAwesome",
+    description: "Supa Awesome yet ",
+    avatar_url: "cuteDoggoAndCat.jpg",
+    favoritepets: [],
+    background: {
+      id: 1,
+      background_url: "someImage.png",
+    },
+  },
+  {
+    id: "36",
+    username: "supaPet",
+    description: "Supa Awesome yet ",
+    avatar_url: "cuteDoggoAndCat.jpg",
+    favoritepets: [
+      { id: 1, pet: "2", created_at: new Date("01/01/2020") },
+      { id: 2, pet: "3", created_at: new Date("01/02/2020") },
+    ],
+    background: {
+      id: 1,
+      background_url: "someImage.png",
+    },
+  },
+];
+
 const server = setupServer(
   rest.get(
     "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",
@@ -203,14 +232,16 @@ const server = setupServer(
     return res(ctx.status(200), ctx.json(fakeNewAccount));
   }),
 
-  rest.get("https://test.supabase.co/rest/v1/profiles", (_req, res, ctx) => {
-    const fakeNewProfile = {
-      id: "35",
-      username: "SupaAwesome",
-      description: "Supa Awesome yet ",
-      avatar_url: "cuteDoggoAndCat.jpg",
-    };
-    return res(ctx.status(200), ctx.json(fakeNewProfile));
+  rest.get("https://test.supabase.co/rest/v1/profiles", (req, res, ctx) => {
+    const name = req.url.searchParams.get("username")?.replace("eq.", "");
+    switch (name) {
+      case "supaAwesome":
+        return res(ctx.status(200), ctx.json(fakenewProfiles[0]));
+      case "supaPet":
+        return res(ctx.status(200), ctx.json(fakenewProfiles[1]));
+      default:
+        return res(ctx.status(404), ctx.json({ message: "ERROR" }));
+    }
   }),
 
   rest.get(
@@ -221,6 +252,20 @@ const server = setupServer(
         { id: 2, pet: "2" },
       ];
       return res(ctx.status(200), ctx.json(fakeNewFavorites));
+    }
+  ),
+
+  rest.get(
+    "https://test.supabase.co/storage/v1/object/profile/[object%20Object]",
+    (_req, res, ctx) => {
+      const myBlob = new Blob(
+        [
+          `/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/
+      2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/`,
+        ],
+        { type: "image/jpeg" }
+      );
+      return res(ctx.status(200), ctx.json(myBlob));
     }
   )
 );

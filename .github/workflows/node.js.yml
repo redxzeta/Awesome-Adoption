@@ -30,17 +30,11 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Format
-        run: yarn format
-
-      - name: lint
+      - name: Check for eslint
         run: yarn lint
 
-      - name: lint
-        run: yarn lint-fix
-
       - name: Run the tests
-        run: yarn test
+        run: yarn test:coverage
 
       - name: Build
         env:

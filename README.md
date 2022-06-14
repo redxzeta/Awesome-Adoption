@@ -28,9 +28,23 @@ Where the key is being used
 
 `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`
 
-Join My [Discord](https://discord.gg/2UxwrKxCPV)
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Supabase
+
+Join My [Discord](https://discord.gg/2UxwrKxCPV) for the Supabase keys
+
+## Setup
+
+`yarn`
+
+`yarn prepare`
+
+`yarn start`
+
+test
+
+`yarn test`
 
 ## Errors Fix
 

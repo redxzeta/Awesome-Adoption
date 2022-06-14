@@ -23,7 +23,6 @@ import Resources from "./components/resources/Resources";
 import Tips from "./components/tips/Tips";
 import { AuthProvider } from "./context/SupaContext";
 import PetAuthProvider from "./context/TokenContext";
-// import PrivateRoute from "./utils/PrivateRoute";
 import { supabase } from "./utils/SupaBaseUtils";
 
 export default function App() {
