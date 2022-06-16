@@ -13,7 +13,7 @@ exports[`matches animal link snapshot 1`] = `
     >
       <img
         alt="playtpus"
-        className="image__img rounded-circle"
+        className="image__rand_img rounded-circle"
         src="https://via.placeholder.com/150"
       />
       <div
