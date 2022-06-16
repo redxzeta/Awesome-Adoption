@@ -71,27 +71,39 @@ export const AnimalType = ({
   type: string;
   img: string;
   link: string;
-}) => (
-  <Col
-    xs={12}
-    md={6}
-    className="pet__column d-flex flex-column align-items-center justify-content-end my-4"
-  >
-    <Link to={link}>
-      <div className="petType">
-        <Image className="image__img" src={img} alt={type} roundedCircle />
-        <div className="image__overlay image__overlay--primary">
-          <div className="image__title">{type}</div>
+}) => {
+  let linkDataTypes: string[] = [];
+  linkData.forEach(({ type }) => {
+    linkDataTypes = [...linkDataTypes, type];
+  });
+  const isLinkDataType = linkDataTypes.includes(type);
+  return (
+    <Col
+      xs={12}
+      md={6}
+      className="pet__column d-flex flex-column align-items-center justify-content-end my-4"
+    >
+      <Link to={link}>
+        <div className="petType">
+          <Image
+            className={isLinkDataType ? "image__img" : "image__rand_img"}
+            src={img}
+            alt={type}
+            roundedCircle
+          />
+          <div className="image__overlay image__overlay--primary">
+            <div className="image__title">{type}</div>
+          </div>
         </div>
-      </div>
-    </Link>
-    <LinkContainer to={link}>
-      <Button className="pet__button my-3" color="primary">
-        Click Here
-      </Button>
-    </LinkContainer>
-  </Col>
-);
+      </Link>
+      <LinkContainer to={link}>
+        <Button className="pet__button my-3" color="primary">
+          Click Here
+        </Button>
+      </LinkContainer>
+    </Col>
+  );
+};
 
 const RandomPet = () => {
   const randomPetURL =
