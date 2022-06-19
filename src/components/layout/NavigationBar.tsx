@@ -96,6 +96,9 @@ export default function NavigationBar() {
                   <NavDropdown.Item as={Link} to="/reset-password">
                     Reset Password
                   </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/settings">
+                    Settings
+                  </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to={`/profile/${username}`}>
                     Profile
                   </NavDropdown.Item>
