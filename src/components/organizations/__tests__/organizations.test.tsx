@@ -3,18 +3,18 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 
-import Donate from "../Donate";
-import DonateCard from "../DonateCard";
+import Organizations from "../Organizations";
+import OrganizationsCard from "../OrganizationsCard";
 
-test("should render donate component", () => {
-  render(<Donate />);
+test("should render organizations component", () => {
+  render(<Organizations />);
   const donateElement = screen.getByTestId("donate-test-title");
   expect(donateElement).toBeInTheDocument();
 
-  expect(donateElement).toHaveTextContent("DONATE");
+  expect(donateElement).toHaveTextContent("ORGANIZATIONS");
 });
 
-test("matches donate card snapshot", () => {
+test("matches organizations card snapshot", () => {
   const sampleData = {
     name: "Lorem Charity",
     website: "https://via.placeholder.com/",
@@ -26,7 +26,7 @@ test("matches donate card snapshot", () => {
   const tree = renderer
     .create(
       <BrowserRouter>
-        <DonateCard ch={sampleData} />
+        <OrganizationsCard ch={sampleData} />
       </BrowserRouter>
     )
     .toJSON();
@@ -34,7 +34,7 @@ test("matches donate card snapshot", () => {
 });
 
 test("Test for filtering", async () => {
-  render(<Donate />);
+  render(<Organizations />);
   const user = userEvent.setup();
   const locationDropdown = screen.getByLabelText(/Filter by place:/i);
   await user.selectOptions(locationDropdown, "united states");

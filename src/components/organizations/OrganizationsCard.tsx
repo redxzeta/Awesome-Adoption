@@ -1,6 +1,6 @@
 import { Button, Card, Col, Row } from "react-bootstrap";
 
-import { CharityType } from "./Donate";
+import { CharityType } from "./Organizations";
 
 const DonateCard = ({ ch }: { ch: CharityType }) => (
   <Card>

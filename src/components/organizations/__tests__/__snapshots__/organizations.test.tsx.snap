@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches donate card snapshot 1`] = `
+exports[`matches organizations card snapshot 1`] = `
 <div
   className="card"
 >
