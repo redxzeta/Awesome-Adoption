@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button, Container, Image } from "react-bootstrap";
 
-import DonateCard from "./DonateCard";
-import DonateModal from "./DonateModal";
+import OrganizationsCard from "./OrganizationsCard";
+import OrganizationsModal from "./OrganizationsModal";
 import charity from "./charities.json";
-import "./donate.css";
+import "./organizations.css";
 
 export type CharityType = {
   name: string;
@@ -41,7 +41,7 @@ const Donate = () => {
   return (
     <Container className="pawhub">
       <div className="donate">
-        <h1 data-testid="donate-test-title">DONATE</h1>
+        <h1 data-testid="donate-test-title">ORGANIZATIONS</h1>
         <section className="kofi__section">
           <p>
             Here are a list of places to donate to help pets and animals. Feel
@@ -53,7 +53,7 @@ const Donate = () => {
               Submit an Organization
             </Button>
           </p>
-          <DonateModal show={showModal} handleClose={handleClose} />
+          <OrganizationsModal show={showModal} handleClose={handleClose} />
           <p>If you wish to help donate the site here, you can click here</p>
           <div className="kofi__section__donate">
             <a
@@ -91,7 +91,7 @@ const Donate = () => {
         </section>
         <section className="charity__section">
           {charityFiltered.map((ch) => (
-            <DonateCard ch={ch} key={ch.name} />
+            <OrganizationsCard ch={ch} key={ch.name} />
           ))}
         </section>
       </div>

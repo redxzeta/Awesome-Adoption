@@ -63,8 +63,8 @@ export default function NavigationBar() {
                 Tips
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link as={Link} to="/donate">
-              Donate
+            <Nav.Link as={Link} to="/organization">
+              Organizations
             </Nav.Link>
             {/* <Nav.Link as={Link} to="/stories">
               User Story

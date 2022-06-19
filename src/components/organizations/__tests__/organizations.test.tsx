@@ -3,11 +3,11 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
 import renderer from "react-test-renderer";
 
-import Donate from "../Donate";
-import DonateCard from "../DonateCard";
+import Organizations from "../Organizations";
+import OrganizationsCard from "../OrganizationsCard";
 
 test("should render donate component", () => {
-  render(<Donate />);
+  render(<Organizations />);
   const donateElement = screen.getByTestId("donate-test-title");
   expect(donateElement).toBeInTheDocument();
 
@@ -26,7 +26,7 @@ test("matches donate card snapshot", () => {
   const tree = renderer
     .create(
       <BrowserRouter>
-        <DonateCard ch={sampleData} />
+        <OrganizationsCard ch={sampleData} />
       </BrowserRouter>
     )
     .toJSON();
@@ -34,22 +34,22 @@ test("matches donate card snapshot", () => {
 });
 
 test("Test for filtering", async () => {
-  render(<Donate />);
+  render(<Organizations />);
   const user = userEvent.setup();
   const locationDropdown = screen.getByLabelText(/Filter by place:/i);
   await user.selectOptions(locationDropdown, "united states");
 
-  expect(
-    screen.getByRole("option", {
-      name: "united states",
-    }).selected
-  ).toBe(true);
+  const us = screen.getByRole("option", {
+    name: "united states",
+  }) as HTMLInputElement;
 
-  expect(
-    screen.queryByRole("option", {
-      name: "india",
-    }).selected
-  ).toBe(false);
+  expect(us.select).toBe(true);
+
+  const ind = screen.queryByRole("option", {
+    name: "india",
+  }) as HTMLInputElement;
+
+  expect(ind.select).toBe(false);
 
   expect(
     screen.queryByText(/^Location: ((?!United States).)*$/i)
