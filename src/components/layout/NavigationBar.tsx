@@ -1,123 +1,62 @@
-import { Fragment } from "react";
-import {
-  Container,
-  Image,
-  Nav,
-  NavDropdown,
-  Navbar,
-  Spinner,
-} from "react-bootstrap";
-import { IoIosHeart } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { useSignOut } from "react-supabase";
-
-import { useAuth } from "../../context/SupaContext";
-import Logo from "../../images/PawHubLogo.png";
-import "./NavigationBar.css";
-
-const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
+import { Button, Navbar } from "react-daisyui";
 
 export default function NavigationBar() {
-  const [{ fetching }, signOut] = useSignOut();
-  const onClickSignOut = async () => {
-    await signOut();
-  };
-  const { session, username, favoritePets } = useAuth();
-
   return (
-    <Navbar bg="primary" expand="lg">
-      <Container>
-        <Navbar.Brand href="/">
-          <Image src={Logo} height={40} width={40} />
-        </Navbar.Brand>
-        <h1>Pawternity Hub</h1>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse className="justify-content-end">
-          <Nav className="mr-auto">
-            <Nav.Link as={Link} to="/">
-              Home
-            </Nav.Link>
-            <NavDropdown title="Pets" id="navbarScrollingDropdown">
-              {petList.map((type) => (
-                <NavDropdown.Item
-                  key={type}
-                  as={Link}
-                  to={`/pets/${type.toLowerCase()}`}
-                >
-                  {type}
-                </NavDropdown.Item>
-              ))}
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/pets">
-                All Pets
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={Link} to="/about">
-              About
-            </Nav.Link>
-            <NavDropdown title="Resources" id="navbarScrollingDropdown">
-              <NavDropdown.Item as={Link} to="/resources">
-                Resources
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/tips">
-                Tips
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={Link} to="/donate">
-              Donate
-            </Nav.Link>
-            {/* <Nav.Link as={Link} to="/stories">
-              User Story
-            </Nav.Link> */}
-            {session && (
-              <Nav.Link as={Link} to="/favorites">
-                <IoIosHeart />
-                <span style={{ fontSize: "14px" }}>{favoritePets.length}</span>
-              </Nav.Link>
-            )}
-            <NavDropdown
-              title={<i className="bi bi-person-circle"></i>}
-              id="navbarScrollingDropdown"
-            >
-              <NavDropdown.Item>Hello, {username}</NavDropdown.Item>
-              <NavDropdown.Divider />
-              {!session && (
-                <Fragment>
-                  <NavDropdown.Item as={Link} to="/register">
-                    Register
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/login">
-                    Login
-                  </NavDropdown.Item>
-                </Fragment>
-              )}
-              {session && (
-                <>
-                  <NavDropdown.Item as={Link} to="/reset-password">
-                    Reset Password
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={`/profile/${username}`}>
-                    Profile
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    disabled={fetching}
-                    onClick={() => onClickSignOut()}
-                  >
-                    {fetching ? (
-                      <Fragment>
-                        <Spinner animation="grow" size="sm" />
-                        Logging out
-                      </Fragment>
-                    ) : (
-                      "Logout"
-                    )}
-                  </NavDropdown.Item>
-                </>
-              )}
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
+    <Navbar>
+      <Navbar.Start className="px-2 mx-2">
+        <svg
+          className="block sm:hidden mr-2 fill-current"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 512 512"
+        >
+          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+        </svg>
+        <span className="text-lg font-bold">daisyUI</span>
+      </Navbar.Start>
+
+      <Navbar.Center className="px-2 mx-2">
+        <div className="hidden sm:flex items-stretch">
+          <Button size="sm">Home</Button>
+          <Button size="sm">Portfolio</Button>
+          <Button size="sm">About</Button>
+          <Button size="sm">Contact</Button>
+        </div>
+      </Navbar.Center>
+
+      <Navbar.End className="px-2 mx-2">
+        <Button shape="square" color="primary">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="inline-block w-6 h-6 stroke-current"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+            ></path>
+          </svg>
+        </Button>
+        <Button shape="square" color="ghost">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="inline-block w-6 h-6 stroke-current"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+        </Button>
+      </Navbar.End>
     </Navbar>
   );
 }
