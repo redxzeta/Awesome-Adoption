@@ -6,15 +6,15 @@ import renderer from "react-test-renderer";
 import Organizations from "../Organizations";
 import OrganizationsCard from "../OrganizationsCard";
 
-test("should render donate component", () => {
+test("should render organizations component", () => {
   render(<Organizations />);
   const donateElement = screen.getByTestId("donate-test-title");
   expect(donateElement).toBeInTheDocument();
 
-  expect(donateElement).toHaveTextContent("DONATE");
+  expect(donateElement).toHaveTextContent("ORGANIZATIONS");
 });
 
-test("matches donate card snapshot", () => {
+test("matches organizations card snapshot", () => {
   const sampleData = {
     name: "Lorem Charity",
     website: "https://via.placeholder.com/",
@@ -39,17 +39,17 @@ test("Test for filtering", async () => {
   const locationDropdown = screen.getByLabelText(/Filter by place:/i);
   await user.selectOptions(locationDropdown, "united states");
 
-  const us = screen.getByRole("option", {
-    name: "united states",
-  }) as HTMLInputElement;
+  expect(
+    screen.getByRole("option", {
+      name: "united states",
+    }).selected
+  ).toBe(true);
 
-  expect(us.select).toBe(true);
-
-  const ind = screen.queryByRole("option", {
-    name: "india",
-  }) as HTMLInputElement;
-
-  expect(ind.select).toBe(false);
+  expect(
+    screen.queryByRole("option", {
+      name: "india",
+    }).selected
+  ).toBe(false);
 
   expect(
     screen.queryByText(/^Location: ((?!United States).)*$/i)
