@@ -1,8 +1,11 @@
-import { Container, Row } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
+import { useDelete } from "react-supabase";
+import { removeFavoritePet } from "reducers/supaFunctions";
 import useSWR from "swr";
 
 import { useAuth } from "../../context/SupaContext";
 import { usePetAuth } from "../../context/TokenContext";
+// import { FavoritePets } from "../../reducers/supaReducer";
 import { lookUpPet } from "../../routes/API";
 import { multipleFetcher } from "../../utils/petInfoFetcher";
 import PetCard from "../layout/PetCard";
@@ -12,9 +15,14 @@ import "./pets.css";
 export default function Favorites() {
   const { favoritePets } = useAuth();
   const { tokenHeaders } = usePetAuth();
+  const [{ fetching }, executeDelete] = useDelete("favoritepets");
 
+  const { dispatch } = useAuth();
   const urlPets = favoritePets.map((f) => lookUpPet + f.pet);
-
+  const { error, data: petList } = useSWR(
+    tokenHeaders ? [urlPets, tokenHeaders] : null,
+    multipleFetcher
+  );
   if (urlPets.length === 0)
     return (
       <Container>
@@ -22,11 +30,6 @@ export default function Favorites() {
         <h5>Start selecting your favorites to find your future best friend!</h5>
       </Container>
     );
-
-  const { error, data: petList } = useSWR(
-    tokenHeaders ? [urlPets, tokenHeaders] : null,
-    multipleFetcher
-  );
 
   const isLoading = !petList && !error;
   if (isLoading)
@@ -50,6 +53,18 @@ export default function Favorites() {
       </Container>
     );
 
+  const removeFavButton = async (petId: string) => {
+    // use petId to find the id associated in FavoritePets array
+    // hint pet === petId
+    // then get the id and replace removalId
+    const removedPet = favoritePets.filter((fav) => fav.pet === petId)[0];
+    await executeDelete((query) => query.eq("id", removedPet.id), {
+      returning: "minimal",
+      count: "estimated",
+    });
+    dispatch(removeFavoritePet(removedPet.id));
+  };
+
   return (
     <Container className="pawhub">
       <div className="petList__container">
@@ -64,7 +79,15 @@ export default function Favorites() {
               photos={pet.photos}
               type={pet.type}
               primary_photo_cropped={pet.primary_photo_cropped}
-            />
+            >
+              {" "}
+              <Button
+                className="w-50 mx-auto"
+                onClick={() => removeFavButton(pet.id)}
+              >
+                {fetching ? "Loading" : "Remove"}
+              </Button>
+            </PetCard>
           ))}
         </Row>
       </div>

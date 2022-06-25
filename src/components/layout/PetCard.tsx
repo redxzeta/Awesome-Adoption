@@ -1,4 +1,3 @@
-import FavoriteSection from "components/pets/Favorites/FavoriteSection";
 import React from "react";
 import { Button, Card, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
@@ -10,8 +9,18 @@ import placeholder from "../pets/placeholder.jpg";
 import PetIcon from "../shared/PetIcon";
 import "./PetCard.css";
 
-export default function PetCard(props: PetCardType) {
-  const { id, photos, name, type, primary_photo_cropped: link, breeds } = props;
+export default function PetCard(
+  props: PetCardType & { children?: React.ReactNode }
+) {
+  const {
+    id,
+    photos,
+    name,
+    type,
+    primary_photo_cropped: link,
+    breeds,
+    children,
+  } = props;
 
   let myInterval: ReturnType<typeof setTimeout>;
 
@@ -38,14 +47,13 @@ export default function PetCard(props: PetCardType) {
   };
 
   return (
-    <Col md={4} xs={12} key={id} className="card-container">
+    <Col md={4} xs={12} key={id} className="card-container flex-column">
       <Card className="card">
         <Card.Header className="card__header">
           <span className="card__title">{nameCleaner(name)}</span>
           <LinkContainer to={`/animal/${id}`}>
             <Button className="card__btn">More Info</Button>
           </LinkContainer>
-          <FavoriteSection id={id} />
         </Card.Header>
         <Link to={`/animal/${id}`}>
           <Card.Img
@@ -63,6 +71,7 @@ export default function PetCard(props: PetCardType) {
           </Card.Title>
         </Card.Body>
       </Card>
+      {children}
     </Col>
   );
 }
