@@ -1,4 +1,5 @@
 import { Button, Container, Row } from "react-bootstrap";
+import { Hero } from "react-daisyui";
 import { LinkContainer } from "react-router-bootstrap";
 import useSWR from "swr";
 import { PetSearchType } from "utils/petTypeFetcher";
@@ -27,6 +28,7 @@ export default function Home() {
         </LinkContainer>
         <LoadingPetCards />
       </div>
+      <Hero></Hero>
     </Container>
   );
 }
