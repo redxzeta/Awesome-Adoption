@@ -85,9 +85,16 @@
   width: 100%;
 }
 
-.image__img {
+.image__rand_img{
   display: block;
   width: 100%;
+}
+
+.image__img {
+  display: block;
+  width:  250px;
+  height: 250px;
+  object-fit: scale-down;
 }
 
 .image__overlay {
