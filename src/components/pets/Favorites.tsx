@@ -57,7 +57,9 @@ export default function Favorites() {
     // use petId to find the id associated in FavoritePets array
     // hint pet === petId
     // then get the id and replace removalId
-    const removedPet = favoritePets.filter((fav) => fav.pet === petId)[0];
+    const removedPet = favoritePets.filter(
+      (fav) => fav.pet === petId.toString()
+    )[0];
     await executeDelete((query) => query.eq("id", removedPet.id), {
       returning: "minimal",
       count: "estimated",
