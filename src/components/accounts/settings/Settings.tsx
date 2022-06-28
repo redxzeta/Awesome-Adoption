@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { fetchSupaProfile } from "utils/supaFetcher";
 
 import { useAuth } from "../../../context/SupaContext";
+import "./settings.css";
 
 export default function Settings() {
   const client = useClient();
@@ -34,7 +35,7 @@ export default function Settings() {
   return (
     <Container className={"container"}>
       <h1 className={"title"}>Settings</h1>
-      <div className={"setting-update-area"}>
+      <div className={"settings-update-area"}>
         <label className={"label"}>Username</label>
         <input
           className={"text-input"}
@@ -44,7 +45,7 @@ export default function Settings() {
         />
         <button onClick={updateName}>Update Username</button>
       </div>
-      <div className={"setting-update-area"}>
+      <div className={"settings-update-area"}>
         <label className={"label"}>Description</label>
         <textarea
           className={"text-input"}
