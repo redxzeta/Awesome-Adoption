@@ -32,20 +32,22 @@ export default function Settings() {
     alert(`updated Description: ${description}`);
   };
   return (
-    <Container>
-      <h1>Settings</h1>
-      <div>
-        <label>Username</label>
+    <Container className={"container"}>
+      <h1 className={"title"}>Settings</h1>
+      <div className={"setting-update-area"}>
+        <label className={"label"}>Username</label>
         <input
+          className={"text-input"}
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <button onClick={updateName}>Update Username</button>
       </div>
-      <div>
-        <label>Description</label>
+      <div className={"setting-update-area"}>
+        <label className={"label"}>Description</label>
         <textarea
+          className={"text-input"}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
