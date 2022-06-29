@@ -11,5 +11,8 @@
 .settings-update-area {
   display: flex;
   flex-direction: row;
-  justify-items: space-around;
+}
+.settings-update-area * {
+    padding: 10px;
+    margin: 20px;
 }
