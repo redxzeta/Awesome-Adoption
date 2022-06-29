@@ -16,16 +16,16 @@ export default function Settings() {
     fetchSupaProfile,
     settings
   );
-  if (errorProfile) return <h1>ERROR</h1>;
-  if (!profile) return <h1>Loading</h1>;
-  useEffect(() => {
-    if (!username && !!profile.username) setUsername(profile.username);
-    if (!description && !!profile.description) {
-      setDescription(profile.description);
-    }
-  }, [profile]);
   const [username, setUsername] = useState("");
   const [description, setDescription] = useState("");
+  useEffect(() => {
+    if (!username && !!profile?.username) setUsername(profile?.username);
+    if (!description && !!profile?.description) {
+      setDescription(profile?.description);
+    }
+  }, [profile]);
+  if (errorProfile) return <h1>ERROR</h1>;
+  if (!profile) return <h1>Loading</h1>;
   const updateName = () => {
     alert(`updated Name: ${username}`);
   };
