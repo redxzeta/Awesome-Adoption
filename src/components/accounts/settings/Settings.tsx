@@ -16,8 +16,6 @@ export default function Settings() {
     fetchSupaProfile,
     settings
   );
-  const [username, setUsername] = useState("");
-  const [description, setDescription] = useState("");
   if (errorProfile) return <h1>ERROR</h1>;
   if (!profile) return <h1>Loading</h1>;
   useEffect(() => {
@@ -26,6 +24,8 @@ export default function Settings() {
       setDescription(profile.description);
     }
   }, [profile]);
+  const [username, setUsername] = useState("");
+  const [description, setDescription] = useState("");
   const updateName = () => {
     alert(`updated Name: ${username}`);
   };
