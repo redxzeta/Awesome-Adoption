@@ -2,23 +2,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.container > div {
-  margin: 15px 0;
-}
-
-.settings-update-area {
-  display: flex;
-  flex-direction: row;
-}
-.settings-update-area * {
-    padding: 10px;
-    margin: 20px;
-}
-
-.settings-update-area > button {
-    background: var(--bs-primary);
-    border-color: transparent;
-    height: 50px;
+  justify-content: center;
 }
