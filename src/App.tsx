@@ -14,6 +14,7 @@ import Register from "./components/accounts/Register";
 import SLogin from "./components/accounts/SLogin";
 import Profile from "./components/accounts/profile/Profile";
 // import ResetPassword from "./components/accounts/settings/resetPassword";
+import Settings from "./components/accounts/settings/Settings";
 import Home from "./components/home/Home";
 import Organizations from "./components/organizations/Organizations";
 import Favorites from "./components/pets/Favorites";
@@ -23,6 +24,7 @@ import Resources from "./components/resources/Resources";
 import Tips from "./components/tips/Tips";
 import { AuthProvider } from "./context/SupaContext";
 import PetAuthProvider from "./context/TokenContext";
+import PrivateRoute from "./utils/PrivateRoute";
 import { supabase } from "./utils/SupaBaseUtils";
 
 export default function App() {
@@ -45,6 +47,14 @@ export default function App() {
               <Route path="register" element={<Register />} />
               <Route path="login" element={<SLogin />} />
               <Route path="forgot-password" element={<ForgotPassword />} />
+              <Route
+                path="settings"
+                element={
+                  <PrivateRoute>
+                    <Settings />
+                  </PrivateRoute>
+                }
+              />
               {/* <Route
                 path="reset-password"
                 element={
