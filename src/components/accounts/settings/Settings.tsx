@@ -15,7 +15,6 @@ import { supabase } from "utils/SupaBaseUtils";
 import { fetchSupaProfile } from "utils/supaFetcher";
 
 import { useAuth } from "../../../context/SupaContext";
-import "./settings.css";
 
 export default function Settings() {
   const client = useClient();
@@ -96,7 +95,7 @@ export default function Settings() {
     }
   };
   return (
-    <Container className={"container"}>
+    <Container className={"d-flex flex-column align-items-center"}>
       <Toast
         onClose={() => setShow(false)}
         show={show}
