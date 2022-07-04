@@ -106,7 +106,7 @@ export default function Settings() {
         <Toast.Header>{toastHeader}</Toast.Header>
         <Toast.Body>{toastMessage}</Toast.Body>
       </Toast>
-      <h1 className={"title"}>Settings</h1>
+      <h1>Settings</h1>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Row>
           <Form.Group as={Col}>
