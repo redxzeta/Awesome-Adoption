@@ -1,75 +1,123 @@
-import { ChevronDownIcon } from "@heroicons/react/solid";
-import { Menu, Navbar } from "react-daisyui";
-import { NavLink } from "react-router-dom";
+import { MenuAlt2Icon } from "@heroicons/react/outline";
+import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/solid";
+import { useAuth } from "context/SupaContext";
+import React from "react";
+import { Avatar, Button, Dropdown, Menu, Navbar } from "react-daisyui";
+import { Link, NavLink } from "react-router-dom";
+import { useSignOut } from "react-supabase";
+
+import PawLogo from "./PawLogo.png";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
 export default function NavigationBar() {
+  const { username, session } = useAuth();
+  const [{ fetching }, signOut] = useSignOut();
+
   return (
     <nav className="bg-base-100">
-      <Navbar color="primary" className="text-neutral container mx-auto  ">
-        <Navbar.Start className="px-2">
-          <span className="text-lg font-bold">Pawternity Hub</span>
+      <Navbar className="container mx-auto">
+        <Navbar.Start>
+          <Dropdown>
+            <Button color="ghost" tabIndex={0} className="lg:hidden">
+              <MenuAlt2Icon className="w-5 h-5" />
+            </Button>
+            <Dropdown.Menu className="w-52 menu-compact mt-3">
+              <DropdownNavLink route="/">Home</DropdownNavLink>
+              <li tabIndex={0}>
+                <a className="justify-between">
+                  Pets <ChevronRightIcon className="w-4" />
+                </a>
+                <ul className="p-2 bg-base-100">
+                  {petList.map((pet) => (
+                    <DropdownNavLink key={pet} route={`pets/${pet}`}>
+                      {pet}
+                    </DropdownNavLink>
+                  ))}
+                  <DropdownNavLink route="pets">All Pets</DropdownNavLink>
+                </ul>
+              </li>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            Pawternity Hub
+          </Link>
         </Navbar.Start>
-
-        <Navbar.End className="px-2 mx-2 ">
-          <Menu horizontal>
-            {" "}
-            <Menu.Item />
-            <MenuItemNavLink route="/" name="Home" />
-            <Menu.Item>
-              <label tabIndex={0} className={"rounded-box"}>
-                Pets <ChevronDownIcon className="w-5" />
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow  rounded-box w-52 z-40 bg-base-100 border-2 border-neutral"
-              >
+        <Navbar.Center className="hidden lg:flex justify-center">
+          <Menu horizontal className="p-0 ">
+            <MenuItemNavLink name="Home" route="/" />
+            <Menu.Item tabIndex={0}>
+              <a>
+                Pets <ChevronDownIcon className="w-4" />
+              </a>
+              <Menu className="p-2 bg-base-200 w-48 ">
                 {petList.map((pet) => (
-                  <ListNavLink
+                  <MenuItemNavLink
                     key={pet}
                     name={pet}
-                    route={`pets/${pet.toLocaleLowerCase()}`}
+                    route={`/pets/${pet}`}
                   />
                 ))}
-                <li className="border-t-2 border-accent ">
-                  {" "}
-                  <NavLink
-                    className={({ isActive }) => (isActive ? "active " : "")}
-                    to="pets"
-                    end
-                  >
-                    All Pets
-                  </NavLink>
-                </li>
-              </ul>
+                <MenuItemNavLink name="All Pets" route="pets" />
+              </Menu>
             </Menu.Item>
             <MenuItemNavLink name="About" route="about" />
-            <MenuItemNavLink route="resources" name="Resources" />
-            <MenuItemNavLink route="organizations" name="Organizations" />{" "}
-            <Menu.Item />
+            <MenuItemNavLink name="Resources" route="resources" />
+            <MenuItemNavLink name="Organizations" route="organizations" />
           </Menu>
+        </Navbar.Center>
+        <Navbar.End>
+          <Dropdown vertical="end">
+            <Avatar
+              src={PawLogo}
+              size="xs"
+              className="btn btn-primary btn-circle my-auto "
+            />
+
+            <Dropdown.Menu className="w-52 menu-compact">
+              <Dropdown.Item>{`Hello, ${username}`}</Dropdown.Item>
+              {session ? (
+                <>
+                  <DropdownNavLink route={`profile/${username}`}>
+                    Profile
+                  </DropdownNavLink>
+                  <DropdownNavLink route="favorites">Favorites</DropdownNavLink>
+                  <Dropdown.Item>Settings</Dropdown.Item>
+
+                  <Dropdown.Item onClick={signOut}>
+                    {fetching ? "Logging Out" : "Logout"}
+                  </Dropdown.Item>
+                </>
+              ) : (
+                <>
+                  <DropdownNavLink route="register">Register</DropdownNavLink>
+                  <DropdownNavLink route="login">Login</DropdownNavLink>
+                </>
+              )}
+            </Dropdown.Menu>
+          </Dropdown>
         </Navbar.End>
       </Navbar>
     </nav>
   );
 }
 
-const ListNavLink = (props: { name: string; route: string }) => (
+const DropdownNavLink = ({
+  children,
+  route,
+}: {
+  children: React.ReactNode;
+  route: string;
+}) => (
   <li>
-    <NavLink
-      className={({ isActive }) => (isActive ? "active " : "")}
-      to={props.route}
-    >
-      {props.name}
-    </NavLink>
+    <NavLink to={route}>{children}</NavLink>
   </li>
 );
+
 const MenuItemNavLink = (props: { name: string; route: string }) => (
   <Menu.Item>
     <NavLink
-      className={({ isActive }) =>
-        isActive ? "active rounded-box" : "rounded-box"
-      }
+      end
+      className={({ isActive }) => (isActive ? "active " : "")}
       to={props.route}
     >
       {props.name}

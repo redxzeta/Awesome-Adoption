@@ -19,7 +19,7 @@ export const PET_LIST_CONST = [
 export type PetListType = typeof PET_LIST_CONST[number];
 
 export type PetCardType = {
-  id: string;
+  id: number;
   photos: AnimalPhotos[];
   name: string;
   type: PetListType;

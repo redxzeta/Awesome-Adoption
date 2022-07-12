@@ -1,6 +1,6 @@
 import { Button, Card, Col, Image, Placeholder } from "react-bootstrap";
 
-import "./PlaceHolderCard.css";
+// import "./PlaceHolderCard.css";
 
 const PlaceHolderCard = () => (
   <Col md={4} xs={12} className="card-container">

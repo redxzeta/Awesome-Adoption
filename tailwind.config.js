@@ -6,6 +6,13 @@ module.exports = {
       pattern: /./,
     },
   ],
+  theme: {
+    extend: {
+      fontFamily: {
+        amatic: ["Amatic SC", "sans-serif"],
+      },
+    },
+  },
   daisyui: {
     themes: [
       {
