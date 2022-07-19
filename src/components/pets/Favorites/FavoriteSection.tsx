@@ -11,7 +11,8 @@ const FavoriteSection = ({ id }: { id: string }) => {
   const [status, setStatus] = useState(false);
   const [removalId, setRemovalId] = useState<number>(0);
   if (!session || !user) return null;
-  const [{ fetching: deleteFetching }, executeDelete] = useDelete("todos");
+  const [{ fetching: deleteFetching }, executeDelete] =
+    useDelete("favoritepets");
   const addFav = async () => {
     const { data } = await execute({
       favoriter: user.id,

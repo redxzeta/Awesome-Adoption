@@ -138,3 +138,19 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+
+.rmv-btn-container {
+  display:flex;
+}
+
+.rmv__btn {
+  background: #da4b4b;
+  font-family: Arvo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+}
+

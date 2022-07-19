@@ -46,6 +46,8 @@
   white-space: nowrap;
 }
 
+
+
 .card__img {
   object-fit: cover;
   height: 300px;
