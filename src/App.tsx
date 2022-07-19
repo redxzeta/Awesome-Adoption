@@ -14,8 +14,9 @@ import Register from "./components/accounts/Register";
 import SLogin from "./components/accounts/SLogin";
 import Profile from "./components/accounts/profile/Profile";
 // import ResetPassword from "./components/accounts/settings/resetPassword";
-import Donate from "./components/donate/Donate";
+import Settings from "./components/accounts/settings/Settings";
 import Home from "./components/home/Home";
+import Organizations from "./components/organizations/Organizations";
 import Favorites from "./components/pets/Favorites";
 import PetType from "./components/pets/PetType";
 import Pets from "./components/pets/Pets";
@@ -39,12 +40,13 @@ export default function App() {
               <Route path="about" element={<About />} />
               <Route path="resources" element={<Resources />} />
               <Route path="tips" element={<Tips />} />
-              <Route path="donate" element={<Donate />} />
+              <Route path="organization" element={<Organizations />} />
               {/* <Route path="stories" element={<Stories />} /> */}
               <Route path="favorites" element={<Favorites />} />
               <Route path="register" element={<Register />} />
               <Route path="login" element={<SLogin />} />
               <Route path="forgot-password" element={<ForgotPassword />} />
+              <Route path="settings" element={<Settings />} />
               {/* <Route
                 path="reset-password"
                 element={

@@ -10,8 +10,18 @@ import PetIcon from "../shared/PetIcon";
 
 // import "./PetCard.css";
 
-export default function PetCard(props: PetCardType) {
-  const { id, photos, name, type, primary_photo_cropped: link, breeds } = props;
+export default function PetCard(
+  props: PetCardType & { children?: React.ReactNode }
+) {
+  const {
+    id,
+    photos,
+    name,
+    type,
+    primary_photo_cropped: link,
+    breeds,
+    children,
+  } = props;
 
   let myInterval: ReturnType<typeof setTimeout>;
 
@@ -38,7 +48,7 @@ export default function PetCard(props: PetCardType) {
   };
 
   return (
-    <Col md={4} xs={12} key={id} className="card-container">
+    <Col md={4} xs={12} key={id} className="card-container flex-column">
       <Card className="card">
         <Card.Header className="card__header">
           <span className="card__title">{nameCleaner(name)}</span>
@@ -62,6 +72,7 @@ export default function PetCard(props: PetCardType) {
           </Card.Title>
         </Card.Body>
       </Card>
+      {children}
     </Col>
   );
 }
