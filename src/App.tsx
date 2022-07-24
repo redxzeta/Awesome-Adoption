@@ -40,7 +40,7 @@ export default function App() {
               <Route path="about" element={<About />} />
               <Route path="resources" element={<Resources />} />
               <Route path="tips" element={<Tips />} />
-              <Route path="organization" element={<Organizations />} />
+              <Route path="organizations" element={<Organizations />} />
               {/* <Route path="stories" element={<Stories />} /> */}
               <Route path="favorites" element={<Favorites />} />
               <Route path="register" element={<Register />} />

@@ -3843,10 +3843,10 @@ d@1, d@^1.0.1:
     es5-ext "^0.10.50"
     type "^1.0.1"
 
-daisyui@^2.17.0:
-  version "2.17.0"
-  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-2.17.0.tgz#4a1016cf5e0d32ee4dec1139f600b06bfd185ceb"
-  integrity sha512-U8eA8IvwH0JSi72WbRZdmJcYZek3ERMPFPAVFhnYc6dGnobeIHLGBz8J4q012I9YVDUqXFrWz13rpn+SBdn7qQ==
+daisyui@^2.19.1:
+  version "2.19.1"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-2.19.1.tgz#0055f3727a7e5f29b279605f47d7c3de46114281"
+  integrity sha512-qExtDCp7N3F0Nlt7oVVehP1QMulbav8dXmEo66wavVxLVIf5tM4cV0F2Oi0OO0drzaez9v1LjBzk/vHMESs/lw==
   dependencies:
     color "^4.2"
     css-selector-tokenizer "^0.8.0"
@@ -8234,10 +8234,10 @@ react-country-region-selector@^3.4.0:
   resolved "https://registry.npmjs.org/react-country-region-selector/-/react-country-region-selector-3.4.0.tgz"
   integrity sha512-3zUC0Uhsr6gV8Wxj/BBVJxdTl7pETHPnpDU72OT1n6WrhKVlSYcITEjV0iSyqyk+EmTPM1Fca9JmHRJ+efA2UA==
 
-react-daisyui@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/react-daisyui/-/react-daisyui-2.0.4.tgz#17d8a494b65ba45875cb48753d2e81d14315054b"
-  integrity sha512-hse9zEmSz/rf7icFEOivgygLNJhbw49LCQuDH6YkiJJkt4WDKy8S6K6RMrW/SRaFJUcIXhjwmQf9EtEJUnTMnA==
+react-daisyui@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-daisyui/-/react-daisyui-2.1.0.tgz#e243dfea94f0f92c4383b16f687d5223f6e7aaa6"
+  integrity sha512-HBVDs0/CclvVkyneouu7PrVtQfXpeSKVuntnAk1YVeZuUEpCrbds9EG/pG08U7GKVajag5j8+P8Ozx3ud80P/Q==
 
 react-dev-utils@^12.0.1:
   version "12.0.1"

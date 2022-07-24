@@ -1,14 +1,11 @@
 import React from "react";
-import { Button, Card, Col } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Button, Card } from "react-daisyui";
 import { Link } from "react-router-dom";
 import { PetCardType } from "types/PetType";
 
 import { nameCleaner } from "../../utils/utilsCleaner/index";
-import placeholder from "../pets/placeholder.jpg";
+import Placeholder from "../pets/placeholder.jpg";
 import PetIcon from "../shared/PetIcon";
-
-// import "./PetCard.css";
 
 export default function PetCard(
   props: PetCardType & { children?: React.ReactNode }
@@ -48,31 +45,34 @@ export default function PetCard(
   };
 
   return (
-    <Col md={4} xs={12} key={id} className="card-container flex-column">
-      <Card className="card">
-        <Card.Header className="card__header">
-          <span className="card__title">{nameCleaner(name)}</span>
-          <LinkContainer to={`/animal/${id}`}>
-            <Button className="card__btn">More Info</Button>
-          </LinkContainer>
-        </Card.Header>
-        <Link to={`/animal/${id}`}>
-          <Card.Img
-            className="card__img"
-            alt={link ? type : `${type} placeholder`}
-            src={link?.medium || placeholder}
-            onMouseEnter={onHoverPhoto}
-            onMouseLeave={onBlurPhoto}
-          />
-        </Link>
-        <Card.Body className="card__body">
-          <Card.Title className="card__title">
-            <PetIcon type={type} />
-            {breeds.primary}
-          </Card.Title>
+    <div className="lg:px-4 px-1  w-full md:w-1/2 lg:w-1/3 my-4 fadeInUp">
+      <Card className="bg-base-100 shadow-xl" bordered>
+        <div className="p-6 flex flex-row justify-between">
+          {CardText(name)}
+          <Link to={`/animal/${id}`}>
+            <Button color="primary" size="sm">
+              More Info
+            </Button>
+          </Link>
+        </div>
+        <Card.Image
+          alt={link ? type : `${type} placeholder`}
+          src={link?.medium || Placeholder}
+          onMouseEnter={onHoverPhoto}
+          onMouseLeave={onBlurPhoto}
+          className="object-cover h-80 w-full"
+        />
+        <Card.Body className="flex flex-row justify-center">
+          <PetIcon type={type} /> {CardText(breeds.primary)}
         </Card.Body>
       </Card>
       {children}
-    </Col>
+    </div>
   );
 }
+
+const CardText = (title: string) => (
+  <span className="font-amatic text-3xl text-neutral font-bold text-ellipsis overflow-hidden whitespace-nowrap">
+    {nameCleaner(title)}
+  </span>
+);

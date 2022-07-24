@@ -53,7 +53,7 @@ export default function Favorites() {
       </Container>
     );
 
-  const removeFavButton = async (petId: string) => {
+  const removeFavButton = async (petId: string | number) => {
     // use petId to find the id associated in FavoritePets array
     // hint pet === petId
     // then get the id and replace removalId

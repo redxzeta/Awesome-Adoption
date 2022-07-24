@@ -16,7 +16,9 @@ const PetIcon = ({ type }: { type: PetListType }) => {
     Bird: BirdIcon,
   };
 
-  return <img src={ICONS[type]} alt={`${type} icon`} className="pet-icon" />;
+  return (
+    <img src={ICONS[type]} alt={`${type} icon`} className="w-10 h-auto mr-1" />
+  );
 };
 
 export default PetIcon;
