@@ -41,18 +41,9 @@ const LoadingPetCards = () => {
     revalidateOnFocus: false,
   });
   const mutatePetlist = async () => mutate({} as PetSearchType);
+  const isLoading = !error && !petList?.animals;
 
-  if (error)
-    return (
-      <>
-        <h5>Oops! An Error Occurred Getting The Pets</h5>{" "}
-        <Button color="primary" className="refresh" onClick={mutatePetlist}>
-          Refresh
-        </Button>
-      </>
-    );
-
-  if (!petList)
+  if (isLoading)
     return (
       <div className="container mx-auto px-4 md:px-12 pt-6">
         <h2 className="text-5xl font-bold font-amatic">Loading Pets</h2>
@@ -62,6 +53,15 @@ const LoadingPetCards = () => {
           <LoadPlaceHolder />
         </PetCardGrid>{" "}
       </div>
+    );
+  if (error || !petList)
+    return (
+      <>
+        <h5>Oops! An Error Occurred Getting The Pets</h5>{" "}
+        <Button color="primary" className="refresh" onClick={mutatePetlist}>
+          Refresh
+        </Button>
+      </>
     );
 
   return (

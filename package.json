@@ -26,7 +26,7 @@
     "react-bootstrap": "^2.3.1",
     "react-country-region-selector": "^3.4.0",
     "react-daisyui": "^2.1.0",
-    "react-dom": "^18.1.0",
+    "react-dom": "^18.2.0",
     "react-icons": "^4.3.1",
     "react-router-bootstrap": "^0.26.1",
     "react-router-dom": "^6.2.1",
