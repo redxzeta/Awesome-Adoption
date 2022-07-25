@@ -1,5 +1,5 @@
-import { Button, Col, Container, Image, Row, Spinner } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import PetCardGrid from "components/layout/Grid/PetCardGrid";
+import { Card } from "react-daisyui";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
 import { PetListType } from "types/PetType";
@@ -44,22 +44,21 @@ const linkData: PetLink[] = [
 
 export default function Pets() {
   return (
-    <Container className="pawhub">
-      <div className="pet__container">
-        <h1>Adopt Your Buddy</h1>
-        <Row>
-          {linkData.map((pet) => (
-            <AnimalType
-              img={pet.img}
-              type={pet.type.toLowerCase()}
-              link={`${pet.type.toLowerCase()}`}
-              key={pet.type}
-            />
-          ))}
-          <RandomPet />
-        </Row>
-      </div>
-    </Container>
+    <div className="container mx-auto px-4 md:px-12 pt-6">
+      <h1 className="text-5xl font-bold font-amatic mb-10">Adopt Your Buddy</h1>
+
+      <PetCardGrid>
+        {linkData.map((pet) => (
+          <AnimalType
+            img={pet.img}
+            type={pet.type}
+            link={`${pet.type.toLowerCase()}`}
+            key={pet.type}
+          />
+        ))}
+        <RandomPet />
+      </PetCardGrid>
+    </div>
   );
 }
 
@@ -77,31 +76,28 @@ export const AnimalType = ({
     linkDataTypes = [...linkDataTypes, type];
   });
   const isLinkDataType = linkDataTypes.includes(type);
+
   return (
-    <Col
-      xs={12}
-      md={6}
-      className="pet__column d-flex flex-column align-items-center justify-content-end my-4"
-    >
-      <Link to={link}>
-        <div className="petType">
-          <Image
-            className={isLinkDataType ? "image__img" : "image__rand_img"}
-            src={img}
-            alt={type}
-            roundedCircle
-          />
-          <div className="image__overlay image__overlay--primary">
-            <div className="image__title">{type}</div>
-          </div>
-        </div>
-      </Link>
-      <LinkContainer to={link}>
-        <Button className="pet__button my-3" color="primary">
-          Click Here
-        </Button>
-      </LinkContainer>
-    </Col>
+    <article className="lg:px-4 px-1 w-full md:1/3 lg:w-1/4 my-4 fadeInUp">
+      <Card imageFull>
+        <Card.Image src={img} alt={type} className="w-full max-h-80" />
+        <Card.Body>
+          <Card.Title tag="h2">
+            {type} {isLinkDataType ? "Buddies" : "Buddy"}
+          </Card.Title>
+          <p>If a {type} chews shoes whose shoes does he choose?</p>
+          <Card.Actions className="justify-end">
+            {/* <Link to={link}>
+              <Button color="primary">Click Here</Button>
+            </Link> */}
+
+            <Link to={link} className="btn btn-primary">
+              Click Here
+            </Link>
+          </Card.Actions>
+        </Card.Body>
+      </Card>
+    </article>
   );
 };
 
@@ -123,9 +119,21 @@ const RandomPet = () => {
 
   if (isLoading)
     return (
-      <Spinner animation="grow" variant="primary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
+      <article
+        className="lg:px-4 px-1 w-full md:1/3 lg:w-1/4 my-4 fadeInUp"
+        role={"status"}
+      >
+        <Card imageFull>
+          <div className="object-cover w-full animate-pulse  bg-primary" />
+          <Card.Body>
+            <Card.Title tag="h2">
+              <span className="visually-hidden">Loading...</span>
+            </Card.Title>
+
+            <Card.Actions className="justify-end"></Card.Actions>
+          </Card.Body>
+        </Card>
+      </article>
     );
   if (error || !data) {
     return <h1>An Error Occurred</h1>;
