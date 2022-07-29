@@ -1,4 +1,4 @@
-import PetCardGrid from "components/layout/Grid/PetCardGrid";
+import PetCardFlex from "components/layout/Grid/PetCardFlex";
 import { Card } from "react-daisyui";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
@@ -44,10 +44,10 @@ const linkData: PetLink[] = [
 
 export default function Pets() {
   return (
-    <div className="container mx-auto px-4 md:px-12 pt-6">
+    <div className="container mx-auto px-4 md:px-12 pt-6 ">
       <h1 className="text-5xl font-bold font-amatic mb-10">Adopt Your Buddy</h1>
 
-      <PetCardGrid>
+      <PetCardFlex>
         {linkData.map((pet) => (
           <AnimalType
             img={pet.img}
@@ -57,7 +57,7 @@ export default function Pets() {
           />
         ))}
         <RandomPet />
-      </PetCardGrid>
+      </PetCardFlex>
     </div>
   );
 }
@@ -78,19 +78,15 @@ export const AnimalType = ({
   const isLinkDataType = linkDataTypes.includes(type);
 
   return (
-    <article className="lg:px-4 px-1 w-full md:1/3 lg:w-1/4 my-4 fadeInUp">
+    <article className="lg:px-4 px-1 w-full md:1/3 lg:w-1/4 my-4 fadeInUp ">
       <Card imageFull>
-        <Card.Image src={img} alt={type} className="w-full max-h-80" />
+        <Card.Image src={img} alt={type} className="w-full max-h-80 -z-20" />
         <Card.Body>
           <Card.Title tag="h2">
             {type} {isLinkDataType ? "Buddies" : "Buddy"}
           </Card.Title>
           <p>If a {type} chews shoes whose shoes does he choose?</p>
           <Card.Actions className="justify-end">
-            {/* <Link to={link}>
-              <Button color="primary">Click Here</Button>
-            </Link> */}
-
             <Link to={link} className="btn btn-primary">
               Click Here
             </Link>

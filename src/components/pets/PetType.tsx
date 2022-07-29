@@ -19,8 +19,6 @@ import { petFinderURL } from "../../routes/API";
 import { fetcher } from "../../utils/petTypeFetcher";
 import PetCard from "../layout/PetCard";
 import { PetErrorLoading, PetLoader } from "./loader";
-// import NoPetsCard from "../layout/NoPetsCard";
-import "./pets.css";
 
 export default function PetType() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);

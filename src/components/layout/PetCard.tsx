@@ -45,7 +45,7 @@ export default function PetCard(
   };
 
   return (
-    <div className="lg:px-4 px-1  w-full md:w-1/2 lg:w-1/3 my-4 fadeInUp">
+    <div className="lg:px-4 px-1  w-full md:w-1/2 lg:w-1/3 my-4 fadeInUp ">
       <Card className="bg-base-100 shadow-xl" bordered>
         <div className="p-6 flex flex-row justify-between">
           {CardText(name)}

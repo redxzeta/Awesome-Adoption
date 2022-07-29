@@ -14,14 +14,14 @@ export default function NavigationBar() {
   const [{ fetching }, signOut] = useSignOut();
 
   return (
-    <nav className="bg-base-100">
+    <nav className="bg-base-100 z-50">
       <Navbar className="container mx-auto">
         <Navbar.Start>
           <Dropdown>
             <Button color="ghost" tabIndex={0} className="lg:hidden">
               <MenuAlt2Icon className="w-5 h-5" />
             </Button>
-            <Dropdown.Menu className="w-52 menu-compact mt-3">
+            <Dropdown.Menu className="w-52 menu-compact mt-3 ">
               <DropdownNavLink route="/">Home</DropdownNavLink>
               <li tabIndex={0}>
                 <a className="justify-between">
@@ -54,7 +54,7 @@ export default function NavigationBar() {
                   <MenuItemNavLink
                     key={pet}
                     name={pet}
-                    route={`/pets/${pet}`}
+                    route={`/pets/${pet.toLowerCase()}`}
                   />
                 ))}
                 <MenuItemNavLink name="All Pets" route="pets" />
