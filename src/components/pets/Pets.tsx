@@ -80,7 +80,7 @@ export const AnimalType = ({
   return (
     <article className="lg:px-4 px-1 w-full md:1/3 lg:w-1/4 my-4 fadeInUp ">
       <Card imageFull>
-        <Card.Image src={img} alt={type} className="w-full max-h-80 -z-20" />
+        <Card.Image src={img} alt={type} className="w-full max-h-80 " />
         <Card.Body>
           <Card.Title tag="h2">
             {type} {isLinkDataType ? "Buddies" : "Buddy"}

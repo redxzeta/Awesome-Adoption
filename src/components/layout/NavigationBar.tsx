@@ -49,7 +49,7 @@ export default function NavigationBar() {
               <a>
                 Pets <ChevronDownIcon className="w-4" />
               </a>
-              <Menu className="p-2 bg-base-200 w-48 ">
+              <Menu className="p-2 bg-base-200 w-48 z-50">
                 {petList.map((pet) => (
                   <MenuItemNavLink
                     key={pet}
