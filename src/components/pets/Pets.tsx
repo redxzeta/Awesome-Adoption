@@ -1,4 +1,6 @@
-import PetCardFlex from "components/layout/Grid/PetCardFlex";
+import PetCardFlex, {
+  PawHubContainer,
+} from "components/layout/Grid/PetCardFlex";
 import { Card } from "react-daisyui";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
@@ -44,7 +46,7 @@ const linkData: PetLink[] = [
 
 export default function Pets() {
   return (
-    <div className="container mx-auto px-4 md:px-12 pt-6 ">
+    <PawHubContainer>
       <h1 className="text-5xl font-bold font-amatic mb-10">Adopt Your Buddy</h1>
 
       <PetCardFlex>
@@ -58,7 +60,7 @@ export default function Pets() {
         ))}
         <RandomPet />
       </PetCardFlex>
-    </div>
+    </PawHubContainer>
   );
 }
 

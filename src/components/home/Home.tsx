@@ -1,4 +1,6 @@
-import PetCardFlex from "components/layout/Grid/PetCardFlex";
+import PetCardFlex, {
+  PawHubContainer,
+} from "components/layout/Grid/PetCardFlex";
 import PetCard from "components/layout/PetCard";
 import { Button, Hero } from "react-daisyui";
 import useSWR from "swr";
@@ -45,14 +47,14 @@ const LoadingPetCards = () => {
 
   if (isLoading)
     return (
-      <div className="container mx-auto px-4 md:px-12 pt-6">
+      <PawHubContainer>
         <h2 className="text-5xl font-bold font-amatic">Loading Pets</h2>
         <PetCardFlex>
           <LoadPlaceHolder />
           <LoadPlaceHolder />
           <LoadPlaceHolder />
         </PetCardFlex>{" "}
-      </div>
+      </PawHubContainer>
     );
   if (error || !petList)
     return (
@@ -65,7 +67,7 @@ const LoadingPetCards = () => {
     );
 
   return (
-    <div className="container mx-auto px-4 md:px-12 pt-6">
+    <PawHubContainer>
       <h2 className="text-5xl font-bold font-amatic">Featured Pets</h2>
 
       <PetCardFlex>
@@ -85,6 +87,6 @@ const LoadingPetCards = () => {
       <Button color="primary" onClick={mutatePetlist}>
         Refresh
       </Button>
-    </div>
+    </PawHubContainer>
   );
 };
