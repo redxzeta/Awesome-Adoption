@@ -1,6 +1,7 @@
 export type AnimalPhotos = {
   large: string;
   medium: string;
+  small: string;
 };
 
 export const PET_LIST_CONST = [

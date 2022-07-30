@@ -1,4 +1,7 @@
-import { Button, Spinner } from "react-bootstrap";
+import { HeartIcon } from "@heroicons/react/outline";
+import { HeartIcon as HeartSolid } from "@heroicons/react/solid";
+import Spinner from "components/shared/spinner/Spinner";
+import { Button } from "react-daisyui";
 
 type FavoriteButtonType = {
   status: boolean;
@@ -15,29 +18,22 @@ const FavoriteButton = ({
 }: FavoriteButtonType) => {
   if (loading)
     return (
-      <Button variant="outline-primary" disabled>
-        <Spinner
-          as="span"
-          animation="border"
-          size="sm"
-          role="status"
-          aria-hidden="true"
-        />
-        <span className="visually-hidden">Loading...</span>
+      <Button disabled>
+        <Spinner />
       </Button>
     );
 
   if (!status)
     return (
-      <Button variant="outline-primary" onClick={add}>
-        <i className="bi bi-bookmark-heart"></i>
-        <span className="visually-hidden">Add</span>
+      <Button variant="outline" color="primary" onClick={add}>
+        <HeartIcon className="w-8 h-8" />
+        <span className="sr-only">Add</span>
       </Button>
     );
   return (
-    <Button variant="outline-primary" onClick={remove}>
-      <i className="bi bi-bookmark-heart-fill"></i>{" "}
-      <span className="visually-hidden">Remove</span>
+    <Button variant="outline" color="primary" onClick={remove}>
+      <HeartSolid className="w-8 h-8" />
+      <span className="sr-only">Remove</span>
     </Button>
   );
 };

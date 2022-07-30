@@ -6,7 +6,6 @@ import DogIcon from "./icons/dog.png";
 import HorseIcon from "./icons/horse.png";
 import HouseIcon from "./icons/house.png";
 import RabbitIcon from "./icons/rabbit.png";
-import "./petIcon.css";
 
 const PetIcon = ({ type }: { type: PetListType }) => {
   const ICONS = {
