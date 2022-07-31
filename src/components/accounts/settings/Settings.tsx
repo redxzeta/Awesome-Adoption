@@ -44,7 +44,7 @@ export default function Settings() {
     if (!description && !!profile?.description) {
       setDescription(profile?.description);
     }
-  }, [profile]);
+  }, [description, username, profile]);
   if (errorProfile) {
     navigate("/");
   }

@@ -15,6 +15,7 @@
   },
   "extends": [
     "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:react/recommended",
     "standard",
     "plugin:prettier/recommended",

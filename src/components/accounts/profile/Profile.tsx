@@ -1,7 +1,7 @@
 import PetCard from "components/layout/PetCard";
 import { usePetAuth } from "context/TokenContext";
 import { Container, Image, Row } from "react-bootstrap";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useClient } from "react-supabase";
 import { FavoritePets } from "reducers/supaReducer";
 import { lookUpPet } from "routes/API";
@@ -16,7 +16,7 @@ import "./profile.css";
 const settings = { revalidateOnFocus: false };
 const Profile = () => {
   const { name } = useParams<{ name: string }>();
-  if (!name) return <Navigate to="/" replace={true} />;
+  // if (!name) return <Navigate to="/" replace={true} />;
   const client = useClient();
   const profileSearch = name;
 
@@ -86,6 +86,11 @@ const ShowFavorites = ({ favoritePets }: { favoritePets: FavoritePets[] }) => {
   const { tokenHeaders } = usePetAuth();
   const urlPets = favoritePets.map((f) => lookUpPet + f.pet);
 
+  const { error, data: petList } = useSWR(
+    tokenHeaders ? [urlPets, tokenHeaders] : null,
+    multipleFetcher
+  );
+
   if (urlPets.length === 0)
     return (
       <Container>
@@ -93,11 +98,6 @@ const ShowFavorites = ({ favoritePets }: { favoritePets: FavoritePets[] }) => {
         <h5>Start selecting your favorites to find your future best friend!</h5>
       </Container>
     );
-
-  const { error, data: petList } = useSWR(
-    tokenHeaders ? [urlPets, tokenHeaders] : null,
-    multipleFetcher
-  );
 
   if (error)
     return (

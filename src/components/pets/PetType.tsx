@@ -12,9 +12,9 @@ import PetCardFlex, {
 import { postcodeValidator } from "postcode-validator";
 import React, { useEffect, useRef, useState } from "react";
 import { Alert, Button, Form, Input, Pagination } from "react-daisyui";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { PET_LIST_CONST, PetListType } from "types/PetType";
+import { PetListType } from "types/PetType";
 
 import { usePetAuth } from "../../context/TokenContext";
 import { petFinderURL } from "../../routes/API";
@@ -35,12 +35,9 @@ export default function PetType() {
   const { type } = useParams<{ type: PetListType }>();
   const { tokenHeaders } = usePetAuth();
 
-  if (!type || !PET_LIST_CONST.includes(type))
-    return <Navigate to={"/pets"} replace={true} />;
-
   // Fetching the data through SWR
   const { data: petSearchList, error: fetcherror } = useSWR(
-    tokenHeaders
+    tokenHeaders && type
       ? [petFinderURL(type, currentPage, petLocation), tokenHeaders]
       : null,
     fetcher

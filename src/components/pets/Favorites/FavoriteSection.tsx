@@ -10,12 +10,12 @@ const FavoriteSection = ({ id }: { id: string }) => {
   const { user, session, favoritePets, dispatch } = useAuth();
   const [status, setStatus] = useState(false);
   const [removalId, setRemovalId] = useState<number>(0);
-  if (!session || !user) return null;
+
   const [{ fetching: deleteFetching }, executeDelete] =
     useDelete("favoritepets");
   const addFav = async () => {
     const { data } = await execute({
-      favoriter: user.id,
+      favoriter: user?.id,
       pet: id,
     });
     dispatch(AddNewFav(data[0]));
@@ -39,7 +39,7 @@ const FavoriteSection = ({ id }: { id: string }) => {
       setRemovalId(0);
     }
   }, [id, favoritePets]);
-
+  if (!session || !user) return null;
   return (
     <FavoriteButton
       loading={fetching || deleteFetching}
