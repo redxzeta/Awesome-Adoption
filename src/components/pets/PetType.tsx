@@ -155,7 +155,7 @@ export default function PetType() {
           active={i === currentPage}
           onClick={() => changePage(i)}
         >
-          {i} <h1>YA</h1>
+          {i}
         </Button>
       );
     }
