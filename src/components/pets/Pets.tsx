@@ -12,7 +12,6 @@ import Bird from "./bird.jpg";
 import Cat from "./cat.jpg";
 import Dog from "./doggo.jpg";
 import Horse from "./horse.jpg";
-import "./pets.css";
 import Placeholder from "./placeholder.jpg";
 import Rabbit from "./rabbit.jpg";
 

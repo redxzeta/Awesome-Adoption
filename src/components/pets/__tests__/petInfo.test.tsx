@@ -30,11 +30,8 @@ describe("<PetInfo/>", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/He is a toddler member /i)).toBeInTheDocument();
     expect(screen.getByText(/Grogu/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Contact/i })).toHaveAttribute(
-      "href",
-      "mailto:yoda@onefor.me"
-    );
-    expect(screen.getByRole("button", { name: /More Info/i })).toHaveAttribute(
+
+    expect(screen.getByText(/More Info/i)).toHaveAttribute(
       "href",
       "https://wwww.mandalorian.com"
     );

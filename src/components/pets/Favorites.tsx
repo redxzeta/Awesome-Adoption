@@ -10,7 +10,6 @@ import { lookUpPet } from "../../routes/API";
 import { multipleFetcher } from "../../utils/petInfoFetcher";
 import PetCard from "../layout/PetCard";
 import LoadPlaceHolder from "../shared/PlaceHolderCard";
-import "./pets.css";
 
 export default function Favorites() {
   const { favoritePets } = useAuth();
