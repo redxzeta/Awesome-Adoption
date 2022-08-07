@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDelete, useInsert } from "react-supabase";
+import { useDelete, useFilter, useInsert, useSelect } from "react-supabase";
 import { AddNewFav, removeFavoritePet } from "reducers/supaFunctions";
 
 import { useAuth } from "../../../context/SupaContext";
@@ -7,6 +7,11 @@ import FavoriteButton from "../../layout/FavoriteButton";
 
 const FavoriteSection = ({ id }: { id: string }) => {
   const [{ fetching }, execute] = useInsert("favoritepets");
+  const filter = useFilter((query) => query.eq("pet", id));
+  const [{ count: favoritedCount }, selectFavoritePets] = useSelect(
+    "favoritepets",
+    { filter, options: { count: "exact" } }
+  );
   const { user, session, favoritePets, dispatch } = useAuth();
   const [status, setStatus] = useState(false);
   const [removalId, setRemovalId] = useState<number>(0);
@@ -28,6 +33,7 @@ const FavoriteSection = ({ id }: { id: string }) => {
     });
     dispatch(removeFavoritePet(removalId));
   };
+
   useEffect(() => {
     const checkFav = favoritePets.some((el) => el.pet === id);
     if (checkFav && favoritePets) {
@@ -38,6 +44,7 @@ const FavoriteSection = ({ id }: { id: string }) => {
       setStatus(false);
       setRemovalId(0);
     }
+    selectFavoritePets();
   }, [id, favoritePets]);
   if (!session || !user) return null;
   return (
@@ -46,6 +53,7 @@ const FavoriteSection = ({ id }: { id: string }) => {
       add={addFav}
       remove={removeFav}
       status={status}
+      favoritedCount={favoritedCount ?? 0}
     />
   );
 };
