@@ -5,6 +5,7 @@ type FavoriteButtonType = {
   add: () => void;
   remove: () => void;
   loading: boolean;
+  favoritedCount: number;
 };
 
 const FavoriteButton = ({
@@ -12,6 +13,7 @@ const FavoriteButton = ({
   add,
   remove,
   loading,
+  favoritedCount,
 }: FavoriteButtonType) => {
   if (loading)
     return (
@@ -32,12 +34,14 @@ const FavoriteButton = ({
       <Button variant="outline-primary" onClick={add}>
         <i className="bi bi-bookmark-heart"></i>
         <span className="visually-hidden">Add</span>
+        {favoritedCount !== 0 && <span>{favoritedCount}</span>}
       </Button>
     );
   return (
     <Button variant="outline-primary" onClick={remove}>
       <i className="bi bi-bookmark-heart-fill"></i>{" "}
       <span className="visually-hidden">Remove</span>
+      {favoritedCount !== 0 && <span>{favoritedCount}</span>}
     </Button>
   );
 };
