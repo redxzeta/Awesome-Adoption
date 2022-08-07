@@ -1,4 +1,7 @@
-import { Button, Container, Row } from "react-bootstrap";
+import PetCardFlex, {
+  PawHubContainer,
+} from "components/layout/Grid/PetCardFlex";
+import { Button } from "react-daisyui";
 import { useDelete } from "react-supabase";
 import { removeFavoritePet } from "reducers/supaFunctions";
 import useSWR from "swr";
@@ -24,32 +27,33 @@ export default function Favorites() {
   );
   if (urlPets.length === 0)
     return (
-      <Container>
+      <PawHubContainer>
         <h4>You have not marked a pet as a favorite yet :(</h4>
         <h5>Start selecting your favorites to find your future best friend!</h5>
-      </Container>
+      </PawHubContainer>
     );
 
   const isLoading = !petList && !error;
   if (isLoading)
     return (
-      <Container className="pawhub">
-        <div className="petList__container">
-          <Row className="mb-3 w-100 petList">
-            <LoadPlaceHolder />
-            <LoadPlaceHolder />
-            <LoadPlaceHolder />
-          </Row>{" "}
-        </div>
-      </Container>
+      <PawHubContainer>
+        <h2 className="text-5xl font-bold font-amatic">
+          Loading Favorite Pets
+        </h2>
+        <PetCardFlex>
+          <LoadPlaceHolder />
+          <LoadPlaceHolder />
+          <LoadPlaceHolder />
+        </PetCardFlex>{" "}
+      </PawHubContainer>
     );
 
   if (error || !petList)
     return (
-      <Container>
+      <PawHubContainer>
         <h3>There was a problem getting the pet information :(</h3>
         <h4>Try again later!</h4>
-      </Container>
+      </PawHubContainer>
     );
 
   const removeFavButton = async (petId: string | number) => {
@@ -67,31 +71,30 @@ export default function Favorites() {
   };
 
   return (
-    <Container className="pawhub">
-      <div className="petList__container">
-        <h1>Your favorite Buddies!</h1>
-        <Row className="mb-3 w-100 petList fadeInUp">
-          {petList.map((pet) => (
-            <PetCard
-              key={pet.id}
-              breeds={pet.breeds}
-              id={pet.id}
-              name={pet.name}
-              photos={pet.photos}
-              type={pet.type}
-              primary_photo_cropped={pet.primary_photo_cropped}
+    <PawHubContainer>
+      <h1 className="font-amatic text-5xl font-bold">Your favorite Buddies!</h1>
+      <PetCardFlex>
+        {petList.map((pet) => (
+          <PetCard
+            key={pet.id}
+            breeds={pet.breeds}
+            id={pet.id}
+            name={pet.name}
+            photos={pet.photos}
+            type={pet.type}
+            primary_photo_cropped={pet.primary_photo_cropped}
+          >
+            {" "}
+            <Button
+              color="primary"
+              className="w-full mx-auto mt-2"
+              onClick={() => removeFavButton(pet.id)}
             >
-              {" "}
-              <Button
-                className="w-50 mx-auto"
-                onClick={() => removeFavButton(pet.id)}
-              >
-                {fetching ? "Loading" : "Remove"}
-              </Button>
-            </PetCard>
-          ))}
-        </Row>
-      </div>
-    </Container>
+              {fetching ? "Loading" : "Remove"}
+            </Button>
+          </PetCard>
+        ))}
+      </PetCardFlex>
+    </PawHubContainer>
   );
 }

@@ -1,19 +1,20 @@
-import { Container, Image, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 
 import Contributors from "./Contributors";
 import GithubIcon from "./GitHub.png";
 import YoutubeLogo from "./Youtube2.png";
-import "./about.css";
 import DevPostLogo from "./devpost-modified.png";
 import Dog from "./dog.jpg";
 
 export default function About() {
   return (
-    <Container className="pawhub py-4">
+    <PawHubContainer>
       <div className="about__container">
         <section className="paragraph--section">
-          <Image src={Dog} alt="doggo" roundedCircle />
-          <h1>About PawternityHub</h1>
+          <img src={Dog} alt="doggo" />
+          <h1 className="font-amatic text-5xl font-bold ">
+            About PawternityHub
+          </h1>
           <p>
             It all started in a hackathon as my group brainstormed for ideas on
             what we can do to help the community. Due to covid19, the hackathon,
@@ -35,54 +36,49 @@ export default function About() {
           </p>
         </section>
         <h1>Links</h1>
-        <div className="social-links-container">
-          <OverlayTrigger
-            key="youtube-icon"
-            overlay={<Tooltip id="tooltip-disabled">Youtube</Tooltip>}
+        <div className="flex justify-center items-center">
+          <a
+            target="blank"
+            rel="noreferrer"
+            href="https://youtu.be/vxAqS-GLna8"
+            className="rounded"
           >
-            <a
-              target="blank"
-              rel="noreferrer"
-              href="https://youtu.be/vxAqS-GLna8"
-              className="social-links"
-            >
-              <Image className="contributor-avatar" src={YoutubeLogo} />
-            </a>
-          </OverlayTrigger>
-          <OverlayTrigger
-            key="DevPost-icon"
-            overlay={<Tooltip id="tooltip-disabled">DevPost</Tooltip>}
+            <img
+              className="w-12 mx-1 border-primary border-2 rounded-full"
+              src={YoutubeLogo}
+            />
+          </a>
+
+          <a
+            target="blank"
+            rel="noreferrer"
+            href="https://github.com/redxzeta/Awesome-Adoption"
+            className="rounded"
           >
-            <a
-              target="blank"
-              rel="noreferrer"
-              href="https://github.com/redxzeta/Awesome-Adoption"
-              className="social-links"
-            >
-              <Image className="contributor-avatar" src={DevPostLogo} />
-            </a>
-          </OverlayTrigger>
-          <OverlayTrigger
-            key="Github-icon"
-            overlay={<Tooltip id="tooltip-disabled">Github</Tooltip>}
+            <img
+              className="w-12 mx-1 border-primary border-2 rounded-full"
+              src={DevPostLogo}
+            />
+          </a>
+
+          <a
+            target="blank"
+            rel="noreferrer"
+            href="https://github.com/redxzeta/Awesome-Adoption"
+            className="rounded"
           >
-            <a
-              target="blank"
-              rel="noreferrer"
-              href="https://github.com/redxzeta/Awesome-Adoption"
-              className="social-links"
-            >
-              <Image className="contributor-avatar" src={GithubIcon} />
-            </a>
-          </OverlayTrigger>
+            <img
+              className="w-12 mx-1 border-primary border-2 rounded-full"
+              src={GithubIcon}
+            />
+          </a>
         </div>
-        <div className="contributors-section">
-          <h1>Contributors</h1>
-          <div className="contributors" id="contributors">
-            <Contributors />
-          </div>
-        </div>
+        <section className="contributors-section">
+          <h2 className="font-amatic text-5xl font-bold ">Contributors</h2>
+
+          <Contributors />
+        </section>
       </div>
-    </Container>
+    </PawHubContainer>
   );
 }
