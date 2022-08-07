@@ -29,7 +29,7 @@ const FavoriteButton = ({
     return (
       <Button variant="outline" color="primary" onClick={add}>
         <HeartIcon className="w-8 h-8" />
-        {favoritedCount !== 0 && <span>{favoritedCount}</span>}        
+        {favoritedCount !== 0 && <span>{favoritedCount}</span>}
         <span className="sr-only">Add</span>
       </Button>
     );
@@ -37,7 +37,7 @@ const FavoriteButton = ({
     <Button variant="outline" color="primary" onClick={remove}>
       <HeartSolid className="w-8 h-8" />
       <span className="sr-only">Remove</span>
-      {favoritedCount !== 0 && <span>{favoritedCount}</span>}     
+      {favoritedCount !== 0 && <span>{favoritedCount}</span>}
     </Button>
   );
 };
