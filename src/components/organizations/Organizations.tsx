@@ -1,10 +1,10 @@
+import PetCardFlex, {
+  PawHubContainer,
+} from "components/layout/Grid/PetCardFlex";
 import React, { useState } from "react";
-import { Button, Container, Image } from "react-bootstrap";
 
 import OrganizationsCard from "./OrganizationsCard";
-import OrganizationsModal from "./OrganizationsModal";
 import charity from "./charities.json";
-import "./organizations.css";
 
 export type CharityType = {
   name: string;
@@ -19,10 +19,6 @@ const Donate = () => {
   const [location, setLocation] = useState("All");
   const [charityFiltered, setCharityFiltered] =
     useState<CharityType[]>(charity);
-
-  const [showModal, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const handleDropdown = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLocation(e.target.value);
@@ -39,63 +35,46 @@ const Donate = () => {
   };
 
   return (
-    <Container className="pawhub">
-      <div className="donate">
-        <h1 data-testid="donate-test-title">ORGANIZATIONS</h1>
-        <section className="kofi__section">
-          <p>
-            Here are a list of places to donate to help pets and animals. Feel
-            free to suggest any more charities. You could also add new
-            organizations you donated below
-          </p>
-          <p>
-            <Button variant="primary" onClick={handleShow}>
-              Submit an Organization
-            </Button>
-          </p>
-          <OrganizationsModal show={showModal} handleClose={handleClose} />
-          <p>If you wish to help donate the site here, you can click here</p>
-          <div className="kofi__section__donate">
-            <a
-              href={process.env.REACT_APP_KOFI}
-              target="_blank"
-              rel="noreferrer"
+    <PawHubContainer>
+      <h1 className="text-5xl font-bold font-amatic mb-10">ORGANIZATIONS</h1>
+      <section>
+        <p>Here are a list of organizations that help pets and animals.</p>
+
+        <p>If you wish to help donate the site here, you can click here</p>
+        <div className="flex flex-wrap justify-between items-center">
+          <a href={process.env.REACT_APP_KOFI} target="_blank" rel="noreferrer">
+            <img
+              src="https://cdn.ko-fi.com/cdn/kofi2.png?v=2"
+              className="h-auto w-48"
+              alt="Buy Me a Coffee at ko-fi.com"
+            />
+          </a>
+          <div className="mr-2">
+            <label htmlFor="dropdown">Filter by place: </label>
+            <select
+              value={location}
+              id="dropdown"
+              data-testid="dropdown"
+              onChange={handleDropdown}
             >
-              <Image
-                src="https://cdn.ko-fi.com/cdn/kofi2.png?v=2"
-                className="kofi__image"
-                alt="Buy Me a Coffee at ko-fi.com"
-              />
-            </a>
-            <div className="filtering">
-              <label htmlFor="dropdown">Filter by place: </label>
-              <select
-                value={location}
-                id="dropdown"
-                data-testid="dropdown"
-                onChange={handleDropdown}
-              >
-                <option value="All">All</option>
-                {[
-                  ...new Set(
-                    charity.map((item) => item.location.toLowerCase())
-                  ),
-                ].map((cha, idx) => (
-                  <option value={cha.toLowerCase()} key={idx + cha}>
-                    {cha}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <option value="All">All</option>
+              {[
+                ...new Set(charity.map((item) => item.location.toLowerCase())),
+              ].map((cha, idx) => (
+                <option value={cha.toLowerCase()} key={idx + cha}>
+                  {cha}
+                </option>
+              ))}
+            </select>
           </div>
-        </section>
-        <section className="charity__section">
-          {charityFiltered.map((ch) => (
-            <OrganizationsCard ch={ch} key={ch.name} />
-          ))}
-        </section>
-      </div>
-    </Container>
+        </div>
+      </section>
+      <PetCardFlex>
+        {charityFiltered.map((ch) => (
+          <OrganizationsCard ch={ch} key={ch.name} />
+        ))}
+      </PetCardFlex>
+    </PawHubContainer>
   );
 };
 export default Donate;
