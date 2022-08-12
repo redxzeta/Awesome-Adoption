@@ -6,9 +6,6 @@ import { useInsert } from "react-supabase";
 
 import { useAuth } from "../../context/SupaContext";
 import { FetchingButton } from "../layout/Buttons/FetchingButton";
-import UserCard from "../layout/UserCard";
-import "./Stories.css";
-import userData from "./UserData";
 
 export default function Stories() {
   const [show, setShow] = useState(false);
@@ -65,10 +62,7 @@ export default function Stories() {
             </LinkContainer>
           )}
         </div>
-        <Row className="mb-2 w-100 petList">
-          {userData &&
-            userData.map((u) => <UserCard key={u.id} userData={u} />)}
-        </Row>
+        <Row className="mb-2 w-100 petList"></Row>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
