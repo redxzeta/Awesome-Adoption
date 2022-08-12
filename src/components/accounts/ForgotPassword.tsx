@@ -5,7 +5,6 @@ import { Navigate } from "react-router-dom";
 import { useResetPassword } from "react-supabase";
 
 import { useAuth } from "../../context/SupaContext";
-import "./register.css";
 
 type ForgotPasswordType = {
   email: string;

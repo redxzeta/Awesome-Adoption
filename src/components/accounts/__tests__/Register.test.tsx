@@ -27,7 +27,9 @@ describe("<Register/>", () => {
     expect(submitButton).toBeEnabled();
 
     await user.click(submitButton);
-    const LoadingButton = await screen.findByRole("button", {
+
+    await waitForElementToBeRemoved(() => screen.queryByText(/submit/i));
+    const LoadingButton = screen.getByRole("button", {
       name: /Loading.../i,
     });
     expect(LoadingButton).toBeDisabled();
@@ -60,7 +62,9 @@ describe("<Register/>", () => {
     expect(submitButton).toBeEnabled();
 
     await user.click(screen.getByText(/submit/i));
-    const LoadingButton = await screen.findByRole("button", {
+    await waitForElementToBeRemoved(() => screen.queryByText(/submit/i));
+
+    const LoadingButton = screen.getByRole("button", {
       name: /Loading.../i,
     });
     expect(LoadingButton).toBeDisabled();

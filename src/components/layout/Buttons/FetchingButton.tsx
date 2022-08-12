@@ -1,5 +1,5 @@
-import { Fragment } from "react";
-import { Button, Spinner } from "react-bootstrap";
+import Spinner from "components/shared/spinner/Spinner";
+import { Button } from "react-daisyui";
 
 type FetchingButtonType = {
   fetching: boolean;
@@ -14,21 +14,14 @@ export const FetchingButton = ({
 }: FetchingButtonType) => (
   <Button
     className={className}
-    variant="primary"
+    color="primary"
     type="submit"
     disabled={fetching}
   >
     {fetching ? (
-      <Fragment>
-        Loading...
-        <Spinner
-          as="span"
-          animation="border"
-          size="sm"
-          role="status"
-          aria-hidden="true"
-        />
-      </Fragment>
+      <>
+        <Spinner />
+      </>
     ) : (
       action
     )}
