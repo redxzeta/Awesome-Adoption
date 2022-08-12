@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, Form, Modal, Row } from "react-bootstrap";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import { LinkContainer } from "react-router-bootstrap";
 import { useInsert } from "react-supabase";
 
 import { useAuth } from "../../context/SupaContext";
@@ -57,9 +56,7 @@ export default function Stories() {
               Create your Story
             </Button>
           ) : (
-            <LinkContainer to="/login">
-              <Button className="story_btn">Login</Button>
-            </LinkContainer>
+            <Button className="story_btn">Login</Button>
           )}
         </div>
         <Row className="mb-2 w-100 petList"></Row>
