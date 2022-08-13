@@ -1,5 +1,6 @@
+/* eslint-disable */
+// @ts-nocheck
 import React, { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
 import validator from "validator";
 
 type DonateModalType = {

@@ -1,6 +1,6 @@
 import { FetchingButton } from "components/layout/Buttons/FetchingButton";
+import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { Fragment, useState } from "react";
-import { Container, Form } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { useResetPassword } from "react-supabase";
 
@@ -41,26 +41,26 @@ const ForgotPassword = () => {
   if (session) return <Navigate to="/" />;
 
   return (
-    <Container className="register__container pawhub" fluid="md">
-      <div className="register__container_form">
+    <PawHubContainer>
+      <div className="register__PawHubContainer_form">
         <Fragment>
           <h1 className="register__title">Reset Password</h1>
           {resetRequestSent && !error && !fetching ? (
             <Success />
           ) : (
-            <Form className="register__form" onSubmit={onSubmit}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control
+            <form className="register__form" onSubmit={onSubmit}>
+              <div className="mb-3">
+                <input
                   type="email"
                   placeholder="Enter email"
                   name="email"
                   onChange={handleChange}
                   value={forgotPasswordForm.email}
                 />
-                <Form.Text className="text-muted">
+                <span className="text-muted">
                   We will never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
+                </span>
+              </div>
 
               <FetchingButton
                 fetching={fetching}
@@ -68,11 +68,11 @@ const ForgotPassword = () => {
                 className="register__button"
               />
               {errorForm}
-            </Form>
+            </form>
           )}
         </Fragment>
       </div>
-    </Container>
+    </PawHubContainer>
   );
 };
 

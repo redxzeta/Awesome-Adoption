@@ -124,17 +124,6 @@ npm consists of three distinct components:
   The CLI runs from a terminal, and is how most developers interact with npm.
   The registry is a large public database of JavaScript software and the meta-information surrounding it.
 
-## Links to bootstrap 5 and react bootstrap, react router
-
-BootStrap 5:
-[running tests](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-Source: getBootStrap.com
-
-Download the Latest Version: [running tests](https://getbootstrap.com/docs/5.1/getting-started/download/)
-
-React BootStrap: [running tests](https://react-bootstrap.github.io/)
-Components: [running tests](https://react-bootstrap.github.io/components/alerts)
-
 ## Setting up prettier in vscode and auto format on save
 
 Ways to Install Prettier as a VS Code Extension:

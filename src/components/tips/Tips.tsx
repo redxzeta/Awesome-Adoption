@@ -1,13 +1,12 @@
-import { Button, Container, Image } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
+import { Button } from "react-daisyui";
 
 import AdoptionPet from "./adoption-pet.jpg";
-import "./tips.css";
 
-export default function Home() {
+export default function Tips() {
   return (
-    <Container className="pawhub">
-      <div className="tips__container ">
+    <PawHubContainer>
+      <div className=" ">
         <h1 className="mb-4 text-decoration-underline">
           Tips to adopting Pets
         </h1>
@@ -34,7 +33,7 @@ export default function Home() {
       </div>
       <hr />
       {/* ------------------------------------------------- */}
-      <div className="tips__container">
+      <div className="tips__PawHubContainer">
         <h1 className="mb-4" text-decoration-underline>
           Final steps to guide you on how to best adopt or rehome a dog
         </h1>
@@ -82,7 +81,7 @@ export default function Home() {
         </p>
       </div>
       <hr />
-      <div className="tips__container">
+      <div className="tips__PawHubContainer">
         <h5>
           When you finally get your new pup home, be the best dog owner you can
           be! Have fun with your dog, love your dog, and include him in your
@@ -93,15 +92,14 @@ export default function Home() {
           little bit of thorough preparation, you can have your own success
           story when you adopt a dog.
         </h5>
-        <Image
+        <img
           src={AdoptionPet}
           className="adoption__pet mb-2 d-block mx-auto "
           alt="Adoption pet"
         />
-        <LinkContainer to="/pets">
-          <Button variant="primary">Adopt</Button>
-        </LinkContainer>
+
+        <Button color="primary">Adopt</Button>
       </div>
-    </Container>
+    </PawHubContainer>
   );
 }

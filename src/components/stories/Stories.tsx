@@ -1,10 +1,14 @@
+/* eslint-disable */
+// @ts-nocheck
+import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { useState } from "react";
-import { Button, Container, Form, Modal, Row } from "react-bootstrap";
-import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+// import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+import { Button } from "react-daisyui";
 import { useInsert } from "react-supabase";
 
 import { useAuth } from "../../context/SupaContext";
-import { FetchingButton } from "../layout/Buttons/FetchingButton";
+
+// import { FetchingButton } from "../layout/Buttons/FetchingButton";
 
 export default function Stories() {
   const [show, setShow] = useState(false);
@@ -47,7 +51,7 @@ export default function Stories() {
   };
 
   return (
-    <Container className="pawhub">
+    <PawHubContainer>
       <div className="stories">
         <div className="main_title">
           <h1>User Story</h1>
@@ -59,9 +63,8 @@ export default function Stories() {
             <Button className="story_btn">Login</Button>
           )}
         </div>
-        <Row className="mb-2 w-100 petList"></Row>
 
-        <Modal show={show} onHide={handleClose}>
+        {/* <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Create Your Story</Modal.Title>
           </Modal.Header>
@@ -139,8 +142,8 @@ export default function Stories() {
               {err}
             </div>
           )}
-        </Modal>
+        </Modal> */}
       </div>
-    </Container>
+    </PawHubContainer>
   );
 }

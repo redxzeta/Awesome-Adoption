@@ -81,7 +81,7 @@ export default function NavigationBar() {
                     Profile
                   </DropdownNavLink>
                   <DropdownNavLink route="favorites">Favorites</DropdownNavLink>
-                  <Dropdown.Item>Settings</Dropdown.Item>
+                  <DropdownNavLink route="settings">Settings</DropdownNavLink>
 
                   <Dropdown.Item onClick={signOut}>
                     {fetching ? "Logging Out" : "Logout"}

@@ -1,4 +1,4 @@
-import { Container, Image } from "react-bootstrap";
+import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import { Link } from "react-router-dom";
 
 import "./NotFound.css";
@@ -6,10 +6,10 @@ import logo from "./NotFoundDog.svg";
 
 export default function NotFound() {
   return (
-    <Container className="pawhub py-2">
-      <div className="innerNotFound">
+    <PawHubContainer>
+      <div className="flex w-full justify-center items-center h-3/4">
         <div className="HoldAnimation">
-          <Image src={logo} alt="page not found"></Image>
+          <img src={logo} alt="page not found" />
         </div>
         <div className="HoldText">
           <div className="HeaderText">
@@ -43,6 +43,6 @@ export default function NotFound() {
           </ul>
         </div>
       </div>
-    </Container>
+    </PawHubContainer>
   );
 }
