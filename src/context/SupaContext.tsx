@@ -66,6 +66,7 @@ export function AuthProvider({ children }: Props) {
 
   useEffect(() => {
     sessionLoad();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useAuthStateChange(async (event, session) => {

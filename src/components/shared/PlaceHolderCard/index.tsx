@@ -1,24 +1,18 @@
-import { Button, Card, Col, Image, Placeholder } from "react-bootstrap";
-
-import "./PlaceHolderCard.css";
+import { Card } from "react-daisyui";
 
 const PlaceHolderCard = () => (
-  <Col md={4} xs={12} className="card-container">
-    <Card className="card" role="status">
-      <Card.Header>
-        <Placeholder className="card__header" animation="glow">
-          <Placeholder xs={4} />
-          <Placeholder.Button as={Button} xs={4} />
-        </Placeholder>
-      </Card.Header>
-      <Card.Body className="card__body">
-        <Image className="card__img" />
-        <Placeholder as={Card.Title} animation="glow">
-          <Placeholder xs={2} size="lg" /> <Placeholder xs={5} size="sm" />
-        </Placeholder>
+  <div className="lg:px-4 px-1  w-full md:w-1/2 lg:w-1/3 my-4" role="status">
+    <Card className="bg-base-100 shadow-xl" bordered>
+      <div className="p-6 flex flex-row justify-between h-20">
+        <div className=" animate-pulse  w-1/3 bg-neutral object-cover"></div>
+        <div className=" animate-pulse  w-1/3 bg-primary object-cover"></div>
+      </div>
+      <div className="object-cover h-80 w-full animate-pulse  bg-primary" />
+      <Card.Body className="flex flex-row justify-center h-20">
+        <div className=" animate-pulse  w-1/3 bg-neutral object-cover"></div>
       </Card.Body>
     </Card>
-  </Col>
+  </div>
 );
 
 export default PlaceHolderCard;

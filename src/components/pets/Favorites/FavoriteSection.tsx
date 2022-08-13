@@ -7,21 +7,20 @@ import FavoriteButton from "../../layout/FavoriteButton";
 
 const FavoriteSection = ({ id }: { id: string }) => {
   const [{ fetching }, execute] = useInsert("favoritepets");
-  const filter = useFilter((query) => query.eq("pet", id));
-  const [{ count: favoritedCount }, selectFavoritePets] = useSelect(
-    "favoritepets",
-    { filter, options: { count: "exact" } }
-  );
+
   const { user, session, favoritePets, dispatch } = useAuth();
   const [status, setStatus] = useState(false);
   const [removalId, setRemovalId] = useState<number>(0);
-
-  if (!session || !user) return null;
+  const filter = useFilter((query) => query.eq("pet", id), [id, favoritePets]);
+  const [{ count: favoritedCount }] = useSelect("favoritepets", {
+    filter,
+    options: { count: "exact" },
+  });
   const [{ fetching: deleteFetching }, executeDelete] =
     useDelete("favoritepets");
   const addFav = async () => {
     const { data } = await execute({
-      favoriter: user.id,
+      favoriter: user?.id,
       pet: id,
     });
     dispatch(AddNewFav(data[0]));
@@ -45,9 +44,8 @@ const FavoriteSection = ({ id }: { id: string }) => {
       setStatus(false);
       setRemovalId(0);
     }
-    selectFavoritePets();
   }, [id, favoritePets]);
-
+  if (!session || !user) return null;
   return (
     <FavoriteButton
       loading={fetching || deleteFetching}

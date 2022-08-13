@@ -1,29 +1,27 @@
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Card } from "react-daisyui";
 
 import { CharityType } from "./Organizations";
 
 const DonateCard = ({ ch }: { ch: CharityType }) => (
-  <Card>
-    <Row>
-      <Col sm={4} className="m-auto">
-        <Card.Img className="d-block mx-auto img-fluid w-50" src={ch.logo} />
-      </Col>
-      <Col sm={8}>
-        <Card.Body>
-          <Card.Title>{ch.name}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Location: {ch.location}
-          </Card.Subtitle>
-          <Card.Subtitle className="mb-2 text-muted">
-            Founded: {ch.founded}
-          </Card.Subtitle>
-          <Card.Text>{ch.mission}</Card.Text>
-          <Button variant="primary" href={ch.website} target="_blank">
+  <article className="lg:px-4 px-1 w-full md:1/3 lg:w-1/4 my-4 fadeInUp ">
+    <Card imageFull>
+      <Card.Image src={ch.logo} alt={ch.name} className="w-full max-h-80 " />
+      <Card.Body>
+        <Card.Title tag="h2">{ch.name}</Card.Title>
+        <p>Location: {ch.location}</p>
+        <p>Founded: {ch.founded}</p>
+        <Card.Actions className="justify-end">
+          <a
+            href={ch.website}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-primary"
+          >
             Click Here
-          </Button>
-        </Card.Body>
-      </Col>
-    </Row>
-  </Card>
+          </a>
+        </Card.Actions>
+      </Card.Body>
+    </Card>
+  </article>
 );
 export default DonateCard;

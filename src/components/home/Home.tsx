@@ -1,33 +1,35 @@
-import { Button, Container, Row } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import PetCardFlex, {
+  PawHubContainer,
+} from "components/layout/Grid/PetCardFlex";
+import PetCard from "components/layout/PetCard";
+import { Button, Hero } from "react-daisyui";
 import useSWR from "swr";
 import { PetSearchType } from "utils/petTypeFetcher";
 
 import { usePetAuth } from "../../context/TokenContext";
 import { randomPetsList } from "../../routes/API";
 import { fetcher } from "../../utils/homePageFetcher";
-import PetCard from "../layout/PetCard";
 import LoadPlaceHolder from "../shared/PlaceHolderCard";
 import "./home.css";
 
 export default function Home() {
   return (
-    <Container fluid className="pawhub">
-      <div className="home__container">
-        <Container fluid className="hero">
-          <div className="dark__overlay">
-            <h1>Get a BFF</h1>
-            <h1>For now and forever</h1>
-          </div>
-        </Container>
-        <h2>Adopt a Buddy Today!</h2>
+    <div>
+      <Hero className="home__background min-h-screen">
+        <Hero.Overlay className="bg-opacity-60" />
+        <Hero.Content className="text-center">
+          <div className="max-w-md text-base-100">
+            <h1 className="text-5xl font-bold font-amatic">Get a BFF</h1>
+            <h2 className="text-5xl font-bold font-amatic">Now and Forever </h2>
 
-        <LinkContainer to="/pets">
-          <Button variant="primary">Adopt</Button>
-        </LinkContainer>
-        <LoadingPetCards />
-      </div>
-    </Container>
+            <Button color="primary" className="my-2">
+              Get Started
+            </Button>
+          </div>
+        </Hero.Content>
+      </Hero>
+      <LoadingPetCards />
+    </div>
   );
 }
 
@@ -42,49 +44,49 @@ const LoadingPetCards = () => {
   });
   const mutatePetlist = async () => mutate({} as PetSearchType);
   const isLoading = !error && !petList?.animals;
+
   if (isLoading)
     return (
-      <Container>
-        <Row>
+      <PawHubContainer>
+        <h2 className="text-5xl font-bold font-amatic">Loading Pets</h2>
+        <PetCardFlex>
           <LoadPlaceHolder />
           <LoadPlaceHolder />
           <LoadPlaceHolder />
-        </Row>
-      </Container>
+        </PetCardFlex>{" "}
+      </PawHubContainer>
     );
   if (error || !petList)
     return (
       <>
         <h5>Oops! An Error Occurred Getting The Pets</h5>{" "}
-        <Button variant="primary" className="refresh" onClick={mutatePetlist}>
+        <Button color="primary" className="refresh" onClick={mutatePetlist}>
           Refresh
         </Button>
       </>
     );
-  return (
-    <>
-      <div className="featured__pets">
-        <h2>Featured Pets</h2>
 
-        <Container>
-          <Row className="fadeInUp">
-            {petList.animals.map((pet) => (
-              <PetCard
-                key={pet.id}
-                breeds={pet.breeds}
-                id={pet.id}
-                name={pet.name}
-                photos={pet.photos}
-                type={pet.type}
-                primary_photo_cropped={pet.primary_photo_cropped}
-              />
-            ))}
-          </Row>
-        </Container>
-      </div>
-      <Button variant="primary" className="refresh" onClick={mutatePetlist}>
+  return (
+    <PawHubContainer>
+      <h2 className="text-5xl font-bold font-amatic">Featured Pets</h2>
+
+      <PetCardFlex>
+        {petList.animals.map((pet) => (
+          <PetCard
+            key={pet.id}
+            id={pet.id}
+            name={pet.name}
+            photos={pet.photos}
+            type={pet.type}
+            breeds={pet.breeds}
+            primary_photo_cropped={pet.primary_photo_cropped}
+          />
+        ))}
+      </PetCardFlex>
+
+      <Button color="primary" onClick={mutatePetlist}>
         Refresh
       </Button>
-    </>
+    </PawHubContainer>
   );
 };

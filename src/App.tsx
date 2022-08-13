@@ -1,8 +1,7 @@
 import NotFound from "components/NotFound/NotFound";
-import Footer from "components/layout/Footer";
+import FooterMenu from "components/layout/Footer";
 import NavigationBar from "components/layout/NavigationBar";
 import PetInfo from "components/pets/PetInfo";
-// import Stories from "components/stories/Stories";
 import { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Provider } from "react-supabase";
@@ -40,7 +39,7 @@ export default function App() {
               <Route path="about" element={<About />} />
               <Route path="resources" element={<Resources />} />
               <Route path="tips" element={<Tips />} />
-              <Route path="organization" element={<Organizations />} />
+              <Route path="organizations" element={<Organizations />} />
               {/* <Route path="stories" element={<Stories />} /> */}
               <Route path="favorites" element={<Favorites />} />
               <Route path="register" element={<Register />} />
@@ -59,7 +58,7 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <Footer />
+            <FooterMenu />
           </AuthProvider>
         </Provider>
       </PetAuthProvider>

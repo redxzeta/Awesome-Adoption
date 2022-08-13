@@ -34,7 +34,7 @@ describe("<Pets/>", () => {
         <Pets />
       </BrowserRouter>
     );
-    const ClickHereButton = screen.getAllByRole("button", {
+    const ClickHereButton = screen.getAllByRole("link", {
       name: /Click Here/i,
     });
     expect(ClickHereButton[0]).toHaveAttribute("href", "/dog");
@@ -67,11 +67,11 @@ describe("<Pets/>", () => {
     );
     const petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(5);
-    expect(petImage[0]).toHaveAttribute("alt", "dog");
-    expect(petImage[1]).toHaveAttribute("alt", "cat");
-    expect(petImage[2]).toHaveAttribute("alt", "bird");
-    expect(petImage[3]).toHaveAttribute("alt", "horse");
-    expect(petImage[4]).toHaveAttribute("alt", "rabbit");
+    expect(petImage[0]).toHaveAttribute("alt", "Dog");
+    expect(petImage[1]).toHaveAttribute("alt", "Cat");
+    expect(petImage[2]).toHaveAttribute("alt", "Bird");
+    expect(petImage[3]).toHaveAttribute("alt", "Horse");
+    expect(petImage[4]).toHaveAttribute("alt", "Rabbit");
   });
 
   test("Pets Component should render random pet", async () => {

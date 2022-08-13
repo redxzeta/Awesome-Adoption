@@ -1,26 +1,27 @@
+import {
+  BanIcon,
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ExclamationIcon,
+} from "@heroicons/react/outline";
+import PetCardFlex, {
+  PawHubContainer,
+} from "components/layout/Grid/PetCardFlex";
 import { postcodeValidator } from "postcode-validator";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Alert,
-  Button,
-  Col,
-  Container,
-  FormControl,
-  InputGroup,
-  Pagination,
-  Row,
-} from "react-bootstrap";
-import { Navigate, useParams } from "react-router-dom";
+import { Alert, Button, Form, Input, Pagination } from "react-daisyui";
+import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { PET_LIST_CONST, PetListType } from "types/PetType";
+import { PetListType } from "types/PetType";
 
 import { usePetAuth } from "../../context/TokenContext";
 import { petFinderURL } from "../../routes/API";
 import { fetcher } from "../../utils/petTypeFetcher";
 import PetCard from "../layout/PetCard";
-import { PetErrorLoading, PetLoader } from "./loader";
-// import NoPetsCard from "../layout/NoPetsCard";
-import "./pets.css";
+import LoadPlaceHolder from "../shared/PlaceHolderCard";
+import { PetErrorLoading } from "./loader";
 
 export default function PetType() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
@@ -34,12 +35,9 @@ export default function PetType() {
   const { type } = useParams<{ type: PetListType }>();
   const { tokenHeaders } = usePetAuth();
 
-  if (!type || !PET_LIST_CONST.includes(type))
-    return <Navigate to={"/pets"} replace={true} />;
-
   // Fetching the data through SWR
   const { data: petSearchList, error: fetcherror } = useSWR(
-    tokenHeaders
+    tokenHeaders && type
       ? [petFinderURL(type, currentPage, petLocation), tokenHeaders]
       : null,
     fetcher
@@ -126,40 +124,62 @@ export default function PetType() {
     if (minShownPage < 1) minShownPage = 1;
     if (currentPage > 1)
       pageItems.push(
-        <Pagination.First key="firstPage" onClick={() => changePage(1)} />
+        <Button
+          variant="outline"
+          color="primary"
+          key="firstPage"
+          onClick={() => changePage(1)}
+        >
+          <ChevronDoubleLeftIcon className="w-4" />
+        </Button>
       );
     if (currentPage > 1)
       pageItems.push(
-        <Pagination.Prev
+        <Button
+          variant="outline"
+          color="primary"
           key="prevPage"
           onClick={() => changePage(currentPage - 1)}
-        />
+        >
+          <ChevronLeftIcon className="w-4" />
+        </Button>
       );
+    // Prev
 
     for (let i = minShownPage; i <= maxShownPage; i++) {
       pageItems.push(
-        <Pagination.Item
+        <Button
+          variant="outline"
+          color="primary"
           key={i}
           active={i === currentPage}
           onClick={() => changePage(i)}
         >
           {i}
-        </Pagination.Item>
+        </Button>
       );
     }
     if (currentPage < totalPages)
       pageItems.push(
-        <Pagination.Next
+        <Button
+          color="primary"
+          variant="outline"
           key="nextPage"
           onClick={() => changePage(currentPage + 1)}
-        />
+        >
+          <ChevronRightIcon className="w-4" />
+        </Button>
       );
     if (currentPage !== totalPages)
       pageItems.push(
-        <Pagination.Last
+        <Button
+          color="primary"
+          variant="outline"
           key="lastPage"
           onClick={() => changePage(totalPages)}
-        />
+        >
+          <ChevronDoubleRightIcon className="w-4" />
+        </Button>
       );
 
     return pageItems;
@@ -169,24 +189,33 @@ export default function PetType() {
     setCurrentPage((curr) => (curr !== newPage ? newPage : newPage));
 
   const errorAlert = (
-    <Alert onClose={() => setShowErrorAlert(false)} dismissible>
+    <Alert status="error" icon={<BanIcon className="w-6 h-6 mx-2" />}>
       Unable to retrieve your location, please enter your zip code.
+      <Button onClick={() => setShowErrorAlert(false)}>Dismiss</Button>
     </Alert>
   );
 
-  if (loading) return <PetLoader type={type} />;
+  if (loading)
+    return (
+      <PawHubContainer>
+        <h2 className="text-5xl font-bold font-amatic">Loading {type} Pets</h2>
+        <PetCardFlex>
+          <LoadPlaceHolder />
+          <LoadPlaceHolder />
+          <LoadPlaceHolder />
+        </PetCardFlex>{" "}
+      </PawHubContainer>
+    );
   if (fetcherror || !petSearchList) return <PetErrorLoading type={type} />;
   return (
-    <Container className="pawhub">
-      <div className="petList__container">
-        <h1>List Of {type} Buddies</h1>
-
-        <div className="inputContainer">
-          <InputGroup className="mb-3">
-            <InputGroup.Text as="label" id="zipcode-group">
-              Enter ZipCode:
-            </InputGroup.Text>
-            <FormControl
+    <PawHubContainer>
+      <h1 className="font-amatic text-5xl font-bold ">
+        List Of {type} Buddies
+      </h1>
+      <div className="w-full flex justify-center items-center flex-col lg:p-4 my-2">
+        <Form className="shadow   rounded-lg p-4  lg:w-1/4 w-full">
+          <Form.Label title="Enter Zipcode: ">
+            <Input
               ref={inputCode}
               aria-label="zipcode"
               type="text"
@@ -196,36 +225,45 @@ export default function PetType() {
               name="zipcode"
               onChange={checkValidation}
             />
-            <Button disabled={goBtnDisabled} onClick={search}>
-              Go
-            </Button>
-          </InputGroup>
-          {showErrorAlert && errorAlert}
-          <Button className="mb-3" onClick={findByLocation}>
+          </Form.Label>
+          <Button
+            className="my-2"
+            color="primary"
+            disabled={goBtnDisabled}
+            onClick={search}
+          >
+            Go
+          </Button>
+          <Button className="my-2" color="primary" onClick={findByLocation}>
             Use your location
           </Button>
-          {validCodeError && <Alert variant="danger">{validCodeError}</Alert>}
-        </div>
-        <Row className="mb-3 w-100 petList fadeInUp">
-          {petSearchList.animals.map((pet) => (
-            <PetCard
-              key={pet.id}
-              breeds={pet.breeds}
-              id={pet.id}
-              name={pet.name}
-              photos={pet.photos}
-              type={pet.type}
-              primary_photo_cropped={pet.primary_photo_cropped}
-            />
-          ))}
-        </Row>
-
-        <Row>
-          <Col md={12} xs={12}>
-            <Pagination>{renderPagination()}</Pagination>
-          </Col>
-        </Row>
+        </Form>
       </div>
-    </Container>
+      {validCodeError && (
+        <Alert
+          status="warning"
+          icon={<ExclamationIcon className="w-6 h-6 mx-2" />}
+        >
+          {validCodeError}
+        </Alert>
+      )}{" "}
+      {showErrorAlert && errorAlert}
+      <PetCardFlex>
+        {petSearchList.animals.map((pet) => (
+          <PetCard
+            key={pet.id}
+            breeds={pet.breeds}
+            id={pet.id}
+            name={pet.name}
+            photos={pet.photos}
+            type={pet.type}
+            primary_photo_cropped={pet.primary_photo_cropped}
+          />
+        ))}
+      </PetCardFlex>
+      <Pagination className="flex flex-row justify-center my-4">
+        {renderPagination()}
+      </Pagination>
+    </PawHubContainer>
   );
 }

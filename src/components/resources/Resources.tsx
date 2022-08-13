@@ -1,15 +1,11 @@
-import { Button, Container } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-
-import "./resources.css";
+import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <Container className="pawhub">
-      <div className="resources__container">
-        <h1>
-          <u>Adopting Pets</u>
-        </h1>
+    <PawHubContainer>
+      <div className="my-8">
+        <h1 className="font-amatic text-5xl font-bold mb-4">Adopting Pets</h1>
         <p>
           Adopting pets is a much more humane way to find your family&apos;s
           newest best friend. Every year around 6.5 million companion pets enter
@@ -38,34 +34,35 @@ export default function Home() {
           save a life by doing so. Many shelter pets are already house-trained
           and are used to living with humans.{" "}
         </p>{" "}
-        <Button
+        <a
           href="https://www.petfinder.com/pet-adoption-2/pet-adoption-information/"
           target="_blank"
-          variant="primary"
+          rel="noreferrer"
+          className="btn btn-primary "
         >
           Pet Finder
-        </Button>
-        <Button
+        </a>
+        <a
           href="https://www.humanesociety.org/resources/top-reasons-adopt-pet"
           target="_blank"
-          variant="primary"
+          rel="noreferrer"
+          className="btn btn-primary "
         >
           Humane Society
-        </Button>
-        <Button
+        </a>
+        <a
           href="https://www.petcarehospital.net/blog/adopting-instead-of-buying-a-pet"
           target="_blank"
-          variant="primary"
+          rel="noreferrer"
+          className="btn btn-primary "
         >
           Petcare Hospital
-        </Button>
+        </a>
       </div>
       <hr />
       {/* ------------------------------------------------- */}
-      <div className="resources__container">
-        <h1>
-          <u>Covid-19</u>
-        </h1>
+      <div>
+        <h1 className="font-amatic text-5xl font-bold mb-4">Covid-19</h1>
         <p>
           Covid-19 is a newly found infectious disease that belongs to the
           Coronavirus family. The virus causes a respiratory infection which to
@@ -80,6 +77,7 @@ export default function Home() {
           <a
             target="_blank"
             rel="noreferrer"
+            className="btn btn-primary "
             href="https://apnews.com/article/31e3e60e7ea6bc4566b0ee3998ab98a6"
           >
             {" "}
@@ -92,29 +90,30 @@ export default function Home() {
           that can keep you company during the pandemic. Check out the links
           below for more information about adoption during Covid-19.
         </p>
-        <Button
+        <a
           href="https://www.petfinder.com/helping-pets/covid-19-resources/how-to-adopt-a-pet-during-covid-19/"
           target="_blank"
-          variant="primary"
+          rel="noreferrer"
+          className="btn btn-primary "
         >
           Pet Finder (Adopting during Covid-19)
-        </Button>
-        <Button
+        </a>
+        <a
           href="https://www.oie.int/scientific-expertise/specific-information-and-recommendations/questions-and-answers-on-2019novel-coronavirus/"
           target="_blank"
-          variant="primary"
+          rel="noreferrer"
+          className="btn btn-primary "
         >
           World Organization for Animal Health
-        </Button>
+        </a>
       </div>
       <hr />
-      <div className="resources__container">
+      <div>
         <h2>Adopt a Buddy Today!</h2>
-
-        <LinkContainer to="/pets">
-          <Button variant="primary">Adopt</Button>
-        </LinkContainer>
+        <Link to="/pets" className="btn btn-primary">
+          Adopt
+        </Link>
       </div>
-    </Container>
+    </PawHubContainer>
   );
 }

@@ -1,11 +1,11 @@
 import { PetListType } from "types/PetType";
 
-import BirdIcon from "../../../images/icons/bird.png";
-import CatIcon from "../../../images/icons/cat.png";
-import DogIcon from "../../../images/icons/dog.png";
-import HorseIcon from "../../../images/icons/horse.png";
-import RabbitIcon from "../../../images/icons/rabbit.png";
-import "./petIcon.css";
+import BirdIcon from "./icons/bird.png";
+import CatIcon from "./icons/cat.png";
+import DogIcon from "./icons/dog.png";
+import HorseIcon from "./icons/horse.png";
+import HouseIcon from "./icons/house.png";
+import RabbitIcon from "./icons/rabbit.png";
 
 const PetIcon = ({ type }: { type: PetListType }) => {
   const ICONS = {
@@ -16,7 +16,13 @@ const PetIcon = ({ type }: { type: PetListType }) => {
     Bird: BirdIcon,
   };
 
-  return <img src={ICONS[type]} alt={`${type} icon`} className="pet-icon" />;
+  return (
+    <img
+      src={ICONS[type] || HouseIcon}
+      alt={`${type} icon`}
+      className="w-10 h-auto mr-1"
+    />
+  );
 };
 
 export default PetIcon;

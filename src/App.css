@@ -1,18 +1,3 @@
-html,
-body,
-#root {
-  height: 100%;
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-}
-
-.pawhub {
-  flex: 1;
-}
-
 .fadeInUp {
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;

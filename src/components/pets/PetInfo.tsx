@@ -1,10 +1,11 @@
-import { Button, Card, Container, Spinner } from "react-bootstrap";
-import {
-  BsArrowRight,
-  BsFillEnvelopeOpenFill,
-  BsGenderAmbiguous,
-  BsShareFill,
-} from "react-icons/bs";
+import { ShareIcon } from "@heroicons/react/outline";
+import { ArrowRightIcon, MailOpenIcon } from "@heroicons/react/solid";
+import PetCardFlex, {
+  PawHubContainer,
+} from "components/layout/Grid/PetCardFlex";
+import Spinner from "components/shared/spinner/Spinner";
+import { Button, Card, Carousel } from "react-daisyui";
+import { BsGenderAmbiguous } from "react-icons/bs";
 import { GiAges } from "react-icons/gi";
 import { HiMail } from "react-icons/hi";
 import { VscSymbolColor, VscTypeHierarchySub } from "react-icons/vsc";
@@ -15,9 +16,7 @@ import { usePetAuth } from "../../context/TokenContext";
 import { lookUpPet } from "../../routes/API";
 import { fetcher } from "../../utils/petInfoFetcher";
 import { nameCleaner } from "../../utils/utilsCleaner/index";
-import Gallery from "../shared/Gallery";
 import FavoriteSection from "./Favorites/FavoriteSection";
-import "./PetInfo.css";
 import Placeholder from "./placeholder.jpg";
 
 export default function PetInfo() {
@@ -46,70 +45,105 @@ export default function PetInfo() {
     fetcher
   );
 
-  const isLoading = !pet && !error;
-
-  if (isLoading) {
-    return (
-      <Container className="pawhub py-4">
-        <Spinner animation="grow" variant="primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </Container>
-    );
-  }
-  if (error || !pet || !id) {
+  if (error || !id) {
     return <h1>An Error Occurred</h1>;
+  }
+  if (!pet) {
+    return (
+      <PawHubContainer>
+        <Spinner />
+      </PawHubContainer>
+    );
   }
 
   return (
-    <Container className="pawhub py-4">
-      <div className="petInfo">
-        <div className="head__section d-flex justify-content-between">
-          <h1>{nameCleaner(pet.name)}</h1>
+    <PawHubContainer>
+      <div className="flex flex-row justify-between">
+        <h1 className="text-5xl font-bold font-amatic">
+          {nameCleaner(pet.name)}
+        </h1>
 
-          <FavoriteSection id={id} />
-        </div>
+        <FavoriteSection id={id} />
+      </div>{" "}
+      <div className="bg-gradient-to-r from-primary via-purple-500 to-pink-500 rounded-box my-4">
         {!pet.photos ? (
           <img src={Placeholder} alt="placeholder" />
         ) : (
-          <Gallery
-            data={pet.photos.map((p, index) => {
-              const largePhoto = p.large ? p.large : Placeholder;
-              return { src: largePhoto, title: `${pet.name}-large-${index}` };
-            })}
-          />
+          <div className="w-1/2 mx-auto py-8">
+            <Carousel
+              display="numbered"
+              className="rounded-box"
+              color="primary"
+            >
+              {pet.photos.map((p, index) => {
+                const largePhoto = p.large ? p.large : Placeholder;
+                return (
+                  <Carousel.Item
+                    key={index}
+                    src={largePhoto}
+                    alt={`${pet.name}-large-${index}`}
+                  />
+                );
+              })}
+            </Carousel>
+          </div>
         )}
-        <div className="info-body">
-          <div className="primary-info">
-            <Card.Title>Name - {pet.name}</Card.Title>
-            <Card.Text className="description">{pet.description}</Card.Text>
-          </div>
-          <div className="breed-info">
-            <VscTypeHierarchySub className="icon" />
-            <Card.Title>Breeds</Card.Title>
-            <Card.Text>{pet.breeds.primary}</Card.Text>
-          </div>
-          <div className="color-info">
-            <VscSymbolColor className="icon" />
-            <Card.Title>Colors</Card.Title>
-            <Card.Text>{pet.colors.primary ?? "N/A"}</Card.Text>
-          </div>
-        </div>
-        <div className="info-body">
-          <div className="age-info">
-            <GiAges className="icon" />
-            <Card.Title>Age</Card.Title>
-            <Card.Text>{pet.age}</Card.Text>
-          </div>
-          <div className="gender-info">
-            <BsGenderAmbiguous className="icon" />
-            <Card.Title>Gender</Card.Title>
-            <Card.Text>{pet.gender}</Card.Text>
-          </div>
-          <div className="contact-info">
-            <HiMail className="icon" />
-            <Card.Title>Contact</Card.Title>
-            <Card.Text className="contact">
+      </div>
+      <PetCardFlex>
+        <article className="w-full md:w-1/2 lg:w-1/3  px-2 py-4 ">
+          <Card bordered className="h-40">
+            <Card.Body className="items-center text-center">
+              <Card.Title tag="h2">Name - {pet.name}</Card.Title>
+              <p className="text-xs">{pet.description}</p>
+            </Card.Body>
+          </Card>
+        </article>
+
+        <article className="w-full md:w-1/2 lg:w-1/3  px-2 py-4  ">
+          <Card bordered className="h-40">
+            <Card.Body className="items-center text-center">
+              <VscTypeHierarchySub className="text-5xl text-primary" />
+              <Card.Title tag="h2">Breeds</Card.Title>
+              <p>{pet.breeds.primary}</p>
+            </Card.Body>
+          </Card>
+        </article>
+
+        <article className="w-full md:w-1/2 lg:w-1/3  px-2 py-4  ">
+          <Card bordered className="h-40">
+            <Card.Body className="items-center text-center">
+              <VscSymbolColor className="text-5xl text-primary" />
+              <Card.Title tag="h2">Colors</Card.Title>
+              <p>{pet.colors.primary ?? "N/A"}</p>
+            </Card.Body>
+          </Card>
+        </article>
+
+        <article className="w-full md:w-1/2 lg:w-1/3  px-2 py-4  ">
+          <Card bordered className="h-40">
+            <Card.Body className="items-center text-center">
+              <GiAges className="text-5xl text-primary" />
+              <Card.Title tag="h2">Age</Card.Title>
+              <p>{pet.age}</p>
+            </Card.Body>
+          </Card>
+        </article>
+
+        <article className="w-full md:w-1/2 lg:w-1/3  px-2 py-4  ">
+          <Card bordered className="h-40">
+            <Card.Body className="items-center text-center">
+              <BsGenderAmbiguous className="text-5xl text-primary" />
+              <Card.Title tag="h2">Gender</Card.Title>
+              <p>{pet.gender}</p>
+            </Card.Body>
+          </Card>
+        </article>
+
+        <article className="w-full md:w-1/2 lg:w-1/3  px-2 py-4  ">
+          <Card bordered className="h-40">
+            <Card.Body className="items-center text-center">
+              <HiMail className="text-5xl text-primary" />
+              <Card.Title tag="h2">Contact</Card.Title>
               <a
                 href={`mailto:${pet.contact.email}`}
                 target="_blank"
@@ -117,44 +151,33 @@ export default function PetInfo() {
               >
                 {pet.contact.email}
               </a>
-            </Card.Text>
-          </div>
-        </div>
-        <div className="actions">
-          <Button
-            as="a"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="action-btn"
-            variant="info"
-            size="lg"
-            href={`mailto:${pet.contact.email}`}
-          >
-            Contact <BsFillEnvelopeOpenFill />
-          </Button>
+            </Card.Body>
+          </Card>
+        </article>
+      </PetCardFlex>
+      <div className="mt-12 flex flex-wrap justify-evenly">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-info w-60 my-2"
+          href={`mailto:${pet.contact.email}`}
+        >
+          Contact <MailOpenIcon className="ml-1 w-4 h-4 " />
+        </a>
 
-          <Button
-            onClick={handleShare}
-            className="action-btn"
-            variant="primary"
-            size="lg"
-          >
-            Share <BsShareFill />
-          </Button>
+        <Button onClick={handleShare} className="w-60 my-2" color="primary">
+          Share <ShareIcon className="ml-1 w-4 h-4" />
+        </Button>
 
-          <Button
-            as="a"
-            href={pet.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="action-btn"
-            variant="success"
-            size="lg"
-          >
-            More Info <BsArrowRight />
-          </Button>
-        </div>
+        <a
+          href={pet.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-success w-60 my-2"
+        >
+          More Info <ArrowRightIcon className="ml-1 w-4 h-4 " />
+        </a>
       </div>
-    </Container>
+    </PawHubContainer>
   );
 }

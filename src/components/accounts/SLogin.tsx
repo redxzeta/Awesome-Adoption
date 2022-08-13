@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Container, Form } from "react-bootstrap";
+import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
+import { Form, Input } from "react-daisyui";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useSignIn } from "react-supabase";
 
@@ -10,27 +11,13 @@ type LoginType = {
   password: string;
 };
 
-const loginFormState: LoginType = {
-  email: "",
-  password: "",
-};
 const SLogin = () => {
   const navigate = useNavigate();
-  // const [form, handleChange] = useForm(initState);
-
-  const [loginForm, setLoginForm] = useState(loginFormState);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setLoginForm((val) => ({ ...val, [name]: value }));
-  };
+  const { control, handleSubmit, register } = useForm<LoginType>();
 
   const [{ error, fetching }, signIn] = useSignIn();
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const { session } = await signIn(loginForm);
+  const onSubmit: SubmitHandler<LoginType> = async (data) => {
+    const { session } = await signIn(data);
 
     if (!error && !fetching && session) {
       navigate("/");
@@ -38,47 +25,66 @@ const SLogin = () => {
   };
 
   return (
-    <Container className="register__container pawhub" fluid="md">
-      <div className="register__container_form">
-        <h1 className="register__title">Login</h1>
-        <Form className="register__form" onSubmit={onSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              onChange={handleChange}
-              value={loginForm.email}
-            />
-            <Form.Text className="text-muted">
-              We will never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
+    <PawHubContainer>
+      <section className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8 shadow-2xl rounded-xl p-6 shadow-primary">
+          <h1 className="text-5xl font-bold font-amatic">Login</h1>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Form className="  w-full  p-4">
+              <Form.Label title="Email Address">
+                <Controller
+                  name="email"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="Enter Email"
+                      bordered
+                      type="email"
+                      color="primary"
+                      className=" max-w-xs"
+                      {...register("email", {
+                        required: true,
+                        maxLength: 45,
+                      })}
+                    />
+                  )}
+                />
+              </Form.Label>
+            </Form>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-              value={loginForm.password}
-            />
-          </Form.Group>
-          <FetchingButton
-            fetching={fetching}
-            action="Submit"
-            className="register__button"
-          />
-          {error && (
-            <small className="text-danger" test-id="formErrorMessage">
-              {error.message}
-            </small>
-          )}
-        </Form>
-      </div>
-    </Container>
+            <Form className="w-full p-4">
+              <Form.Label title="Password">
+                <Controller
+                  name="password"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="Enter Password"
+                      bordered
+                      color="primary"
+                      type="password"
+                      className=" max-w-xs"
+                      {...register("password", { required: true })}
+                    />
+                  )}
+                />
+              </Form.Label>
+            </Form>
+
+            <FetchingButton fetching={fetching} action="Submit" />
+            {error && (
+              <small className="text-error" test-id="formErrorMessage">
+                {error.message}
+              </small>
+            )}
+          </form>
+        </div>
+      </section>
+    </PawHubContainer>
   );
 };
 

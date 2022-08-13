@@ -1,4 +1,4 @@
-import { OverlayTrigger, Spinner, Tooltip } from "react-bootstrap";
+import Spinner from "components/shared/spinner/Spinner";
 import useSWR from "swr";
 
 import { githubURL } from "../../routes/API";
@@ -30,38 +30,32 @@ type ContributorsType = {
 const Contributors = () => {
   const { data, error } = useSWR(githubURL, fetcher);
   const isLoading = !error && !data;
-  if (isLoading)
-    return (
-      <Spinner animation="grow" variant="primary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    );
+  if (isLoading) return <Spinner />;
 
   if (error) {
     return <h1>Error Loading</h1>;
   }
 
   return (
-    <div className="contributors" id="contributors">
+    <div
+      className="flex flex-row justify-center items-center flex-wrap my-4 "
+      id="contributors"
+    >
       {data.map((a: ContributorsType) => (
-        <OverlayTrigger
-          key={a.id}
-          overlay={<Tooltip id="tooltip-disabled">{a.login}</Tooltip>}
+        <a
+          key={a.avatar_url}
+          className="rounded my-2"
+          href={a.html_url}
+          target="_blank"
+          rel="noreferrer"
+          data-testid="contributor-list"
         >
-          <a
-            className="contributor-link"
-            href={a.html_url}
-            target="_blank"
-            rel="noreferrer"
-            data-testid="contributor-list"
-          >
-            <img
-              className="contributor-avatar"
-              src={a.avatar_url}
-              alt={`${a.login} Contributor Avatar`}
-            />
-          </a>
-        </OverlayTrigger>
+          <img
+            className="w-12 mx-1 border-primary border-2 rounded-full"
+            src={a.avatar_url}
+            alt={`${a.login} Contributor Avatar`}
+          />
+        </a>
       ))}
     </div>
   );

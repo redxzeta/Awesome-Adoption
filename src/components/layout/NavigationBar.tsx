@@ -1,126 +1,126 @@
-import { Fragment } from "react";
-import {
-  Container,
-  Image,
-  Nav,
-  NavDropdown,
-  Navbar,
-  Spinner,
-} from "react-bootstrap";
-import { IoIosHeart } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { MenuAlt2Icon } from "@heroicons/react/outline";
+import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/solid";
+import { useAuth } from "context/SupaContext";
+import React from "react";
+import { Avatar, Button, Dropdown, Menu, Navbar } from "react-daisyui";
+import { Link, NavLink } from "react-router-dom";
 import { useSignOut } from "react-supabase";
 
-import { useAuth } from "../../context/SupaContext";
-import Logo from "../../images/PawHubLogo.png";
-import "./NavigationBar.css";
+import PawLogo from "./PawLogo.png";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
-
 export default function NavigationBar() {
+  const { username, session } = useAuth();
   const [{ fetching }, signOut] = useSignOut();
-  const onClickSignOut = async () => {
-    await signOut();
-  };
-  const { session, username, favoritePets } = useAuth();
 
   return (
-    <Navbar bg="primary" expand="lg">
-      <Container>
-        <Navbar.Brand href="/">
-          <Image src={Logo} height={40} width={40} />
-        </Navbar.Brand>
-        <h1>Pawternity Hub</h1>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse className="justify-content-end">
-          <Nav className="mr-auto">
-            <Nav.Link as={Link} to="/">
-              Home
-            </Nav.Link>
-            <NavDropdown title="Pets" id="navbarScrollingDropdown">
-              {petList.map((type) => (
-                <NavDropdown.Item
-                  key={type}
-                  as={Link}
-                  to={`/pets/${type.toLowerCase()}`}
-                >
-                  {type}
-                </NavDropdown.Item>
-              ))}
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/pets">
-                All Pets
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={Link} to="/about">
-              About
-            </Nav.Link>
-            <NavDropdown title="Resources" id="navbarScrollingDropdown">
-              <NavDropdown.Item as={Link} to="/resources">
-                Resources
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/tips">
-                Tips
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={Link} to="/organization">
-              Organizations
-            </Nav.Link>
-            {/* <Nav.Link as={Link} to="/stories">
-              User Story
-            </Nav.Link> */}
-            {session && (
-              <Nav.Link as={Link} to="/favorites">
-                <IoIosHeart />
-                <span style={{ fontSize: "14px" }}>{favoritePets.length}</span>
-              </Nav.Link>
-            )}
-            <NavDropdown
-              title={<i className="bi bi-person-circle"></i>}
-              id="navbarScrollingDropdown"
-            >
-              <NavDropdown.Item>Hello, {username}</NavDropdown.Item>
-              <NavDropdown.Divider />
-              {!session && (
-                <Fragment>
-                  <NavDropdown.Item as={Link} to="/register">
-                    Register
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/login">
-                    Login
-                  </NavDropdown.Item>
-                </Fragment>
-              )}
-              {session && (
+    <nav className="bg-base-100 z-50">
+      <Navbar className="container mx-auto">
+        <Navbar.Start>
+          <Dropdown>
+            <Button color="ghost" tabIndex={0} className="lg:hidden">
+              <MenuAlt2Icon className="w-5 h-5" />
+            </Button>
+            <Dropdown.Menu className="w-52 menu-compact mt-3 ">
+              <DropdownNavLink route="/">Home</DropdownNavLink>
+              <li tabIndex={0}>
+                <a className="justify-between">
+                  Pets <ChevronRightIcon className="w-4" />
+                </a>
+                <ul className="p-2 bg-base-100">
+                  {petList.map((pet) => (
+                    <DropdownNavLink key={pet} route={`pets/${pet}`}>
+                      {pet}
+                    </DropdownNavLink>
+                  ))}
+                  <DropdownNavLink route="pets">All Pets</DropdownNavLink>
+                </ul>
+              </li>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            Pawternity Hub
+          </Link>
+        </Navbar.Start>
+        <Navbar.Center className="hidden lg:flex justify-center">
+          <Menu horizontal className="p-0 ">
+            <MenuItemNavLink name="Home" route="/" />
+            <Menu.Item tabIndex={0}>
+              <a>
+                Pets <ChevronDownIcon className="w-4" />
+              </a>
+              <Menu className="p-2 bg-base-200 w-48 z-50">
+                {petList.map((pet) => (
+                  <MenuItemNavLink
+                    key={pet}
+                    name={pet}
+                    route={`/pets/${pet.toLowerCase()}`}
+                  />
+                ))}
+                <MenuItemNavLink name="All Pets" route="pets" />
+              </Menu>
+            </Menu.Item>
+            <MenuItemNavLink name="About" route="about" />
+            <MenuItemNavLink name="Resources" route="resources" />
+            <MenuItemNavLink name="Organizations" route="organizations" />
+          </Menu>
+        </Navbar.Center>
+        <Navbar.End>
+          <Dropdown vertical="end">
+            <Avatar
+              src={PawLogo}
+              size="xs"
+              className="btn btn-primary btn-circle my-auto "
+            />
+
+            <Dropdown.Menu className="w-52 menu-compact">
+              <Dropdown.Item>{`Hello, ${username}`}</Dropdown.Item>
+              {session ? (
                 <>
-                  <NavDropdown.Item as={Link} to="/reset-password">
-                    Reset Password
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/settings">
-                    Settings
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={`/profile/${username}`}>
+                  <DropdownNavLink route={`profile/${username}`}>
                     Profile
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    disabled={fetching}
-                    onClick={() => onClickSignOut()}
-                  >
-                    {fetching ? (
-                      <Fragment>
-                        <Spinner animation="grow" size="sm" />
-                        Logging out
-                      </Fragment>
-                    ) : (
-                      "Logout"
-                    )}
-                  </NavDropdown.Item>
+                  </DropdownNavLink>
+                  <DropdownNavLink route="favorites">Favorites</DropdownNavLink>
+                  <DropdownNavLink route="settings">Settings</DropdownNavLink>
+
+                  <Dropdown.Item onClick={signOut}>
+                    {fetching ? "Logging Out" : "Logout"}
+                  </Dropdown.Item>
+                </>
+              ) : (
+                <>
+                  <DropdownNavLink route="register">Register</DropdownNavLink>
+                  <DropdownNavLink route="login">Login</DropdownNavLink>
                 </>
               )}
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Navbar.End>
+      </Navbar>
+    </nav>
   );
 }
+
+const DropdownNavLink = ({
+  children,
+  route,
+}: {
+  children: React.ReactNode;
+  route: string;
+}) => (
+  <li>
+    <NavLink to={route}>{children}</NavLink>
+  </li>
+);
+
+const MenuItemNavLink = (props: { name: string; route: string }) => (
+  <Menu.Item>
+    <NavLink
+      end
+      className={({ isActive }) => (isActive ? "active " : "")}
+      to={props.route}
+    >
+      {props.name}
+    </NavLink>
+  </Menu.Item>
+);
