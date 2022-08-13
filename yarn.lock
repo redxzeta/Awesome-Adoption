@@ -7501,10 +7501,10 @@ pkg-up@^3.1.0:
   dependencies:
     find-up "^3.0.0"
 
-postcode-validator@^3.1.0:
-  version "3.6.6"
-  resolved "https://registry.npmjs.org/postcode-validator/-/postcode-validator-3.6.6.tgz"
-  integrity sha512-uNjTTBFDav9D14SvqI7/f0bQkKuHCuiKikZaZh9Qy8TOy2d2N0TKvZ9nZldduNZOUS7hIE6vHsMBK2eYxwjfaw==
+postcode-validator@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/postcode-validator/-/postcode-validator-3.7.0.tgz#ea180b860e55adba839fd7f453464b99fc116ecc"
+  integrity sha512-pl697wPxQ8kb3S0qoIHdNsqPjMY3ieKQtR6+dp0o+NOlM6ImzDpyKSdlXgGzzjoUElDUdXWezFjGGd9yITM+Xg==
 
 postcss-attribute-case-insensitive@^5.0.0:
   version "5.0.0"
