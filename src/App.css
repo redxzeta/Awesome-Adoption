@@ -1,3 +1,4 @@
+
 .fadeInUp {
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
@@ -29,4 +30,7 @@
     -webkit-transform: none;
     transform: none;
   }
+}
+.card-container{
+  height: 50vh;
 }
