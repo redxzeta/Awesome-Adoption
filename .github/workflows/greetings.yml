@@ -8,11 +8,11 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
-    if: ${{ github.actor != 'dependabot[bot]' }}
-      steps:
-        - name: interaction
-          uses: actions/first-interaction@v1
-          with:
-            repo-token: ${{ secrets.GITHUB_TOKEN }}
-            issue-message: "Thank you for setting up an issue. Be sure to include labels and some examples related to the issue"
-            pr-message: "Don't forget to link the issues and a screenshot (if possible) of the work. If you are having errors related to formatting, run `yarn format`."
+    steps:
+      - name: interaction
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: "Thank you for setting up an issue. Be sure to include labels and some examples related to the issue"
+          pr-message: "Don't forget to link the issues and a screenshot (if possible) of the work. If you are having errors related to formatting, run `yarn format`."
