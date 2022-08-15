@@ -10,15 +10,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.actor != 'dependabot[bot]' }}
       steps:
         - uses: actions/checkout@v2
         - name: Bump version and push tag
+          if: ${{ github.actor != 'dependabot[bot]' }}
           id: tag_version
           uses: mathieudutour/github-tag-action@v6.0
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
         - name: Create a GitHub release
+          if: ${{ github.actor != 'dependabot[bot]' }}
           uses: ncipollo/release-action@v1
           with:
             tag: ${{ steps.tag_version.outputs.new_tag }}
