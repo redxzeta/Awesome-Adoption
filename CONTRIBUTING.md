@@ -6,7 +6,8 @@ The current issue labels being handled are features, enhancements, and bugs.
 
 - fork repo and clone it
 - create a new branch based off on `main`
-- use yarn to install `node-modules`
+- use `yarn` to install `node-modules`
+- `yarn start` to run the app locally
 
 ### Feature Issue
 
@@ -46,6 +47,7 @@ Brief walkthrough on what changes being done:
 - Issue or Feature being implemented
 - Short summary of what is being done
 - Make a pull request to target branch `main`
+- Structure title based on issue ie `fix: the styline on the button` , `feat: implemented a new page` More info [here](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ### Update your fork
 
