@@ -1,4 +1,5 @@
 import Spinner from "components/shared/spinner/Spinner";
+import { Tooltip } from "react-daisyui";
 import useSWR from "swr";
 
 import { githubURL } from "../../routes/API";
@@ -50,11 +51,13 @@ const Contributors = () => {
           rel="noreferrer"
           data-testid="contributor-list"
         >
-          <img
-            className="w-12 mx-1 border-primary border-2 rounded-full"
-            src={a.avatar_url}
-            alt={`${a.login} Contributor Avatar`}
-          />
+          <Tooltip message={a.login}>
+            <img
+              className="w-12 mx-1 border-primary border-2 rounded-full"
+              src={a.avatar_url}
+              alt={`${a.login} Contributor Avatar`}
+            />
+          </Tooltip>
         </a>
       ))}
     </div>
