@@ -94,7 +94,7 @@ export default function Tips() {
         </h5>
         <img
           src={AdoptionPet}
-          className="w-[30%] rounded-[2%] mb-2 d-block mx-auto "
+          className="w-[350px] lg:w-[50%] rounded-[2%] mb-2 d-block mx-auto "
           alt="Adoption pet"
         />
 
