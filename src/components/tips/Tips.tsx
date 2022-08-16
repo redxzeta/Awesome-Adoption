@@ -1,5 +1,5 @@
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
-import { Button } from "react-daisyui";
+import { Link } from "react-router-dom";
 
 import AdoptionPet from "./adoption-pet.jpg";
 
@@ -7,7 +7,7 @@ export default function Tips() {
   return (
     <PawHubContainer>
       <div className=" ">
-        <h1 className="mb-4 text-decoration-underline">
+        <h1 className="text-5xl font-bold font-amatic mb-10">
           Tips to adopting Pets
         </h1>
         <p>
@@ -33,7 +33,7 @@ export default function Tips() {
       </div>
       <hr />
       {/* ------------------------------------------------- */}
-      <div className="tips__PawHubContainer">
+      <div className="text-center mt-8">
         <h1 className="mb-4" text-decoration-underline>
           Final steps to guide you on how to best adopt or rehome a dog
         </h1>
@@ -74,14 +74,14 @@ export default function Tips() {
           </a>
           .
         </p>
-        <p className="tips__paragraph-bold">
+        <p className="font-bold">
           Pawternity Hub wants to help you stay safe and help you find a friend
           that can keep you company during the pandemic. Check out the links
           below for more information about adoption during Covid-19.
         </p>
       </div>
       <hr />
-      <div className="tips__PawHubContainer">
+      <div className="text-center mt-8">
         <h5>
           When you finally get your new pup home, be the best dog owner you can
           be! Have fun with your dog, love your dog, and include him in your
@@ -94,11 +94,13 @@ export default function Tips() {
         </h5>
         <img
           src={AdoptionPet}
-          className="adoption__pet mb-2 d-block mx-auto "
+          className="w-[350px] lg:w-[50%] rounded-[2%] mb-2 d-block mx-auto "
           alt="Adoption pet"
         />
 
-        <Button color="primary">Adopt</Button>
+        <Link to="/pets" className="btn btn-primary">
+          Adopt
+        </Link>
       </div>
     </PawHubContainer>
   );
