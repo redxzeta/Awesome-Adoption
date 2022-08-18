@@ -74,6 +74,7 @@ export default function Home() {
         </p>
         <p>
           Because people find it hard to stay at home alone,
+          <br></br>
           <a
             target="_blank"
             rel="noreferrer"
