@@ -18,13 +18,17 @@ const Contact = () => {
     console.log(data);
   };
 
+  const inputClasses = errors.names
+    ? "input input-error text-lg w-full max-w-3xl bg-white"
+    : "input input-bordered text-lg w-full max-w-3xl bg-white";
+
   return (
     <PawHubContainer>
       <section className="border-2  min-h-screen">
         <h1 className="font-amatic text-5xl font-bold py-10">Contact Us</h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="form-control max-w-xl"
+          className="form-control max-w-lg"
         >
           <label htmlFor="names" className="text-lg pb-2">
             Names
@@ -36,7 +40,7 @@ const Contact = () => {
               maxLength: 50,
               minLength: 8,
             })}
-            className="py-2 px-4 rounded-lg"
+            className={inputClasses}
           />
           <div className="py-4 text-red-500">
             {errors && <span>{errors.names?.message}</span>}
@@ -54,7 +58,7 @@ const Contact = () => {
               required: "This field is required.",
               pattern: /^\S+@\S+$/i,
             })}
-            className="py-2 px-4 rounded-lg"
+            className={inputClasses}
           />
           <div className="py-4 text-red-500">
             {errors && <span>{errors.email?.message}</span>}
@@ -65,14 +69,18 @@ const Contact = () => {
           </label>
           <textarea
             {...register("message", { required: "This field is required." })}
-            className="text-lg py-2 px-4 rounded-lg"
+            className={
+              errors.message
+                ? "textarea textarea-error h-40 text-lg bg-white rounded-lg"
+                : "textarea textarea-bordered h-40 text-lg bg-white rounded-lg"
+            }
             placeholder="Message"
           />
           <div className="py-4 text-red-500">
             {errors && <span>{errors.message?.message}</span>}
           </div>
 
-          <button className="btn-primary rounded-full w-28 py-2 my-6 text-base font-bold cursor-pointer">
+          <button className="btn btn-primary rounded-full w-28 mt-4">
             Submit
           </button>
         </form>
