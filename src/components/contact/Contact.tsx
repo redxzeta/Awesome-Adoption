@@ -26,7 +26,10 @@ const Contact = () => {
       reset();
       successNotification();
     }
-    errorNotification();
+
+    if (!data) {
+      errorNotification();
+    }
 
     console.log(data);
   };
