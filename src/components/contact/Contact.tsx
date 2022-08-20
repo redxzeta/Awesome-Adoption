@@ -21,10 +21,13 @@ const Contact = () => {
   } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
+    // TODO: tie the success/error notification to the respective submission states
     if (data) {
       reset();
       successNotification();
     }
+    errorNotification();
+
     console.log(data);
   };
 
@@ -35,6 +38,17 @@ const Contact = () => {
 
   const successNotification = () =>
     toast.success("Sent successfully! 🐿🐿🐿", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+
+  const errorNotification = () =>
+    toast.error("An error occurred! ⛔⛔⛔", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
