@@ -8,7 +8,7 @@ interface InputProps {
   errors: FieldErrorsImpl<FormData>;
 }
 
-export const NameInput = ({ register, inputClasses, errors }: InputProps) => {
+export const NameInput = ({ inputClasses, register, errors }: InputProps) => {
   return (
     <>
       <input
@@ -20,7 +20,7 @@ export const NameInput = ({ register, inputClasses, errors }: InputProps) => {
         })}
         className={inputClasses}
       />
-      <div className="py-4 text-red-500">
+      <div className="py-4 text-red-500 text-sm">
         {errors && <span>{errors.names?.message}</span>}
         {errors.names?.type === "minLength" && (
           <span> Enter atleast 6 characters</span>
@@ -41,7 +41,7 @@ export const EmailInput = ({ inputClasses, register, errors }: InputProps) => {
         })}
         className={inputClasses}
       />
-      <div className="py-4 text-red-500">
+      <div className="py-4 text-red-500 text-sm">
         {errors && <span>{errors.email?.message}</span>}
         {errors.email?.type === "pattern" && (
           <span> Enter a valid email address</span>
@@ -64,7 +64,7 @@ export const MessageInput = ({ register, errors }: InputProps) => {
         placeholder="Message"
         id="message"
       />
-      <div className="py-4 text-red-500">
+      <div className="py-4 text-red-500 text-sm">
         {errors && <span>{errors.message?.message}</span>}
       </div>
     </>

@@ -1,6 +1,7 @@
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import "./Contact.css";
 import { EmailInput, MessageInput, NameInput } from "./Inputs";
 
 export interface FormData {
@@ -29,10 +30,12 @@ const Contact = () => {
   return (
     <PawHubContainer>
       <section>
-        <h1 className="font-amatic text-5xl font-bold py-10">Contact Us</h1>
+        <h1 className="tracking-in-expand-fwd font-amatic text-5xl font-bold py-10">
+          Contact Us
+        </h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="form-control max-w-lg"
+          className="slide-in-fwd-left form-control max-w-lg"
         >
           <label className="text-lg">
             Names
