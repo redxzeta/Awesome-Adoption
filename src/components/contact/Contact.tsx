@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { EmailInput, MessageInput, NameInput } from "./Inputs";
 
-interface FormData {
+export interface FormData {
   names: string;
   email: string;
   message: string;
@@ -13,11 +13,13 @@ const Contact = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
+    reset();
   };
 
   const inputClasses = errors.names

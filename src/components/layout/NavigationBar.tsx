@@ -63,6 +63,7 @@ export default function NavigationBar() {
             <MenuItemNavLink name="About" route="about" />
             <MenuItemNavLink name="Resources" route="resources" />
             <MenuItemNavLink name="Organizations" route="organizations" />
+            <MenuItemNavLink name="Contact" route="contact" />
           </Menu>
         </Navbar.Center>
         <Navbar.End>

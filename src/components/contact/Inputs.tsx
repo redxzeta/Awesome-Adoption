@@ -1,6 +1,10 @@
+import { UseFormRegister } from "react-hook-form";
+
+import { FormData } from "./Contact";
+
 interface InputProps {
   inputClasses?: string;
-  register: any;
+  register: UseFormRegister<FormData>;
   errors: any;
 }
 
