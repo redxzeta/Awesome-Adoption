@@ -1,11 +1,11 @@
-import { UseFormRegister } from "react-hook-form";
+import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 
 import { FormData } from "./Contact";
 
 interface InputProps {
   inputClasses?: string;
   register: UseFormRegister<FormData>;
-  errors: any;
+  errors: FieldErrorsImpl<FormData>;
 }
 
 export const NameInput = ({ register, inputClasses, errors }: InputProps) => {
