@@ -1,5 +1,4 @@
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
-// import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,8 +13,6 @@ export interface FormData {
 }
 
 const Contact = () => {
-  // const [isSuccessful, setIsSuccessful] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -26,16 +23,17 @@ const Contact = () => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     if (data) {
       reset();
-      notify();
+      successNotification();
     }
     console.log(data);
   };
 
+  /* form submission notification */
   const inputClasses = errors.names
     ? "input input-error text-lg w-full max-w-3xl bg-white my-2"
     : "input input-bordered text-lg w-full max-w-3xl bg-white my-2";
 
-  const notify = () =>
+  const successNotification = () =>
     toast.success("Sent successfully! 🐿🐿🐿", {
       position: "top-center",
       autoClose: 5000,
@@ -84,7 +82,7 @@ const Contact = () => {
           </button>
         </form>
       </section>
-      <ToastContainer position="top-right" />
+      <ToastContainer />
     </PawHubContainer>
   );
 };
