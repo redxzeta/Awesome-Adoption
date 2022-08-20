@@ -1,6 +1,8 @@
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import { EmailInput, MessageInput, NameInput } from "./Inputs";
+
 interface FormData {
   names: string;
   email: string;
@@ -19,66 +21,39 @@ const Contact = () => {
   };
 
   const inputClasses = errors.names
-    ? "input input-error text-lg w-full max-w-3xl bg-white"
-    : "input input-bordered text-lg w-full max-w-3xl bg-white";
+    ? "input input-error text-lg w-full max-w-3xl bg-white my-2"
+    : "input input-bordered text-lg w-full max-w-3xl bg-white my-2";
 
   return (
     <PawHubContainer>
-      <section className="border-2  min-h-screen">
+      <section>
         <h1 className="font-amatic text-5xl font-bold py-10">Contact Us</h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="form-control max-w-lg"
         >
-          <label htmlFor="names" className="text-lg pb-2">
+          <label className="text-lg">
             Names
+            <NameInput
+              register={register}
+              inputClasses={inputClasses}
+              errors={errors}
+            />
           </label>
-          <input
-            placeholder="Names"
-            {...register("names", {
-              required: "This field is required.",
-              maxLength: 50,
-              minLength: 8,
-            })}
-            className={inputClasses}
-          />
-          <div className="py-4 text-red-500">
-            {errors && <span>{errors.names?.message}</span>}
-            {errors.names?.type === "minLength" && (
-              <span> Enter atleast 8 characters</span>
-            )}
-          </div>
 
-          <label htmlFor="email" className="text-lg pb-2">
+          <label className="text-lg">
             Email
+            <EmailInput
+              register={register}
+              inputClasses={inputClasses}
+              errors={errors}
+            />
           </label>
-          <input
-            placeholder="Email"
-            {...register("email", {
-              required: "This field is required.",
-              pattern: /^\S+@\S+$/i,
-            })}
-            className={inputClasses}
-          />
-          <div className="py-4 text-red-500">
-            {errors && <span>{errors.email?.message}</span>}
-          </div>
 
-          <label htmlFor="message" className="text-lg pb-2">
+          <label htmlFor="message" className="text-lg py-2">
             Message
           </label>
-          <textarea
-            {...register("message", { required: "This field is required." })}
-            className={
-              errors.message
-                ? "textarea textarea-error h-40 text-lg bg-white rounded-lg"
-                : "textarea textarea-bordered h-40 text-lg bg-white rounded-lg"
-            }
-            placeholder="Message"
-          />
-          <div className="py-4 text-red-500">
-            {errors && <span>{errors.message?.message}</span>}
-          </div>
+          <MessageInput register={register} errors={errors} />
 
           <button className="btn btn-primary rounded-full w-28 mt-4">
             Submit
