@@ -25,11 +25,10 @@ const Contact = () => {
     if (data) {
       reset();
       successNotification();
+      return;
     }
 
-    if (!data) {
-      errorNotification();
-    }
+    errorNotification();
 
     console.log(data);
   };
