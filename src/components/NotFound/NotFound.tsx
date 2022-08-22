@@ -6,7 +6,7 @@ import logo from "./NotFoundDog.svg";
 export default function NotFound() {
   return (
     <PawHubContainer>
-      <div className="flex h-[initial] md:column w-full justify-center items-center lg:h-3/4">
+      <div className="flex h-[initial] flex-col md:flex-row w-full justify-center items-center lg:h-3/4">
         <div className="w-[90%] sm:w-[70%] lg:w-[55%]">
           <img className="w-full" src={logo} alt="page not found" />
         </div>
