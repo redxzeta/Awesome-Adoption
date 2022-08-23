@@ -43,6 +43,9 @@ const FooterMenu = () => {
         <Link to="/tips" className="link link-hover">
           Tips
         </Link>
+        <Link to="/contact" className="link link-hover">
+          Contact
+        </Link>
       </article>
     </Footer>
   );

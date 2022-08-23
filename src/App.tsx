@@ -14,6 +14,7 @@ import SLogin from "./components/accounts/SLogin";
 import Profile from "./components/accounts/profile/Profile";
 // import ResetPassword from "./components/accounts/settings/resetPassword";
 import Settings from "./components/accounts/settings/Settings";
+import Contact from "./components/contact/Contact";
 import Home from "./components/home/Home";
 import Organizations from "./components/organizations/Organizations";
 import Favorites from "./components/pets/Favorites";
@@ -34,6 +35,7 @@ export default function App() {
             <NavigationBar />
             <Routes>
               <Route path="animal/:id" element={<PetInfo />} />
+              <Route path="contact" element={<Contact />} />
               <Route path="pets/:type" element={<PetType />} />
               <Route path="pets" element={<Pets />} />
               <Route path="about" element={<About />} />
