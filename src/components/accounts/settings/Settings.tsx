@@ -73,7 +73,7 @@ export default function Settings() {
             </Form>
 
             <Form className="w-full p-4">
-              <Form.Label title="Password">
+              <Form.Label title="Description">
                 <Controller
                   name="description"
                   control={control}
