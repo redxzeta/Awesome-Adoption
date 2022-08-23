@@ -29,8 +29,6 @@ const Contact = () => {
     }
 
     errorNotification();
-
-    console.log(data);
   };
 
   /* form submission notification */
