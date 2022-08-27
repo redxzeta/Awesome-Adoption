@@ -25,6 +25,18 @@ export const fetchSupaProfile = async (
   return data;
 };
 
+export const fetchSearchProfiles = async (
+  client: SupabaseClient
+  // profileSearch: string
+) => {
+  console.log("Calling");
+  const { data, error } = await client.from<ProfileType>("profiles").select();
+  // .eq("username", profileSearch);
+  if (error) throw new Error(error.message);
+  console.log({ data, error });
+  return data;
+};
+
 export const fetchImage = async (
   supaClient: SupabaseClient,
   backgroundUrl: string,

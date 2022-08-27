@@ -2,6 +2,7 @@ import NotFound from "components/NotFound/NotFound";
 import FooterMenu from "components/layout/Footer";
 import NavigationBar from "components/layout/NavigationBar";
 import PetInfo from "components/pets/PetInfo";
+import Search from "components/search/Search";
 import { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Provider } from "react-supabase";
@@ -57,6 +58,7 @@ export default function App() {
                 }
               /> */}
               <Route path="profile/:name" element={<Profile />} />
+              <Route path="profile" element={<Search />} />
               <Route path="/" element={<Home />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
