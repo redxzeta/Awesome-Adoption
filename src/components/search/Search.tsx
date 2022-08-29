@@ -1,33 +1,49 @@
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
+import { useState } from "react";
 import { Avatar } from "react-daisyui";
 import { Link } from "react-router-dom";
-// import { useParams } from "react-router-dom";
 import { useClient } from "react-supabase";
 import useSWR from "swr";
 import { fetchSearchProfiles } from "utils/supaFetcher";
 
 const settings = { revalidateOnFocus: false };
-const Search = () => {
-  //   const { name = "" } = useParams<{ name: string }>();
 
+const SearchInput = () => {
+  return (
+    <div className="w-full flex justify-center mb-12">
+      <input
+        type="text"
+        className="w-10/12 h-12 border rounded p-4"
+        placeholder="Enter a profile to search"
+      />
+    </div>
+  );
+};
+
+const Search = () => {
+  const [page, setPage] = useState(1);
   const client = useClient();
-  //   const profileSearch = "";
 
   const { error: errorProfile, data: profiles } = useSWR(
-    client,
+    [client, page],
     fetchSearchProfiles,
     settings
   );
 
-  console.log("Searching");
+  const incrementPage = () => {
+    const totalPages = Math.floor((profiles?.count ?? 0) / 10);
+    page < totalPages && setPage((page) => page + 1);
+  };
+  const decrementPage = () => page > 1 && setPage((page) => page - 1);
 
   if (errorProfile) return <h1>ERROR</h1>;
-  if (!profiles) return <h1>Loading</h1>;
-  console.log({ profiles });
+  if (!profiles?.data) return <h1>Loading</h1>;
+
   return (
     <PawHubContainer>
+      <SearchInput />
       <div className="flex flex-row flex-wrap justify-between">
-        {profiles.map((profile) => {
+        {profiles.data.map((profile) => {
           return (
             <Link
               to={`/profile/${profile.username}`}
@@ -52,7 +68,34 @@ const Search = () => {
           );
         })}
       </div>
+      <Pagination
+        incrementPage={incrementPage}
+        decrementPage={decrementPage}
+        pageNumber={page}
+      />
     </PawHubContainer>
+  );
+};
+
+const Pagination = ({
+  incrementPage,
+  decrementPage,
+  pageNumber,
+}: {
+  incrementPage: () => void;
+  decrementPage: () => void;
+  pageNumber: number;
+}) => {
+  return (
+    <div className="w-full flex justify-center items-center">
+      <button type="button" onClick={decrementPage} className="text-3xl">
+        ◀️
+      </button>
+      <span className="mx-6 text-xl">{pageNumber}</span>
+      <button type="button" onClick={incrementPage} className={"text-3xl"}>
+        ▶️
+      </button>
+    </div>
   );
 };
 

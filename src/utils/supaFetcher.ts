@@ -25,16 +25,27 @@ export const fetchSupaProfile = async (
   return data;
 };
 
+export const getPagination = (page: number, size: number) => {
+  const limit = size ? +size : 3;
+  const from = page ? page * limit : 0;
+  const to = page ? from + size - 1 : size - 1;
+
+  return { from, to };
+};
+
 export const fetchSearchProfiles = async (
-  client: SupabaseClient
-  // profileSearch: string
+  client: SupabaseClient,
+  page: number
 ) => {
-  console.log("Calling");
-  const { data, error } = await client.from<ProfileType>("profiles").select();
-  // .eq("username", profileSearch);
+  const { from, to } = getPagination(page, 10);
+  const { data, error, count } = await client
+    .from<ProfileType>("profiles")
+    .select("*", { count: "exact" })
+    .range(from, to);
+
   if (error) throw new Error(error.message);
-  console.log({ data, error });
-  return data;
+
+  return { data, count };
 };
 
 export const fetchImage = async (
