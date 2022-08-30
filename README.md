@@ -32,7 +32,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Supabase
 
-Join My [Discord](https://discord.gg/2UxwrKxCPV) for the Supabase keys
+Join My [Discord](https://discord.gg/2UxwrKxCPV) for the Supabase keys, which need to be in .env
 
 ## Setup
 
