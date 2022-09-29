@@ -76,11 +76,7 @@ const SLogin = () => {
             </Form>
 
             <FetchingButton fetching={fetching} action="Submit" />
-            {error && (
-              <small className="text-error" test-id="formErrorMessage">
-                {error.message}
-              </small>
-            )}
+            {error && <small className="text-error">{error.message}</small>}
           </form>
         </div>
       </section>

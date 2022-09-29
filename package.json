@@ -7,7 +7,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.10",
+    "@heroicons/react": "v1",
     "@supabase/supabase-js": "^1.35.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

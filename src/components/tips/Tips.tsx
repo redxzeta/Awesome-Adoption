@@ -34,7 +34,7 @@ export default function Tips() {
       <hr />
       {/* ------------------------------------------------- */}
       <div className="text-center mt-8">
-        <h1 className="mb-4" text-decoration-underline>
+        <h1 className="mb-4">
           Final steps to guide you on how to best adopt or rehome a dog
         </h1>
         <p>
