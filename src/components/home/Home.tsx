@@ -11,6 +11,7 @@ import { randomPetsList } from "../../routes/API";
 import { fetcher } from "../../utils/homePageFetcher";
 import LoadPlaceHolder from "../shared/PlaceHolderCard";
 import "./home.css";
+import load from "./loding.png";
 
 export default function Home() {
   return (
@@ -54,6 +55,9 @@ const LoadingPetCards = () => {
           <LoadPlaceHolder />
           <LoadPlaceHolder />
         </PetCardFlex>{" "}
+        <Button color="primary">
+          <img className="rotate" src={load} alt="spinner" />
+        </Button>
       </PawHubContainer>
     );
   if (error || !petList)

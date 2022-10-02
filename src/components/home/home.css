@@ -4,3 +4,15 @@
 .home__background {
   background: url("./homehero.png");
 }
+.rotate {
+  animation: rotation 1.3s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
