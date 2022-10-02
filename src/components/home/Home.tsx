@@ -56,7 +56,7 @@ const LoadingPetCards = () => {
           <LoadPlaceHolder />
         </PetCardFlex>{" "}
         <Button color="primary">
-          <img className="rotate" src={load} alt="" />
+          <img className="rotate" src={load} alt="spinner" />
         </Button>
       </PawHubContainer>
     );
