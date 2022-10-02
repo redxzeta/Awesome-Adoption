@@ -1,5 +1,5 @@
-import { HeartIcon } from "@heroicons/react/outline";
-import { HeartIcon as HeartSolid } from "@heroicons/react/solid";
+import { HeartIcon } from "@heroicons/react/24/outline";
+import { HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import Spinner from "components/shared/spinner/Spinner";
 import { Button } from "react-daisyui";
 

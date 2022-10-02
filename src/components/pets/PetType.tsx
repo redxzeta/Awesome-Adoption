@@ -1,11 +1,11 @@
 import {
-  BanIcon,
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  ExclamationIcon,
-} from "@heroicons/react/outline";
+  ExclamationTriangleIcon,
+  NoSymbolIcon,
+} from "@heroicons/react/24/outline";
 import PetCardFlex, {
   PawHubContainer,
 } from "components/layout/Grid/PetCardFlex";
@@ -189,7 +189,7 @@ export default function PetType() {
     setCurrentPage((curr) => (curr !== newPage ? newPage : newPage));
 
   const errorAlert = (
-    <Alert status="error" icon={<BanIcon className="w-6 h-6 mx-2" />}>
+    <Alert status="error" icon={<NoSymbolIcon className="w-6 h-6 mx-2" />}>
       Unable to retrieve your location, please enter your zip code.
       <Button onClick={() => setShowErrorAlert(false)}>Dismiss</Button>
     </Alert>
@@ -242,7 +242,7 @@ export default function PetType() {
       {validCodeError && (
         <Alert
           status="warning"
-          icon={<ExclamationIcon className="w-6 h-6 mx-2" />}
+          icon={<ExclamationTriangleIcon className="w-6 h-6 mx-2" />}
         >
           {validCodeError}
         </Alert>
