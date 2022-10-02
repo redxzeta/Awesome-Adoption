@@ -36,6 +36,10 @@ export default function NavigationBar() {
                   <DropdownNavLink route="pets">All Pets</DropdownNavLink>
                 </ul>
               </li>
+              <MenuItemNavLink name="About" route="about" />
+              <MenuItemNavLink name="Resources" route="resources" />
+              <MenuItemNavLink name="Organizations" route="organizations" />
+              <MenuItemNavLink name="Contact" route="contact" />
             </Dropdown.Menu>
           </Dropdown>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
@@ -110,7 +114,9 @@ const DropdownNavLink = ({
   route: string;
 }) => (
   <li>
-    <NavLink to={route}>{children}</NavLink>
+    <NavLink end to={route}>
+      {children}
+    </NavLink>
   </li>
 );
 
