@@ -1,5 +1,5 @@
-import { MenuAlt2Icon } from "@heroicons/react/outline";
-import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import { Bars3BottomLeftIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "context/SupaContext";
 import React from "react";
 import { Avatar, Button, Dropdown, Menu, Navbar } from "react-daisyui";
@@ -19,7 +19,7 @@ export default function NavigationBar() {
         <Navbar.Start>
           <Dropdown>
             <Button color="ghost" tabIndex={0} className="lg:hidden">
-              <MenuAlt2Icon className="w-5 h-5" />
+              <Bars3BottomLeftIcon className="w-5 h-5" />
             </Button>
             <Dropdown.Menu className="w-52 menu-compact mt-3 ">
               <DropdownNavLink route="/">Home</DropdownNavLink>
