@@ -5,8 +5,8 @@ on:
     branches: [ main ]
   issues:
     types: [ opened ]
-  pull_request_target:
-    types: [ opened ]
+  pull_request:
+    branches: [main]
   pull_request_review_comment:
     types: [ created ]
 
