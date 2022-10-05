@@ -34,8 +34,39 @@ const Profile = () => {
     settings
   );
 
-  if (errorProfile) return <h1>ERROR</h1>;
-  if (!profile) return <h1>Loading</h1>;
+  if (errorProfile)
+    return (
+      <div
+        className="flex justify-center items-center"
+        style={{ padding: "150px" }}
+      >
+        <div className="flex flex-col text-center">
+          <div className="flex justify-center items-center">
+            <img
+              style={{ width: 40, height: 40 }}
+              src={" https://cdn-icons-png.flaticon.com/512/179/179386.png"}
+              alt="background"
+            />
+          </div>
+          <div style={{ fontSize: "30px", fontWeight: 600 }}>OOPS!</div>
+          <div>Something went wrong. Please try again later.</div>
+        </div>
+      </div>
+    );
+  if (!profile)
+    return (
+      <div
+        className="flex justify-center items-center"
+        style={{ padding: "50px" }}
+      >
+        <img
+          src={
+            " https://mir-s3-cdn-cf.behance.net/project_modules/disp/35771931234507.564a1d2403b3a.gif"
+          }
+          alt="background"
+        />
+      </div>
+    );
 
   const showFeaturedFavoritedPets = profile.favoritepets.slice(0, 3);
   return (
