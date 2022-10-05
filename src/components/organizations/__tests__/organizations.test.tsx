@@ -38,7 +38,7 @@ describe("Organizations", () => {
     ).not.toBeInTheDocument();
 
     expect(
-      screen.queryAllByText(/^Location: United States$/i).length
+      screen.queryAllByText(/^Location: United States /i).length
     ).toBeGreaterThan(0);
 
     expect(
