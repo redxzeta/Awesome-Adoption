@@ -38,7 +38,7 @@ export default function Home() {
           href="https://www.petfinder.com/pet-adoption-2/pet-adoption-information/"
           target="_blank"
           rel="noreferrer"
-          className="btn btn-primary "
+          className="btn btn-primary mx-4 "
         >
           Pet Finder
         </a>
@@ -46,7 +46,7 @@ export default function Home() {
           href="https://www.humanesociety.org/resources/top-reasons-adopt-pet"
           target="_blank"
           rel="noreferrer"
-          className="btn btn-primary "
+          className="btn btn-primary mx-4 "
         >
           Humane Society
         </a>
@@ -77,7 +77,7 @@ export default function Home() {
           <a
             target="_blank"
             rel="noreferrer"
-            className="btn btn-primary "
+            className="btn btn-primary mx-4 "
             href="https://apnews.com/article/31e3e60e7ea6bc4566b0ee3998ab98a6"
           >
             {" "}
@@ -94,7 +94,7 @@ export default function Home() {
           href="https://www.petfinder.com/helping-pets/covid-19-resources/how-to-adopt-a-pet-during-covid-19/"
           target="_blank"
           rel="noreferrer"
-          className="btn btn-primary "
+          className="btn btn-primary mx-4 "
         >
           Pet Finder (Adopting during Covid-19)
         </a>
@@ -110,7 +110,7 @@ export default function Home() {
       <hr />
       <div>
         <h2>Adopt a Buddy Today!</h2>
-        <Link to="/pets" className="btn btn-primary">
+        <Link to="/pets" className="btn btn-primary mx-4">
           Adopt
         </Link>
       </div>

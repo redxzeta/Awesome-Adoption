@@ -49,7 +49,7 @@ export default function NavigationBar() {
         <Navbar.Center className="hidden lg:flex justify-center">
           <Menu horizontal className="p-0 ">
             <MenuItemNavLink name="Home" route="/" />
-            <Menu.Item tabIndex={0}>
+            <Menu.Item tabIndex={0} className="mx-1">
               <a>
                 Pets <ChevronDownIcon className="w-4" />
               </a>
