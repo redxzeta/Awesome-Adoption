@@ -4,14 +4,18 @@ import Contributors from "./Contributors";
 import GithubIcon from "./GitHub.png";
 import YoutubeLogo from "./Youtube2.png";
 import DevPostLogo from "./devpost-modified.png";
-import Dog from "./dog.jpg";
+import Dog from "./dog-cat.jpg";
 
 export default function About() {
   return (
     <PawHubContainer>
-      <div className="about__container">
+      <div className="about__container content-center">
         <section className="paragraph--section">
-          <img src={Dog} alt="doggo" />
+          <img
+            className=" mx-auto mb-3 rounded-2xl w-1/2   "
+            src={Dog}
+            alt="doggo"
+          />
           <h1 className="font-amatic text-5xl font-bold ">
             About PawternityHub
           </h1>

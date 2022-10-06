@@ -48,7 +48,7 @@ export default function Settings() {
           <h1 className="text-5xl font-bold font-amatic">Settings</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Form className="  w-full  p-4">
-              <Form.Label title="Username: ">
+              <Form.Label title="Username:&ensp; ">
                 <Controller
                   name="username"
                   control={control}
@@ -60,7 +60,7 @@ export default function Settings() {
                       bordered
                       type="text"
                       color="primary"
-                      className=" max-w-xs"
+                      className=" flex min-w-[10px] max-w-xs"
                       {...register("username", {
                         required: true,
                         minLength: 4,
@@ -73,7 +73,7 @@ export default function Settings() {
             </Form>
 
             <Form className="w-full p-4">
-              <Form.Label title="Description">
+              <Form.Label title="Description:&ensp;">
                 <Controller
                   name="description"
                   control={control}
@@ -85,7 +85,7 @@ export default function Settings() {
                       bordered
                       color="primary"
                       type="text"
-                      className=" max-w-xs"
+                      className=" flex min-w-[10px] max-w-xs"
                     />
                   )}
                 />
