@@ -12,7 +12,7 @@ import Bird from "./bird.jpg";
 import Cat from "./cat.jpg";
 import Dog from "./doggo.jpg";
 import Horse from "./horse.jpg";
-import Placeholder from "./placeholder-light.jpg";
+import Placeholder from "./placeholder-light.png";
 import Rabbit from "./rabbit.jpg";
 
 type PetLink = {

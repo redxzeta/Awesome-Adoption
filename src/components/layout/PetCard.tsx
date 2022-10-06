@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { PetCardType } from "types/PetType";
 
 import { nameCleaner } from "../../utils/utilsCleaner/index";
-import Placeholder from "../pets/placeholder-light.jpg";
+import Placeholder from "../pets/placeholder-light.png";
 import PetIcon from "../shared/PetIcon";
 
 export default function PetCard(
