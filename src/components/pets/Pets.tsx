@@ -45,8 +45,6 @@ const typeData: PetType[] = [
     img: BarnyardIcon,
   },
 ];
-// eslint-disable-next-line no-console
-console.log(typeData);
 
 const linkData: PetLink[] = [
   {
