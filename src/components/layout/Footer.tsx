@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const FooterMenu = () => {
   const year = new Date();
   return (
-    <Footer className="p-10 bg-primary text-secondary-content mt-10">
+    <Footer className="fixed bottom-0 p-10 bg-primary text-secondary-content mt-10">
       <article>
         <svg
           width="50"
