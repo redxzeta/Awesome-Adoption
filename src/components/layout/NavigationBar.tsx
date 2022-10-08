@@ -4,7 +4,9 @@ import { useAuth } from "context/SupaContext";
 import React from "react";
 import { Avatar, Button, Dropdown, Menu, Navbar } from "react-daisyui";
 import { Link, NavLink } from "react-router-dom";
-import { useSignOut } from "react-supabase";
+import { useClient, useSignOut } from "react-supabase";
+import useSWR from "swr";
+import { fetchSupaProfile } from "utils/supaFetcher";
 
 import PawLogo from "./PawLogo.png";
 
@@ -12,6 +14,11 @@ const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
 export default function NavigationBar() {
   const { username, session } = useAuth();
   const [{ fetching }, signOut] = useSignOut();
+  const { error: errorProfile, data: profile } = useSWR(
+    [useClient(), username],
+    fetchSupaProfile,
+    { revalidateOnFocus: false }
+  );
 
   return (
     <nav className="bg-base-100 z-50">
@@ -73,7 +80,7 @@ export default function NavigationBar() {
         <Navbar.End>
           <Dropdown vertical="end">
             <Avatar
-              src={PawLogo}
+              src={session && !errorProfile ? profile?.avatar_url : PawLogo}
               size="xs"
               className="btn btn-primary btn-circle my-auto "
             />
