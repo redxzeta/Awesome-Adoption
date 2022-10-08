@@ -15,7 +15,29 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        mytheme: {
+        dark: {
+          primary: "#ef4444",
+
+          secondary: "#831843",
+
+          accent: "#170075",
+
+          neutral: "#e7e5e4",
+
+          "base-100": "#1f2937",
+
+          info: "#6791E0",
+
+          success: "#51DB8B",
+
+          warning: "#E18E19",
+
+          error: "#F0667D",
+
+        }
+      },
+      {
+        light: {
           primary: "#ef4444",
 
           secondary: "#831843",
@@ -33,9 +55,9 @@ module.exports = {
           warning: "#E18E19",
 
           error: "#F0667D",
-        },
-      },
-    ],
+        }
+      }
+    ]
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
 };

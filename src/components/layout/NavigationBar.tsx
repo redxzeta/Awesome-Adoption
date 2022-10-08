@@ -6,6 +6,7 @@ import { Avatar, Button, Dropdown, Menu, Navbar } from "react-daisyui";
 import { Link, NavLink } from "react-router-dom";
 import { useSignOut } from "react-supabase";
 
+import ThemeToggle from "../themeToggle/themeToggle";
 import PawLogo from "./PawLogo.png";
 
 const petList = ["Dog", "Cat", "Rabbit", "Horse", "Bird"];
@@ -71,6 +72,7 @@ export default function NavigationBar() {
           </Menu>
         </Navbar.Center>
         <Navbar.End>
+          <ThemeToggle />
           <Dropdown vertical="end">
             <Avatar
               src={PawLogo}
