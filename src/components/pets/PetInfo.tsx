@@ -17,7 +17,7 @@ import { lookUpPet } from "../../routes/API";
 import { fetcher } from "../../utils/petInfoFetcher";
 import { nameCleaner } from "../../utils/utilsCleaner/index";
 import FavoriteSection from "./Favorites/FavoriteSection";
-import Placeholder from "./placeholder.jpg";
+import Placeholder from "./placeholder-light.png";
 
 export default function PetInfo() {
   const { id } = useParams<string>();

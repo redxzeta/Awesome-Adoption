@@ -166,6 +166,6 @@ describe("<Pets/>", () => {
     petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(6);
     expect(petImage[5]).toHaveAttribute("alt", "Baby Yoda");
-    expect(petImage[5]).toHaveAttribute("src", "placeholder.jpg");
+    expect(petImage[5]).toHaveAttribute("src", "placeholder-light.png");
   });
 });
