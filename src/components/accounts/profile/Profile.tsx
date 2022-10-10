@@ -106,17 +106,21 @@ const ShowFavorites = ({ favoritePets }: { favoritePets: FavoritePets[] }) => {
     <>
       <h1 className="text-5xl font-bold font-amatic">Favorited Pets</h1>
       <PetCardFlex>
-        {petList.map((pet) => (
-          <PetCard
-            key={pet.id}
-            breeds={pet.breeds}
-            id={pet.id}
-            name={pet.name}
-            photos={pet.photos}
-            type={pet.type}
-            primary_photo_cropped={pet.primary_photo_cropped}
-          />
-        ))}
+        {petList.map((pet) => {
+          if (!pet) return null;
+
+          return (
+            <PetCard
+              key={pet.id}
+              breeds={pet.breeds}
+              id={pet.id}
+              name={pet.name}
+              photos={pet.photos}
+              type={pet.type}
+              primary_photo_cropped={pet.primary_photo_cropped}
+            />
+          );
+        })}
       </PetCardFlex>
     </>
   );
