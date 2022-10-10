@@ -74,26 +74,30 @@ export default function Favorites() {
     <PawHubContainer>
       <h1 className="font-amatic text-5xl font-bold">Your favorite Buddies!</h1>
       <PetCardFlex>
-        {petList.map((pet) => (
-          <PetCard
-            key={pet.id}
-            breeds={pet.breeds}
-            id={pet.id}
-            name={pet.name}
-            photos={pet.photos}
-            type={pet.type}
-            primary_photo_cropped={pet.primary_photo_cropped}
-          >
-            {" "}
-            <Button
-              color="primary"
-              className="w-full mx-auto mt-2"
-              onClick={() => removeFavButton(pet.id)}
+        {petList.map((pet) => {
+          if (!pet) return null;
+
+          return (
+            <PetCard
+              key={pet.id}
+              breeds={pet.breeds}
+              id={pet.id}
+              name={pet.name}
+              photos={pet.photos}
+              type={pet.type}
+              primary_photo_cropped={pet.primary_photo_cropped}
             >
-              {fetching ? "Loading" : "Remove"}
-            </Button>
-          </PetCard>
-        ))}
+              {" "}
+              <Button
+                color="primary"
+                className="w-full mx-auto mt-2"
+                onClick={() => removeFavButton(pet.id)}
+              >
+                {fetching ? "Loading" : "Remove"}
+              </Button>
+            </PetCard>
+          );
+        })}
       </PetCardFlex>
     </PawHubContainer>
   );
