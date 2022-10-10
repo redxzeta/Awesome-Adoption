@@ -1,28 +1,26 @@
 import { PetListType } from "types/PetType";
 
-import BirdIcon from "./icons/bird.png";
-import CatIcon from "./icons/cat.png";
-import DogIcon from "./icons/dog.png";
-import HorseIcon from "./icons/horse.png";
-import HouseIcon from "./icons/house.png";
-import RabbitIcon from "./icons/rabbit.png";
+import { ReactComponent as BirdIcon } from "./icons/bird.svg";
+import { ReactComponent as CatIcon } from "./icons/cat.svg";
+import { ReactComponent as DogIcon } from "./icons/dog.svg";
+import { ReactComponent as HorseIcon } from "./icons/horse.svg";
+import { ReactComponent as HouseIcon } from "./icons/house.svg";
+import { ReactComponent as RabbitIcon } from "./icons/rabbit.svg";
 
 const PetIcon = ({ type }: { type: PetListType }) => {
-  const ICONS = {
-    Dog: DogIcon,
-    Cat: CatIcon,
-    Rabbit: RabbitIcon,
-    Horse: HorseIcon,
-    Bird: BirdIcon,
-  };
-
-  return (
-    <img
-      src={ICONS[type] || HouseIcon}
-      alt={`${type} icon`}
-      className="w-10 h-auto mr-1"
-    />
-  );
+  if (type === "Dog") {
+    return <DogIcon className="w-10 h-auto mr-1 fill-current" />;
+  } else if (type === "Cat") {
+    return <CatIcon className="w-10 h-auto mr-1 fill-current" />;
+  } else if (type === "Bird") {
+    return <BirdIcon className="w-10 h-auto mr-1 fill-current" />;
+  } else if (type === "Horse") {
+    return <HorseIcon className="w-10 h-auto mr-1 fill-current" />;
+  } else if (type === "Rabbit") {
+    return <RabbitIcon className="w-10 h-auto mr-1 fill-current" />;
+  } else {
+    return <HouseIcon className="w-10 h-auto mr-1 fill-current" />;
+  }
 };
 
 export default PetIcon;
