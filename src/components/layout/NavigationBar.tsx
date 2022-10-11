@@ -22,7 +22,7 @@ export default function NavigationBar() {
             <Button color="ghost" tabIndex={0} className="lg:hidden">
               <Bars3BottomLeftIcon className="w-5 h-5" />
             </Button>
-            <Dropdown.Menu className="w-52 menu-compact mt-3 ">
+            <Dropdown.Menu className="w-52 menu-compact mt-3 lg:hidden">
               <DropdownNavLink route="/">Home</DropdownNavLink>
               <li tabIndex={0}>
                 <a className="justify-between">
