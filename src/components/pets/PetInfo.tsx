@@ -48,7 +48,7 @@ export default function PetInfo() {
   useEffect(() => {
     const shareData = getShareData();
     setEnableShare(navigator.canShare && navigator.canShare(shareData));
-  }, [pet]);
+  }, [pet, getShareData]);
 
   if (error || !id) {
     return <h1>An Error Occurred</h1>;
