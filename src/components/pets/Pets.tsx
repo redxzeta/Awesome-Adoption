@@ -8,10 +8,6 @@ import { PetListType } from "types/PetType";
 
 import { usePetAuth } from "../../context/TokenContext";
 import { fetcher } from "../../utils/petInfoFetcher";
-// Pet Type Icons
-import BarnyardIcon from "../shared/PetIcon/icons/barnyard.svg";
-import FurryIcon from "../shared/PetIcon/icons/furry.svg";
-import ScalesFinIcon from "../shared/PetIcon/icons/scalesfins.svg";
 import Bird from "./bird.jpg";
 import Cat from "./cat.jpg";
 import Dog from "./doggo.jpg";
@@ -23,28 +19,6 @@ type PetLink = {
   type: PetListType;
   img: string;
 };
-
-type PetType = {
-  type: string;
-  img: string;
-};
-
-// Remove the below comment when the variable is used
-// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-const typeData: PetType[] = [
-  {
-    type: "small-furry",
-    img: FurryIcon,
-  },
-  {
-    type: "scales-fins-other",
-    img: ScalesFinIcon,
-  },
-  {
-    type: "barnyard",
-    img: BarnyardIcon,
-  },
-];
 
 const linkData: PetLink[] = [
   {
