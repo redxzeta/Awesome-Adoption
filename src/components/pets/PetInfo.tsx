@@ -4,7 +4,7 @@ import PetCardFlex, {
   PawHubContainer,
 } from "components/layout/Grid/PetCardFlex";
 import Spinner from "components/shared/spinner/Spinner";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button, Card, Carousel } from "react-daisyui";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { GiAges } from "react-icons/gi";
@@ -25,13 +25,18 @@ export default function PetInfo() {
   const { tokenHeaders } = usePetAuth();
   const [enableShare, setEnableShare] = useState(false);
 
-  const getShareData = () => {
+  const { error, data: pet } = useSWR(
+    tokenHeaders ? [lookUpPet + id, tokenHeaders] : null,
+    fetcher
+  );
+
+  const getShareData = useCallback(() => {
     return {
       title: pet?.type + " for adoption.",
       text: "Show some love to this animal. Please have a look if you want to adopt this cute life.",
       url: window.location.href,
     };
-  };
+  }, [pet]);
 
   function handleShare() {
     const shareData = getShareData();
@@ -39,11 +44,6 @@ export default function PetInfo() {
       navigator.share(shareData);
     }
   }
-
-  const { error, data: pet } = useSWR(
-    tokenHeaders ? [lookUpPet + id, tokenHeaders] : null,
-    fetcher
-  );
 
   useEffect(() => {
     const shareData = getShareData();
