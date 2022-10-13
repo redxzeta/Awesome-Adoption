@@ -29,6 +29,14 @@ const FooterMenu = () => {
           Pawternity Hub
           <br />
           <span>&copy; redxzeta 2020 - {year.getFullYear()}</span>
+          <br />
+          <a
+            href="https://github.com/redxzeta/Awesome-Adoption"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Github
+          </a>
         </p>
       </article>
 
