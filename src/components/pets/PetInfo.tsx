@@ -4,6 +4,7 @@ import PetCardFlex, {
   PawHubContainer,
 } from "components/layout/Grid/PetCardFlex";
 import Spinner from "components/shared/spinner/Spinner";
+import { useCallback, useEffect, useState } from "react";
 import { Button, Card, Carousel } from "react-daisyui";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { GiAges } from "react-icons/gi";
@@ -22,28 +23,32 @@ import Placeholder from "./placeholder-light.png";
 export default function PetInfo() {
   const { id } = useParams<string>();
   const { tokenHeaders } = usePetAuth();
-
-  function handleShare() {
-    const shareData = {
-      title: pet?.type + " for adoption.",
-      text: "Show some love to this animal. Please have a look if you want to adopt this cute life.",
-      url: window.location.href,
-    };
-    if (navigator.share) {
-      navigator.share(shareData);
-      // .then((result) => {
-      //   console.log("Shared");
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
-    }
-  }
+  const [enableShare, setEnableShare] = useState(false);
 
   const { error, data: pet } = useSWR(
     tokenHeaders ? [lookUpPet + id, tokenHeaders] : null,
     fetcher
   );
+
+  const getShareData = useCallback(() => {
+    return {
+      title: pet?.type + " for adoption.",
+      text: "Show some love to this animal. Please have a look if you want to adopt this cute life.",
+      url: window.location.href,
+    };
+  }, [pet]);
+
+  function handleShare() {
+    const shareData = getShareData();
+    if (navigator.share) {
+      navigator.share(shareData);
+    }
+  }
+
+  useEffect(() => {
+    const shareData = getShareData();
+    setEnableShare(navigator.canShare && navigator.canShare(shareData));
+  }, [pet, getShareData]);
 
   if (error || !id) {
     return <h1>An Error Occurred</h1>;
@@ -165,7 +170,11 @@ export default function PetInfo() {
           Contact <EnvelopeIcon className="ml-1 w-4 h-4 " />
         </a>
 
-        <Button onClick={handleShare} className="w-60 my-2" color="primary">
+        <Button
+          onClick={handleShare}
+          className={`w-60 my-2 ${enableShare ? "" : "hidden"}`}
+          color="primary"
+        >
           Share <ShareIcon className="ml-1 w-4 h-4" />
         </Button>
 
