@@ -12,8 +12,8 @@ import ForgotPassword from "./components/accounts/ForgotPassword";
 import Register from "./components/accounts/Register";
 import SLogin from "./components/accounts/SLogin";
 import Profile from "./components/accounts/profile/Profile";
-// import ResetPassword from "./components/accounts/settings/resetPassword";
 import Settings from "./components/accounts/settings/Settings";
+import ResetPassword from "./components/accounts/settings/resetPassword";
 import Contact from "./components/contact/Contact";
 import Home from "./components/home/Home";
 import Organizations from "./components/organizations/Organizations";
@@ -48,14 +48,14 @@ export default function App() {
               <Route path="login" element={<SLogin />} />
               <Route path="forgot-password" element={<ForgotPassword />} />
               <Route path="settings" element={<Settings />} />
-              {/* <Route
+              <Route
                 path="reset-password"
                 element={
-                  <PrivateRoute>
-                    <ResetPassword />
-                  </PrivateRoute>
+                  // <PrivateRoute>
+                  <ResetPassword />
+                  // </PrivateRoute>
                 }
-              /> */}
+              />
               <Route path="profile/:name" element={<Profile />} />
               <Route path="/" element={<Home />} />
               <Route path="*" element={<NotFound />} />
