@@ -74,7 +74,7 @@ export default function Favorites() {
 
   function filterList(petType: string) {
     let filtered;
-    if (petType === "All-favorites") {
+    if (petType === "all-favorites") {
       filtered = petList;
     } else {
       filtered = petList?.filter((pet) => pet?.type === petType);
@@ -82,8 +82,8 @@ export default function Favorites() {
     return filtered;
   }
 
-  const handleClick = (e: any) => {
-    const pet = e.target.innerText;
+  const handleClick = (event: any) => {
+    const pet = event.target.getAttribute("id");
     setPetLst(filterList(pet));
   };
 
@@ -98,23 +98,35 @@ export default function Favorites() {
           tabIndex={0}
           className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li id="all-favorites" onClick={handleClick}>
-            <a>All-favorites</a>
+          <li>
+            <a id="all-favorites" onClick={handleClick}>
+              All Favorites
+            </a>
           </li>
-          <li id="Cat" onClick={handleClick}>
-            <a>Cat</a>
+          <li>
+            <a id="Cat" onClick={handleClick}>
+              Cat
+            </a>
           </li>
-          <li id="Dog" onClick={handleClick}>
-            <a>Dog</a>
+          <li>
+            <a id="Dog" onClick={handleClick}>
+              Dog
+            </a>
           </li>
-          <li id="Horse" onClick={handleClick}>
-            <a>Horse</a>
+          <li>
+            <a id="Horse" onClick={handleClick}>
+              Horse
+            </a>
           </li>
-          <li id="Rabbit" onClick={handleClick}>
-            <a>Rabbit</a>
+          <li>
+            <a id="Rabbit" onClick={handleClick}>
+              Rabbit
+            </a>
           </li>
-          <li id="Bird" onClick={handleClick}>
-            <a>Bird</a>
+          <li>
+            <a id="Bird" onClick={handleClick}>
+              Bird
+            </a>
           </li>
         </ul>
       </div>
