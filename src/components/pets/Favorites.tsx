@@ -1,6 +1,7 @@
 import PetCardFlex, {
   PawHubContainer,
 } from "components/layout/Grid/PetCardFlex";
+import React from "react";
 import { Button } from "react-daisyui";
 import { useDelete } from "react-supabase";
 import { removeFavoritePet } from "reducers/supaFunctions";
@@ -25,6 +26,7 @@ export default function Favorites() {
     tokenHeaders ? [urlPets, tokenHeaders] : null,
     multipleFetcher
   );
+  const [petLst, setPetLst] = React.useState(petList);
   if (urlPets.length === 0)
     return (
       <PawHubContainer>
@@ -70,34 +72,114 @@ export default function Favorites() {
     dispatch(removeFavoritePet(removedPet.id));
   };
 
+  function filterList(petType: string) {
+    let filtered;
+    if (petType === "all-favorites") {
+      filtered = petList;
+    } else {
+      filtered = petList?.filter((pet) => pet?.type === petType);
+    }
+    return filtered;
+  }
+
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const pet = (event.target as HTMLElement).getAttribute("id");
+    if (pet?.length) {
+      setPetLst(filterList(pet));
+    }
+  };
+
   return (
     <PawHubContainer>
       <h1 className="font-amatic text-5xl font-bold">Your favorite Buddies!</h1>
+      <div className="dropdown dropdown-right drop-shadow-lg z-10 mt-5">
+        <label tabIndex={0} className="btn m-1">
+          Filter
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a id="all-favorites" onClick={handleClick}>
+              All Favorites
+            </a>
+          </li>
+          <li>
+            <a id="Cat" onClick={handleClick}>
+              Cat
+            </a>
+          </li>
+          <li>
+            <a id="Dog" onClick={handleClick}>
+              Dog
+            </a>
+          </li>
+          <li>
+            <a id="Horse" onClick={handleClick}>
+              Horse
+            </a>
+          </li>
+          <li>
+            <a id="Rabbit" onClick={handleClick}>
+              Rabbit
+            </a>
+          </li>
+          <li>
+            <a id="Bird" onClick={handleClick}>
+              Bird
+            </a>
+          </li>
+        </ul>
+      </div>
       <PetCardFlex>
-        {petList.map((pet) => {
-          if (!pet) return null;
-
-          return (
-            <PetCard
-              key={pet.id}
-              breeds={pet.breeds}
-              id={pet.id}
-              name={pet.name}
-              photos={pet.photos}
-              type={pet.type}
-              primary_photo_cropped={pet.primary_photo_cropped}
-            >
-              {" "}
-              <Button
-                color="primary"
-                className="w-full mx-auto mt-2"
-                onClick={() => removeFavButton(pet.id)}
-              >
-                {fetching ? "Loading" : "Remove"}
-              </Button>
-            </PetCard>
-          );
-        })}
+        {petLst
+          ? petLst.map((pet) => {
+              if (!pet) return null;
+              return (
+                <PetCard
+                  key={pet.id}
+                  breeds={pet.breeds}
+                  id={pet.id}
+                  name={pet.name}
+                  photos={pet.photos}
+                  type={pet.type}
+                  primary_photo_cropped={pet.primary_photo_cropped}
+                >
+                  {" "}
+                  <Button
+                    color="primary"
+                    className="w-full mx-auto mt-2"
+                    onClick={() => removeFavButton(pet.id)}
+                  >
+                    {fetching ? "Loading" : "Remove"}
+                  </Button>
+                </PetCard>
+              );
+            })
+          : petList.map((pet) => {
+              if (!pet) return null;
+              return (
+                <PetCard
+                  key={pet.id}
+                  breeds={pet.breeds}
+                  id={pet.id}
+                  name={pet.name}
+                  photos={pet.photos}
+                  type={pet.type}
+                  primary_photo_cropped={pet.primary_photo_cropped}
+                >
+                  {" "}
+                  <Button
+                    color="primary"
+                    className="w-full mx-auto mt-2"
+                    onClick={() => removeFavButton(pet.id)}
+                  >
+                    {fetching ? "Loading" : "Remove"}
+                  </Button>
+                </PetCard>
+              );
+            })}
       </PetCardFlex>
     </PawHubContainer>
   );
