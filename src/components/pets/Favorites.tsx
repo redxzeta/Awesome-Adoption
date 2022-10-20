@@ -1,7 +1,7 @@
 import PetCardFlex, {
   PawHubContainer,
 } from "components/layout/Grid/PetCardFlex";
-import { useState } from "react";
+import React from "react";
 import { Button } from "react-daisyui";
 import { useDelete } from "react-supabase";
 import { removeFavoritePet } from "reducers/supaFunctions";
@@ -26,7 +26,7 @@ export default function Favorites() {
     tokenHeaders ? [urlPets, tokenHeaders] : null,
     multipleFetcher
   );
-  const [petLst, setPetLst] = useState(petList);
+  const [petLst, setPetLst] = React.useState(petList);
   if (urlPets.length === 0)
     return (
       <PawHubContainer>
@@ -82,9 +82,11 @@ export default function Favorites() {
     return filtered;
   }
 
-  const handleClick = (event: any) => {
-    const pet = event.target.getAttribute("id");
-    setPetLst(filterList(pet));
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    const pet = (event.target as HTMLElement).getAttribute("id");
+    if (pet?.length) {
+      setPetLst(filterList(pet));
+    }
   };
 
   return (
