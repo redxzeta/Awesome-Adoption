@@ -1,7 +1,7 @@
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import { Form, Input } from "react-daisyui";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSignIn } from "react-supabase";
 
 import { FetchingButton } from "../layout/Buttons/FetchingButton";
@@ -73,6 +73,11 @@ const SLogin = () => {
                   )}
                 />
               </Form.Label>
+              <Link to="/forgot-password">
+                <small className="text-error flex justify-end underline pr-1">
+                  Forgot password?
+                </small>
+              </Link>
             </Form>
 
             <FetchingButton fetching={fetching} action="Submit" />
