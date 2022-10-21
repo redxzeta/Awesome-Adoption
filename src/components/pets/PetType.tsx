@@ -213,7 +213,7 @@ export default function PetType() {
         List Of {type} Buddies
       </h1>
       <div className="w-full flex justify-center items-center flex-col lg:p-4 my-2">
-        <Form className="shadow   rounded-lg p-4  lg:w-1/4 w-full">
+        <Form className="shadow rounded-lg p-4 lg:w-1/4 w-full">
           <Form.Label title="Enter Zipcode: ">
             <Input
               ref={inputCode}
@@ -224,6 +224,7 @@ export default function PetType() {
               value={code}
               name="zipcode"
               onChange={checkValidation}
+              className="lg:w-full w-1/2"
             />
           </Form.Label>
           <Button
