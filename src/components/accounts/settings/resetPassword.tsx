@@ -1,7 +1,10 @@
 /* eslint-disable */
 // @ts-nocheck
+import { FetchingButton } from "components/layout/Buttons/FetchingButton";
+import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { useState } from "react";
-import { Button, Container, Form, Spinner } from "react-bootstrap";
+import { Form, Input } from "react-daisyui";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { useClient } from "react-supabase";
 
@@ -23,25 +26,17 @@ const handleValidatePassword = ({
 };
 
 const ResetPassword = () => {
+  const { control, handleSubmit, register } = useForm<PasswordType>();
   const { auth } = useClient();
   const session = auth.session();
   const [errorMsg, setErrorMsg] = useState("");
-  const handleOnSubmit = async () => {
+  const handleOnSubmit = async (data) => {
     setLoading(true);
 
-    const errorMessage = handleValidatePassword(form);
-    if (!errorMessage) await handleResetPassword();
+    const errorMessage = handleValidatePassword(data);
+    if (!errorMessage) await handleResetPassword(data.newPassword);
     setErrorMsg(errorMessage);
     setLoading(false);
-  };
-
-  const [form, setForm] = useState<PasswordType>({
-    confirmation: "",
-    newPassword: "",
-  });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm((val) => ({ ...val, [name]: value }));
   };
 
   const [loading, setLoading] = useState(false);
@@ -50,8 +45,7 @@ const ResetPassword = () => {
     return <Navigate to="/" />;
   }
 
-  const handleResetPassword = async () => {
-    const { newPassword: password } = form;
+  const handleResetPassword = async (password) => {
     const { error: err } = await auth.api.updateUser(
       auth.currentSession.access_token,
       { password }
@@ -59,48 +53,65 @@ const ResetPassword = () => {
     alert(err?.message ? err.message : "Password updated");
   };
 
-  const handleSubmitContent = loading ? (
-    <Spinner animation="border" />
-  ) : (
-    "Reset Password"
-  );
-
   return (
-    <Container className="register__container" fluid="md">
-      <div className="register__container_form">
-        <>
-          <h1 className="register__title">Reset Password</h1>
-          <Form className="register__form" onSubmit={handleOnSubmit}>
-            <Form.Group className="mb-3">
+    <PawHubContainer>
+      <section
+        className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+        fluid="md"
+      >
+        <div className="max-w-md w-full space-y-8 shadow-2xl rounded-xl p-6">
+          <h1 className="text-5xl font-bold font-amatic">Reset Password</h1>
+          <form onSubmit={handleSubmit(handleOnSubmit)}>
+            <Form className="w-full p-4">
               <Form.Label>Enter new password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="New password"
+              <Controller
                 name="newPassword"
-                onChange={handleChange}
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder="New password"
+                    bordered
+                    type="password"
+                    color="primary"
+                    className="flex min-w-[10px] "
+                    {...register("newPassword", {
+                      required: true,
+                    })}
+                  />
+                )}
               />
-            </Form.Group>
-            <Form.Group className="mb-2">
+            </Form>
+            <Form className="w-full  p-4">
               <Form.Label>Confirm new password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="New password"
+              <Controller
                 name="confirmation"
-                onChange={handleChange}
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder="New password"
+                    bordered
+                    type="password"
+                    color="primary"
+                    className=" flex min-w-[10px] "
+                    {...register("confirmation", {
+                      required: true,
+                    })}
+                  />
+                )}
               />
-            </Form.Group>
-            <Button
-              className="register__button mb-2"
-              variant="primary"
-              type="submit"
-            >
-              {handleSubmitContent}
-            </Button>
+            </Form>
+
+            <FetchingButton action="Reset Password" />
+
             {errorMsg && <small className="text-danger">{errorMsg}</small>}
-          </Form>
-        </>
-      </div>
-    </Container>
+          </form>
+        </div>
+      </section>
+    </PawHubContainer>
   );
 };
 
