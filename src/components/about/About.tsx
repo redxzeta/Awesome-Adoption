@@ -1,6 +1,7 @@
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 
 import Contributors from "./Contributors";
+import DiscordLogo from "./Discord.png";
 import GithubIcon from "./GitHub.png";
 import YoutubeLogo from "./Youtube2.png";
 import DevPostLogo from "./devpost-modified.png";
@@ -56,7 +57,7 @@ export default function About() {
           <a
             target="blank"
             rel="noreferrer"
-            href="https://github.com/redxzeta/Awesome-Adoption"
+            href="https://devpost.com/"
             className="rounded"
           >
             <img
@@ -74,6 +75,18 @@ export default function About() {
             <img
               className="w-12 mx-1 border-primary border-2 rounded-full"
               src={GithubIcon}
+            />
+          </a>
+
+          <a
+            target="blank"
+            rel="noreferrer"
+            href="https://discord.gg/rjbD2nq6S2"
+            className="rounded"
+          >
+            <img
+              className="w-12 mx-1 border-primary border-2 rounded-full"
+              src={DiscordLogo}
             />
           </a>
         </div>
