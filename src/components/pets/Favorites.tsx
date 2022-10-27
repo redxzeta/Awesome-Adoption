@@ -1,7 +1,7 @@
 import PetCardFlex, {
   PawHubContainer,
 } from "components/layout/Grid/PetCardFlex";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "react-daisyui";
 import { useDelete } from "react-supabase";
 import { removeFavoritePet } from "reducers/supaFunctions";
@@ -28,6 +28,21 @@ export default function Favorites() {
   );
   const [petLst, setPetLst] = React.useState(petList);
   const [petType, setPetType] = React.useState("");
+
+  useEffect(() => {
+    function filterList(petType: string) {
+      let filtered;
+      if (petType === "") {
+        filtered = petList;
+      } else {
+        filtered = petList?.filter((pet) => pet?.type === petType);
+      }
+      return filtered;
+    }
+
+    setPetLst(filterList(petType));
+  }, [petType, petList]);
+
   if (urlPets.length === 0)
     return (
       <PawHubContainer>
@@ -36,7 +51,7 @@ export default function Favorites() {
       </PawHubContainer>
     );
 
-  const isLoading = !petList && !error;
+  const isLoading = !petLst && !error;
   if (isLoading)
     return (
       <PawHubContainer>
@@ -73,20 +88,9 @@ export default function Favorites() {
     dispatch(removeFavoritePet(removedPet.id));
   };
 
-  function filterList(petType: string) {
-    let filtered;
-    if (petType === "all-favorites") {
-      filtered = petList;
-    } else {
-      filtered = petList?.filter((pet) => pet?.type === petType);
-    }
-    return filtered;
-  }
-
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const pet = (event.target as HTMLElement).getAttribute("id");
     if (pet?.length) {
-      setPetLst(filterList(pet));
       setPetType(pet === "all-favorites" ? "" : pet);
     }
   };
