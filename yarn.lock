@@ -4068,10 +4068,10 @@ d@1, d@^1.0.1:
     es5-ext "^0.10.50"
     type "^1.0.1"
 
-daisyui@^2.31.0:
-  version "2.31.0"
-  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-2.31.0.tgz#906bc447b59c24782320f33fbc990ea1d8c2200c"
-  integrity sha512-qepRXgQPLNcJ8ZPZy+dUvsC7mRWvMLRcVMe85/wZA60Tnhm/bkidhOzdllL8aAk2JX+W/xlIsTJ8NZFpPm+eyw==
+daisyui@^2.49.0:
+  version "2.49.0"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-2.49.0.tgz#3cfc33fa5df3b444bf806471a62c77eba0192a62"
+  integrity sha512-+hEFMupi/7rqkAH4d3iBWj1TXRq73V3PrkJ3HiDqFuQgMoE1/UQOgMoeqaHa3r4IRo4fjMNauwHBA17qT0YSIA==
   dependencies:
     color "^4.2"
     css-selector-tokenizer "^0.8.0"
