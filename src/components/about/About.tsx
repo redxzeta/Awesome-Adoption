@@ -20,14 +20,14 @@ export default function About() {
           <h1 className="font-amatic text-5xl font-bold ">
             About PawternityHub
           </h1>
-          <p>
+          <p className="my-4">
             It all began with an inspiring hackathon, Owl Hacks, where my group
             united with a shared goal - finding ways to support our community
             during the challenging times of Covid-19. Despite the event being
             held remotely, we saw this as a perfect opportunity to collaborate
             with developers from all around.
           </p>
-          <p>
+          <p className="my-4">
             Together, we conceptualized a brilliant idea - a Pet Adoption
             website. Our aim was to connect people with adorable, local pets
             available for adoption in their area. To bring this concept to life,
@@ -35,13 +35,13 @@ export default function About() {
             with stylish elements using Bootstrap. To fetch the pet data, we
             integrated the PetFinder API.
           </p>
-          <p>
+          <p className="my-4">
             While working on the project, we encountered a few challenges,
             particularly in guiding some members who were new to React. As a
             team, we embraced this learning experience, supporting one another
             and growing together.
           </p>
-          <p>
+          <p className="my-4">
             Now, more than ever, we believe in the significance of companionship
             during these difficult times. Our website strives to make the
             process of adopting a pet much simpler, enabling people to find
@@ -49,7 +49,7 @@ export default function About() {
             By offering detailed information about each pet, we hope to assist
             potential adopters in making informed decisions.
           </p>
-          <p>
+          <p className="my-4">
             Our shared vision is to foster a sense of hope and positivity in the
             midst of the pandemic. We sincerely hope that this platform will not
             only connect people with their new animal companions but also
