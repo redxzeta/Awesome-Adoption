@@ -20,27 +20,45 @@ export default function About() {
           <h1 className="font-amatic text-5xl font-bold ">
             About PawternityHub
           </h1>
-          <p>
-            It all started in a hackathon as my group brainstormed for ideas on
-            what we can do to help the community. Due to covid19, the hackathon,
-            Owl Hacks, was done remotely and seemed the perfect opportunity to
-            meet and collaborate with other developers. My group came up with
-            the idea of creating a Pet Adoption website where people could find
-            local pets around their area to adopt. The technology we used is
-            React along with Bootstrap for the styling and using the PetFinder
-            API to request information about the pets. It was tricky because
-            some of the members were brand new to React and had to show them the
-            ropes. It was quite the learning experience for them and me too as I
-            never really taught React
+          <p className="my-4">
+            It all began with an inspiring hackathon, Owl Hacks, where my group
+            united with a shared goal - finding ways to support our community
+            during the challenging times of Covid-19. Despite the event being
+            held remotely, we saw this as a perfect opportunity to collaborate
+            with developers from all around.
           </p>
-          <p>
-            Due to the harsh times we are in, I hope people would be able to
-            find their own buddy that can help them. The goal is to make it
-            easier for people to adopt pets and learn more information about the
-            pets during covid19 - redxzeta
+          <p className="my-4">
+            Together, we conceptualized a brilliant idea - a Pet Adoption
+            website. Our aim was to connect people with adorable, local pets
+            available for adoption in their area. To bring this concept to life,
+            we leveraged the power of React and enhanced the user experience
+            with stylish elements using Bootstrap. To fetch the pet data, we
+            integrated the PetFinder API.
+          </p>
+          <p className="my-4">
+            While working on the project, we encountered a few challenges,
+            particularly in guiding some members who were new to React. As a
+            team, we embraced this learning experience, supporting one another
+            and growing together.
+          </p>
+          <p className="my-4">
+            Now, more than ever, we believe in the significance of companionship
+            during these difficult times. Our website strives to make the
+            process of adopting a pet much simpler, enabling people to find
+            their perfect furry companion and provide them with love and care.
+            By offering detailed information about each pet, we hope to assist
+            potential adopters in making informed decisions.
+          </p>
+          <p className="my-4">
+            Our shared vision is to foster a sense of hope and positivity in the
+            midst of the pandemic. We sincerely hope that this platform will not
+            only connect people with their new animal companions but also
+            inspire more kindness and empathy within our community. Together,
+            let&apos;s make a difference and find solace in the companionship of
+            our beloved pets during Covid-19.
           </p>
         </section>
-        <h1>Links</h1>
+        <h1 className="font-amatic text-5xl font-bold">Links</h1>
         <div className="flex justify-center items-center">
           <a
             target="blank"
