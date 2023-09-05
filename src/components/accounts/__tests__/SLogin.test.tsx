@@ -30,7 +30,7 @@ describe("<SLogin/>", () => {
 
   test("should show error message for incorrect email format", async () => {
     server.use(
-      rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
+      rest.post("https://test.supabase.co/auth/v1/token", (_req, res, ctx) => {
         return res(
           ctx.status(401),
           ctx.json({
@@ -74,24 +74,30 @@ describe("<SLogin/>", () => {
 
   test("should display wrong password", async () => {
     server.use(
-      rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
-        const { password } = req.body;
-        if (password !== "bones1234") {
-          return res(
-            ctx.status(401),
-            ctx.json({
-              message: "Wrong Password",
-            })
-          );
-        } else {
-          return res(
-            ctx.status(200),
-            ctx.json({
-              message: "Success",
-            })
-          );
+      rest.post(
+        "https://test.supabase.co/auth/v1/token",
+        async (req, res, ctx) => {
+          // Add async here
+          const requestBody = await req.json(); // Await the promise
+          const { password } = requestBody;
+
+          if (password !== "bones1234") {
+            return res(
+              ctx.status(401),
+              ctx.json({
+                message: "Wrong Password",
+              })
+            );
+          } else {
+            return res(
+              ctx.status(200),
+              ctx.json({
+                message: "Success",
+              })
+            );
+          }
         }
-      })
+      )
     );
     render(
       <Provider value={supabase}>
@@ -123,7 +129,7 @@ describe("<SLogin/>", () => {
 
   test("login success", async () => {
     server.use(
-      rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
+      rest.post("https://test.supabase.co/auth/v1/token", (_req, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json({
