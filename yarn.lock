@@ -1971,7 +1971,7 @@
     lodash.merge "^4.6.2"
     postcss-selector-parser "6.0.10"
 
-"@testing-library/dom@^8.11.1", "@testing-library/dom@^8.5.0":
+"@testing-library/dom@^8.5.0":
   version "8.13.0"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-8.13.0.tgz"
   integrity sha512-9VHgfIatKNXQNaZTtLnalIy0jNZzY35a4S3oi08YAt9Hv1VsfZ/DfA45lM8D/UhtHBGJ4/lGwp0PZkVndRkoOQ==
@@ -4823,13 +4823,12 @@ eslint-plugin-import@^2.23.4, eslint-plugin-import@^2.25.3, eslint-plugin-import
     semver "^6.3.0"
     tsconfig-paths "^3.14.1"
 
-eslint-plugin-jest-dom@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-dom/-/eslint-plugin-jest-dom-4.0.2.tgz#9d3e2f51055f74c74e745d89c4b1a9781e0ec7a9"
-  integrity sha512-Jo51Atwyo2TdcUncjmU+UQeSTKh3sc2LF/M5i/R3nTU0Djw9V65KGJisdm/RtuKhy2KH/r7eQ1n6kwYFPNdHlA==
+eslint-plugin-jest-dom@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-dom/-/eslint-plugin-jest-dom-5.1.0.tgz#b285cd1cc71c084c8ee897f0f85599758d7cb933"
+  integrity sha512-JIXZp+E/h/aGlP/rQc4tuOejiHlZXg65qw8JAJMIJA5VsdjOkss/SYcRSqBrQuEOytEM8JvngUjcz31d1RrCrA==
   dependencies:
     "@babel/runtime" "^7.16.3"
-    "@testing-library/dom" "^8.11.1"
     requireindex "^1.2.0"
 
 eslint-plugin-jest@^25.3.0:
