@@ -14,6 +14,12 @@ import "./home.css";
 import load from "./loding.png";
 
 export default function Home() {
+  const scrollToFeaturedPets = () => {
+    const featuredPetsSection = document.getElementById("featured-pets");
+    if (featuredPetsSection) {
+      featuredPetsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div>
       <Hero className="home__background min-h-screen">
@@ -23,12 +29,17 @@ export default function Home() {
             <h1 className="text-5xl font-bold font-amatic">Get a BFF</h1>
             <h2 className="text-5xl font-bold font-amatic">Now and Forever </h2>
 
-            <Button color="primary" className="my-2">
+            <Button
+              color="primary"
+              className="my-2"
+              onClick={scrollToFeaturedPets}
+            >
               Get Started
             </Button>
           </div>
         </Hero.Content>
       </Hero>
+      <div id="featured-pets"></div>
       <LoadingPetCards />
     </div>
   );
