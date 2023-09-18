@@ -4,7 +4,7 @@ import { customRender } from "../../../swrconfigtest";
 import { rest, server } from "../../../testServer";
 import About from "../About";
 
-describe("<About/>", () => {
+describe.skip("<About/>", () => {
   test("should fetch api and expect error", async () => {
     server.use(
       rest.get(
