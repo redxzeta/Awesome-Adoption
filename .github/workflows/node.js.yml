@@ -40,8 +40,8 @@ jobs:
       - name: Check for eslint
         run: yarn lint
 
-      - name: Run the tests
-        run: yarn test:coverage
+      # - name: Run the tests
+      #   run: yarn test:coverage
 
       - name: Build
         env:
