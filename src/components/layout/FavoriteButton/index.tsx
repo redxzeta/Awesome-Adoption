@@ -16,7 +16,7 @@ const FavoriteButton = ({
   add,
   remove,
   loading,
-  favoritedCount,
+  favoritedCount
 }: FavoriteButtonType) => {
   if (loading)
     return (

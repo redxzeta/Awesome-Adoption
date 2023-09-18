@@ -21,7 +21,7 @@ export const customRender = (
 ) => {
   return {
     user: userEvent.setup(),
-    ...render(ui, { wrapper: AllTheProviders, ...options }),
+    ...render(ui, { wrapper: AllTheProviders, ...options })
   };
 };
 
@@ -41,7 +41,7 @@ export const customRouterRender = (
 
   return {
     user: userEvent.setup(),
-    ...render(ui, { wrapper: customProvider, ...options }),
+    ...render(ui, { wrapper: customProvider, ...options })
   };
 };
 
@@ -61,5 +61,5 @@ const customProvider = ({ children }: { children: React.ReactNode }) => {
 const initialState: PetTokenType = {
   tokenHeaders: "yayeet",
   loading: false,
-  errors: false,
+  errors: false
 };

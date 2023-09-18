@@ -1,7 +1,7 @@
 import {
   render,
   screen,
-  waitForElementToBeRemoved,
+  waitForElementToBeRemoved
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
@@ -30,7 +30,7 @@ describe("<Register/>", () => {
 
     await waitForElementToBeRemoved(() => screen.queryByText(/submit/i));
     const LoadingButton = screen.getByRole("button", {
-      name: /Loading.../i,
+      name: /Loading.../i
     });
     expect(LoadingButton).toBeDisabled();
     await waitForElementToBeRemoved(screen.queryByText(/Loading.../i));
@@ -65,7 +65,7 @@ describe("<Register/>", () => {
     await waitForElementToBeRemoved(() => screen.queryByText(/submit/i));
 
     const LoadingButton = screen.getByRole("button", {
-      name: /Loading.../i,
+      name: /Loading.../i
     });
     expect(LoadingButton).toBeDisabled();
 

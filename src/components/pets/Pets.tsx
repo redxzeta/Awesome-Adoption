@@ -1,5 +1,5 @@
 import PetCardFlex, {
-  PawHubContainer,
+  PawHubContainer
 } from "components/layout/Grid/PetCardFlex";
 import { Card } from "react-daisyui";
 import { Link } from "react-router-dom";
@@ -23,24 +23,24 @@ type PetLink = {
 const linkData: PetLink[] = [
   {
     img: Dog,
-    type: "Dog",
+    type: "Dog"
   },
   {
     img: Cat,
-    type: "Cat",
+    type: "Cat"
   },
   {
     img: Bird,
-    type: "Bird",
+    type: "Bird"
   },
   {
     img: Horse,
-    type: "Horse",
+    type: "Horse"
   },
   {
     img: Rabbit,
-    type: "Rabbit",
-  },
+    type: "Rabbit"
+  }
 ];
 
 export default function Pets() {
@@ -66,7 +66,7 @@ export default function Pets() {
 export const AnimalType = ({
   type,
   img,
-  link,
+  link
 }: {
   type: string;
   img: string;
@@ -109,7 +109,7 @@ const RandomPet = () => {
     {
       revalidateOnFocus: false,
       revalidateIfStale: false,
-      revalidateOnReconnect: false,
+      revalidateOnReconnect: false
     }
   );
   const isLoading = !error && !data;

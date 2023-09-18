@@ -10,7 +10,7 @@ import {
   LoggedOut,
   RemoveFav,
   UpdateAuth,
-  UpdateProfile,
+  UpdateProfile
 } from "./supaActions";
 
 export type FavoritePets = { id: number; pet: string; created_at: Date };
@@ -52,7 +52,7 @@ export const initialState: ISupaState = {
   error: false,
   isLoading: false,
   favoritePets: [],
-  dispatch: () => undefined,
+  dispatch: () => undefined
 };
 
 export const supaReducer = (
@@ -69,32 +69,32 @@ export const supaReducer = (
     case "UPDATE_AUTH":
       return {
         ...state,
-        ...action.payload,
+        ...action.payload
       };
     case "UPDATE_PROFILE":
       return {
         ...state,
         username: action.payload.username,
-        favoritePets: action.payload.favoritepets,
+        favoritePets: action.payload.favoritepets
       };
     case "LOGGED_OUT":
       return initialState;
     case "CHANGE_USERNAME":
       return {
         ...state,
-        username: action.payload,
+        username: action.payload
       };
     case "ADD_PET":
       return {
         ...state,
-        favoritePets: [...state.favoritePets, action.payload],
+        favoritePets: [...state.favoritePets, action.payload]
       };
     case "REMOVE_FAV":
       return {
         ...state,
         favoritePets: state.favoritePets.filter(
           (el) => el.id !== action.payload
-        ),
+        )
       };
 
     default:

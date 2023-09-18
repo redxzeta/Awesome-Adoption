@@ -14,14 +14,14 @@ const FavoriteSection = ({ id }: { id: string }) => {
   const filter = useFilter((query) => query.eq("pet", id), [id, favoritePets]);
   const [{ count: favoritedCount }] = useSelect("favoritepets", {
     filter,
-    options: { count: "exact" },
+    options: { count: "exact" }
   });
   const [{ fetching: deleteFetching }, executeDelete] =
     useDelete("favoritepets");
   const addFav = async () => {
     const { data } = await execute({
       favoriter: user?.id,
-      pet: id,
+      pet: id
     });
     dispatch(AddNewFav(data[0]));
   };
@@ -29,7 +29,7 @@ const FavoriteSection = ({ id }: { id: string }) => {
   const removeFav = async () => {
     await executeDelete((query) => query.eq("id", removalId), {
       returning: "minimal",
-      count: "estimated",
+      count: "estimated"
     });
     dispatch(removeFavoritePet(removalId));
   };

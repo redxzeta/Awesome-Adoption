@@ -3,7 +3,7 @@ import {
   createContext,
   useContext,
   useEffect,
-  useReducer,
+  useReducer
 } from "react";
 import { useAuthStateChange, useClient } from "react-supabase";
 import {
@@ -12,7 +12,7 @@ import {
   loadingSupa,
   loggedOut,
   updateAuth,
-  updateProfile,
+  updateProfile
 } from "reducers/supaFunctions";
 import { Props } from "types/types";
 
@@ -20,7 +20,7 @@ import {
   IProfileUpdate,
   ISupaState,
   initialState,
-  supaReducer,
+  supaReducer
 } from "../reducers/supaReducer";
 
 export const AuthContext: Context<ISupaState> = createContext(initialState);
@@ -37,14 +37,14 @@ export function AuthProvider({ children }: Props) {
       if (session?.user?.id) {
         const sessionState = {
           session,
-          user: session?.user ?? null,
+          user: session?.user ?? null
         };
         dispatch({ type: "UPDATE_AUTH", payload: sessionState });
         const { data, error } = await handleGetUserProfile(session.user.id);
         if (error) throw error;
         const updatedUserProfile = {
           username: data.username,
-          favoritepets: data.favoritepets,
+          favoritepets: data.favoritepets
         };
         dispatch(updateProfile(updatedUserProfile));
       } else {
@@ -74,7 +74,7 @@ export function AuthProvider({ children }: Props) {
       const sessionState = {
         session,
         user: session.user,
-        event: event,
+        event: event
       };
 
       dispatch(updateAuth(sessionState));
@@ -84,7 +84,7 @@ export function AuthProvider({ children }: Props) {
 
         const updatedUserProfile = {
           username: data.username,
-          favoritepets: data.favoritepets,
+          favoritepets: data.favoritepets
         };
         dispatch(updateProfile(updatedUserProfile));
       } catch (error) {

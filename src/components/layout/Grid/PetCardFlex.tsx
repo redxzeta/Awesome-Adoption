@@ -5,7 +5,7 @@ const PetCardFlex = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const PawHubContainer = ({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) => <div className="container mx-auto px-4 md:px-12 pt-6   ">{children}</div>;

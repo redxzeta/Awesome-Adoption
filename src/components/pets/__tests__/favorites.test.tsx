@@ -7,7 +7,7 @@ import { FavoritePets, ISupaState } from "reducers/supaReducer";
 import { AuthContext, AuthProvider } from "../../../context/SupaContext";
 import PetAuthProvider, {
   PetAuthContext,
-  PetTokenType,
+  PetTokenType
 } from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
 import { supabase } from "../../../testServer";
@@ -28,7 +28,7 @@ describe("Favorites", () => {
     expect(
       screen.getByRole("heading", {
         name: /Start selecting your favorites to find your future best friend!/i,
-        level: 5,
+        level: 5
       })
     ).toBeInTheDocument();
   });
@@ -39,26 +39,26 @@ describe("Favorites", () => {
       {
         id: 50,
         pet: "2",
-        created_at: start,
+        created_at: start
       },
       {
         id: 51,
         pet: "3",
-        created_at: start,
+        created_at: start
       },
       {
         id: 52,
         pet: "4",
-        created_at: start,
-      },
+        created_at: start
+      }
     ];
     const supaInitialState = {
-      favoritePets: favoritePets,
+      favoritePets: favoritePets
     } as ISupaState;
     const initialState: PetTokenType = {
       tokenHeaders: "yayeet",
       loading: false,
-      errors: false,
+      errors: false
     };
     customRender(
       <BrowserRouter>
@@ -89,26 +89,26 @@ test.skip("test remove button", async () => {
     {
       id: 50,
       pet: "2",
-      created_at: start,
+      created_at: start
     },
     {
       id: 51,
       pet: "3",
-      created_at: start,
+      created_at: start
     },
     {
       id: 52,
       pet: "4",
-      created_at: start,
-    },
+      created_at: start
+    }
   ];
   const supaInitialState = {
-    favoritePets: favoritePets,
+    favoritePets: favoritePets
   } as ISupaState;
   const initialState: PetTokenType = {
     tokenHeaders: "yayeet",
     loading: false,
-    errors: false,
+    errors: false
   };
   customRender(
     <BrowserRouter>

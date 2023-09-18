@@ -27,7 +27,7 @@ describe("Profile Page", () => {
     expect(
       screen.getByRole("heading", {
         level: 4,
-        name: /You have not marked a pet as a favorite yet/i,
+        name: /You have not marked a pet as a favorite yet/i
       })
     );
   });

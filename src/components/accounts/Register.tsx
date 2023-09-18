@@ -46,7 +46,7 @@ const Register = () => {
                         className=" flex min-w-[10px] "
                         {...register("email", {
                           required: true,
-                          maxLength: 45,
+                          maxLength: 45
                         })}
                       />
                     )}

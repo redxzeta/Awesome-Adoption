@@ -1,5 +1,5 @@
 import PetCardFlex, {
-  PawHubContainer,
+  PawHubContainer
 } from "components/layout/Grid/PetCardFlex";
 import PetCard from "components/layout/PetCard";
 import { usePetAuth } from "context/TokenContext";

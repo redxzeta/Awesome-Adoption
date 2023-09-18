@@ -4,10 +4,10 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   ExclamationTriangleIcon,
-  NoSymbolIcon,
+  NoSymbolIcon
 } from "@heroicons/react/24/outline";
 import PetCardFlex, {
-  PawHubContainer,
+  PawHubContainer
 } from "components/layout/Grid/PetCardFlex";
 import { postcodeValidator } from "postcode-validator";
 import React, { useEffect, useRef, useState } from "react";
