@@ -14,7 +14,7 @@ async function fetcher(
   const res = await fetch(url, {
     method: "GET",
     body: null,
-    headers: { Authorization: tokenHeaders },
+    headers: { Authorization: tokenHeaders }
   });
   if (!res.ok) {
     throw new Error("An error ocurred while fetching the data");

@@ -34,7 +34,7 @@ describe("<SLogin/>", () => {
         return res(
           ctx.status(401),
           ctx.json({
-            message: "Unable to validate email address: invalid format",
+            message: "Unable to validate email address: invalid format"
           })
         );
       })
@@ -62,7 +62,7 @@ describe("<SLogin/>", () => {
     await user.click(submitButton);
 
     const LoadingButton = await screen.findByRole("button", {
-      name: /Loading.../i,
+      name: /Loading.../i
     });
     expect(LoadingButton).toBeDisabled();
 
@@ -80,14 +80,14 @@ describe("<SLogin/>", () => {
           return res(
             ctx.status(401),
             ctx.json({
-              message: "Wrong Password",
+              message: "Wrong Password"
             })
           );
         } else {
           return res(
             ctx.status(200),
             ctx.json({
-              message: "Success",
+              message: "Success"
             })
           );
         }
@@ -110,7 +110,7 @@ describe("<SLogin/>", () => {
 
     await user.click(screen.getByText(/submit/i));
     const LoadingButton = await screen.findByRole("button", {
-      name: /Loading.../i,
+      name: /Loading.../i
     });
     expect(LoadingButton).toBeDisabled();
 
@@ -133,7 +133,7 @@ describe("<SLogin/>", () => {
             refresh_token: "cute_doggo",
             token_type: "bearer",
             user: { id: "1234" },
-            message: "No message",
+            message: "No message"
           })
         );
       })
@@ -156,12 +156,12 @@ describe("<SLogin/>", () => {
     await user.click(screen.getByText(/submit/i));
 
     const LoadingButton = await screen.findByRole("button", {
-      name: /Loading.../i,
+      name: /Loading.../i
     });
     expect(LoadingButton).toBeDisabled();
 
     const submitPostButton = await screen.findByRole("button", {
-      name: /submit/i,
+      name: /submit/i
     });
     expect(submitPostButton).toBeInTheDocument();
     expect(submitPostButton).toBeEnabled();

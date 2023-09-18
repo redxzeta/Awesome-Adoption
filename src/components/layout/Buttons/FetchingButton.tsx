@@ -10,7 +10,7 @@ type FetchingButtonType = {
 export const FetchingButton = ({
   fetching,
   className = "",
-  action,
+  action
 }: FetchingButtonType) => (
   <Button
     className={className}

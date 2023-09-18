@@ -11,7 +11,7 @@ test("matches animal link snapshot", () => {
   const animalLink = {
     img: "https://via.placeholder.com/150",
     type: "playtpus",
-    link: "pets/playtpus",
+    link: "pets/playtpus"
   };
   const tree = renderer
     .create(
@@ -35,7 +35,7 @@ describe("<Pets/>", () => {
       </BrowserRouter>
     );
     const ClickHereButton = screen.getAllByRole("link", {
-      name: /Click Here/i,
+      name: /Click Here/i
     });
     expect(ClickHereButton[0]).toHaveAttribute("href", "/dog");
     expect(ClickHereButton[1]).toHaveAttribute("href", "/cat");
@@ -122,7 +122,7 @@ describe("<Pets/>", () => {
     expect(petImage.length).toBe(5);
     const errorTitle = screen.getByRole("heading", {
       name: /An Error Occurred/i,
-      level: 1,
+      level: 1
     });
 
     expect(errorTitle).toBeInTheDocument();
@@ -139,10 +139,10 @@ describe("<Pets/>", () => {
               name: "Baby Yoda",
               photos: [
                 {
-                  medium: null,
-                },
-              ],
-            },
+                  medium: null
+                }
+              ]
+            }
           })
         );
       })

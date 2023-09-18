@@ -16,7 +16,7 @@ export const NameInput = ({ inputClasses, register, errors }: InputProps) => {
         {...register("names", {
           required: "This field is required.",
           maxLength: 50,
-          minLength: 6,
+          minLength: 6
         })}
         className={inputClasses}
       />
@@ -37,7 +37,7 @@ export const EmailInput = ({ inputClasses, register, errors }: InputProps) => {
         placeholder="Email"
         {...register("email", {
           required: "This field is required.",
-          pattern: /^\S+@\S+$/i,
+          pattern: /^\S+@\S+$/i
         })}
         className={inputClasses}
       />

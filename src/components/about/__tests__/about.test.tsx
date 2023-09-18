@@ -22,7 +22,7 @@ describe("<About/>", () => {
     );
     const errorTitle = screen.getByRole("heading", {
       name: /Error Loading/i,
-      level: 1,
+      level: 1
     });
 
     expect(errorTitle).toBeInTheDocument();

@@ -17,7 +17,7 @@ export default function PetCard(
     type,
     primary_photo_cropped: link,
     breeds,
-    children,
+    children
   } = props;
 
   let myInterval: ReturnType<typeof setTimeout>;

@@ -24,7 +24,7 @@ async function fetcher(
   const res = await fetch(url, {
     method: "GET",
     body: null,
-    headers: { Authorization: tokenHeaders },
+    headers: { Authorization: tokenHeaders }
   });
   if (!res.ok) {
     if (multi) {

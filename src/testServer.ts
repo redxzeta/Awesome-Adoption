@@ -11,14 +11,14 @@ const contributors = [
     id: 1,
     login: "abe",
     html_url: "somesite.com",
-    avatar_url: PlaceImage,
+    avatar_url: PlaceImage
   },
   {
     id: 2,
     login: "label",
     html_url: "asomesite.com",
-    avatar_url: PlaceImage,
-  },
+    avatar_url: PlaceImage
+  }
 ];
 
 const petList = {
@@ -28,13 +28,13 @@ const petList = {
     name: "Baby Yoda",
     type: "Grogu",
     contact: {
-      email: "yoda@onefor.me",
+      email: "yoda@onefor.me"
     },
     breeds: {
-      primary: "Grogu",
+      primary: "Grogu"
     },
     colors: {
-      primary: "green",
+      primary: "green"
     },
     age: "Baby",
     gender: "male",
@@ -43,10 +43,10 @@ const petList = {
     photos: [
       {
         medium: "babyYoda.medium.jpg",
-        large: "babyYoda.large.jpg",
-      },
-    ],
-  },
+        large: "babyYoda.large.jpg"
+      }
+    ]
+  }
 };
 
 const petListFav = [
@@ -60,18 +60,18 @@ const petListFav = [
       gender: "male",
       description: "Woof",
       primary_photo_cropped: {
-        medium: "courage.jpg",
+        medium: "courage.jpg"
       },
       breeds: {
-        primary: "dog",
+        primary: "dog"
       },
       photos: [
         {
           medium: "courage.medium.jpg",
-          large: "courage.large.jpg",
-        },
-      ],
-    },
+          large: "courage.large.jpg"
+        }
+      ]
+    }
   },
   {
     animal: {
@@ -82,18 +82,18 @@ const petListFav = [
       gender: "male",
       description: "finns friend",
       primary_photo_cropped: {
-        medium: "jake.png",
+        medium: "jake.png"
       },
       breeds: {
-        primary: "dog",
+        primary: "dog"
       },
       photos: [
         {
           medium: "finn.medium.jpg",
-          large: "finn.large.jpg",
-        },
-      ],
-    },
+          large: "finn.large.jpg"
+        }
+      ]
+    }
   },
   {
     animal: {
@@ -104,19 +104,19 @@ const petListFav = [
       gender: "male",
       description: "masterr of sowrds",
       primary_photo_cropped: {
-        medium: "boots.jpg",
+        medium: "boots.jpg"
       },
       breeds: {
-        primary: "cat",
+        primary: "cat"
       },
       photos: [
         {
           medium: "cat.medium.jpg",
-          large: "cat.large.jpg",
-        },
-      ],
-    },
-  },
+          large: "cat.large.jpg"
+        }
+      ]
+    }
+  }
 ];
 
 const fakenewProfiles: ProfileType[] = [
@@ -128,8 +128,8 @@ const fakenewProfiles: ProfileType[] = [
     favoritepets: [],
     background: {
       id: 1,
-      background_url: "someImage.png",
-    },
+      background_url: "someImage.png"
+    }
   },
   {
     id: "36",
@@ -138,13 +138,13 @@ const fakenewProfiles: ProfileType[] = [
     avatar_url: "cuteDoggoAndCat.jpg",
     favoritepets: [
       { id: 1, pet: "2", created_at: new Date("01/01/2020") },
-      { id: 2, pet: "3", created_at: new Date("01/02/2020") },
+      { id: 2, pet: "3", created_at: new Date("01/02/2020") }
     ],
     background: {
       id: 1,
-      background_url: "someImage.png",
-    },
-  },
+      background_url: "someImage.png"
+    }
+  }
 ];
 
 const server = setupServer(
@@ -204,7 +204,7 @@ const server = setupServer(
         expires_in: 3600,
         refresh_token: "uCtyqUsj5FJqtIxCkz2Mvg",
         token_type: "bearer",
-        user: { id: "1234" },
+        user: { id: "1234" }
       })
     );
   }),
@@ -227,7 +227,7 @@ const server = setupServer(
       user_metadata: {},
       identities: [],
       created_at: Date.now(),
-      updated_at: Date.now(),
+      updated_at: Date.now()
     };
     return res(ctx.status(200), ctx.json(fakeNewAccount));
   }),
@@ -249,7 +249,7 @@ const server = setupServer(
     (_req, res, ctx) => {
       const fakeNewFavorites = [
         { id: 1, pet: "1" },
-        { id: 2, pet: "2" },
+        { id: 2, pet: "2" }
       ];
       return res(ctx.status(200), ctx.json(fakeNewFavorites));
     }
@@ -261,7 +261,7 @@ const server = setupServer(
       const myBlob = new Blob(
         [
           `/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/
-      2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/`,
+      2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/`
         ],
         { type: "image/jpeg" }
       );

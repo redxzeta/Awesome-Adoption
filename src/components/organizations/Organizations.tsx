@@ -1,5 +1,5 @@
 import PetCardFlex, {
-  PawHubContainer,
+  PawHubContainer
 } from "components/layout/Grid/PetCardFlex";
 import React, { useState } from "react";
 
@@ -59,7 +59,7 @@ const Donate = () => {
             >
               <option value="All">All</option>
               {[
-                ...new Set(charity.map((item) => item.location.toLowerCase())),
+                ...new Set(charity.map((item) => item.location.toLowerCase()))
               ].map((cha, idx) => (
                 <option value={cha.toLowerCase()} key={idx + cha}>
                   {cha}

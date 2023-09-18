@@ -10,7 +10,7 @@ export type PetTokenType = {
 const initialState: PetTokenType = {
   tokenHeaders: null,
   loading: false,
-  errors: false,
+  errors: false
 };
 type Props = {
   children?: React.ReactNode | React.ReactNode[];
@@ -27,9 +27,9 @@ export default function PetAuthProvider({ children }: Props) {
         const x = {
           method: "POST",
           headers: {
-            "Content-type": "application/x-www-form-urlencoded",
+            "Content-type": "application/x-www-form-urlencoded"
           },
-          body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`,
+          body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`
         };
         const response = await fetch(
           "https://api.petfinder.com/v2/oauth2/token",

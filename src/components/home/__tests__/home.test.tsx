@@ -80,7 +80,7 @@ describe("<Home/>", () => {
     expect(
       screen.getByRole("heading", {
         level: 5,
-        name: /Oops! An Error Occurred Getting The Pets/i,
+        name: /Oops! An Error Occurred Getting The Pets/i
       })
     );
   });

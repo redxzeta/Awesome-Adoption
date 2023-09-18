@@ -17,7 +17,7 @@ const Contact = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
@@ -44,7 +44,7 @@ const Contact = () => {
       closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
-      progress: undefined,
+      progress: undefined
     });
 
   const errorNotification = () =>
@@ -55,7 +55,7 @@ const Contact = () => {
       closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
-      progress: undefined,
+      progress: undefined
     });
 
   return (

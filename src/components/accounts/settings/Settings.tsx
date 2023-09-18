@@ -36,7 +36,7 @@ export default function Settings() {
       .from("profiles")
       .update({
         description: data.description,
-        username: data.username,
+        username: data.username
       })
       .match({ id: user?.id });
   };
@@ -64,7 +64,7 @@ export default function Settings() {
                       {...register("username", {
                         required: true,
                         minLength: 4,
-                        maxLength: 45,
+                        maxLength: 45
                       })}
                     />
                   )}

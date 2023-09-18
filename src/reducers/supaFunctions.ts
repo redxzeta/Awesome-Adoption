@@ -12,7 +12,7 @@ export const updateAuth = (sessionState: {
   event: AuthChangeEvent;
 }): SupaType => ({
   type: "UPDATE_AUTH",
-  payload: sessionState,
+  payload: sessionState
 });
 
 export const updateProfile = (profile: {
@@ -20,20 +20,20 @@ export const updateProfile = (profile: {
   favoritepets: FavoritePets[];
 }): SupaType => ({
   type: "UPDATE_PROFILE",
-  payload: profile,
+  payload: profile
 });
 
 export const changeUserName = (username: string): SupaType => ({
   type: "CHANGE_USERNAME",
-  payload: username,
+  payload: username
 });
 
 export const AddNewFav = (newFav: FavoritePets): SupaType => ({
   type: "ADD_PET",
-  payload: newFav,
+  payload: newFav
 });
 
 export const removeFavoritePet = (favId: number): SupaType => ({
   type: "REMOVE_FAV",
-  payload: favId,
+  payload: favId
 });

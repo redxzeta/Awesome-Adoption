@@ -1,5 +1,5 @@
 import PetCardFlex, {
-  PawHubContainer,
+  PawHubContainer
 } from "components/layout/Grid/PetCardFlex";
 import React, { useEffect } from "react";
 import { Button } from "react-daisyui";
@@ -83,7 +83,7 @@ export default function Favorites() {
     )[0];
     await executeDelete((query) => query.eq("id", removedPet.id), {
       returning: "minimal",
-      count: "estimated",
+      count: "estimated"
     });
     dispatch(removeFavoritePet(removedPet.id));
   };

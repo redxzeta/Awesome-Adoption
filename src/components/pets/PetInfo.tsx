@@ -1,7 +1,7 @@
 import { ArrowRightIcon, EnvelopeIcon } from "@heroicons/react/20/solid";
 import { ShareIcon } from "@heroicons/react/24/outline";
 import PetCardFlex, {
-  PawHubContainer,
+  PawHubContainer
 } from "components/layout/Grid/PetCardFlex";
 import Spinner from "components/shared/spinner/Spinner";
 import { useCallback, useEffect, useState } from "react";
@@ -34,7 +34,7 @@ export default function PetInfo() {
     return {
       title: pet?.type + " for adoption.",
       text: "Show some love to this animal. Please have a look if you want to adopt this cute life.",
-      url: window.location.href,
+      url: window.location.href
     };
   }, [pet]);
 

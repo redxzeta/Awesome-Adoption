@@ -1,5 +1,5 @@
 import PetCardFlex, {
-  PawHubContainer,
+  PawHubContainer
 } from "components/layout/Grid/PetCardFlex";
 import PetCard from "components/layout/PetCard";
 import { Button, Hero } from "react-daisyui";
@@ -50,9 +50,9 @@ const LoadingPetCards = () => {
   const {
     error,
     data: petList,
-    mutate,
+    mutate
   } = useSWR(tokenHeaders ? [randomPetsList, tokenHeaders] : null, fetcher, {
-    revalidateOnFocus: false,
+    revalidateOnFocus: false
   });
   const mutatePetlist = async () => mutate({} as PetSearchType);
   const isLoading = !error && !petList?.animals;

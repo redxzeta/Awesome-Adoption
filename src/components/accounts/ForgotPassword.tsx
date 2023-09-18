@@ -11,7 +11,7 @@ type ForgotPasswordType = {
 };
 
 const initState: ForgotPasswordType = {
-  email: "",
+  email: ""
 };
 
 const ForgotPassword = () => {

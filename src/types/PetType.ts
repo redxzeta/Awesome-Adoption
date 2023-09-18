@@ -14,10 +14,10 @@ export const PET_LIST_CONST = [
   "cat",
   "rabbit",
   "horse",
-  "bird",
+  "bird"
 ] as const;
 
-export type PetListType = typeof PET_LIST_CONST[number];
+export type PetListType = (typeof PET_LIST_CONST)[number];
 
 export type PetCardType = {
   id: number;

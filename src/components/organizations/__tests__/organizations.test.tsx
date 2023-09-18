@@ -20,7 +20,7 @@ describe("Organizations", () => {
     expect(
       (
         screen.getByRole("option", {
-          name: "united states",
+          name: "united states"
         }) as HTMLOptionElement
       ).selected
     ).toBeTruthy();
@@ -28,7 +28,7 @@ describe("Organizations", () => {
     expect(
       (
         screen.queryByRole("option", {
-          name: "india",
+          name: "india"
         }) as HTMLOptionElement
       ).selected
     ).toBe(false);

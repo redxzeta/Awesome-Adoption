@@ -110,7 +110,7 @@ export default function NavigationBar() {
 
 const DropdownNavLink = ({
   children,
-  route,
+  route
 }: {
   children: React.ReactNode;
   route: string;
