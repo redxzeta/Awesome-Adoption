@@ -37,14 +37,15 @@
     "validator": "^13.12.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "vite",
+    "build": "vite build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:coverage": "react-scripts test --watchAll=false --coverage",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "lint": "eslint src/**/*.{ts,tsx}",
-    "lint-fix": "eslint src/**/*.{ts,tsx} --fix"
+    "lint-fix": "eslint src/**/*.{ts,tsx} --fix",
+    "dev": "vite"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -86,7 +87,13 @@
     "pretty-quick": "^4.0.0",
     "react-test-renderer": "^19.0.0",
     "standard": "^17.1.2",
-    "tailwindcss": "^4.0.8"
+    "tailwindcss": "^4.0.8",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@types/node": "^22.13.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.1.0",
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "jest": {
     "collectCoverageFrom": [
