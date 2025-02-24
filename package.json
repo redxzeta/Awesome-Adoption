@@ -44,8 +44,7 @@
     "test:coverage": "react-scripts test --watchAll=false --coverage",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "lint": "eslint src/**/*.{ts,tsx}",
-    "lint-fix": "eslint src/**/*.{ts,tsx} --fix",
-    "prepare": "husky install"
+    "lint-fix": "eslint src/**/*.{ts,tsx} --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -80,7 +79,6 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-testing-library": "^7.1.1",
-    "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "msw": "^2.7.1",
     "postcss": "^8.5.3",
