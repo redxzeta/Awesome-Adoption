@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div>
       <Hero className="home__background min-h-screen">
-        <Hero.Overlay className="bg-opacity-60" />
+        <Hero.Overlay className="bg-black/60" />
         <Hero.Content className="text-center">
           <div className="max-w-md text-base-100">
             <h1 className="text-5xl font-bold font-amatic">Get a BFF</h1>

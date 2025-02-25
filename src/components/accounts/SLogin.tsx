@@ -2,7 +2,7 @@ import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import { Form, Input } from "react-daisyui";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { useSignIn } from "react-supabase";
+import { useSignInWithPassword } from "react-supabase";
 
 import { FetchingButton } from "../layout/Buttons/FetchingButton";
 
@@ -15,7 +15,7 @@ const SLogin = () => {
   const navigate = useNavigate();
   const { control, handleSubmit, register } = useForm<LoginType>();
 
-  const [{ error, fetching }, signIn] = useSignIn();
+  const [{ error, fetching }, signIn] = useSignInWithPassword();
   const onSubmit: SubmitHandler<LoginType> = async (data) => {
     const { session } = await signIn(data);
 

@@ -17,7 +17,7 @@ export const fetchSupaProfile = async (
   profileSearch: string
 ) => {
   const { data, error } = await client
-    .from<ProfileType>("profiles")
+    .from("profiles")
     .select("*, favoritepets(id,pet,created_at), background(*) ")
     .eq("username", profileSearch)
     .single();

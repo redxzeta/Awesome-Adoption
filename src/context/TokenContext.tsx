@@ -1,4 +1,4 @@
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 export type PetTokenType = {
@@ -30,9 +30,11 @@ export default function PetAuthProvider({ children }: Props) {
             "Content-type": "application/x-www-form-urlencoded",
           },
           body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`,
+          mode: "no-cors"
         };
         const response = await fetch(
           "https://api.petfinder.com/v2/oauth2/token",
+          // @ts-ignore
           x
         );
         const json = await response.json();

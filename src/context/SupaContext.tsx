@@ -17,7 +17,6 @@ import {
 import { Props } from "types/types";
 
 import {
-  IProfileUpdate,
   ISupaState,
   initialState,
   supaReducer,
@@ -33,12 +32,14 @@ export function AuthProvider({ children }: Props) {
   const sessionLoad = async () => {
     dispatch(loadingSupa());
     try {
+      // @ts-ignore
       const session = client.auth.session();
       if (session?.user?.id) {
         const sessionState = {
           session,
           user: session?.user ?? null,
         };
+        // @ts-ignore
         dispatch({ type: "UPDATE_AUTH", payload: sessionState });
         const { data, error } = await handleGetUserProfile(session.user.id);
         if (error) throw error;
@@ -59,7 +60,7 @@ export function AuthProvider({ children }: Props) {
 
   const handleGetUserProfile = async (id: string) =>
     await client
-      .from<IProfileUpdate>("profiles")
+      .from("profiles")
       .select("username, favoritepets(id,pet,created_at)")
       .eq("id", id)
       .single();
