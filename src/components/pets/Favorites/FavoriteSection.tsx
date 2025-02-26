@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDelete, useFilter, useInsert, useSelect } from "react-supabase";
+import { useDelete, useFilter, useInsert, useSelect } from "react-supabase-next";
 import { AddNewFav, removeFavoritePet } from "reducers/supaFunctions";
 
 import { useAuth } from "../../../context/SupaContext";

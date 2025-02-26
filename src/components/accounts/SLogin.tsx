@@ -2,7 +2,7 @@ import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import { Form, Input } from "react-daisyui";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { useSignInWithPassword } from "react-supabase";
+import { useSignInWithPassword } from "react-supabase-next";
 
 import { FetchingButton } from "../layout/Buttons/FetchingButton";
 

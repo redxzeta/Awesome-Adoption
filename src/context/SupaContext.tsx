@@ -5,7 +5,7 @@ import {
   useEffect,
   useReducer,
 } from "react";
-import { useAuthStateChange, useClient } from "react-supabase";
+import { useAuthStateChange, useClient } from "react-supabase-next";
 import {
   errorSupa,
   loadedSupa,

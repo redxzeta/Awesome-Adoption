@@ -2,7 +2,7 @@ import { FetchingButton } from "components/layout/Buttons/FetchingButton";
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { Fragment, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useResetPassword } from "react-supabase";
+import { useResetPassword } from "react-supabase-next";
 
 import { useAuth } from "../../context/SupaContext";
 

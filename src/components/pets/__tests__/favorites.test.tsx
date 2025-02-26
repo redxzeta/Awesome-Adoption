@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-supabase";
+import { Provider } from "react-supabase-next";
 import { FavoritePets, ISupaState } from "reducers/supaReducer";
 
 import { AuthContext, AuthProvider } from "../../../context/SupaContext";

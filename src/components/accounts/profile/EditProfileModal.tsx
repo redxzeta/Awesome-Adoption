@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { useUpsert } from "react-supabase";
+import { useUpsert } from "react-supabase-next";
 
 import { useAuth } from "../../../context/SupaContext";
 import useForm from "../../../useHooks/useForm";

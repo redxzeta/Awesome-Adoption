@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { PetAuthContext, PetTokenType } from "context/TokenContext";
 import React, { ReactElement } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-supabase";
+import { Provider } from "react-supabase-next";
 import { SWRConfig } from "swr";
 import { supabase } from "testServer";
 

@@ -3,7 +3,7 @@ import PetCardFlex, {
 } from "components/layout/Grid/PetCardFlex";
 import React, { useEffect } from "react";
 import { Button } from "react-daisyui";
-import { useDelete } from "react-supabase";
+import { useDelete } from "react-supabase-next";
 import { removeFavoritePet } from "reducers/supaFunctions";
 import useSWR from "swr";
 
@@ -106,7 +106,7 @@ export default function Favorites() {
         </label>
         <ul
           tabIndex={0}
-          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+          className="dropdown-content menu p-2 shadow-sm bg-base-100 rounded-box w-52"
         >
           <li>
             <a id="all-favorites" onClick={handleClick}>

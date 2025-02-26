@@ -3,7 +3,7 @@ import FooterMenu from 'components/layout/Footer'
 import NavigationBar from 'components/layout/NavigationBar'
 import PetInfo from 'components/pets/PetInfo'
 import { Route, Routes } from 'react-router-dom'
-import { Provider } from 'react-supabase'
+import { Provider } from 'react-supabase-next'
 
 import './App.css'
 import About from './components/about/About'

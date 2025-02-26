@@ -4,7 +4,7 @@ import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { useState } from "react";
 // import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import { Button } from "react-daisyui";
-import { useInsert } from "react-supabase";
+import { useInsert } from "react-supabase-next";
 
 import { useAuth } from "../../context/SupaContext";
 

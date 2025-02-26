@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { Form, Input } from "react-daisyui";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
-import { useClient } from "react-supabase";
+import { useClient } from "react-supabase-next";
 
 type PasswordType = {
   newPassword: string;

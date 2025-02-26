@@ -45,7 +45,7 @@ const Contributors = () => {
       {data.map((a: ContributorsType) => (
         <a
           key={a.avatar_url}
-          className="rounded my-2"
+          className="rounded-sm my-2"
           href={a.html_url}
           target="_blank"
           rel="noreferrer"

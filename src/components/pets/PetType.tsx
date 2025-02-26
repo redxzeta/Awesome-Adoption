@@ -213,7 +213,7 @@ export default function PetType() {
         List Of {type} Buddies
       </h1>
       <div className="w-full flex justify-center items-center flex-col lg:p-4 my-2">
-        <Form className="shadow rounded-lg p-4 lg:w-1/4 w-full">
+        <Form className="shadow-sm rounded-lg p-4 lg:w-1/4 w-full">
           <Form.Label title="Enter Zipcode: ">
             <Input
               ref={inputCode}

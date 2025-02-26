@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
-import { Provider } from "react-supabase";
+import { Provider } from "react-supabase-next";
 
 import { rest, server, supabase } from "../../../testServer";
 import SLogin from "../SLogin";

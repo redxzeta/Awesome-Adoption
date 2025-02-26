@@ -5,7 +5,7 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import { Provider } from "react-supabase";
+import { Provider } from "react-supabase-next";
 
 import { rest, server, supabase } from "../../../testServer";
 import Register from "../Register";

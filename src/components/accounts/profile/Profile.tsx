@@ -5,7 +5,7 @@ import PetCard from "components/layout/PetCard";
 import { usePetAuth } from "context/TokenContext";
 import { Avatar } from "react-daisyui";
 import { useParams } from "react-router-dom";
-import { useClient } from "react-supabase";
+import { useClient } from "react-supabase-next";
 import { FavoritePets } from "reducers/supaReducer";
 import { lookUpPet } from "routes/API";
 import useSWR from "swr";

@@ -1,6 +1,6 @@
 import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { Provider } from "react-supabase";
+import { Provider } from "react-supabase-next";
 
 import PetAuthProvider from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";

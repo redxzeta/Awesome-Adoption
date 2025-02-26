@@ -1,10 +1,9 @@
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import { Bars3BottomLeftIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "context/SupaContext";
 import React from "react";
 import { Avatar, Button, Dropdown, Menu, Navbar } from "react-daisyui";
 import { Link, NavLink } from "react-router-dom";
-import { useSignOut } from "react-supabase";
+import { useSignOut } from "react-supabase-next";
 
 import ThemeToggle from "../themeToggle/themeToggle";
 import PawLogo from "./PawLogo.png";
@@ -15,14 +14,15 @@ export default function NavigationBar() {
   const [{ fetching }, signOut] = useSignOut();
 
   return (
-    <nav className="bg-base-100 z-50">
-      <Navbar className="container mx-auto">
+      <Navbar className="flex-1 mx-auto">
         <Navbar.Start>
           <Dropdown>
-            <Button color="ghost" tabIndex={0} className="lg:hidden">
-              <Bars3BottomLeftIcon className="w-5 h-5" />
+            <Button tag="label" color="ghost" shape="circle" tabIndex={0} className="lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" />
+              </svg>
             </Button>
-            <Dropdown.Menu className="w-52 menu-compact mt-3 lg:hidden">
+            <Dropdown.Menu className="w-52 menu-sm mt-3 z-[1]">
               <DropdownNavLink route="/">Home</DropdownNavLink>
               <li tabIndex={0}>
                 <a className="justify-between">
@@ -73,13 +73,12 @@ export default function NavigationBar() {
         </Navbar.Center>
         <Navbar.End>
           <ThemeToggle />
-          <Dropdown vertical="end">
+          <Dropdown vertical="top">
             <Avatar
               src={PawLogo}
               size="xs"
               className="btn btn-primary btn-circle my-auto "
             />
-
             <Dropdown.Menu className="w-52 menu-compact">
               <Dropdown.Item>{`Hello, ${username}`}</Dropdown.Item>
               {session ? (
@@ -89,7 +88,6 @@ export default function NavigationBar() {
                   </DropdownNavLink>
                   <DropdownNavLink route="favorites">Favorites</DropdownNavLink>
                   <DropdownNavLink route="settings">Settings</DropdownNavLink>
-
                   <Dropdown.Item onClick={signOut}>
                     {fetching ? "Logging Out" : "Logout"}
                   </Dropdown.Item>
@@ -104,7 +102,6 @@ export default function NavigationBar() {
           </Dropdown>
         </Navbar.End>
       </Navbar>
-    </nav>
   );
 }
 
