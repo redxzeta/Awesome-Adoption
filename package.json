@@ -116,7 +116,6 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@4.6.0",
   "standard": {
     "parser": "babel-eslint"
   },
