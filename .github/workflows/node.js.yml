@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [20.x]
         os: [ubuntu-latest, windows-latest, macOS-latest]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
@@ -31,7 +31,7 @@ jobs:
 
       - name: Check JS Lockfile
         if: matrix.os == 'ubuntu-latest'
-        uses: ChromaticHQ/javascript-lockfile-check-action@v1.1.0
+        uses: ChromaticHQ/javascript-lockfile-check-action@v1.2.1
         with:
           package-manager: yarn
       - name: Install dependencies
