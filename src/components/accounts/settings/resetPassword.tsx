@@ -1,9 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import { FetchingButton } from "components/layout/Buttons/FetchingButton";
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { useState } from "react";
 import { Form, Input } from "react-daisyui";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { useClient } from "react-supabase-next";
 
@@ -35,6 +36,7 @@ const ResetPassword = () => {
     setLoading(false);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
 
   if (!session) {
@@ -48,7 +50,7 @@ const ResetPassword = () => {
 
   return (
     <PawHubContainer>
-      <section className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" fluid="md">
+      <section className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8 shadow-2xl rounded-xl p-6">
           <h1 className="text-5xl font-bold font-amatic">Reset Password</h1>
           <form onSubmit={handleSubmit(handleOnSubmit)}>

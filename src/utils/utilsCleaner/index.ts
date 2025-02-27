@@ -6,10 +6,10 @@ export const nameCleaner = (str: string) => {
         .replace(/(^\w+:|^)\/\//, "")
         .replace(/&#039;/gim, "'")
         .replace(/&#39;/gim, "'")
-        .replace(/&quot;/gim, '"')
+        .replace(/&quot;/gim, "'")
         .replace(/&rsquo;/gim, "'")
         .replace(/&amp;/gim, "&")
-        .replace(/&ldquo;/gim, '"')
+        .replace(/&ldquo;/gim, "'")
         .replace(/&hellip;/gim, "...")
     );
   }
