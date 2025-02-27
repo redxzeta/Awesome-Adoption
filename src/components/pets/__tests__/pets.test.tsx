@@ -4,8 +4,9 @@ import renderer from "react-test-renderer";
 
 import PetAuthProvider from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
-import { rest, server } from "../../../testServer";
+import { server } from "../../../testServer";
 import Pets, { AnimalType } from "../Pets";
+import { http, HttpResponse } from "msw";
 
 test("matches animal link snapshot", () => {
   const animalLink = {
@@ -92,8 +93,8 @@ describe("<Pets/>", () => {
 
   test("Pets component should error random pet", async () => {
     server.use(
-      rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
-        return res(ctx.status(404), ctx.json({ error: "Error" }));
+      http.get("https://api.petfinder.com/v2/animals", () => {
+        return HttpResponse.json({ message: "Error" }, { status: 404 });
       })
     );
 
@@ -122,10 +123,9 @@ describe("<Pets/>", () => {
 
   test("Pets Component should render random pet with placeholder img", async () => {
     server.use(
-      rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
-        return res(
-          ctx.status(200),
-          ctx.json({
+      http.get("https://api.petfinder.com/v2/animals", () => {
+        return HttpResponse.json(
+          {
             animal: {
               id: 5,
               name: "Baby Yoda",
@@ -135,7 +135,8 @@ describe("<Pets/>", () => {
                 }
               ]
             }
-          })
+          },
+          { status: 200 }
         );
       })
     );

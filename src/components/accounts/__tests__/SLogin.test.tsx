@@ -3,8 +3,9 @@ import userEvent from "@testing-library/user-event";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import { Provider } from "react-supabase-next";
 
-import { rest, server, supabase } from "../../../testServer";
+import { server, supabase } from "../../../testServer";
 import SLogin from "../SLogin";
+import { http, HttpResponse } from "msw";
 
 describe("<SLogin/>", () => {
   test("should show error message for empty fields", async () => {
@@ -28,13 +29,8 @@ describe("<SLogin/>", () => {
 
   test("should show error message for incorrect email format", async () => {
     server.use(
-      rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
-        return res(
-          ctx.status(401),
-          ctx.json({
-            message: "Unable to validate email address: invalid format"
-          })
-        );
+      http.post("https://test.supabase.co/auth/v1/token", () => {
+        return HttpResponse.json({ message: "Unable to validate email address: invalid format" }, { status: 401 });
       })
     );
 
@@ -68,22 +64,12 @@ describe("<SLogin/>", () => {
 
   test("should display wrong password", async () => {
     server.use(
-      rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
-        const { password } = req.body;
+      http.post("https://test.supabase.co/auth/v1/token", async ({ request }) => {
+        const password = await request.json();
         if (password !== "bones1234") {
-          return res(
-            ctx.status(401),
-            ctx.json({
-              message: "Wrong Password"
-            })
-          );
+          return HttpResponse.json({ message: "Wrong Password" }, { status: 401 });
         } else {
-          return res(
-            ctx.status(200),
-            ctx.json({
-              message: "Success"
-            })
-          );
+          return HttpResponse.json({ message: "Success" }, { status: 200 });
         }
       })
     );
@@ -117,10 +103,9 @@ describe("<SLogin/>", () => {
 
   test("login success", async () => {
     server.use(
-      rest.post("https://test.supabase.co/auth/v1/token", (req, res, ctx) => {
-        return res(
-          ctx.status(200),
-          ctx.json({
+      http.post("https://test.supabase.co/auth/v1/token", () => {
+        return HttpResponse.json(
+          {
             access_token: "fake_access_token",
             expires_at: 9999999999,
             expires_in: 9600,
@@ -128,7 +113,8 @@ describe("<SLogin/>", () => {
             token_type: "bearer",
             user: { id: "1234" },
             message: "No message"
-          })
+          },
+          { status: 200 }
         );
       })
     );

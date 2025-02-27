@@ -28,17 +28,16 @@ Create an `.env` file in root folder
 
 In the `.env` file put
 
-`REACT_APP_PETFINDER_KEY = APIKEYhere&client_secret=secretkeyhere`
+`REACT_APP_PETFINDER_KEY = YOURAPIKEY`
+`REACT_APP_PETFINDER_SECRET = YOURSECRETKEY`
 
 Restart the app
 
-Where the key is being used
-
-`grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project now uses vite [vite](https://vite.dev/).
 
 ## Supabase
+
+# SEEMS TO NOT WORK ANY LONGER (02/2025)
 
 Join My [Discord](https://discord.gg/2UxwrKxCPV) for the Supabase keys, which need to be in .env
 

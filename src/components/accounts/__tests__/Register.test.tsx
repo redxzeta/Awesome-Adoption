@@ -1,10 +1,10 @@
 import { render, screen, waitForElementToBeRemoved } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import React from "react";
 import { Provider } from "react-supabase-next";
 
-import { rest, server, supabase } from "../../../testServer";
+import { server, supabase } from "../../../testServer";
 import Register from "../Register";
+import { http, HttpResponse } from "msw";
 
 describe("<Register/>", () => {
   test("should register sucessfully", async () => {
@@ -35,8 +35,8 @@ describe("<Register/>", () => {
 
   test("should register unsucessfully", async () => {
     server.use(
-      rest.post("https://test.supabase.co/auth/v1/signup", (_req, res, ctx) => {
-        return res(ctx.status(404), ctx.json({ error: "Error", message: "Unable To Register" }));
+      http.post("https://test.supabase.co/auth/v1/signup", () => {
+        return HttpResponse.json({ error: "Error", message: "Unable To Register" }, { status: 404 });
       })
     );
     const user = userEvent.setup();

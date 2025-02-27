@@ -1,14 +1,15 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import { customRender } from "../../../swrconfigtest";
-import { rest, server } from "../../../testServer";
+import { server } from "../../../testServer";
 import About from "../About";
+import { http, HttpResponse } from "msw";
 
 describe("<About/>", () => {
   test("should fetch api and expect error", async () => {
     server.use(
-      rest.get("https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors", (_req, res, ctx) => {
-        return res(ctx.status(404), ctx.json({ error: "Error" }));
+      http.get("https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors", () => {
+        return HttpResponse.json({ message: "Error" }, { status: 404 });
       })
     );
 

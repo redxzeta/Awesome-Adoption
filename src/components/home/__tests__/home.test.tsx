@@ -1,11 +1,12 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
-import { rest, server } from "testServer";
+import { server } from "testServer";
 
 import PetAuthProvider from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
 import Home from "../Home";
+import { http, HttpResponse } from "msw";
 
 // mock pet list
 
@@ -50,8 +51,8 @@ describe("<Home/>", () => {
 
   test("list of Pets renders error", async () => {
     server.use(
-      rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
-        return res(ctx.status(404), ctx.json({ error: "Error" }));
+      http.get("https://api.petfinder.com/v2/animals", () => {
+        return HttpResponse.json({ message: "Error" }, { status: 404 });
       })
     );
 
