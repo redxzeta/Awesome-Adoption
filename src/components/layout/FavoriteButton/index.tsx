@@ -11,13 +11,7 @@ type FavoriteButtonType = {
   favoritedCount: number;
 };
 
-const FavoriteButton = ({
-  status,
-  add,
-  remove,
-  loading,
-  favoritedCount,
-}: FavoriteButtonType) => {
+const FavoriteButton = ({ status, add, remove, loading, favoritedCount }: FavoriteButtonType) => {
   if (loading)
     return (
       <Button disabled>

@@ -1,6 +1,4 @@
-import PetCardFlex, {
-  PawHubContainer,
-} from "components/layout/Grid/PetCardFlex";
+import PetCardFlex, { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import PetCard from "components/layout/PetCard";
 import { Button, Hero } from "react-daisyui";
 import useSWR from "swr";
@@ -22,18 +20,14 @@ export default function Home() {
   };
   return (
     <div>
-      <Hero className="home__background min-h-screen">
+      <Hero className="hero home__background min-h-screen">
         <Hero.Overlay className="bg-black/60" />
         <Hero.Content className="text-center">
           <div className="max-w-md text-base-100">
             <h1 className="text-5xl font-bold font-amatic">Get a BFF</h1>
             <h2 className="text-5xl font-bold font-amatic">Now and Forever </h2>
 
-            <Button
-              color="primary"
-              className="my-2"
-              onClick={scrollToFeaturedPets}
-            >
+            <Button color="primary" className="my-2" onClick={scrollToFeaturedPets}>
               Get Started
             </Button>
           </div>
@@ -50,9 +44,9 @@ const LoadingPetCards = () => {
   const {
     error,
     data: petList,
-    mutate,
+    mutate
   } = useSWR(tokenHeaders ? [randomPetsList, tokenHeaders] : null, fetcher, {
-    revalidateOnFocus: false,
+    revalidateOnFocus: false
   });
   const mutatePetlist = async () => mutate({} as PetSearchType);
   const isLoading = !error && !petList?.animals;
@@ -86,7 +80,7 @@ const LoadingPetCards = () => {
       <h2 className="text-5xl font-bold font-amatic">Featured Pets</h2>
 
       <PetCardFlex>
-        {petList.animals.map((pet) => (
+        {petList.animals.map(pet => (
           <PetCard
             key={pet.id}
             id={pet.id}

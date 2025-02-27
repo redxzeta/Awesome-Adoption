@@ -1,4 +1,3 @@
-/* eslint-disable */
 // @ts-nocheck
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { useState } from "react";
@@ -30,7 +29,7 @@ export default function Stories() {
       title: title,
       description: desc,
       region: region,
-      country: country,
+      country: country
     });
     if (!error) {
       // insert successfully

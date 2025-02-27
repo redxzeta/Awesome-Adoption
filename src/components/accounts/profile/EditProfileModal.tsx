@@ -1,4 +1,3 @@
-/* eslint-disable */
 // @ts-nocheck
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
@@ -19,27 +18,24 @@ export default function EditProfileModal({ show, handleClose, initialState }) {
     const updates = {
       id: user.id,
       ...form,
-      updated_at: new Date(),
+      updated_at: new Date()
     };
     updateProfile(updates);
   };
 
-  const [form, handleChange, onSubmit, resetChanges] = useForm(
-    initialState,
-    validCheck
-  );
+  const [form, handleChange, onSubmit, resetChanges] = useForm(initialState, validCheck);
   const [{ fetching }, execute] = useUpsert("profiles");
 
-  const updateProfile = async (updates) => {
+  const updateProfile = async updates => {
     try {
       const { error } = await execute(
         updates,
         {
           count: "estimated",
           onConflict: "id",
-          returning: "minimal",
+          returning: "minimal"
         },
-        (query) => query.eq("id", user.id)
+        query => query.eq("id", user.id)
       );
       if (error) throw error;
       changeUserName(updates.username);
@@ -80,19 +76,11 @@ export default function EditProfileModal({ show, handleClose, initialState }) {
               onChange={handleChange}
               isInvalid={usernameError}
             />
-            <Form.Control.Feedback type="invalid">
-              {usernameError}
-            </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{usernameError}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Description</Form.Label>
-            <Form.Control
-              as="textarea"
-              name="description"
-              rows={3}
-              value={form.description}
-              onChange={handleChange}
-            />
+            <Form.Control as="textarea" name="description" rows={3} value={form.description} onChange={handleChange} />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>

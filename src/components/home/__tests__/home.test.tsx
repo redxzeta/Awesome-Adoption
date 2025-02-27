@@ -19,9 +19,7 @@ describe("<Home/>", () => {
       </BrowserRouter>
     );
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
     const petCards = screen.getAllByRole("button", { name: /More Info/i });
     expect(petCards).toHaveLength(3);
   });
@@ -36,25 +34,17 @@ describe("<Home/>", () => {
       </BrowserRouter>
     );
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
     const petCards = screen.getAllByRole("button", { name: /More Info/i });
     expect(petCards).toHaveLength(3);
 
     const refreshButton = screen.getByRole("button", { name: /refresh/i });
     await user.click(refreshButton);
 
-    await waitFor(() =>
-      expect(
-        screen.queryByRole("button", { name: /More Info/i })
-      ).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("button", { name: /More Info/i })).not.toBeInTheDocument());
 
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
     expect(petCards).toHaveLength(3);
   });
 
@@ -73,14 +63,12 @@ describe("<Home/>", () => {
       </BrowserRouter>
     );
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
 
     expect(
       screen.getByRole("heading", {
         level: 5,
-        name: /Oops! An Error Occurred Getting The Pets/i,
+        name: /Oops! An Error Occurred Getting The Pets/i
       })
     );
   });

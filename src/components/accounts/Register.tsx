@@ -16,8 +16,7 @@ const Register = () => {
   const { control, handleSubmit, register } = useForm<RegisterType>();
   const [{ error, fetching, user }, signUp] = useSignUp();
 
-  const onSubmit: SubmitHandler<RegisterType> = async (data) =>
-    await signUp(data);
+  const onSubmit: SubmitHandler<RegisterType> = async data => await signUp(data);
   const { session } = useAuth();
   if (session) return <Navigate to="/" />;
   return (
@@ -30,50 +29,46 @@ const Register = () => {
             <h1 className="text-5xl font-bold font-amatic">Sign Up</h1>
 
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Form className="  w-full  p-4">
-                <Form.Label title="Email Address">
-                  <Controller
-                    name="email"
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <Input
-                        {...field}
-                        placeholder="Enter Email"
-                        bordered
-                        type="email"
-                        color="primary"
-                        className=" flex min-w-[10px] "
-                        {...register("email", {
-                          required: true,
-                          maxLength: 45,
-                        })}
-                      />
-                    )}
-                  />
-                </Form.Label>
-              </Form>
+              <Form.Label title="Email Address" className="w-full p-4">
+                <Controller
+                  name="email"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="Enter Email"
+                      bordered
+                      type="email"
+                      color="primary"
+                      className=" flex min-w-[10px] "
+                      {...register("email", {
+                        required: true,
+                        maxLength: 45
+                      })}
+                    />
+                  )}
+                />
+              </Form.Label>
 
-              <Form className="w-full p-4">
-                <Form.Label title="Password">
-                  <Controller
-                    name="password"
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <Input
-                        {...field}
-                        placeholder="Enter Password"
-                        bordered
-                        color="primary"
-                        type="password"
-                        className=" flex min-w-[10px]"
-                        {...register("password", { required: true })}
-                      />
-                    )}
-                  />
-                </Form.Label>
-              </Form>
+              <Form.Label title="Password" className="w-full p-4">
+                <Controller
+                  name="password"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="Enter Password"
+                      bordered
+                      color="primary"
+                      type="password"
+                      className=" flex min-w-[10px]"
+                      {...register("password", { required: true })}
+                    />
+                  )}
+                />
+              </Form.Label>
 
               <FetchingButton fetching={fetching} action="Submit" />
               {error && <small className="text-error">{error.message}</small>}

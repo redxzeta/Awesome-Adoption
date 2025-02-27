@@ -1,4 +1,3 @@
-/* eslint-disable */
 // @ts-nocheck
 import React, { useState } from "react";
 import validator from "validator";
@@ -23,7 +22,7 @@ const initialState: DonateForm = {
   logo: "",
   location: "",
   founded: 2022,
-  mission: "",
+  mission: ""
 };
 export default function DonateModal({ show, handleClose }: DonateModalType) {
   const [nameError, setNameError] = useState(false);
@@ -40,11 +39,7 @@ export default function DonateModal({ show, handleClose }: DonateModalType) {
       setNameError(false);
     }
 
-    if (
-      !form.website ||
-      form.website === "" ||
-      !validator.isURL(form.website)
-    ) {
+    if (!form.website || form.website === "" || !validator.isURL(form.website)) {
       setWebsiteError(true);
     } else {
       setWebsiteError(false);
@@ -77,7 +72,7 @@ export default function DonateModal({ show, handleClose }: DonateModalType) {
   const [form, setForm] = useState<DonateForm>(initialState);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setForm((val) => ({ ...val, [name]: value }));
+    setForm(val => ({ ...val, [name]: value }));
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -98,16 +93,8 @@ export default function DonateModal({ show, handleClose }: DonateModalType) {
         <Modal.Body>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Organization Name</Form.Label>
-            <Form.Control
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              isInvalid={nameError}
-            />
-            <Form.Control.Feedback type="invalid">
-              {nameError}
-            </Form.Control.Feedback>
+            <Form.Control type="text" name="name" value={form.name} onChange={handleChange} isInvalid={nameError} />
+            <Form.Control.Feedback type="invalid">{nameError}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
             <Form.Label>Website</Form.Label>
@@ -118,22 +105,12 @@ export default function DonateModal({ show, handleClose }: DonateModalType) {
               onChange={handleChange}
               isInvalid={websiteError}
             />
-            <Form.Control.Feedback type="invalid">
-              {websiteError}
-            </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{websiteError}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
             <Form.Label>Logo</Form.Label>
-            <Form.Control
-              type="text"
-              name="logo"
-              value={form.logo}
-              onChange={handleChange}
-              isInvalid={logoError}
-            />
-            <Form.Control.Feedback type="invalid">
-              {logoError}
-            </Form.Control.Feedback>
+            <Form.Control type="text" name="logo" value={form.logo} onChange={handleChange} isInvalid={logoError} />
+            <Form.Control.Feedback type="invalid">{logoError}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
             <Form.Label>Location</Form.Label>
@@ -144,9 +121,7 @@ export default function DonateModal({ show, handleClose }: DonateModalType) {
               onChange={handleChange}
               isInvalid={locationError}
             />
-            <Form.Control.Feedback type="invalid">
-              {locationError}
-            </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{locationError}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
             <Form.Label>Founded</Form.Label>
@@ -157,9 +132,7 @@ export default function DonateModal({ show, handleClose }: DonateModalType) {
               onChange={handleChange}
               isInvalid={foundedError}
             />
-            <Form.Control.Feedback type="invalid">
-              {foundedError}
-            </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{foundedError}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Mission</Form.Label>
@@ -171,9 +144,7 @@ export default function DonateModal({ show, handleClose }: DonateModalType) {
               onChange={handleChange}
               isInvalid={missionError}
             />
-            <Form.Control.Feedback type="invalid">
-              {missionError}
-            </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{missionError}</Form.Control.Feedback>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>

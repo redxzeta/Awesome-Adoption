@@ -1,8 +1,4 @@
-import {
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { render, screen, waitForElementToBeRemoved } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { Provider } from "react-supabase-next";
@@ -30,7 +26,7 @@ describe("<Register/>", () => {
 
     await waitForElementToBeRemoved(() => screen.queryByText(/submit/i));
     const LoadingButton = screen.getByRole("button", {
-      name: /Loading.../i,
+      name: /Loading.../i
     });
     expect(LoadingButton).toBeDisabled();
     await waitForElementToBeRemoved(screen.queryByText(/Loading.../i));
@@ -40,10 +36,7 @@ describe("<Register/>", () => {
   test("should register unsucessfully", async () => {
     server.use(
       rest.post("https://test.supabase.co/auth/v1/signup", (_req, res, ctx) => {
-        return res(
-          ctx.status(404),
-          ctx.json({ error: "Error", message: "Unable To Register" })
-        );
+        return res(ctx.status(404), ctx.json({ error: "Error", message: "Unable To Register" }));
       })
     );
     const user = userEvent.setup();
@@ -65,7 +58,7 @@ describe("<Register/>", () => {
     await waitForElementToBeRemoved(() => screen.queryByText(/submit/i));
 
     const LoadingButton = screen.getByRole("button", {
-      name: /Loading.../i,
+      name: /Loading.../i
     });
     expect(LoadingButton).toBeDisabled();
 

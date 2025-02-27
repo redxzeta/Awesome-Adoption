@@ -6,15 +6,7 @@ import { githubURL } from "../../routes/API";
 
 const fetcher = async (url: string) => {
   const res = await fetch(url);
-
-  // If the status code is not in the range 200-299,
-  // we still try to parse and throw it.
   if (!res.ok) {
-    // const error = new Error("An error occurred while fetching the data.");
-    // Attach extra info to the error object.
-    // error.info = await res.json();
-    // error.status = res.status;
-    // throw error;
     throw new Error("An error occurred while fetching the data.");
   }
 
@@ -38,10 +30,7 @@ const Contributors = () => {
   }
 
   return (
-    <div
-      className="flex flex-row justify-center items-center flex-wrap my-4 "
-      id="contributors"
-    >
+    <div className="flex flex-row justify-center items-center flex-wrap my-4 " id="contributors">
       {data.map((a: ContributorsType) => (
         <a
           key={a.avatar_url}

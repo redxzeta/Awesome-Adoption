@@ -14,6 +14,7 @@ A web application that helps users find pets to adopt around their area. It star
 Read Here [Contribution](https://github.com/redxzeta/Awesome-Adoption/blob/main/CONTRIBUTING.md)
 
 ## Tech Stack Used
+
 - React
 - Tailwind
 - Supabase

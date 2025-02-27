@@ -25,16 +25,11 @@ describe("<PetInfo/>", () => {
 
     await waitForElementToBeRemoved(screen.queryByRole("status"));
 
-    expect(
-      screen.getByRole("heading", { name: /Baby Yoda/i, level: 1 })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Baby Yoda/i, level: 1 })).toBeInTheDocument();
     expect(screen.getByText(/He is a toddler member /i)).toBeInTheDocument();
     expect(screen.getByText(/Grogu/i)).toBeInTheDocument();
 
-    expect(screen.getByText(/More Info/i)).toHaveAttribute(
-      "href",
-      "https://wwww.mandalorian.com"
-    );
+    expect(screen.getByText(/More Info/i)).toHaveAttribute("href", "https://wwww.mandalorian.com");
   });
   it("should display pet data error", async () => {
     customRender(
@@ -54,8 +49,6 @@ describe("<PetInfo/>", () => {
 
     await waitForElementToBeRemoved(screen.queryByRole("status"));
 
-    expect(
-      screen.getByRole("heading", { name: /An Error Occurred/i, level: 1 })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /An Error Occurred/i, level: 1 })).toBeInTheDocument();
   });
 });

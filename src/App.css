@@ -43,3 +43,7 @@
     transform: none;
   }
 }
+
+.font-amatic {
+  font-family: Amatic SC, sans-serif;
+}

@@ -1,6 +1,4 @@
-import PetCardFlex, {
-  PawHubContainer,
-} from "components/layout/Grid/PetCardFlex";
+import PetCardFlex, { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import { Card } from "react-daisyui";
 import { Link } from "react-router-dom";
 import useSWR from "swr";
@@ -23,24 +21,24 @@ type PetLink = {
 const linkData: PetLink[] = [
   {
     img: Dog,
-    type: "Dog",
+    type: "Dog"
   },
   {
     img: Cat,
-    type: "Cat",
+    type: "Cat"
   },
   {
     img: Bird,
-    type: "Bird",
+    type: "Bird"
   },
   {
     img: Horse,
-    type: "Horse",
+    type: "Horse"
   },
   {
     img: Rabbit,
-    type: "Rabbit",
-  },
+    type: "Rabbit"
+  }
 ];
 
 export default function Pets() {
@@ -49,13 +47,8 @@ export default function Pets() {
       <h1 className="text-5xl font-bold font-amatic mb-10">Adopt Your Buddy</h1>
 
       <PetCardFlex>
-        {linkData.map((pet) => (
-          <AnimalType
-            img={pet.img}
-            type={pet.type}
-            link={`${pet.type.toLowerCase()}`}
-            key={pet.type}
-          />
+        {linkData.map(pet => (
+          <AnimalType img={pet.img} type={pet.type} link={`${pet.type.toLowerCase()}`} key={pet.type} />
         ))}
         <RandomPet />
       </PetCardFlex>
@@ -63,15 +56,7 @@ export default function Pets() {
   );
 }
 
-export const AnimalType = ({
-  type,
-  img,
-  link,
-}: {
-  type: string;
-  img: string;
-  link: string;
-}) => {
+export const AnimalType = ({ type, img, link }: { type: string; img: string; link: string }) => {
   let linkDataTypes: string[] = [];
   linkData.forEach(({ type }) => {
     linkDataTypes = [...linkDataTypes, type];
@@ -99,27 +84,19 @@ export const AnimalType = ({
 };
 
 const RandomPet = () => {
-  const randomPetURL =
-    "https://api.petfinder.com/v2/animals?limit=1&sort=random";
+  const randomPetURL = "https://api.petfinder.com/v2/animals?limit=1&sort=random";
   const { tokenHeaders } = usePetAuth();
 
-  const { error, data } = useSWR(
-    tokenHeaders ? [randomPetURL, tokenHeaders] : null,
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      revalidateIfStale: false,
-      revalidateOnReconnect: false,
-    }
-  );
+  const { error, data } = useSWR(tokenHeaders ? [randomPetURL, tokenHeaders] : null, fetcher, {
+    revalidateOnFocus: false,
+    revalidateIfStale: false,
+    revalidateOnReconnect: false
+  });
   const isLoading = !error && !data;
 
   if (isLoading)
     return (
-      <article
-        className="lg:px-4 px-1 w-full md:1/3 lg:w-1/4 my-4 fadeInUp"
-        role={"status"}
-      >
+      <article className="lg:px-4 px-1 w-full md:1/3 lg:w-1/4 my-4 fadeInUp" role={"status"}>
         <Card imageFull>
           <div className="object-cover w-full animate-pulse  bg-primary" />
           <Card.Body>
@@ -139,11 +116,5 @@ const RandomPet = () => {
   const randomPetImage = data.photos[0].medium ?? Placeholder;
 
   // assigns randomPetImage according to if a photo is available
-  return (
-    <AnimalType
-      type={data.name}
-      img={randomPetImage}
-      link={`/animal/${data.id}`}
-    />
-  );
+  return <AnimalType type={data.name} img={randomPetImage} link={`/animal/${data.id}`} />;
 };

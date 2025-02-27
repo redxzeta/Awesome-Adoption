@@ -1,6 +1,4 @@
-import PetCardFlex, {
-  PawHubContainer,
-} from "components/layout/Grid/PetCardFlex";
+import PetCardFlex, { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { useState } from "react";
 
 import OrganizationsCard from "./OrganizationsCard";
@@ -17,8 +15,7 @@ export type CharityType = {
 
 const Donate = () => {
   const [location, setLocation] = useState("All");
-  const [charityFiltered, setCharityFiltered] =
-    useState<CharityType[]>(charity);
+  const [charityFiltered, setCharityFiltered] = useState<CharityType[]>(charity);
 
   const handleDropdown = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLocation(e.target.value);
@@ -27,10 +24,7 @@ const Donate = () => {
       return;
     }
 
-    const temp = charity.filter(
-      (charity) =>
-        charity.location.toLowerCase() === e.target.value.toLowerCase()
-    );
+    const temp = charity.filter(charity => charity.location.toLowerCase() === e.target.value.toLowerCase());
     setCharityFiltered(temp);
   };
 
@@ -51,16 +45,9 @@ const Donate = () => {
           </a>
           <div className="mr-2">
             <label htmlFor="dropdown">Filter by place: </label>
-            <select
-              value={location}
-              id="dropdown"
-              data-testid="dropdown"
-              onChange={handleDropdown}
-            >
+            <select value={location} id="dropdown" data-testid="dropdown" onChange={handleDropdown}>
               <option value="All">All</option>
-              {[
-                ...new Set(charity.map((item) => item.location.toLowerCase())),
-              ].map((cha, idx) => (
+              {[...new Set(charity.map(item => item.location.toLowerCase()))].map((cha, idx) => (
                 <option value={cha.toLowerCase()} key={idx + cha}>
                   {cha}
                 </option>
@@ -70,7 +57,7 @@ const Donate = () => {
         </div>
       </section>
       <PetCardFlex>
-        {charityFiltered.map((ch) => (
+        {charityFiltered.map(ch => (
           <OrganizationsCard ch={ch} key={ch.name} />
         ))}
       </PetCardFlex>

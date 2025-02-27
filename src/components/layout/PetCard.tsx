@@ -7,18 +7,8 @@ import { nameCleaner } from "../../utils/utilsCleaner/index";
 import Placeholder from "../pets/placeholder-light.png";
 import PetIcon from "../shared/PetIcon";
 
-export default function PetCard(
-  props: PetCardType & { children?: React.ReactNode }
-) {
-  const {
-    id,
-    photos,
-    name,
-    type,
-    primary_photo_cropped: link,
-    breeds,
-    children,
-  } = props;
+export default function PetCard(props: PetCardType & { children?: React.ReactNode }) {
+  const { id, photos, name, type, primary_photo_cropped: link, breeds, children } = props;
 
   let myInterval: ReturnType<typeof setTimeout>;
 

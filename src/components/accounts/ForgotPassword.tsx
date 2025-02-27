@@ -11,7 +11,7 @@ type ForgotPasswordType = {
 };
 
 const initState: ForgotPasswordType = {
-  email: "",
+  email: ""
 };
 
 const ForgotPassword = () => {
@@ -22,20 +22,16 @@ const ForgotPassword = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
-    setForgotPasswordForm((v) => ({ ...v, [name]: value }));
+    setForgotPasswordForm(v => ({ ...v, [name]: value }));
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    resetPassword(forgotPasswordForm.email).then((response) => {
+    resetPassword(forgotPasswordForm.email).then(response => {
       if (response) setResetRequestSent(true);
     });
   };
-  const errorForm = error ? (
-    <small className="text-danger">{error.message}</small>
-  ) : (
-    ""
-  );
+  const errorForm = error ? <small className="text-danger">{error.message}</small> : "";
 
   const { session } = useAuth();
   if (session) return <Navigate to="/" />;
@@ -59,16 +55,10 @@ const ForgotPassword = () => {
                   onChange={handleChange}
                   value={forgotPasswordForm.email}
                 />
-                <p className="text-muted">
-                  We will never share your email with anyone else.
-                </p>
+                <p className="text-muted">We will never share your email with anyone else.</p>
               </div>
 
-              <FetchingButton
-                fetching={fetching}
-                action="Submit"
-                className="register__button"
-              />
+              <FetchingButton fetching={fetching} action="Submit" className="register__button" />
               {errorForm}
             </form>
           )}
@@ -82,12 +72,7 @@ export default ForgotPassword;
 
 const Success = () => (
   <div className="alert alert-success shadow-lg mt-4 justify-start">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="stroke-current shrink-0 h-6 w-6"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

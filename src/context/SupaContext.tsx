@@ -1,56 +1,37 @@
-import {
-  Context,
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-} from "react";
+import { Context, createContext, useContext, useEffect, useReducer } from "react";
 import { useAuthStateChange, useClient } from "react-supabase-next";
-import {
-  errorSupa,
-  loadedSupa,
-  loadingSupa,
-  loggedOut,
-  updateAuth,
-  updateProfile,
-} from "reducers/supaFunctions";
+import { errorSupa, loadedSupa, loadingSupa, loggedOut, updateAuth, updateProfile } from "reducers/supaFunctions";
 import { Props } from "types/types";
 
-import {
-  ISupaState,
-  initialState,
-  supaReducer,
-} from "../reducers/supaReducer";
+import { ISupaState, initialState, supaReducer } from "../reducers/supaReducer";
 
 export const AuthContext: Context<ISupaState> = createContext(initialState);
 
 export function AuthProvider({ children }: Props) {
   const client = useClient();
-
   const [state, dispatch] = useReducer(supaReducer, initialState);
 
   const sessionLoad = async () => {
     dispatch(loadingSupa());
     try {
-      // @ts-ignore
-      const session = client.auth.session();
-      if (session?.user?.id) {
+      const session = await client.auth.getSession();
+      if (session.data.session?.user?.id) {
         const sessionState = {
-          session,
-          user: session?.user ?? null,
+          session: session.data.session,
+          user: session.data.session?.user ?? null
         };
-        // @ts-ignore
         dispatch({ type: "UPDATE_AUTH", payload: sessionState });
-        const { data, error } = await handleGetUserProfile(session.user.id);
+        const { data, error } = await handleGetUserProfile(session.data.session.user.id);
         if (error) throw error;
         const updatedUserProfile = {
           username: data.username,
-          favoritepets: data.favoritepets,
+          favoritepets: data.favoritepets
         };
         dispatch(updateProfile(updatedUserProfile));
       } else {
         dispatch(loggedOut());
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       dispatch(errorSupa());
     } finally {
@@ -59,15 +40,10 @@ export function AuthProvider({ children }: Props) {
   };
 
   const handleGetUserProfile = async (id: string) =>
-    await client
-      .from("profiles")
-      .select("username, favoritepets(id,pet,created_at)")
-      .eq("id", id)
-      .single();
+    await client.from("profiles").select("username, favoritepets(id,pet,created_at)").eq("id", id).single();
 
   useEffect(() => {
     sessionLoad();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useAuthStateChange(async (event, session) => {
@@ -75,7 +51,7 @@ export function AuthProvider({ children }: Props) {
       const sessionState = {
         session,
         user: session.user,
-        event: event,
+        event: event
       };
 
       dispatch(updateAuth(sessionState));
@@ -85,9 +61,10 @@ export function AuthProvider({ children }: Props) {
 
         const updatedUserProfile = {
           username: data.username,
-          favoritepets: data.favoritepets,
+          favoritepets: data.favoritepets
         };
         dispatch(updateProfile(updatedUserProfile));
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         dispatch(errorSupa());
       }
@@ -96,16 +73,11 @@ export function AuthProvider({ children }: Props) {
     }
   });
 
-  return (
-    <AuthContext.Provider value={{ ...state, dispatch: dispatch }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ ...state, dispatch: dispatch }}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (context === undefined)
-    throw Error("useAuth must be used within AuthProvider");
+  if (context === undefined) throw Error("useAuth must be used within AuthProvider");
   return context;
 }

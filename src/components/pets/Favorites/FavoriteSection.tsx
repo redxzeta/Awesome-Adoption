@@ -11,40 +11,39 @@ const FavoriteSection = ({ id }: { id: string }) => {
   const { user, session, favoritePets, dispatch } = useAuth();
   const [status, setStatus] = useState(false);
   const [removalId, setRemovalId] = useState<number>(0);
-  const filter = useFilter((query) => query.eq("pet", id), [id, favoritePets]);
+  const filter = useFilter(query => query.eq("pet", id));
   const [{ count: favoritedCount }] = useSelect("favoritepets", {
     filter,
-    options: { count: "exact" },
+    options: { count: "exact" }
   });
-  const [{ fetching: deleteFetching }, executeDelete] =
-    useDelete("favoritepets");
+  const [{ fetching: deleteFetching }, executeDelete] = useDelete("favoritepets");
   const addFav = async () => {
     const { data } = await execute({
       favoriter: user?.id,
-      pet: id,
+      pet: id
     });
     dispatch(AddNewFav(data[0]));
   };
 
   const removeFav = async () => {
-    await executeDelete((query) => query.eq("id", removalId), {
+    await executeDelete(query => query.eq("id", removalId), {
       returning: "minimal",
-      count: "estimated",
+      count: "estimated"
     });
     dispatch(removeFavoritePet(removalId));
   };
 
   useEffect(() => {
-    const checkFav = favoritePets.some((el) => el.pet === id);
+    const checkFav = favoritePets.some(el => el.pet === id);
     if (checkFav && favoritePets) {
       setStatus(true);
-      const letId = favoritePets.filter((fav) => fav.pet === id)[0].id;
+      const letId = favoritePets.filter(fav => fav.pet === id)[0].id;
       setRemovalId(letId);
     } else {
       setStatus(false);
       setRemovalId(0);
     }
-  }, [id, favoritePets]);
+  }, [favoritePets, id]);
   if (!session || !user) return null;
   return (
     <FavoriteButton

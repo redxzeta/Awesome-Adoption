@@ -12,10 +12,7 @@ export type ProfileType = {
 
 type bucketName = "profile";
 
-export const fetchSupaProfile = async (
-  client: SupabaseClient,
-  profileSearch: string
-) => {
+export const fetchSupaProfile = async (client: SupabaseClient, profileSearch: string) => {
   const { data, error } = await client
     .from("profiles")
     .select("*, favoritepets(id,pet,created_at), background(*) ")
@@ -31,9 +28,7 @@ export const fetchImage = async (
   bucketName: bucketName,
   fallBack?: string
 ) => {
-  const { data, error } = await supaClient.storage
-    .from(bucketName)
-    .download(backgroundUrl);
+  const { data, error } = await supaClient.storage.from(bucketName).download(backgroundUrl);
 
   if (error || !data) {
     return fallBack || error?.message;

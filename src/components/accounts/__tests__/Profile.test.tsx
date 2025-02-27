@@ -13,21 +13,15 @@ describe("Profile Page", () => {
       { name: "profileTest", route: "/profiles/supaAwesome" }
     );
 
-    expect(
-      screen.getByRole("heading", { level: 1, name: /Loading/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /Loading/i })).toBeInTheDocument();
 
-    await waitFor(() =>
-      expect(
-        screen.queryByRole("heading", { level: 1, name: /Loading/i })
-      ).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("heading", { level: 1, name: /Loading/i })).not.toBeInTheDocument());
     expect(screen.getByRole("heading", { level: 5, name: /supaAwesome/i }));
 
     expect(
       screen.getByRole("heading", {
         level: 4,
-        name: /You have not marked a pet as a favorite yet/i,
+        name: /You have not marked a pet as a favorite yet/i
       })
     );
   });
@@ -39,20 +33,12 @@ describe("Profile Page", () => {
       { name: "profileTest", route: "/profiles/supaPet" }
     );
 
-    expect(
-      screen.getByRole("heading", { level: 1, name: /Loading/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /Loading/i })).toBeInTheDocument();
 
-    await waitFor(() =>
-      expect(
-        screen.queryByRole("heading", { level: 1, name: /Loading/i })
-      ).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("heading", { level: 1, name: /Loading/i })).not.toBeInTheDocument());
 
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
 
     expect(screen.getByRole("heading", { level: 5, name: /supaPet/i }));
 
@@ -68,15 +54,9 @@ describe("Profile Page", () => {
       { name: "profileTest", route: "/profiles/error" }
     );
 
-    expect(
-      screen.getByRole("heading", { level: 1, name: /Loading/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /Loading/i })).toBeInTheDocument();
 
-    await waitFor(() =>
-      expect(
-        screen.queryByRole("heading", { level: 1, name: /Loading/i })
-      ).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("heading", { level: 1, name: /Loading/i })).not.toBeInTheDocument());
 
     expect(screen.getByRole("heading", { level: 1, name: /ERROR/i }));
   });

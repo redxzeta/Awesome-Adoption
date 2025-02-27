@@ -5,10 +5,7 @@ import { Provider } from "react-supabase-next";
 import { FavoritePets, ISupaState } from "reducers/supaReducer";
 
 import { AuthContext, AuthProvider } from "../../../context/SupaContext";
-import PetAuthProvider, {
-  PetAuthContext,
-  PetTokenType,
-} from "../../../context/TokenContext";
+import PetAuthProvider, { PetAuthContext, PetTokenType } from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
 import { supabase } from "../../../testServer";
 import Favorites from "../Favorites";
@@ -28,7 +25,7 @@ describe("Favorites", () => {
     expect(
       screen.getByRole("heading", {
         name: /Start selecting your favorites to find your future best friend!/i,
-        level: 5,
+        level: 5
       })
     ).toBeInTheDocument();
   });
@@ -39,34 +36,32 @@ describe("Favorites", () => {
       {
         id: 50,
         pet: "2",
-        created_at: start,
+        created_at: start
       },
       {
         id: 51,
         pet: "3",
-        created_at: start,
+        created_at: start
       },
       {
         id: 52,
         pet: "4",
-        created_at: start,
-      },
+        created_at: start
+      }
     ];
     const supaInitialState = {
-      favoritePets: favoritePets,
+      favoritePets: favoritePets
     } as ISupaState;
     const initialState: PetTokenType = {
       tokenHeaders: "yayeet",
       loading: false,
-      errors: false,
+      errors: false
     };
     customRender(
       <BrowserRouter>
         <Provider value={supabase}>
           <PetAuthContext.Provider value={initialState}>
-            <AuthContext.Provider
-              value={{ ...supaInitialState, dispatch: () => undefined }}
-            >
+            <AuthContext.Provider value={{ ...supaInitialState, dispatch: () => undefined }}>
               <Favorites />
             </AuthContext.Provider>
           </PetAuthContext.Provider>
@@ -75,9 +70,7 @@ describe("Favorites", () => {
     );
 
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryAllByRole("status")).not.toHaveLength(3)
-    );
+    await waitFor(() => expect(screen.queryAllByRole("status")).not.toHaveLength(3));
     const petCards = screen.getAllByRole("button", { name: /More Info/i });
     expect(petCards).toHaveLength(3);
   });
@@ -89,34 +82,32 @@ test.skip("test remove button", async () => {
     {
       id: 50,
       pet: "2",
-      created_at: start,
+      created_at: start
     },
     {
       id: 51,
       pet: "3",
-      created_at: start,
+      created_at: start
     },
     {
       id: 52,
       pet: "4",
-      created_at: start,
-    },
+      created_at: start
+    }
   ];
   const supaInitialState = {
-    favoritePets: favoritePets,
+    favoritePets: favoritePets
   } as ISupaState;
   const initialState: PetTokenType = {
     tokenHeaders: "yayeet",
     loading: false,
-    errors: false,
+    errors: false
   };
   customRender(
     <BrowserRouter>
       <Provider value={supabase}>
         <PetAuthContext.Provider value={initialState}>
-          <AuthContext.Provider
-            value={{ ...supaInitialState, dispatch: () => undefined }}
-          >
+          <AuthContext.Provider value={{ ...supaInitialState, dispatch: () => undefined }}>
             <Favorites />
           </AuthContext.Provider>
         </PetAuthContext.Provider>
@@ -127,23 +118,13 @@ test.skip("test remove button", async () => {
   const user = userEvent.setup();
 
   expect(screen.getAllByRole("status")).toHaveLength(3);
-  await waitFor(() =>
-    expect(screen.queryAllByRole("status")).not.toHaveLength(3)
-  );
+  await waitFor(() => expect(screen.queryAllByRole("status")).not.toHaveLength(3));
   const rmvButton = screen.getAllByRole("button", { name: /Remove/i });
   expect(rmvButton).toHaveLength(3);
   await user.click(rmvButton[0]);
   const loadingBtn = screen.getAllByRole("button", { name: "Loading" });
   expect(loadingBtn).toHaveLength(3);
-  await waitFor(() =>
-    expect(
-      screen.queryAllByRole("button", { name: "Loading" })
-    ).not.toHaveLength(3)
-  );
+  await waitFor(() => expect(screen.queryAllByRole("button", { name: "Loading" })).not.toHaveLength(3));
   expect(screen.getAllByRole("button", { name: /Remove/i })).toHaveLength(3);
-  await waitFor(() =>
-    expect(
-      screen.queryAllByRole("button", { name: /Remove/i })
-    ).not.toHaveLength(3)
-  );
+  await waitFor(() => expect(screen.queryAllByRole("button", { name: /Remove/i })).not.toHaveLength(3));
 });

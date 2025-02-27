@@ -11,16 +11,12 @@ test("matches animal link snapshot", () => {
   const animalLink = {
     img: "https://via.placeholder.com/150",
     type: "playtpus",
-    link: "pets/playtpus",
+    link: "pets/playtpus"
   };
   const tree = renderer
     .create(
       <BrowserRouter>
-        <AnimalType
-          type={animalLink.type}
-          img={animalLink.img}
-          link={animalLink.link}
-        />
+        <AnimalType type={animalLink.type} img={animalLink.img} link={animalLink.link} />
       </BrowserRouter>
     )
     .toJSON();
@@ -35,7 +31,7 @@ describe("<Pets/>", () => {
       </BrowserRouter>
     );
     const ClickHereButton = screen.getAllByRole("link", {
-      name: /Click Here/i,
+      name: /Click Here/i
     });
     expect(ClickHereButton[0]).toHaveAttribute("href", "/dog");
     expect(ClickHereButton[1]).toHaveAttribute("href", "/cat");
@@ -86,9 +82,7 @@ describe("<Pets/>", () => {
     let petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(5);
     expect(screen.getByRole("status")).toBeInTheDocument();
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
 
     petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(6);
@@ -114,15 +108,13 @@ describe("<Pets/>", () => {
     let petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(5);
     expect(screen.getByRole("status")).toBeInTheDocument();
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
 
     petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(5);
     const errorTitle = screen.getByRole("heading", {
       name: /An Error Occurred/i,
-      level: 1,
+      level: 1
     });
 
     expect(errorTitle).toBeInTheDocument();
@@ -139,10 +131,10 @@ describe("<Pets/>", () => {
               name: "Baby Yoda",
               photos: [
                 {
-                  medium: null,
-                },
-              ],
-            },
+                  medium: null
+                }
+              ]
+            }
           })
         );
       })
@@ -159,9 +151,7 @@ describe("<Pets/>", () => {
     let petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(5);
     expect(screen.getByRole("status")).toBeInTheDocument();
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
 
     petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(6);

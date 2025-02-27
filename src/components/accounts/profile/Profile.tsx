@@ -1,6 +1,4 @@
-import PetCardFlex, {
-  PawHubContainer,
-} from "components/layout/Grid/PetCardFlex";
+import PetCardFlex, { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import PetCard from "components/layout/PetCard";
 import { usePetAuth } from "context/TokenContext";
 import { Avatar } from "react-daisyui";
@@ -42,14 +40,7 @@ const Profile = () => {
     <PawHubContainer>
       <section className="flex flex-col justify-center items-center">
         <img src={background} alt="background" className="w-full" />
-        <Avatar
-          src={profile.avatar_url}
-          className="-mt-12"
-          border
-          borderColor="secondary"
-          shape="circle"
-          size="lg"
-        />
+        <Avatar src={profile.avatar_url} className="-mt-12" border borderColor="secondary" shape="circle" size="lg" />
 
         <h5>{profile.username || "A Pawsome User"}</h5>
 
@@ -65,12 +56,9 @@ export default Profile;
 
 const ShowFavorites = ({ favoritePets }: { favoritePets: FavoritePets[] }) => {
   const { tokenHeaders } = usePetAuth();
-  const urlPets = favoritePets.map((f) => lookUpPet + f.pet);
+  const urlPets = favoritePets.map(f => lookUpPet + f.pet);
 
-  const { error, data: petList } = useSWR(
-    tokenHeaders ? [urlPets, tokenHeaders] : null,
-    multipleFetcher
-  );
+  const { error, data: petList } = useSWR(tokenHeaders ? [urlPets, tokenHeaders] : null, multipleFetcher);
 
   if (urlPets.length === 0)
     return (
@@ -91,9 +79,7 @@ const ShowFavorites = ({ favoritePets }: { favoritePets: FavoritePets[] }) => {
   if (!petList)
     return (
       <>
-        <h2 className="text-5xl font-bold font-amatic">
-          Loading Favorite Pets
-        </h2>
+        <h2 className="text-5xl font-bold font-amatic">Loading Favorite Pets</h2>
         <PetCardFlex>
           <LoadPlaceHolder />
           <LoadPlaceHolder />
@@ -106,7 +92,7 @@ const ShowFavorites = ({ favoritePets }: { favoritePets: FavoritePets[] }) => {
     <>
       <h1 className="text-5xl font-bold font-amatic">Favorited Pets</h1>
       <PetCardFlex>
-        {petList.map((pet) => {
+        {petList.map(pet => {
           if (!pet) return null;
 
           return (

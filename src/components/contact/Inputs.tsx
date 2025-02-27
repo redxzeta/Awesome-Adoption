@@ -16,15 +16,13 @@ export const NameInput = ({ inputClasses, register, errors }: InputProps) => {
         {...register("names", {
           required: "This field is required.",
           maxLength: 50,
-          minLength: 6,
+          minLength: 6
         })}
         className={inputClasses}
       />
       <div className="py-4 text-red-500 text-xs">
         {errors && <span>{errors.names?.message}</span>}
-        {errors.names?.type === "minLength" && (
-          <span> Enter atleast 6 characters</span>
-        )}
+        {errors.names?.type === "minLength" && <span> Enter atleast 6 characters</span>}
       </div>
     </>
   );
@@ -37,15 +35,13 @@ export const EmailInput = ({ inputClasses, register, errors }: InputProps) => {
         placeholder="Email"
         {...register("email", {
           required: "This field is required.",
-          pattern: /^\S+@\S+$/i,
+          pattern: /^\S+@\S+$/i
         })}
         className={inputClasses}
       />
       <div className="py-4 text-red-500 text-xs">
         {errors && <span>{errors.email?.message}</span>}
-        {errors.email?.type === "pattern" && (
-          <span> Enter a valid email address</span>
-        )}
+        {errors.email?.type === "pattern" && <span> Enter a valid email address</span>}
       </div>
     </>
   );
@@ -59,14 +55,12 @@ export const MessageInput = ({ register, errors }: InputProps) => {
         className={
           errors.message
             ? "textarea textarea-error h-40 text-lg bg-white rounded-lg"
-            : "textarea textarea-bordered h-40 text-lg bg-white rounded-lg"
+            : "textarea textarea-bordered h-40 text-lg bg-white rounded-lg w-full"
         }
         placeholder="Message"
         id="message"
       />
-      <div className="py-4 text-red-500 text-xs">
-        {errors && <span>{errors.message?.message}</span>}
-      </div>
+      <div className="py-4 text-red-500 text-xs">{errors && <span>{errors.message?.message}</span>}</div>
     </>
   );
 };

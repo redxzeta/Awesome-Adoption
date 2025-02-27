@@ -11,14 +11,14 @@ const contributors = [
     id: 1,
     login: "abe",
     html_url: "somesite.com",
-    avatar_url: PlaceImage,
+    avatar_url: PlaceImage
   },
   {
     id: 2,
     login: "label",
     html_url: "asomesite.com",
-    avatar_url: PlaceImage,
-  },
+    avatar_url: PlaceImage
+  }
 ];
 
 const petList = {
@@ -28,13 +28,13 @@ const petList = {
     name: "Baby Yoda",
     type: "Grogu",
     contact: {
-      email: "yoda@onefor.me",
+      email: "yoda@onefor.me"
     },
     breeds: {
-      primary: "Grogu",
+      primary: "Grogu"
     },
     colors: {
-      primary: "green",
+      primary: "green"
     },
     age: "Baby",
     gender: "male",
@@ -43,10 +43,10 @@ const petList = {
     photos: [
       {
         medium: "babyYoda.medium.jpg",
-        large: "babyYoda.large.jpg",
-      },
-    ],
-  },
+        large: "babyYoda.large.jpg"
+      }
+    ]
+  }
 };
 
 const petListFav = [
@@ -60,18 +60,18 @@ const petListFav = [
       gender: "male",
       description: "Woof",
       primary_photo_cropped: {
-        medium: "courage.jpg",
+        medium: "courage.jpg"
       },
       breeds: {
-        primary: "dog",
+        primary: "dog"
       },
       photos: [
         {
           medium: "courage.medium.jpg",
-          large: "courage.large.jpg",
-        },
-      ],
-    },
+          large: "courage.large.jpg"
+        }
+      ]
+    }
   },
   {
     animal: {
@@ -82,18 +82,18 @@ const petListFav = [
       gender: "male",
       description: "finns friend",
       primary_photo_cropped: {
-        medium: "jake.png",
+        medium: "jake.png"
       },
       breeds: {
-        primary: "dog",
+        primary: "dog"
       },
       photos: [
         {
           medium: "finn.medium.jpg",
-          large: "finn.large.jpg",
-        },
-      ],
-    },
+          large: "finn.large.jpg"
+        }
+      ]
+    }
   },
   {
     animal: {
@@ -104,19 +104,19 @@ const petListFav = [
       gender: "male",
       description: "masterr of sowrds",
       primary_photo_cropped: {
-        medium: "boots.jpg",
+        medium: "boots.jpg"
       },
       breeds: {
-        primary: "cat",
+        primary: "cat"
       },
       photos: [
         {
           medium: "cat.medium.jpg",
-          large: "cat.large.jpg",
-        },
-      ],
-    },
-  },
+          large: "cat.large.jpg"
+        }
+      ]
+    }
+  }
 ];
 
 const fakenewProfiles: ProfileType[] = [
@@ -128,8 +128,8 @@ const fakenewProfiles: ProfileType[] = [
     favoritepets: [],
     background: {
       id: 1,
-      background_url: "someImage.png",
-    },
+      background_url: "someImage.png"
+    }
   },
   {
     id: "36",
@@ -138,26 +138,23 @@ const fakenewProfiles: ProfileType[] = [
     avatar_url: "cuteDoggoAndCat.jpg",
     favoritepets: [
       { id: 1, pet: "2", created_at: new Date("01/01/2020") },
-      { id: 2, pet: "3", created_at: new Date("01/02/2020") },
+      { id: 2, pet: "3", created_at: new Date("01/02/2020") }
     ],
     background: {
       id: 1,
-      background_url: "someImage.png",
-    },
-  },
+      background_url: "someImage.png"
+    }
+  }
 ];
 
 const server = setupServer(
-  http.get(
-    "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",
-    () => {
-      return HttpResponse.json(contributors, { status: 200 });
-    },
-  ),
+  http.get("https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors", () => {
+    return HttpResponse.json(contributors, { status: 200 });
+  }),
   http.post("https://api.petfinder.com/v2/oauth2/token", () => {
     return HttpResponse.json({ access_token: "234566" }, { status: 200 });
   }),
-  http.get("https://api.petfinder.com/v2/animals/:id", (info) => {
+  http.get("https://api.petfinder.com/v2/animals/:id", info => {
     const { id } = info.params;
 
     switch (id) {
@@ -170,10 +167,7 @@ const server = setupServer(
       case "4":
         return HttpResponse.json(petListFav[2], { status: 200 });
       default:
-        return HttpResponse.json(
-          { message: "Yoda does not exist" },
-          { status: 404 },
-        );
+        return HttpResponse.json({ message: "Yoda does not exist" }, { status: 404 });
     }
   }),
   http.get("https://api.petfinder.com/v2/animals", ({ request }) => {
@@ -203,16 +197,13 @@ const server = setupServer(
         expires_in: 3600,
         refresh_token: "uCtyqUsj5FJqtIxCkz2Mvg",
         token_type: "bearer",
-        user: { id: "1234" },
+        user: { id: "1234" }
       },
-      { status: 200 },
+      { status: 200 }
     );
   }),
   http.post("https://test.supabase.co/auth/v1/magicLink", () => {
-    return HttpResponse.json(
-      { message: "Unable to validate email address: invalid format" },
-      { status: 400 },
-    );
+    return HttpResponse.json({ message: "Unable to validate email address: invalid format" }, { status: 400 });
   }),
   // Register
   http.post("https://test.supabase.co/auth/v1/signup", () => {
@@ -227,7 +218,7 @@ const server = setupServer(
       user_metadata: {},
       identities: [],
       created_at: Date.now(),
-      updated_at: Date.now(),
+      updated_at: Date.now()
     };
     return HttpResponse.json(fakeNewAccount, { status: 200 });
   }),
@@ -248,24 +239,21 @@ const server = setupServer(
   http.get("https://test.supabase.co/rest/v1/favoritepets", () => {
     const fakeNewFavorites = [
       { id: 1, pet: "1" },
-      { id: 2, pet: "2" },
+      { id: 2, pet: "2" }
     ];
     return HttpResponse.json(fakeNewFavorites, { status: 200 });
   }),
 
-  http.get(
-    "https://test.supabase.co/storage/v1/object/profile/[object%20Object]",
-    () => {
-      const myBlob = new Blob(
-        [
-          `/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/
-      2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/`,
-        ],
-        { type: "image/jpeg" },
-      );
-      return HttpResponse.json(myBlob, { status: 200 });
-    },
-  ),
+  http.get("https://test.supabase.co/storage/v1/object/profile/[object%20Object]", () => {
+    const myBlob = new Blob(
+      [
+        `/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/
+      2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/`
+      ],
+      { type: "image/jpeg" }
+    );
+    return HttpResponse.json(myBlob, { status: 200 });
+  })
 );
 
 beforeAll(() => server.listen());
