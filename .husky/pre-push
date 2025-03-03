@@ -1,1 +1,1 @@
-yarn test --watchAll=false
+vite run test:no-watch
