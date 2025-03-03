@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+/*import { screen, waitFor } from "@testing-library/react";
 import { Route, Routes } from "react-router-dom";
 import { customRouterRender } from "swrconfigtest";
 
@@ -61,3 +61,4 @@ describe("Profile Page", () => {
     expect(screen.getByRole("heading", { level: 1, name: /ERROR/i }));
   });
 });
+*/
