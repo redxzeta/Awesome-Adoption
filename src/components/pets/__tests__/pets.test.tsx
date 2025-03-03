@@ -1,6 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import renderer from "react-test-renderer";
 
 import PetAuthProvider from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
@@ -14,14 +13,12 @@ test("matches animal link snapshot", () => {
     type: "playtpus",
     link: "pets/playtpus"
   };
-  const tree = renderer
-    .create(
-      <BrowserRouter>
-        <AnimalType type={animalLink.type} img={animalLink.img} link={animalLink.link} />
-      </BrowserRouter>
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const view = render(
+    <BrowserRouter>
+      <AnimalType type={animalLink.type} img={animalLink.img} link={animalLink.link} />
+    </BrowserRouter>
+  );
+  expect(view).toMatchSnapshot();
 });
 
 describe("<Pets/>", () => {
@@ -157,6 +154,6 @@ describe("<Pets/>", () => {
     petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(6);
     expect(petImage[5]).toHaveAttribute("alt", "Baby Yoda");
-    expect(petImage[5]).toHaveAttribute("src", "placeholder-light.png");
+    expect(petImage[5]).toHaveAttribute("src", "/src/components/pets/placeholder-light.png");
   });
 });
