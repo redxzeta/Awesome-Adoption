@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [23.x]
+        node-version: [22.x]
         os: [ubuntu-latest, windows-latest, macOS-latest]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 

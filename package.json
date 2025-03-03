@@ -4,7 +4,7 @@
   "license": "MIT",
   "engines": {
     "npm": ">=11.0.0",
-    "node": ">=23.0.0"
+    "node": ">=22.0.0"
   },
   "dependencies": {
     "@babel/core": "^7.26.9",
@@ -39,9 +39,12 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
+    "test": "vite test",
+    "test:coverage": "vite test --watchAll=false --coverage",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,md}\"",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint-fix": "eslint src/**/*.{ts,tsx} --fix",
+    "prepare": "husky",
     "dev": "vite"
   },
   "browserslist": {
@@ -81,6 +84,7 @@
     "eslint-plugin-testing-library": "^7.1.1",
     "fix": "^0.0.6",
     "globals": "^16.0.0",
+    "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "msw": "^2.7.1",
     "prettier": "^3.5.2",
