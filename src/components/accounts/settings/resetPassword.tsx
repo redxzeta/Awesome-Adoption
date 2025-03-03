@@ -1,22 +1,19 @@
-/* eslint-disable */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import { FetchingButton } from "components/layout/Buttons/FetchingButton";
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { useState } from "react";
 import { Form, Input } from "react-daisyui";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
-import { useClient } from "react-supabase";
+import { useClient } from "react-supabase-next";
 
 type PasswordType = {
   newPassword: string;
   confirmation: string;
 };
 
-const handleValidatePassword = ({
-  newPassword,
-  confirmation,
-}: PasswordType) => {
+const handleValidatePassword = ({ newPassword, confirmation }: PasswordType) => {
   if (newPassword !== confirmation) {
     return "Passwords should be equal";
   } else if (newPassword.length < 8) {
@@ -30,7 +27,7 @@ const ResetPassword = () => {
   const { auth } = useClient();
   const session = auth.session();
   const [errorMsg, setErrorMsg] = useState("");
-  const handleOnSubmit = async (data) => {
+  const handleOnSubmit = async data => {
     setLoading(true);
 
     const errorMessage = handleValidatePassword(data);
@@ -39,26 +36,21 @@ const ResetPassword = () => {
     setLoading(false);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
 
   if (!session) {
     return <Navigate to="/" />;
   }
 
-  const handleResetPassword = async (password) => {
-    const { error: err } = await auth.api.updateUser(
-      auth.currentSession.access_token,
-      { password }
-    );
+  const handleResetPassword = async password => {
+    const { error: err } = await auth.api.updateUser(auth.currentSession.access_token, { password });
     alert(err?.message ? err.message : "Password updated");
   };
 
   return (
     <PawHubContainer>
-      <section
-        className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
-        fluid="md"
-      >
+      <section className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8 shadow-2xl rounded-xl p-6">
           <h1 className="text-5xl font-bold font-amatic">Reset Password</h1>
           <form onSubmit={handleSubmit(handleOnSubmit)}>
@@ -77,7 +69,7 @@ const ResetPassword = () => {
                     color="primary"
                     className="flex min-w-[10px] "
                     {...register("newPassword", {
-                      required: true,
+                      required: true
                     })}
                   />
                 )}
@@ -98,7 +90,7 @@ const ResetPassword = () => {
                     color="primary"
                     className=" flex min-w-[10px] "
                     {...register("confirmation", {
-                      required: true,
+                      required: true
                     })}
                   />
                 )}

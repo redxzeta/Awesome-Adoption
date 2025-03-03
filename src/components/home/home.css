@@ -2,7 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Arvo&display=swap");
 
 .home__background {
-  background: url("./homehero.png");
+  background: url("./homehero.png") 50%;
+  background-size: cover;
+  place-items: center;
+  width: 100%;
+  display: grid;
 }
 .rotate {
   animation: rotation 1.3s infinite linear;

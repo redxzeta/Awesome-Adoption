@@ -11,9 +11,6 @@
   flex-direction: column;
   min-height: 100vh;
 }
-.container {
-  flex: 1;
-}
 
 .carousel img {
   object-fit: cover;
@@ -45,4 +42,8 @@
     -webkit-transform: none;
     transform: none;
   }
+}
+
+.font-amatic {
+  font-family: Amatic SC, sans-serif;
 }

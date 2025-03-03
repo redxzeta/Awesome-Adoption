@@ -7,17 +7,8 @@ type FetchingButtonType = {
   className?: string;
 };
 
-export const FetchingButton = ({
-  fetching,
-  className = "",
-  action,
-}: FetchingButtonType) => (
-  <Button
-    className={className}
-    color="primary"
-    type="submit"
-    disabled={fetching}
-  >
+export const FetchingButton = ({ fetching, className = "", action }: FetchingButtonType) => (
+  <Button className={className} color="primary" type="submit" disabled={fetching}>
     {fetching ? (
       <>
         <Spinner />

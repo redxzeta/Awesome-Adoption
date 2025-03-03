@@ -1,13 +1,12 @@
 import { PetSearchType } from "./petTypeFetcher";
 
-async function fetcher(
-  url: string,
-  tokenHeaders: string
-): Promise<PetSearchType> {
+async function fetcher(tokenHeaders: string): Promise<PetSearchType> {
+  const url = tokenHeaders[0];
+  const bearer = tokenHeaders[1];
   const res = await fetch(url, {
     method: "GET",
     body: null,
-    headers: { Authorization: tokenHeaders },
+    headers: { Authorization: bearer }
   });
   if (!res.ok) {
     throw new Error("An error occurred while fetching the data.");

@@ -1,9 +1,7 @@
-import PetCardFlex, {
-  PawHubContainer,
-} from "components/layout/Grid/PetCardFlex";
+import PetCardFlex, { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { useEffect } from "react";
 import { Button } from "react-daisyui";
-import { useDelete } from "react-supabase";
+import { useDelete } from "react-supabase-next";
 import { removeFavoritePet } from "reducers/supaFunctions";
 import useSWR from "swr";
 
@@ -21,11 +19,8 @@ export default function Favorites() {
   const [{ fetching }, executeDelete] = useDelete("favoritepets");
 
   const { dispatch } = useAuth();
-  const urlPets = favoritePets.map((f) => lookUpPet + f.pet);
-  const { error, data: petList } = useSWR(
-    tokenHeaders ? [urlPets, tokenHeaders] : null,
-    multipleFetcher
-  );
+  const urlPets = favoritePets.map(f => lookUpPet + f.pet);
+  const { error, data: petList } = useSWR(tokenHeaders ? [urlPets, tokenHeaders] : null, multipleFetcher);
   const [petLst, setPetLst] = React.useState(petList);
   const [petType, setPetType] = React.useState("");
 
@@ -35,7 +30,7 @@ export default function Favorites() {
       if (petType === "") {
         filtered = petList;
       } else {
-        filtered = petList?.filter((pet) => pet?.type === petType);
+        filtered = petList?.filter(pet => pet?.type === petType);
       }
       return filtered;
     }
@@ -55,9 +50,7 @@ export default function Favorites() {
   if (isLoading)
     return (
       <PawHubContainer>
-        <h2 className="text-5xl font-bold font-amatic">
-          Loading Favorite Pets
-        </h2>
+        <h2 className="text-5xl font-bold font-amatic">Loading Favorite Pets</h2>
         <PetCardFlex>
           <LoadPlaceHolder />
           <LoadPlaceHolder />
@@ -78,12 +71,10 @@ export default function Favorites() {
     // use petId to find the id associated in FavoritePets array
     // hint pet === petId
     // then get the id and replace removalId
-    const removedPet = favoritePets.filter(
-      (fav) => fav.pet === petId.toString()
-    )[0];
-    await executeDelete((query) => query.eq("id", removedPet.id), {
+    const removedPet = favoritePets.filter(fav => fav.pet === petId.toString())[0];
+    await executeDelete(query => query.eq("id", removedPet.id), {
       returning: "minimal",
-      count: "estimated",
+      count: "estimated"
     });
     dispatch(removeFavoritePet(removedPet.id));
   };
@@ -97,17 +88,12 @@ export default function Favorites() {
 
   return (
     <PawHubContainer>
-      <h1 className="font-amatic text-5xl font-bold">
-        Your favorite {petType} Buddies!
-      </h1>
+      <h1 className="font-amatic text-5xl font-bold">Your favorite {petType} Buddies!</h1>
       <div className="dropdown dropdown-right drop-shadow-lg z-10 mt-5">
         <label tabIndex={0} className="btn m-1">
           Filter
         </label>
-        <ul
-          tabIndex={0}
-          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-        >
+        <ul tabIndex={0} className="dropdown-content menu p-2 shadow-sm bg-base-100 rounded-box w-52">
           <li>
             <a id="all-favorites" onClick={handleClick}>
               All Favorites
@@ -142,7 +128,7 @@ export default function Favorites() {
       </div>
       <PetCardFlex>
         {petLst && petLst.length > 0 ? (
-          petLst.map((pet) => {
+          petLst.map(pet => {
             if (!pet) return null;
             return (
               <PetCard
@@ -155,11 +141,7 @@ export default function Favorites() {
                 primary_photo_cropped={pet.primary_photo_cropped}
               >
                 {" "}
-                <Button
-                  color="primary"
-                  className="w-full mx-auto mt-2"
-                  onClick={() => removeFavButton(pet.id)}
-                >
+                <Button color="primary" className="w-full mx-auto mt-2" onClick={() => removeFavButton(pet.id)}>
                   {fetching ? "Loading" : "Remove"}
                 </Button>
               </PetCard>

@@ -1,30 +1,24 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import renderer from "react-test-renderer";
 
 import PetAuthProvider from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
-import { rest, server } from "../../../testServer";
+import { server } from "../../../testServer";
 import Pets, { AnimalType } from "../Pets";
+import { http, HttpResponse } from "msw";
 
 test("matches animal link snapshot", () => {
   const animalLink = {
     img: "https://via.placeholder.com/150",
     type: "playtpus",
-    link: "pets/playtpus",
+    link: "pets/playtpus"
   };
-  const tree = renderer
-    .create(
-      <BrowserRouter>
-        <AnimalType
-          type={animalLink.type}
-          img={animalLink.img}
-          link={animalLink.link}
-        />
-      </BrowserRouter>
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const view = render(
+    <BrowserRouter>
+      <AnimalType type={animalLink.type} img={animalLink.img} link={animalLink.link} />
+    </BrowserRouter>
+  );
+  expect(view).toMatchSnapshot();
 });
 
 describe("<Pets/>", () => {
@@ -35,7 +29,7 @@ describe("<Pets/>", () => {
       </BrowserRouter>
     );
     const ClickHereButton = screen.getAllByRole("link", {
-      name: /Click Here/i,
+      name: /Click Here/i
     });
     expect(ClickHereButton[0]).toHaveAttribute("href", "/dog");
     expect(ClickHereButton[1]).toHaveAttribute("href", "/cat");
@@ -86,9 +80,7 @@ describe("<Pets/>", () => {
     let petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(5);
     expect(screen.getByRole("status")).toBeInTheDocument();
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
 
     petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(6);
@@ -98,8 +90,8 @@ describe("<Pets/>", () => {
 
   test("Pets component should error random pet", async () => {
     server.use(
-      rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
-        return res(ctx.status(404), ctx.json({ error: "Error" }));
+      http.get("https://api.petfinder.com/v2/animals", () => {
+        return HttpResponse.json({ message: "Error" }, { status: 404 });
       })
     );
 
@@ -114,15 +106,13 @@ describe("<Pets/>", () => {
     let petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(5);
     expect(screen.getByRole("status")).toBeInTheDocument();
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
 
     petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(5);
     const errorTitle = screen.getByRole("heading", {
       name: /An Error Occurred/i,
-      level: 1,
+      level: 1
     });
 
     expect(errorTitle).toBeInTheDocument();
@@ -130,20 +120,20 @@ describe("<Pets/>", () => {
 
   test("Pets Component should render random pet with placeholder img", async () => {
     server.use(
-      rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
-        return res(
-          ctx.status(200),
-          ctx.json({
+      http.get("https://api.petfinder.com/v2/animals", () => {
+        return HttpResponse.json(
+          {
             animal: {
               id: 5,
               name: "Baby Yoda",
               photos: [
                 {
-                  medium: null,
-                },
-              ],
-            },
-          })
+                  medium: null
+                }
+              ]
+            }
+          },
+          { status: 200 }
         );
       })
     );
@@ -159,13 +149,11 @@ describe("<Pets/>", () => {
     let petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(5);
     expect(screen.getByRole("status")).toBeInTheDocument();
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
 
     petImage = screen.getAllByRole("img");
     expect(petImage.length).toBe(6);
     expect(petImage[5]).toHaveAttribute("alt", "Baby Yoda");
-    expect(petImage[5]).toHaveAttribute("src", "placeholder-light.png");
+    expect(petImage[5]).toHaveAttribute("src", "/src/components/pets/placeholder-light.png");
   });
 });

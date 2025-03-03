@@ -2,9 +2,8 @@ import NotFound from "components/NotFound/NotFound";
 import FooterMenu from "components/layout/Footer";
 import NavigationBar from "components/layout/NavigationBar";
 import PetInfo from "components/pets/PetInfo";
-import { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Provider } from "react-supabase";
+import { Provider } from "react-supabase-next";
 
 import "./App.css";
 import About from "./components/about/About";
@@ -28,7 +27,7 @@ import { supabase } from "./utils/SupaBaseUtils";
 
 export default function App() {
   return (
-    <Fragment>
+    <>
       <PetAuthProvider>
         <Provider value={supabase}>
           <AuthProvider>
@@ -64,6 +63,6 @@ export default function App() {
           </AuthProvider>
         </Provider>
       </PetAuthProvider>
-    </Fragment>
+    </>
   );
 }

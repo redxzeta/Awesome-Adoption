@@ -7,20 +7,16 @@ export type PetSearchType = {
   animals: PetCardType[];
 };
 
-async function fetcher(
-  url: string,
-  tokenHeaders: string
-): Promise<PetSearchType> {
+async function fetcher(tokenHeaders: string): Promise<PetSearchType> {
+  const url = tokenHeaders[0];
+  const bearer = tokenHeaders[1];
   const res = await fetch(url, {
     method: "GET",
     body: null,
-    headers: { Authorization: tokenHeaders },
+    headers: { Authorization: bearer }
   });
   if (!res.ok) {
-    throw new Error("An error ocurred while fetching the data");
-    // error.info = await res.json();
-    // error.status = res.status;
-    // throw error;
+    throw new Error("An error occurred while fetching the data");
   }
   const data = await res.json();
   return data;

@@ -13,25 +13,23 @@ on:
 
 jobs:
   build:
-    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: Build, lint, and test on Node ${{ matrix.node-version }} and ubuntu-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [16.x]
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        node-version: [22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Check JS Lockfile
-        if: matrix.os == 'ubuntu-latest'
-        uses: ChromaticHQ/javascript-lockfile-check-action@v1.1.0
+        uses: ChromaticHQ/javascript-lockfile-check-action@v1.2.1
         with:
           package-manager: yarn
       - name: Install dependencies

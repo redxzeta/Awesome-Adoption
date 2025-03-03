@@ -3,7 +3,7 @@ import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import { Form, Input } from "react-daisyui";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useClient } from "react-supabase";
+import { useClient } from "react-supabase-next";
 import useSWR from "swr";
 import { fetchSupaProfile } from "utils/supaFetcher";
 
@@ -31,12 +31,12 @@ export default function Settings() {
   }
   if (!profile) return <h1>Loading</h1>;
 
-  const onSubmit: SubmitHandler<SettingType> = async (data) => {
+  const onSubmit: SubmitHandler<SettingType> = async data => {
     await client
       .from("profiles")
       .update({
         description: data.description,
-        username: data.username,
+        username: data.username
       })
       .match({ id: user?.id });
   };
@@ -64,7 +64,7 @@ export default function Settings() {
                       {...register("username", {
                         required: true,
                         minLength: 4,
-                        maxLength: 45,
+                        maxLength: 45
                       })}
                     />
                   )}
@@ -92,11 +92,7 @@ export default function Settings() {
               </Form.Label>
             </Form>
 
-            <FetchingButton
-              action="Submit"
-              fetching={false}
-              className="justify-content-center mt-3 mb-2"
-            />
+            <FetchingButton action="Submit" fetching={false} className="justify-content-center mt-3 mb-2" />
           </form>
         </div>
       </section>

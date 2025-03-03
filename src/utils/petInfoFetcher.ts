@@ -16,25 +16,19 @@ type PetInfo =
     })
   | undefined;
 
-async function fetcher(
-  url: string,
-  tokenHeaders: string,
-  multi?: boolean
-): Promise<PetInfo> {
+async function fetcher(tokenHeaders: string, multi?: boolean): Promise<PetInfo> {
+  const url = tokenHeaders[0];
+  const bearer = tokenHeaders[1];
   const res = await fetch(url, {
     method: "GET",
     body: null,
-    headers: { Authorization: tokenHeaders },
+    headers: { Authorization: bearer }
   });
   if (!res.ok) {
     if (multi) {
       return undefined;
     }
     throw new Error("An error occurred while fetching the data.");
-    // Attach extra info to the error object.
-    // error.info = await res.json();
-    // error.status = res.status;
-    // throw error;
   }
   const data = await res.json();
   if (data.animal) {
@@ -43,10 +37,7 @@ async function fetcher(
     return data.animals[0];
   }
 }
-const multipleFetcher = (
-  urls: string[],
-  tokenHeaders: string
-): Promise<Array<PetInfo>> =>
-  Promise.all(urls.map((u) => fetcher(u, tokenHeaders, true)));
+const multipleFetcher = (urls: string[], tokenHeaders: string): Promise<Array<PetInfo>> =>
+  Promise.all(urls.map(() => fetcher(tokenHeaders, true)));
 
 export { fetcher, multipleFetcher };

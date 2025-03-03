@@ -4,11 +4,9 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   ExclamationTriangleIcon,
-  NoSymbolIcon,
+  NoSymbolIcon
 } from "@heroicons/react/24/outline";
-import PetCardFlex, {
-  PawHubContainer,
-} from "components/layout/Grid/PetCardFlex";
+import PetCardFlex, { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import { postcodeValidator } from "postcode-validator";
 import React, { useEffect, useRef, useState } from "react";
 import { Alert, Button, Form, Input, Pagination } from "react-daisyui";
@@ -37,9 +35,7 @@ export default function PetType() {
 
   // Fetching the data through SWR
   const { data: petSearchList, error: fetcherror } = useSWR(
-    tokenHeaders && type
-      ? [petFinderURL(type, currentPage, petLocation), tokenHeaders]
-      : null,
+    tokenHeaders && type ? [petFinderURL(type, currentPage, petLocation), tokenHeaders] : null,
     fetcher
   );
 
@@ -60,7 +56,7 @@ export default function PetType() {
   const findByLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        position => {
           const latitude = position.coords.latitude.toString();
           const longitude = position.coords.longitude.toString();
           if (latitude && longitude) {
@@ -78,9 +74,7 @@ export default function PetType() {
   };
 
   // ! To check validity of zipcode
-  function checkValidation(
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) {
+  function checkValidation(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
     setValidCodeError("");
     setCode(inputCode?.current?.value);
     const codeLength = e.target.value.length;
@@ -124,23 +118,13 @@ export default function PetType() {
     if (minShownPage < 1) minShownPage = 1;
     if (currentPage > 1)
       pageItems.push(
-        <Button
-          variant="outline"
-          color="primary"
-          key="firstPage"
-          onClick={() => changePage(1)}
-        >
+        <Button variant="outline" color="primary" key="firstPage" onClick={() => changePage(1)}>
           <ChevronDoubleLeftIcon className="w-4" />
         </Button>
       );
     if (currentPage > 1)
       pageItems.push(
-        <Button
-          variant="outline"
-          color="primary"
-          key="prevPage"
-          onClick={() => changePage(currentPage - 1)}
-        >
+        <Button variant="outline" color="primary" key="prevPage" onClick={() => changePage(currentPage - 1)}>
           <ChevronLeftIcon className="w-4" />
         </Button>
       );
@@ -148,36 +132,20 @@ export default function PetType() {
 
     for (let i = minShownPage; i <= maxShownPage; i++) {
       pageItems.push(
-        <Button
-          variant="outline"
-          color="primary"
-          key={i}
-          active={i === currentPage}
-          onClick={() => changePage(i)}
-        >
+        <Button variant="outline" color="primary" key={i} active={i === currentPage} onClick={() => changePage(i)}>
           {i}
         </Button>
       );
     }
     if (currentPage < totalPages)
       pageItems.push(
-        <Button
-          color="primary"
-          variant="outline"
-          key="nextPage"
-          onClick={() => changePage(currentPage + 1)}
-        >
+        <Button color="primary" variant="outline" key="nextPage" onClick={() => changePage(currentPage + 1)}>
           <ChevronRightIcon className="w-4" />
         </Button>
       );
     if (currentPage !== totalPages)
       pageItems.push(
-        <Button
-          color="primary"
-          variant="outline"
-          key="lastPage"
-          onClick={() => changePage(totalPages)}
-        >
+        <Button color="primary" variant="outline" key="lastPage" onClick={() => changePage(totalPages)}>
           <ChevronDoubleRightIcon className="w-4" />
         </Button>
       );
@@ -185,8 +153,7 @@ export default function PetType() {
     return pageItems;
   };
 
-  const changePage = (newPage: number) =>
-    setCurrentPage((curr) => (curr !== newPage ? newPage : newPage));
+  const changePage = (newPage: number) => setCurrentPage(curr => (curr !== newPage ? newPage : newPage));
 
   const errorAlert = (
     <Alert status="error" icon={<NoSymbolIcon className="w-6 h-6 mx-2" />}>
@@ -209,11 +176,9 @@ export default function PetType() {
   if (fetcherror || !petSearchList) return <PetErrorLoading type={type} />;
   return (
     <PawHubContainer>
-      <h1 className="font-amatic text-5xl font-bold ">
-        List Of {type} Buddies
-      </h1>
+      <h1 className="font-amatic text-5xl font-bold ">List Of {type} Buddies</h1>
       <div className="w-full flex justify-center items-center flex-col lg:p-4 my-2">
-        <Form className="shadow rounded-lg p-4 lg:w-1/4 w-full">
+        <Form className="shadow-sm rounded-lg p-4 lg:w-1/4 w-full">
           <Form.Label title="Enter Zipcode: ">
             <Input
               ref={inputCode}
@@ -227,12 +192,7 @@ export default function PetType() {
               className="lg:w-full w-1/2"
             />
           </Form.Label>
-          <Button
-            className="my-2"
-            color="primary"
-            disabled={goBtnDisabled}
-            onClick={search}
-          >
+          <Button className="my-2" color="primary" disabled={goBtnDisabled} onClick={search}>
             Go
           </Button>
           <Button className="my-2" color="primary" onClick={findByLocation}>
@@ -241,16 +201,13 @@ export default function PetType() {
         </Form>
       </div>
       {validCodeError && (
-        <Alert
-          status="warning"
-          icon={<ExclamationTriangleIcon className="w-6 h-6 mx-2" />}
-        >
+        <Alert status="warning" icon={<ExclamationTriangleIcon className="w-6 h-6 mx-2" />}>
           {validCodeError}
         </Alert>
       )}{" "}
       {showErrorAlert && errorAlert}
       <PetCardFlex>
-        {petSearchList.animals.map((pet) => (
+        {petSearchList.animals.map(pet => (
           <PetCard
             key={pet.id}
             breeds={pet.breeds}
@@ -262,9 +219,7 @@ export default function PetType() {
           />
         ))}
       </PetCardFlex>
-      <Pagination className="flex flex-row justify-center my-4">
-        {renderPagination()}
-      </Pagination>
+      <Pagination className="flex flex-row justify-center my-4">{renderPagination()}</Pagination>
     </PawHubContainer>
   );
 }

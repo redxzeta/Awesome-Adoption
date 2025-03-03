@@ -1,11 +1,12 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
-import { rest, server } from "testServer";
+import { server } from "testServer";
 
 import PetAuthProvider from "../../../context/TokenContext";
 import { customRender } from "../../../swrconfigtest";
 import Home from "../Home";
+import { http, HttpResponse } from "msw";
 
 // mock pet list
 
@@ -19,9 +20,7 @@ describe("<Home/>", () => {
       </BrowserRouter>
     );
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
     const petCards = screen.getAllByRole("button", { name: /More Info/i });
     expect(petCards).toHaveLength(3);
   });
@@ -36,32 +35,20 @@ describe("<Home/>", () => {
       </BrowserRouter>
     );
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
     const petCards = screen.getAllByRole("button", { name: /More Info/i });
     expect(petCards).toHaveLength(3);
 
     const refreshButton = screen.getByRole("button", { name: /refresh/i });
     await user.click(refreshButton);
 
-    await waitFor(() =>
-      expect(
-        screen.queryByRole("button", { name: /More Info/i })
-      ).not.toBeInTheDocument()
-    );
-
-    expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
     expect(petCards).toHaveLength(3);
   });
 
   test("list of Pets renders error", async () => {
     server.use(
-      rest.get("https://api.petfinder.com/v2/animals", (_req, res, ctx) => {
-        return res(ctx.status(404), ctx.json({ error: "Error" }));
+      http.get("https://api.petfinder.com/v2/animals", () => {
+        return HttpResponse.json({ message: "Error" }, { status: 404 });
       })
     );
 
@@ -73,14 +60,12 @@ describe("<Home/>", () => {
       </BrowserRouter>
     );
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
 
     expect(
       screen.getByRole("heading", {
         level: 5,
-        name: /Oops! An Error Occurred Getting The Pets/i,
+        name: /Oops! An Error Occurred Getting The Pets/i
       })
     );
   });

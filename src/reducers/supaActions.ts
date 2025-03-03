@@ -1,11 +1,20 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const LOADING_SUPA = "LOADING_SUPA";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const LOADED_SUPA = "LOADED_SUPA";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ERROR = "ERROR";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const UPDATE_AUTH = "UPDATE_AUTH";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const UPDATE_PROFILE = "UPDATE_PROFILE";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const LOGGED_OUT = "LOGGED_OUT";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CHANGE_USERNAME = "CHANGE_USERNAME";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ADD_PET = "ADD_PET";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const REMOVE_FAV = "REMOVE_FAV";
 
 export type LoadingSupa = typeof LOADING_SUPA;

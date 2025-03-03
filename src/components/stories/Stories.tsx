@@ -1,27 +1,30 @@
-/* eslint-disable */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import { PawHubContainer } from "components/layout/Grid/PetCardFlex";
 import React, { useState } from "react";
 // import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import { Button } from "react-daisyui";
-import { useInsert } from "react-supabase";
+import { useInsert } from "react-supabase-next";
 
 import { useAuth } from "../../context/SupaContext";
 
 // import { FetchingButton } from "../layout/Buttons/FetchingButton";
 
 export default function Stories() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [show, setShow] = useState(false);
   const [country, setCountry] = useState("");
   const [region, setRegion] = useState("");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [err, setErr] = useState("");
   const { user } = useAuth();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [{ fetching }, execute] = useInsert("stories");
+  const [execute] = useInsert("stories");
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!user) return;
@@ -30,7 +33,7 @@ export default function Stories() {
       title: title,
       description: desc,
       region: region,
-      country: country,
+      country: country
     });
     if (!error) {
       // insert successfully

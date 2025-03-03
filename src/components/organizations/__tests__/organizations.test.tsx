@@ -6,9 +6,7 @@ import Organizations from "../Organizations";
 describe("Organizations", () => {
   test("should render organizations component", () => {
     render(<Organizations />);
-    expect(
-      screen.getByRole("heading", { name: /organizations/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /organizations/i })).toBeInTheDocument();
   });
 
   test("Test for filtering", async () => {
@@ -20,7 +18,7 @@ describe("Organizations", () => {
     expect(
       (
         screen.getByRole("option", {
-          name: "united states",
+          name: "united states"
         }) as HTMLOptionElement
       ).selected
     ).toBeTruthy();
@@ -28,22 +26,16 @@ describe("Organizations", () => {
     expect(
       (
         screen.queryByRole("option", {
-          name: "india",
+          name: "india"
         }) as HTMLOptionElement
       ).selected
     ).toBe(false);
 
-    expect(
-      screen.queryByText(/^Location: ((?!United States).)*$/i)
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/^Location: ((?!United States).)*$/i)).not.toBeInTheDocument();
 
-    expect(
-      screen.queryAllByText(/^Location: United States /i).length
-    ).toBeGreaterThan(0);
+    expect(screen.queryAllByText(/^Location: United States /i).length).toBeGreaterThan(0);
 
-    expect(
-      screen.getByRole("option", { name: "united states" })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("option", { name: "united states" })).toBeInTheDocument();
 
     expect(screen.getAllByRole("option").length).toBe(11);
   });
