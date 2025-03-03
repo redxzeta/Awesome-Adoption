@@ -42,7 +42,7 @@ describe("<Home/>", () => {
     const refreshButton = screen.getByRole("button", { name: /refresh/i });
     await user.click(refreshButton);
 
-    await waitFor(() => expect(screen.queryByRole("button", { name: /More Info/i })).not.toBeInTheDocument());
+    await waitFor(() => expect(screen.queryAllByRole("button", { name: /More Info/i })).not.toBeInTheDocument());
 
     expect(screen.getAllByRole("status")).toHaveLength(3);
     await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());

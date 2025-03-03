@@ -77,7 +77,7 @@ export default function NavigationBar() {
         <ThemeToggle />
         <Dropdown className="dropdown-end">
           <Button tag="label" color="ghost" shape="circle" tabIndex={0}>
-            <img src={PawLogo} alt="" />
+            <img src={PawLogo} alt="" height="40px" width="40px" />
           </Button>
           <Dropdown.Menu className="w-52 mt-3 z-[1]">
             <Dropdown.Item>{`Hello, ${username}`}</Dropdown.Item>

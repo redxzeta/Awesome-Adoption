@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { resolve } from "node:path";
 import { readFileSync } from "node:fs";
 import { defineConfig, loadEnv, Plugin, createFilter, transformWithEsbuild } from "vite";
@@ -22,7 +23,16 @@ export default defineConfig(({ mode }) => {
       importPrefixPlugin(),
       htmlPlugin(mode),
       svgrPlugin()
-    ]
+    ],
+    test: {
+      environment: "jsdom",
+      globals: true,
+      coverage: {
+        reporter: ["text", "html"],
+        exclude: ["node_modules/", "src/setupTests.ts"]
+      },
+      setupFiles: ["src/setupTests.ts"]
+    }
   };
 });
 
@@ -162,12 +172,11 @@ function importPrefixPlugin(): Plugin {
 // https://create-react-app.dev/docs/adding-images-fonts-and-files/#adding-svgs
 function svgrPlugin(): Plugin {
   const filter = createFilter("**/*.svg");
-  // @ts-ignore
   const postfixRE = /[?#].*$/s;
 
   return {
     name: "svgr-plugin",
-    // @ts-ignore
+    // @ts-expect-error - Missing types
     async transform(code, id) {
       if (filter(id)) {
         const { transform } = await import("@svgr/core");

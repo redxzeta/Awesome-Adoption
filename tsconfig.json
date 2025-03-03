@@ -2,9 +2,9 @@
   "compilerOptions": {
     "incremental": true,
     "outDir": "build/lib",
-    "target": "ES2020",
-    "module": "esnext",
-    "lib": ["DOM", "ESNext"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "sourceMap": true,
     "importHelpers": true,
     "declaration": true,
@@ -19,12 +19,16 @@
     "moduleResolution": "node",
     "baseUrl": "src",
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "preserveSymlinks": true
+    "preserveSymlinks": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "types": ["vitest/globals"],
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "build", "scripts"]
+  "exclude": ["node_modules", "build", "scripts"],
 }

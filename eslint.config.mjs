@@ -1,7 +1,6 @@
 import { fixupConfigRules, fixupPluginRules } from "@eslint/compat";
 import react from "eslint-plugin-react";
 import testingLibrary from "eslint-plugin-testing-library";
-import jestDom from "eslint-plugin-jest-dom";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import globals from "globals";
 import tsParser from "@typescript-eslint/parser";
@@ -24,7 +23,6 @@ export default [
       "plugin:@typescript-eslint/recommended",
       "plugin:react-hooks/recommended",
       "plugin:react/recommended",
-      "plugin:jest-dom/recommended",
       "plugin:testing-library/react",
       "plugin:prettier/recommended"
     )
@@ -33,14 +31,12 @@ export default [
     plugins: {
       react: fixupPluginRules(react),
       "testing-library": fixupPluginRules(testingLibrary),
-      "jest-dom": fixupPluginRules(jestDom),
       "@typescript-eslint": fixupPluginRules(typescriptEslint)
     },
 
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.jest,
         JSX: true
       },
 
