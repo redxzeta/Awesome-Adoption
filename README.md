@@ -1,6 +1,10 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e4f299c9-c989-48e7-98c6-a9e259ddfb0f/deploy-status)](https://app.netlify.com/sites/hardcore-morse-df1d25/deploys)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+#### Original Repository (redxzeta):
 [![Node.js CI](https://github.com/redxzeta/Awesome-Adoption/actions/workflows/node.js.yml/badge.svg)](https://github.com/redxzeta/Awesome-Adoption/actions/workflows/node.js.yml)
+
+#### Current Repository (eryx12o45):
+[![Node.js CI](https://github.com/eryx12o45/Awesome-Adoption/actions/workflows/node.js.yml/badge.svg)](https://github.com/eryx12o45/Awesome-Adoption/actions/workflows/node.js.yml)
 
 # PawternityHub
 
@@ -29,6 +33,7 @@ Create an `.env` file in root folder
 In the `.env` file put
 
 `REACT_APP_PETFINDER_KEY = YOURAPIKEY`
+
 `REACT_APP_PETFINDER_SECRET = YOURSECRETKEY`
 
 Restart the app

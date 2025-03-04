@@ -82,7 +82,6 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-testing-library": "^7.1.1",
-    "fix": "^0.0.6",
     "globals": "^16.0.0",
     "husky": "^9.1.7",
     "jsdom": "^26.0.0",

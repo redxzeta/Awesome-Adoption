@@ -2610,15 +2610,6 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
-fix@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/fix/-/fix-0.0.6.tgz#07e593a27414ddc486ee52d50f9c8e09885a0305"
-  integrity sha512-UQ+8m0GnIakgpY+92a9y+pYoX3Y6eaW7WNTkPolQ7r58Fjzq7NhyRLMrZ6J6U1u4y7H7APugjRmZ+i6CAn4+Dg==
-  dependencies:
-    pipe "0.0.2"
-    underscore "1.1.6"
-    underscore.string "1.1.4"
-
 flat-cache@^3.0.4:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-3.2.0.tgz#2c0c2d5040c99b1632771a9d105725c0115363ee"
@@ -4058,11 +4049,6 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pipe@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/pipe/-/pipe-0.0.2.tgz#a16fe6fc019d75bd987c4928a67e1e50e4f5b44f"
-  integrity sha512-67s0/X7rv2PX1sl64FQqC0qQuSpd1tv8Wh6c+U1lprj6Q7NxDYulCxZTbVbDvc/HSpZLYh7Oo821xReXSCZikQ==
-
 pkg-conf@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/pkg-conf/-/pkg-conf-3.1.0.tgz#d9f9c75ea1bae0e77938cde045b276dac7cc69ae"
@@ -5030,18 +5016,6 @@ unbox-primitive@^1.1.0:
     has-bigints "^1.0.2"
     has-symbols "^1.1.0"
     which-boxed-primitive "^1.1.1"
-
-underscore.string@1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-1.1.4.tgz#9be06b23b8e3d996ea2020f9984202069e3dee12"
-  integrity sha512-WsF8NWzIbTvxUaSOpSLq+AiO0tzweXdWQZ4w9Op8S/1BT9Fh7hCS7bfrF17vZu9kJg3pcqO+8WXfQSr1ah0f2g==
-  dependencies:
-    underscore "1.1.6"
-
-underscore@1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.1.6.tgz#6868da1bdd72d75285be0b4e50f228e70d001a2c"
-  integrity sha512-aqSzrO92Cjmeo8G7F49+ZHWBo3IJpjpsUZZaqfOHJGN61flbpLxQw/sP91p4kf/2+nkFrG6AG2WHlJh6RCf+/g==
 
 undici-types@~6.20.0:
   version "6.20.0"
