@@ -8,7 +8,7 @@ export const nameCleaner = (str: string) => {
         .replace(/&#39;/gim, "'")
         .replace(/&quot;/gim, "'")
         .replace(/&rsquo;/gim, "'")
-        .replace(/&amp;/gim, "&")
+        .replace(/&amp;/gim, "and")
         .replace(/&ldquo;/gim, "'")
         .replace(/&hellip;/gim, "...")
     );
