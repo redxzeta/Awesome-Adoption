@@ -1,6 +1,10 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e4f299c9-c989-48e7-98c6-a9e259ddfb0f/deploy-status)](https://app.netlify.com/sites/hardcore-morse-df1d25/deploys)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+#### Original Repository (redxzeta):
 [![Node.js CI](https://github.com/redxzeta/Awesome-Adoption/actions/workflows/node.js.yml/badge.svg)](https://github.com/redxzeta/Awesome-Adoption/actions/workflows/node.js.yml)
+
+#### Current Repository (eryx12o45):
+[![Node.js CI](https://github.com/eryx12o45/Awesome-Adoption/actions/workflows/node.js.yml/badge.svg)](https://github.com/eryx12o45/Awesome-Adoption/actions/workflows/node.js.yml)
 
 # PawternityHub
 
@@ -14,6 +18,7 @@ A web application that helps users find pets to adopt around their area. It star
 Read Here [Contribution](https://github.com/redxzeta/Awesome-Adoption/blob/main/CONTRIBUTING.md)
 
 ## Tech Stack Used
+
 - React
 - Tailwind
 - Supabase
@@ -27,17 +32,17 @@ Create an `.env` file in root folder
 
 In the `.env` file put
 
-`REACT_APP_PETFINDER_KEY = APIKEYhere&client_secret=secretkeyhere`
+`REACT_APP_PETFINDER_KEY = YOURAPIKEY`
+
+`REACT_APP_PETFINDER_SECRET = YOURSECRETKEY`
 
 Restart the app
 
-Where the key is being used
-
-`grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project now uses vite [vite](https://vite.dev/).
 
 ## Supabase
+
+# SEEMS TO NOT WORK ANY LONGER (02/2025)
 
 Join My [Discord](https://discord.gg/2UxwrKxCPV) for the Supabase keys, which need to be in .env
 

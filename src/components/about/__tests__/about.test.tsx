@@ -1,28 +1,24 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import { customRender } from "../../../swrconfigtest";
-import { rest, server } from "../../../testServer";
+import { server } from "../../../testServer";
 import About from "../About";
+import { http, HttpResponse } from "msw";
 
 describe("<About/>", () => {
   test("should fetch api and expect error", async () => {
     server.use(
-      rest.get(
-        "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",
-        (_req, res, ctx) => {
-          return res(ctx.status(404), ctx.json({ error: "Error" }));
-        }
-      )
+      http.get("https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors", () => {
+        return HttpResponse.json({ message: "Error" }, { status: 404 });
+      })
     );
 
     customRender(<About />);
     expect(screen.getByRole("status")).toBeInTheDocument();
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
     const errorTitle = screen.getByRole("heading", {
       name: /Error Loading/i,
-      level: 1,
+      level: 1
     });
 
     expect(errorTitle).toBeInTheDocument();
@@ -33,9 +29,7 @@ describe("<About/>", () => {
     expect(screen.getByRole("status")).toBeInTheDocument();
     const avatarAltTexts = screen.queryByAltText(/Contributor Avatar/i);
     expect(avatarAltTexts).not.toBeInTheDocument();
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
     const conList = screen.getAllByAltText(/Contributor Avatar/i);
     expect(conList.length).toBe(2);
     expect(conList[0]).toHaveAccessibleName("abe Contributor Avatar");

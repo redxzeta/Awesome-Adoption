@@ -7,11 +7,9 @@ export default function Home() {
       <div className="my-8">
         <h1 className="font-amatic text-5xl font-bold mb-4">Adopting Pets</h1>
         <p>
-          Adopting pets is a compassionate way to find your family&apos;s newest
-          best friend. In the USA alone, around 6.5 million companion pets enter
-          shelters each year, including dogs and cats. Tragically, only about
-          3.2 million of them find forever homes, while approximately 1.5
-          million are euthanized (Statistics provided by
+          Adopting pets is a compassionate way to find your family&apos;s newest best friend. In the USA alone, around
+          6.5 million companion pets enter shelters each year, including dogs and cats. Tragically, only about 3.2
+          million of them find forever homes, while approximately 1.5 million are euthanized (Statistics provided by
           <a
             target="_blank"
             rel="noreferrer"
@@ -21,9 +19,7 @@ export default function Home() {
           </a>
           ).
         </p>
-        <p className="font-bold">
-          More information about adopting pets can be found at the links below:
-        </p>
+        <p className="font-bold">More information about adopting pets can be found at the links below:</p>
         <ul className="list-disc pl-8">
           <li>
             <a
@@ -35,11 +31,7 @@ export default function Home() {
             </a>
           </li>
           <li>
-            <a
-              href="https://www.humanesociety.org/resources/top-reasons-adopt-pet"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://www.humanesociety.org/resources/top-reasons-adopt-pet" target="_blank" rel="noreferrer">
               Humane Society
             </a>
           </li>
@@ -53,20 +45,16 @@ export default function Home() {
             </a>
           </li>
         </ul>
-        <p className="font-bold">
-          That leaves 1.8 million pets untouched, waiting for a loving home.
+        <p className="font-bold">That leaves 1.8 million pets untouched, waiting for a loving home.</p>
+        <p>
+          By adopting a pet, you not only save a life but also benefit from cost savings compared to purchasing a pet.
+          Many shelter pets are already house-trained and used to living with humans, making the transition easier for
+          both of you.
         </p>
         <p>
-          By adopting a pet, you not only save a life but also benefit from cost
-          savings compared to purchasing a pet. Many shelter pets are already
-          house-trained and used to living with humans, making the transition
-          easier for both of you.
-        </p>
-        <p>
-          Moreover, adopting a pet brings immense joy and companionship to your
-          life. Studies have shown that pets can reduce stress and promote
-          emotional well-being. They are loyal friends who will always be by
-          your side, providing unconditional love and support.
+          Moreover, adopting a pet brings immense joy and companionship to your life. Studies have shown that pets can
+          reduce stress and promote emotional well-being. They are loyal friends who will always be by your side,
+          providing unconditional love and support.
         </p>
         <div className="flex justify-center mt-4">
           <a
@@ -99,12 +87,10 @@ export default function Home() {
       <div className="my-8">
         <h1 className="font-amatic text-5xl font-bold mb-4">Covid-19</h1>
         <p>
-          Covid-19 is a newly found infectious disease that belongs to the
-          Coronavirus family. The virus causes respiratory infections, with
-          severity ranging from mild to life-threatening, depending on various
-          factors. The World Health Organization has declared Covid-19 a
-          pandemic, leading many countries to issue stay-at-home orders or
-          recommendations for quarantine and self-isolation.
+          Covid-19 is a newly found infectious disease that belongs to the Coronavirus family. The virus causes
+          respiratory infections, with severity ranging from mild to life-threatening, depending on various factors. The
+          World Health Organization has declared Covid-19 a pandemic, leading many countries to issue stay-at-home
+          orders or recommendations for quarantine and self-isolation.
         </p>
         <p>
           Given the difficulties of staying home alone,
@@ -119,9 +105,8 @@ export default function Home() {
           .
         </p>
         <p className="font-bold">
-          Pawternity Hub aims to help you stay safe and find a loyal friend to
-          keep you company during the pandemic. Check out the links below for
-          more information about adopting during Covid-19:
+          Pawternity Hub aims to help you stay safe and find a loyal friend to keep you company during the pandemic.
+          Check out the links below for more information about adopting during Covid-19:
         </p>
         <ul className="list-disc pl-8">
           <li>
@@ -144,11 +129,9 @@ export default function Home() {
           </li>
         </ul>
         <p>
-          At Pawternity Hub, we prioritize the health and safety of our
-          community. We encourage responsible pet adoption and provide resources
-          to help you make an informed decision. Adopting a pet during Covid-19
-          can bring much-needed positivity and companionship into your life
-          while helping a shelter pet find a loving home.
+          At Pawternity Hub, we prioritize the health and safety of our community. We encourage responsible pet adoption
+          and provide resources to help you make an informed decision. Adopting a pet during Covid-19 can bring
+          much-needed positivity and companionship into your life while helping a shelter pet find a loving home.
         </p>
         <div className="flex justify-center mt-4">
           <a

@@ -1,4 +1,4 @@
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 export type PetTokenType = {
@@ -10,7 +10,7 @@ export type PetTokenType = {
 const initialState: PetTokenType = {
   tokenHeaders: null,
   loading: false,
-  errors: false,
+  errors: false
 };
 type Props = {
   children?: React.ReactNode | React.ReactNode[];
@@ -22,28 +22,29 @@ export default function PetAuthProvider({ children }: Props) {
 
   useEffect(() => {
     const fetchFunction = async () => {
-      setState((s) => ({ ...s, loading: true, errors: false }));
+      setState(s => ({ ...s, loading: true, errors: false }));
       try {
-        const x = {
+        const key = `${process.env.REACT_APP_PETFINDER_KEY}`;
+        const secret = `${process.env.REACT_APP_PETFINDER_SECRET}`;
+        fetch("https://api.petfinder.com/v2/oauth2/token", {
           method: "POST",
+          body: "grant_type=client_credentials&client_id=" + key + "&client_secret=" + secret,
           headers: {
-            "Content-type": "application/x-www-form-urlencoded",
-          },
-          body: `grant_type=client_credentials&client_id=${process.env.REACT_APP_PETFINDER_KEY}`,
-        };
-        const response = await fetch(
-          "https://api.petfinder.com/v2/oauth2/token",
-          x
-        );
-        const json = await response.json();
-
-        const headers = `Bearer ${json.access_token}`;
-
-        setState((s) => ({ ...s, tokenHeaders: headers }));
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            const headers = data.token_type + " " + data.access_token;
+            setState(s => ({ ...s, tokenHeaders: headers }));
+          });
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
-        setState((s) => ({ ...s, errors: true }));
+        setState(s => ({ ...s, errors: true }));
       } finally {
-        setState((s) => ({ ...s, loading: false }));
+        setState(s => ({ ...s, loading: false }));
       }
     };
     const localStorageToken = localStorage.getItem("token");
@@ -55,23 +56,18 @@ export default function PetAuthProvider({ children }: Props) {
       if (decodedToken.exp * 1000 < currentDate.getTime()) {
         fetchFunction();
       } else {
-        setState((s) => ({ ...s, loading: true }));
-
+        setState(s => ({ ...s, loading: true }));
         const headers = `Bearer ${localStorage.getItem("token")}`;
-
-        setState((s) => ({ ...s, tokenHeaders: headers, loading: false }));
+        setState(s => ({ ...s, tokenHeaders: headers, loading: false }));
       }
     }
   }, []);
 
-  return (
-    <PetAuthContext.Provider value={state}>{children}</PetAuthContext.Provider>
-  );
+  return <PetAuthContext.Provider value={state}>{children}</PetAuthContext.Provider>;
 }
 
 export function usePetAuth() {
   const context = useContext(PetAuthContext);
-  if (context === undefined)
-    throw Error("usePetAuth must be used within PetAuthProvider");
+  if (context === undefined) throw Error("usePetAuth must be used within PetAuthProvider");
   return context;
 }

@@ -6,15 +6,16 @@ on:
       - opened
       - edited
       - synchronize
+      - reopened
+
+permissions:
+  pull-requests: read
 
 jobs:
   main:
     name: Validate PR title
     runs-on: ubuntu-latest
-    run: echo ${{ github.actor }}
     steps:
-      name: semantic pr
-      if: ${{ github.actor != 'dependabot[bot]' }}
-      uses: amannn/action-semantic-pull-request@v4
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

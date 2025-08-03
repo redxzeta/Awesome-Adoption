@@ -19,9 +19,7 @@ describe("<PetType/>", () => {
     );
 
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
 
     const petCards = screen.getAllByRole("button", { name: /More Info/i });
     expect(petCards).toHaveLength(12);
@@ -39,9 +37,7 @@ describe("<PetType/>", () => {
     );
     const user = userEvent.setup();
     expect(screen.getAllByRole("status")).toHaveLength(3);
-    await waitFor(() =>
-      expect(screen.queryByRole("status")).not.toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.queryByRole("status")).not.toBeInTheDocument());
     const goZip = await screen.findByRole("button", { name: /Go/i });
     expect(goZip).toBeInTheDocument();
 

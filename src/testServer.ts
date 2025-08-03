@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { rest } from "msw";
+import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 import { ProfileType } from "utils/supaFetcher";
 
@@ -11,14 +11,14 @@ const contributors = [
     id: 1,
     login: "abe",
     html_url: "somesite.com",
-    avatar_url: PlaceImage,
+    avatar_url: PlaceImage
   },
   {
     id: 2,
     login: "label",
     html_url: "asomesite.com",
-    avatar_url: PlaceImage,
-  },
+    avatar_url: PlaceImage
+  }
 ];
 
 const petList = {
@@ -28,13 +28,13 @@ const petList = {
     name: "Baby Yoda",
     type: "Grogu",
     contact: {
-      email: "yoda@onefor.me",
+      email: "yoda@onefor.me"
     },
     breeds: {
-      primary: "Grogu",
+      primary: "Grogu"
     },
     colors: {
-      primary: "green",
+      primary: "green"
     },
     age: "Baby",
     gender: "male",
@@ -43,10 +43,10 @@ const petList = {
     photos: [
       {
         medium: "babyYoda.medium.jpg",
-        large: "babyYoda.large.jpg",
-      },
-    ],
-  },
+        large: "babyYoda.large.jpg"
+      }
+    ]
+  }
 };
 
 const petListFav = [
@@ -60,18 +60,18 @@ const petListFav = [
       gender: "male",
       description: "Woof",
       primary_photo_cropped: {
-        medium: "courage.jpg",
+        medium: "courage.jpg"
       },
       breeds: {
-        primary: "dog",
+        primary: "dog"
       },
       photos: [
         {
           medium: "courage.medium.jpg",
-          large: "courage.large.jpg",
-        },
-      ],
-    },
+          large: "courage.large.jpg"
+        }
+      ]
+    }
   },
   {
     animal: {
@@ -82,18 +82,18 @@ const petListFav = [
       gender: "male",
       description: "finns friend",
       primary_photo_cropped: {
-        medium: "jake.png",
+        medium: "jake.png"
       },
       breeds: {
-        primary: "dog",
+        primary: "dog"
       },
       photos: [
         {
           medium: "finn.medium.jpg",
-          large: "finn.large.jpg",
-        },
-      ],
-    },
+          large: "finn.large.jpg"
+        }
+      ]
+    }
   },
   {
     animal: {
@@ -104,19 +104,19 @@ const petListFav = [
       gender: "male",
       description: "masterr of sowrds",
       primary_photo_cropped: {
-        medium: "boots.jpg",
+        medium: "boots.jpg"
       },
       breeds: {
-        primary: "cat",
+        primary: "cat"
       },
       photos: [
         {
           medium: "cat.medium.jpg",
-          large: "cat.large.jpg",
-        },
-      ],
-    },
-  },
+          large: "cat.large.jpg"
+        }
+      ]
+    }
+  }
 ];
 
 const fakenewProfiles: ProfileType[] = [
@@ -128,8 +128,8 @@ const fakenewProfiles: ProfileType[] = [
     favoritepets: [],
     background: {
       id: 1,
-      background_url: "someImage.png",
-    },
+      background_url: "someImage.png"
+    }
   },
   {
     id: "36",
@@ -138,84 +138,75 @@ const fakenewProfiles: ProfileType[] = [
     avatar_url: "cuteDoggoAndCat.jpg",
     favoritepets: [
       { id: 1, pet: "2", created_at: new Date("01/01/2020") },
-      { id: 2, pet: "3", created_at: new Date("01/02/2020") },
+      { id: 2, pet: "3", created_at: new Date("01/02/2020") }
     ],
     background: {
       id: 1,
-      background_url: "someImage.png",
-    },
-  },
+      background_url: "someImage.png"
+    }
+  }
 ];
 
 const server = setupServer(
-  rest.get(
-    "https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors",
-    (_req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(contributors));
-    }
-  ),
-  rest.post("https://api.petfinder.com/v2/oauth2/token", (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ access_token: "234566" }));
+  http.get("https://api.github.com/repos/redxzeta/Awesome-Adoption/contributors", () => {
+    return HttpResponse.json(contributors, { status: 200 });
   }),
-  rest.get("https://api.petfinder.com/v2/animals/:id", (req, res, ctx) => {
-    const { id } = req.params;
+  http.post("https://api.petfinder.com/v2/oauth2/token", () => {
+    return HttpResponse.json({ access_token: "234566" }, { status: 200 });
+  }),
+  http.get("https://api.petfinder.com/v2/animals/:id", info => {
+    const { id } = info.params;
 
     switch (id) {
       case "1":
-        return res(ctx.status(200), ctx.json(petList));
+        return HttpResponse.json(petList, { status: 200 });
       case "2":
-        return res(ctx.status(200), ctx.json(petListFav[0]));
+        return HttpResponse.json(petListFav[0], { status: 200 });
       case "3":
-        return res(ctx.status(200), ctx.json(petListFav[1]));
+        return HttpResponse.json(petListFav[1], { status: 200 });
       case "4":
-        return res(ctx.status(200), ctx.json(petListFav[2]));
-
+        return HttpResponse.json(petListFav[2], { status: 200 });
       default:
-        return res(
-          ctx.status(404),
-          ctx.json({ message: "Yoda does not exist" })
-        );
+        return HttpResponse.json({ message: "Yoda does not exist" }, { status: 404 });
     }
   }),
-  rest.get("https://api.petfinder.com/v2/animals", (req, res, ctx) => {
-    const sort = req.url.searchParams.get("sort");
-    const limit = req.url.searchParams.get("limit");
-    const type = req.url.searchParams.get("type");
-    const location = req.url.searchParams.get("location");
-    // const page = req.url.searchParams.get("page");
+  http.get("https://api.petfinder.com/v2/animals", ({ request }) => {
+    const url = new URL(request.url);
+    const sort = url.searchParams.get("sort");
+    const limit = url.searchParams.get("limit");
+    const type = url.searchParams.get("type");
+    const location = url.searchParams.get("location");
+    // const page = info.url.searchParams.get("page");
     if (sort === "random" && limit === "1") {
-      return res(ctx.status(200), ctx.json(petList));
+      return HttpResponse.json(petList, { status: 200 });
     } else if (sort === "random" && limit === "3") {
       const threePets = DogSample.animals.slice(0, 3);
-      return res(ctx.status(200), ctx.json({ animals: threePets }));
+      return HttpResponse.json({ animals: threePets }, { status: 200 });
     } else if (type === "dog" && location && limit === "12") {
-      return res(ctx.status(200), ctx.json(DogSample));
+      return HttpResponse.json(DogSample, { status: 200 });
     }
-    return res(ctx.status(200), ctx.json(contributors));
+    return HttpResponse.json(contributors, { status: 200 });
   }),
 
   // Login
-  rest.post("https://test.supabase.co/auth/v1/token", (_req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
+  http.post("https://test.supabase.co/auth/v1/token", () => {
+    return HttpResponse.json(
+      {
         access_token: "fake_access_token",
         expires_at: 9999999999,
         expires_in: 3600,
         refresh_token: "uCtyqUsj5FJqtIxCkz2Mvg",
         token_type: "bearer",
-        user: { id: "1234" },
-      })
+        user: { id: "1234" }
+      },
+      { status: 200 }
     );
   }),
-  rest.post("https://test.supabase.co/auth/v1/magicLink", (_req, res, ctx) => {
-    return res(
-      ctx.status(400),
-      ctx.json({ message: "Unable to validate email address: invalid format" })
-    );
+  http.post("https://test.supabase.co/auth/v1/magicLink", () => {
+    return HttpResponse.json({ message: "Unable to validate email address: invalid format" }, { status: 400 });
   }),
   // Register
-  rest.post("https://test.supabase.co/auth/v1/signup", (_req, res, ctx) => {
+  http.post("https://test.supabase.co/auth/v1/signup", () => {
     const fakeNewAccount = {
       id: "fake_acc_id",
       aud: "authenticated",
@@ -227,47 +218,42 @@ const server = setupServer(
       user_metadata: {},
       identities: [],
       created_at: Date.now(),
-      updated_at: Date.now(),
+      updated_at: Date.now()
     };
-    return res(ctx.status(200), ctx.json(fakeNewAccount));
+    return HttpResponse.json(fakeNewAccount, { status: 200 });
   }),
 
-  rest.get("https://test.supabase.co/rest/v1/profiles", (req, res, ctx) => {
-    const name = req.url.searchParams.get("username")?.replace("eq.", "");
+  http.get("https://test.supabase.co/rest/v1/profiles", ({ request }) => {
+    const url = new URL(request.url);
+    const name = url.searchParams.get("username")?.replace("eq.", "");
     switch (name) {
       case "supaAwesome":
-        return res(ctx.status(200), ctx.json(fakenewProfiles[0]));
+        return HttpResponse.json(fakenewProfiles[0], { status: 200 });
       case "supaPet":
-        return res(ctx.status(200), ctx.json(fakenewProfiles[1]));
+        return HttpResponse.json(fakenewProfiles[1], { status: 200 });
       default:
-        return res(ctx.status(404), ctx.json({ message: "ERROR" }));
+        return HttpResponse.json({ message: "ERROR" }, { status: 404 });
     }
   }),
 
-  rest.get(
-    "https://test.supabase.co/rest/v1/favoritepets",
-    (_req, res, ctx) => {
-      const fakeNewFavorites = [
-        { id: 1, pet: "1" },
-        { id: 2, pet: "2" },
-      ];
-      return res(ctx.status(200), ctx.json(fakeNewFavorites));
-    }
-  ),
+  http.get("https://test.supabase.co/rest/v1/favoritepets", () => {
+    const fakeNewFavorites = [
+      { id: 1, pet: "1" },
+      { id: 2, pet: "2" }
+    ];
+    return HttpResponse.json(fakeNewFavorites, { status: 200 });
+  }),
 
-  rest.get(
-    "https://test.supabase.co/storage/v1/object/profile/[object%20Object]",
-    (_req, res, ctx) => {
-      const myBlob = new Blob(
-        [
-          `/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/
-      2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/`,
-        ],
-        { type: "image/jpeg" }
-      );
-      return res(ctx.status(200), ctx.json(myBlob));
-    }
-  )
+  http.get("https://test.supabase.co/storage/v1/object/profile/[object%20Object]", () => {
+    const myBlob = new Blob(
+      [
+        `/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/
+      2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/`
+      ],
+      { type: "image/jpeg" }
+    );
+    return HttpResponse.json(myBlob, { status: 200 });
+  })
 );
 
 beforeAll(() => server.listen());
@@ -280,4 +266,4 @@ const SUPABASE_URL = "https://test.supabase.co";
 const KEY = "test";
 const supabase = createClient(SUPABASE_URL, KEY);
 
-export { server, rest, supabase };
+export { server, http, supabase };

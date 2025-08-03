@@ -17,10 +17,7 @@ export default function NotFound() {
           </div>
           <p>The pets you&apos;re looking for are in another castle!</p>
 
-          <p>
-            You either found a broken link or the content you were looking for
-            was removed. Sorry!
-          </p>
+          <p>You either found a broken link or the content you were looking for was removed. Sorry!</p>
 
           <p>Heres a couple of pages you might have been looking for:</p>
           <ul className="[&>li]:mb-1 pl-2 list-[circle] mt-4">

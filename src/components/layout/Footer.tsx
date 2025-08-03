@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const FooterMenu = () => {
   const year = new Date();
   return (
-    <Footer className="p-10 bg-primary text-secondary-content mt-10">
-      <article>
+    <Footer className="footer footer-horizontal p-10 bg-primary text-secondary-content mt-10">
+      <div>
         <svg
           width="50"
           height="50"
@@ -30,18 +30,14 @@ const FooterMenu = () => {
           <br />
           <span>&copy; redxzeta 2020 - {year.getFullYear()}</span>
           <br />
-          <a
-            href="https://github.com/redxzeta/Awesome-Adoption"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
+          <a href="https://github.com/redxzeta/Awesome-Adoption" target="_blank" rel="noreferrer noopener">
             Github
           </a>
         </p>
-      </article>
+      </div>
 
-      <article>
-        <Footer.Title>Pages</Footer.Title>
+      <div>
+        <Footer.Title className="footer-title">Pages</Footer.Title>
         <Link to="/about" className="link link-hover">
           About
         </Link>
@@ -54,7 +50,7 @@ const FooterMenu = () => {
         <Link to="/contact" className="link link-hover">
           Contact
         </Link>
-      </article>
+      </div>
     </Footer>
   );
 };

@@ -17,10 +17,10 @@ const Contact = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FormData>();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<FormData> = data => {
     // TODO: tie the success/error notification to the respective submission states
     if (data) {
       reset();
@@ -44,7 +44,7 @@ const Contact = () => {
       closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
-      progress: undefined,
+      progress: undefined
     });
 
   const errorNotification = () =>
@@ -55,35 +55,22 @@ const Contact = () => {
       closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
-      progress: undefined,
+      progress: undefined
     });
 
   return (
     <PawHubContainer>
       <section>
-        <h1 className="tracking-in-expand-fwd font-amatic text-5xl font-bold py-10">
-          Contact Us
-        </h1>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="slide-in-fwd-left form-control max-w-lg"
-        >
+        <h1 className="tracking-in-expand-fwd font-amatic text-5xl font-bold py-10">Contact Us</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="slide-in-fwd-left max-w-lg flex flex-col">
           <label className="text-lg">
             Names
-            <NameInput
-              register={register}
-              inputClasses={inputClasses}
-              errors={errors}
-            />
+            <NameInput register={register} inputClasses={inputClasses} errors={errors} />
           </label>
 
           <label className="text-lg">
             Email
-            <EmailInput
-              register={register}
-              inputClasses={inputClasses}
-              errors={errors}
-            />
+            <EmailInput register={register} inputClasses={inputClasses} errors={errors} />
           </label>
 
           <label htmlFor="message" className="text-lg py-2">
@@ -91,9 +78,7 @@ const Contact = () => {
           </label>
           <MessageInput register={register} errors={errors} />
 
-          <button className="btn btn-primary rounded-full w-28 mt-4">
-            Submit
-          </button>
+          <button className="btn btn-primary rounded-full w-28 mt-4">Submit</button>
         </form>
       </section>
       <ToastContainer />

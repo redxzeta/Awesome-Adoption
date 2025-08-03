@@ -1,4 +1,3 @@
-/*  eslint-disable */
 export const nameCleaner = (str: string) => {
   if (str !== undefined) {
     return (
@@ -7,10 +6,10 @@ export const nameCleaner = (str: string) => {
         .replace(/(^\w+:|^)\/\//, "")
         .replace(/&#039;/gim, "'")
         .replace(/&#39;/gim, "'")
-        .replace(/&quot;/gim, '"')
+        .replace(/&quot;/gim, "'")
         .replace(/&rsquo;/gim, "'")
-        .replace(/&amp;/gim, "&")
-        .replace(/&ldquo;/gim, '"')
+        .replace(/&amp;/gim, "and")
+        .replace(/&ldquo;/gim, "'")
         .replace(/&hellip;/gim, "...")
     );
   }
@@ -20,7 +19,7 @@ export const nameCleaner = (str: string) => {
 
 export const storyCleaner = (str: string) => {
   if (str !== undefined) {
-    let strArr = str.split(".");
+    const strArr = str.split(".");
     return strArr[0] + strArr[1];
   }
 
