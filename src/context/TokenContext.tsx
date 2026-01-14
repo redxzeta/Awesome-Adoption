@@ -24,8 +24,8 @@ export default function PetAuthProvider({ children }: Props) {
     const fetchFunction = async () => {
       setState(s => ({ ...s, loading: true, errors: false }));
       try {
-        const key = `${process.env.REACT_APP_PETFINDER_KEY}`;
-        const secret = `${process.env.REACT_APP_PETFINDER_SECRET}`;
+        const key = `${import.meta.env.VITE_PETFINDER_KEY}`;
+        const secret = `${import.meta.env.VITE_PETFINDER_SECRET}`;
         fetch("https://api.petfinder.com/v2/oauth2/token", {
           method: "POST",
           body: "grant_type=client_credentials&client_id=" + key + "&client_secret=" + secret,

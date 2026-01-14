@@ -36,7 +36,7 @@ const Donate = () => {
 
         <p>If you wish to help donate the site here, you can click here</p>
         <div className="flex flex-wrap justify-between items-center">
-          <a href={process.env.REACT_APP_KOFI} target="_blank" rel="noreferrer">
+          <a href={import.meta.env.VITE_KOFI_URL} target="_blank" rel="noreferrer">
             <img
               src="https://cdn.ko-fi.com/cdn/kofi2.png?v=2"
               className="h-auto w-48"
