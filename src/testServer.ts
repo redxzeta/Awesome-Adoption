@@ -176,7 +176,6 @@ const server = setupServer(
     const limit = url.searchParams.get("limit");
     const type = url.searchParams.get("type");
     const location = url.searchParams.get("location");
-    // const page = info.url.searchParams.get("page");
     if (sort === "random" && limit === "1") {
       return HttpResponse.json(petList, { status: 200 });
     } else if (sort === "random" && limit === "3") {

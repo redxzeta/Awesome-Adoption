@@ -7,7 +7,6 @@ import useSWR from "swr";
 
 import { useAuth } from "../../context/SupaContext";
 import { usePetAuth } from "../../context/TokenContext";
-// import { FavoritePets } from "../../reducers/supaReducer";
 import { lookUpPet } from "../../routes/API";
 import { multipleFetcher } from "../../utils/petInfoFetcher";
 import PetCard from "../layout/PetCard";

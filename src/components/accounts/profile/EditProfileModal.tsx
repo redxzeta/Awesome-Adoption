@@ -50,13 +50,7 @@ export default function EditProfileModal({ show, handleClose, initialState }) {
     }
   };
 
-  // const [showConfirmation, setShowConfirmation] = useState(false);
-
-  // const handleCloseConfirmation = () => setShowConfirmation(false);
-  // const handleShowConfirmation = () => setShowConfirmation(true);
-
   const onConfirmedExit = () => {
-    // handleCloseConfirmation();
     resetChanges();
     handleClose();
   };
@@ -88,32 +82,6 @@ export default function EditProfileModal({ show, handleClose, initialState }) {
           <Button variant="secondary" onClick={onConfirmedExit}>
             Cancel
           </Button>
-          {/* <Modal
-            show={showConfirmation}
-            onHide={handleCloseConfirmation}
-            backdrop="static"
-            keyboard={false}
-            centered
-            size="sm"
-          >
-            <Modal.Header>
-              <Modal.Title>Exit Editing?</Modal.Title>
-            </Modal.Header>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseConfirmation}>
-                Back
-              </Button>
-              <Button
-                variant="dark"
-                // onClick={onConfirmedExit}
-              >
-                Confirm Exit
-              </Button>
-            </Modal.Footer>
-          </Modal> */}
-          {/* <Button variant="primary" type="submit">
-            Save
-          </Button> */}
           <FetchingButton fetching={fetching} action="Save" />
         </Modal.Footer>{" "}
       </Form>

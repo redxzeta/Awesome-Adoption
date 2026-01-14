@@ -26,22 +26,17 @@ export default function PetAuthProvider({ children }: Props) {
       try {
         const key = `${process.env.REACT_APP_PETFINDER_KEY}`;
         const secret = `${process.env.REACT_APP_PETFINDER_SECRET}`;
-        fetch("https://api.petfinder.com/v2/oauth2/token", {
+        const response = await fetch("https://api.petfinder.com/v2/oauth2/token", {
           method: "POST",
           body: "grant_type=client_credentials&client_id=" + key + "&client_secret=" + secret,
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
           }
-        })
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (data) {
-            const headers = data.token_type + " " + data.access_token;
-            setState(s => ({ ...s, tokenHeaders: headers }));
-          });
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (error) {
+        });
+        const data = await response.json();
+        const headers = data.token_type + " " + data.access_token;
+        setState(s => ({ ...s, tokenHeaders: headers }));
+      } catch {
         setState(s => ({ ...s, errors: true }));
       } finally {
         setState(s => ({ ...s, loading: false }));

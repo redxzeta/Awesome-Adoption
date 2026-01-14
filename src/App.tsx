@@ -41,20 +41,12 @@ export default function App() {
               <Route path="resources" element={<Resources />} />
               <Route path="tips" element={<Tips />} />
               <Route path="organizations" element={<Organizations />} />
-              {/* <Route path="stories" element={<Stories />} /> */}
               <Route path="favorites" element={<Favorites />} />
               <Route path="register" element={<Register />} />
               <Route path="login" element={<SLogin />} />
               <Route path="forgot-password" element={<ForgotPassword />} />
               <Route path="settings" element={<Settings />} />
-              <Route
-                path="reset-password"
-                element={
-                  // <PrivateRoute>
-                  <ResetPassword />
-                  // </PrivateRoute>
-                }
-              />
+              <Route path="reset-password" element={<ResetPassword />} />
               <Route path="profile/:name" element={<Profile />} />
               <Route path="/" element={<Home />} />
               <Route path="*" element={<NotFound />} />

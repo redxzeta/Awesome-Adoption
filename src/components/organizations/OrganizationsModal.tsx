@@ -33,7 +33,6 @@ export default function DonateModal({ handleClose }: DonateModalType) {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-  // const [form, handleChange, onSubmit] = useForm(initialState, validCheck);
   const onConfirmedExit = () => {
     handleClose();
   };

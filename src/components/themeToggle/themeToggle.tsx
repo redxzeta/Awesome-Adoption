@@ -27,7 +27,6 @@ function Toggle() {
       setDarkToggle(true);
     }
   };
-  // const userPrefs = localStorage.getItem("theme") || "system";
   if (localStorage.getItem("theme") === "dark") {
     setTheme("dark");
   } else {

@@ -29,7 +29,6 @@ export default function Tips() {
         </p>{" "}
       </div>
       <hr />
-      {/* ------------------------------------------------- */}
       <div className="text-center mt-8">
         <h1 className="mb-4">Final steps to guide you on how to best adopt or rehome a dog</h1>
         <p>
